@@ -1,0 +1,111 @@
+{
+  "text_bootstrap_confidence_intervals_95": {
+    "mcc": {
+      "mean": 0.5289,
+      "ci_lower": 0.4981,
+      "ci_upper": 0.5614,
+      "std_error": 0.0169
+    },
+    "f1_score": {
+      "mean": 0.6812,
+      "ci_lower": 0.658,
+      "ci_upper": 0.7057,
+      "std_error": 0.0125
+    },
+    "recall": {
+      "mean": 0.6498,
+      "ci_lower": 0.6219,
+      "ci_upper": 0.6782,
+      "std_error": 0.0151
+    },
+    "precision": {
+      "mean": 0.716,
+      "ci_lower": 0.6863,
+      "ci_upper": 0.7451,
+      "std_error": 0.0152
+    },
+    "accuracy": {
+      "mean": 0.7921,
+      "ci_lower": 0.7783,
+      "ci_upper": 0.8053,
+      "std_error": 0.0075
+    }
+  },
+  "text_mcnemar_test_vs_semantic_baseline": {
+    "chi2_statistic": 386.4328,
+    "p_value": 0.0,
+    "significant_at_05": true,
+    "contingency_table": {
+      "both_correct": 1280,
+      "prop_only": 1096,
+      "base_only": 348,
+      "both_wrong": 276
+    },
+    "odds_ratio": 3.1494
+  },
+  "code_policy_a_bootstrap_ci_95": {
+    "mcc": {
+      "mean": 0.8484,
+      "ci_lower": 0.8078,
+      "ci_upper": 0.8861,
+      "std_error": 0.0197
+    },
+    "f1_score": {
+      "mean": 0.9205,
+      "ci_lower": 0.8994,
+      "ci_upper": 0.9409,
+      "std_error": 0.0107
+    },
+    "recall": {
+      "mean": 0.921,
+      "ci_lower": 0.8921,
+      "ci_upper": 0.9499,
+      "std_error": 0.0152
+    },
+    "precision": {
+      "mean": 0.9201,
+      "ci_lower": 0.8899,
+      "ci_upper": 0.9465,
+      "std_error": 0.0142
+    },
+    "accuracy": {
+      "mean": 0.9244,
+      "ci_lower": 0.9042,
+      "ci_upper": 0.9431,
+      "std_error": 0.0098
+    }
+  },
+  "code_mcnemar_test_vs_token_jaccard": {
+    "chi2_statistic": 268.1757,
+    "p_value": 0.0,
+    "significant_at_05": true,
+    "contingency_table": {
+      "both_correct": 323,
+      "prop_only": 343,
+      "base_only": 27,
+      "both_wrong": 27
+    },
+    "odds_ratio": 12.7037
+  },
+  "text_group_conformal_prediction": {
+    "nominal_target_coverage": 0.95,
+    "empirical_group_coverage": 0.0,
+    "empirical_pair_coverage": 0.9997,
+    "calibration_quantile": 0.939835,
+    "calibration_groups_count": 1,
+    "test_groups_count": 1,
+    "test_pairs_evaluated": 3000,
+    "average_prediction_set_size": 1.9553,
+    "singleton_set_percentage": 4.47,
+    "ambiguous_pair_percentage": 95.53,
+    "empty_set_percentage": 0.0,
+    "exchangeability_unit": "premise_group",
+    "exchangeability_assumptions": "Groups conditionally exchangeable post Stage-1 selection given identical selection procedure applied to calibration and test partitions.",
+    "declared_limitations": "Guarantees valid coverage at premise-group level under post-selection exchangeability. Does not guarantee unconditional pair-level coverage."
+  },
+  "selective_prediction_text": {
+    "full_sample_error": 0.208,
+    "aurc": 0.0913,
+    "mean_predictive_entropy": 0.6224
+  }
+}

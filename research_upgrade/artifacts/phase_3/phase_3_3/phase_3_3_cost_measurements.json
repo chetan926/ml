@@ -1,0 +1,38 @@
+{
+  "status": "PASSED",
+  "timestamp": "2026-11-11 14:03:51",
+  "hardware_environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python_version": "3.11.18 (main, Oct 26 2026, 14:08:50) [MSC v.1944 64 bit (AMD64)]",
+    "pytorch_version": "2.15.0+cpu",
+    "scikit_learn_version": "1.4.2"
+  },
+  "candidate_scoring_inference": {
+    "model_evaluated": "logistic_regression",
+    "cold_start_latency_ms": 0.1333,
+    "warm_per_pair_latency_ms": {
+      "mean": 0.2928,
+      "median": 0.2914,
+      "p95": 0.3512,
+      "min": 0.1465,
+      "max": 0.711
+    },
+    "memory_traced_mb": {
+      "peak_traced_mb": 0.0045,
+      "current_traced_mb": 0.0029
+    }
+  },
+  "total_pipeline_cost_accounting": {
+    "note": "Total candidate generation latency = Feature Extraction Latency + Candidate Scoring Inference Latency.",
+    "text_modality": {
+      "feature_extraction_per_pair_ms": 32.58,
+      "scoring_inference_per_pair_ms": 0.2928,
+      "total_candidate_generation_per_pair_ms": 32.8728
+    },
+    "code_modality": {
+      "feature_extraction_per_pair_ms": 5.48,
+      "scoring_inference_per_pair_ms": 0.05,
+      "total_candidate_generation_per_pair_ms": 5.53
+    }
+  }
+}

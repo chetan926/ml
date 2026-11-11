@@ -1,0 +1,3 @@
+ids,reference_text,suspicious_text,is_plagiarized,splits
+"['TXT_002504', 'TXT_002505']",A dog carrying a stick in its mouth runs through a snow-covered field.,A animal carried a stick through a snow covered field.,1,"['val', 'val']"
+"['TXT_003940', 'TXT_003942']","A lone, 2-3 year old blond child in a blue jacket is putting a small black plastic item in his mouth as he kneels on a waiting room couch pointed toward the back while looking at something or someone not in the room.",The child is blonde.,1,"['val', 'val']"

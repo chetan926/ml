@@ -1,0 +1,163 @@
+{
+  "total_pairs": 733,
+  "physical_java_files": 467,
+  "duplicate_rows": 24,
+  "reversed_duplicate_pairs": 0,
+  "task_accounting": [
+    {
+      "task_id": "case-01",
+      "raw_total_pairs": 94,
+      "raw_pos_pairs": 40,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 7,
+      "policy_a_retained_pairs": 90,
+      "policy_a_pos": 36,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 87,
+      "policy_b_pos": 33,
+      "policy_b_neg": 54,
+      "physical_java_files": 56
+    },
+    {
+      "task_id": "case-02",
+      "raw_total_pairs": 108,
+      "raw_pos_pairs": 54,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 7,
+      "policy_a_retained_pairs": 104,
+      "policy_a_pos": 50,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 101,
+      "policy_b_pos": 47,
+      "policy_b_neg": 54,
+      "physical_java_files": 70
+    },
+    {
+      "task_id": "case-03",
+      "raw_total_pairs": 106,
+      "raw_pos_pairs": 52,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 6,
+      "policy_a_retained_pairs": 103,
+      "policy_a_pos": 49,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 100,
+      "policy_b_pos": 46,
+      "policy_b_neg": 54,
+      "physical_java_files": 68
+    },
+    {
+      "task_id": "case-04",
+      "raw_total_pairs": 108,
+      "raw_pos_pairs": 54,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 0,
+      "policy_a_retained_pairs": 108,
+      "policy_a_pos": 54,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 108,
+      "policy_b_pos": 54,
+      "policy_b_neg": 54,
+      "physical_java_files": 70
+    },
+    {
+      "task_id": "case-05",
+      "raw_total_pairs": 107,
+      "raw_pos_pairs": 53,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 0,
+      "policy_a_retained_pairs": 107,
+      "policy_a_pos": 53,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 107,
+      "policy_b_pos": 53,
+      "policy_b_neg": 54,
+      "physical_java_files": 69
+    },
+    {
+      "task_id": "case-06",
+      "raw_total_pairs": 105,
+      "raw_pos_pairs": 51,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 4,
+      "policy_a_retained_pairs": 103,
+      "policy_a_pos": 49,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 101,
+      "policy_b_pos": 47,
+      "policy_b_neg": 54,
+      "physical_java_files": 67
+    },
+    {
+      "task_id": "case-07",
+      "raw_total_pairs": 105,
+      "raw_pos_pairs": 51,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 0,
+      "policy_a_retained_pairs": 105,
+      "policy_a_pos": 51,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 105,
+      "policy_b_pos": 51,
+      "policy_b_neg": 54,
+      "physical_java_files": 67
+    }
+  ],
+  "case_05_fold_audit": [
+    {
+      "fold": 1,
+      "held_out_groups": "['original', 'non-plag-01', 'non-plag-02']",
+      "pos_train": 0,
+      "neg_train": 39,
+      "pos_test": 53,
+      "neg_test": 15,
+      "platt_feasible": false,
+      "status": "DIVERGES_ZERO_TRAIN_POSITIVES",
+      "mathematical_consequence": "Loss strictly decreasing as B -> -inf; Platt optimizer diverges to -inf"
+    },
+    {
+      "fold": 2,
+      "held_out_groups": "['non-plag-03', 'non-plag-04', 'non-plag-05']",
+      "pos_train": 53,
+      "neg_train": 40,
+      "pos_test": 0,
+      "neg_test": 14,
+      "platt_feasible": false,
+      "status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "mathematical_consequence": "Held-out test fold has 0 positives; ROC-AUC, Precision, Recall, ECE undefined"
+    },
+    {
+      "fold": 3,
+      "held_out_groups": "['non-plag-06', 'non-plag-07', 'non-plag-08']",
+      "pos_train": 53,
+      "neg_train": 39,
+      "pos_test": 0,
+      "neg_test": 15,
+      "platt_feasible": false,
+      "status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "mathematical_consequence": "Held-out test fold has 0 positives; ROC-AUC, Precision, Recall, ECE undefined"
+    },
+    {
+      "fold": 4,
+      "held_out_groups": "['non-plag-09', 'non-plag-10', 'non-plag-11']",
+      "pos_train": 53,
+      "neg_train": 39,
+      "pos_test": 0,
+      "neg_test": 15,
+      "platt_feasible": false,
+      "status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "mathematical_consequence": "Held-out test fold has 0 positives; ROC-AUC, Precision, Recall, ECE undefined"
+    },
+    {
+      "fold": 5,
+      "held_out_groups": "['non-plag-12', 'non-plag-13', 'non-plag-14', 'non-plag-15']",
+      "pos_train": 53,
+      "neg_train": 42,
+      "pos_test": 0,
+      "neg_test": 12,
+      "platt_feasible": false,
+      "status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "mathematical_consequence": "Held-out test fold has 0 positives; ROC-AUC, Precision, Recall, ECE undefined"
+    }
+  ]
+}

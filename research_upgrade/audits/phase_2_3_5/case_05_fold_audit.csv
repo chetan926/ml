@@ -1,0 +1,6 @@
+fold_index,held_out_identities,pos_train_count,neg_train_count,pos_test_count,neg_test_count,platt_scaling_feasible,mathematical_status,unregularized_effect,regularized_effect
+1,"original, non-plag-01, non-plag-02",0,39,53,15,False,DIVERGES_ZERO_TRAIN_POSITIVES,Unregularized MLE diverges to B -> -inf (loss strictly decreases towards 0),Regularized LogisticRegression raises ValueError: solver needs samples of at least 2 classes
+2,"non-plag-03, non-plag-04, non-plag-05",53,40,0,14,False,UNDEFINED_ZERO_TEST_POSITIVES,Training feasible but held-out test evaluation degenerate,"Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined"
+3,"non-plag-06, non-plag-07, non-plag-08",53,39,0,15,False,UNDEFINED_ZERO_TEST_POSITIVES,Training feasible but held-out test evaluation degenerate,"Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined"
+4,"non-plag-09, non-plag-10, non-plag-11",53,39,0,15,False,UNDEFINED_ZERO_TEST_POSITIVES,Training feasible but held-out test evaluation degenerate,"Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined"
+5,"non-plag-12, non-plag-13, non-plag-14, non-plag-15",53,42,0,12,False,UNDEFINED_ZERO_TEST_POSITIVES,Training feasible but held-out test evaluation degenerate,"Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined"

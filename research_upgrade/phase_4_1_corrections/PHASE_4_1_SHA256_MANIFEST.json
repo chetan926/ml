@@ -1,0 +1,162 @@
+{
+  "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_1_calibration_curves.png": {
+    "size_bytes": 248699,
+    "sha256": "6f0b2421974f825eec18d2a13688f83cb97588b3adef62fd38d8e6907ea9bf0f"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_2_risk_coverage.png": {
+    "size_bytes": 141248,
+    "sha256": "8f96909a7c4682cfc795ed33c2c0ecaf592320a619624bd72f36d9775fe55bef"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_3_pareto_cost_recall.png": {
+    "size_bytes": 139434,
+    "sha256": "f6b302aa6ce9b11705833e5bd23c1714363821e1dcf7556b6a7bf180c84a162f"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_4_ablation_mcc.png": {
+    "size_bytes": 112276,
+    "sha256": "455a74c95c4425f0076f9dba1f815ff611c8ee7810f7757a9323d1cfe2f0152e"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_ABLATION_RESULTS.csv": {
+    "size_bytes": 871,
+    "sha256": "4424e6f346510089a2b7ed6a74819c9c4a32c158b55d6b4eae108f78b92879cc"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_BASELINE_PREDICTIONS_CODE_OOF.csv": {
+    "size_bytes": 16972,
+    "sha256": "c98a054adc8ad915e64c0d28d3f399dfc070d242b18b667c42ec515b56433a3a"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_BASELINE_PREDICTIONS_TEXT_TEST.csv": {
+    "size_bytes": 313762,
+    "sha256": "d27e78855e0516d2c21d8641fb42de3080f21c37031e99a0ccd4f3aa5791957d"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_CALIBRATION_METRICS.csv": {
+    "size_bytes": 522,
+    "sha256": "a977ebddc8feb1cc58bde0d7753053c2fbba581bdd0782ff6c5c99005762434e"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_CLASSIFICATION_METRICS.csv": {
+    "size_bytes": 1941,
+    "sha256": "dbee4407c97f2ba137c8da06e2af55db3fae506d442915492bb018dd9ff6c709"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_CONFUSION_MATRICES.csv": {
+    "size_bytes": 948,
+    "sha256": "3b40b235fcd47a7a76a4b866ec3e7d4d48fc3464678041584ea8a8e1064d3d31"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_COST_ANALYSIS.csv": {
+    "size_bytes": 661,
+    "sha256": "e62f594111d969bccaa19ec26fc615409c519678f627bb3e3b6577a59545af47"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_EXPERIMENT_CONFIG_AND_FOLDS.json": {
+    "size_bytes": 3764,
+    "sha256": "953453fc360c912b4ede1019d5e15e9cc7bf0b6ac37085b09b8080da60869635"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_PARETO_OPERATING_POINTS.csv": {
+    "size_bytes": 458,
+    "sha256": "7bc5acf822f34557214ad984367492e7421968634ef66e9ddd0050e02ba38c38"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_PREDICTIONS_CODE_OOF.csv": {
+    "size_bytes": 50909,
+    "sha256": "fa0ef7ef7c38c8b4b17287fec938274693ea60ab46724ebe701d480af1878d76"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_PREDICTIONS_TEXT_TEST.csv": {
+    "size_bytes": 437167,
+    "sha256": "fa3dc9d082009f18c87c97022e4044c7f9fc533f511aedb4f73fb5fed17b847e"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_RESEARCH_RESULTS.json": {
+    "size_bytes": 47024,
+    "sha256": "2f79bf75b94d5ff190e341d7a622e8af20e105b0747885ff03caf0ce56f1a961"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_ROBUSTNESS_RESULTS.csv": {
+    "size_bytes": 158,
+    "sha256": "e9220570e61a274943a38e872dada3ff9e1fc0ab482e2a49767a725d35da153d"
+  },
+  "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_STATISTICAL_ANALYSIS.json": {
+    "size_bytes": 3893,
+    "sha256": "5067b5083b0f359f799638a36352946f9ef5b3c38deb6b026970fcca96bc30f3"
+  },
+  "research_upgrade/phase_4_1_corrections/package_phase_4_1.py": {
+    "size_bytes": 3102,
+    "sha256": "06063c5797d3ceded1ab5f0f18fc14a42cd75ce2da71ff033cbf59a03ed38c56"
+  },
+  "research_upgrade/phase_4_1_corrections/PHASE_4_1_CORRECTION_LEDGER.md": {
+    "size_bytes": 9560,
+    "sha256": "2bec738e53a19135c895748d519000c886cfe9275593d07587055f7a40615957"
+  },
+  "research_upgrade/phase_4_1_corrections/PHASE_4_1_EXECUTION_LOG.txt": {
+    "size_bytes": 7550,
+    "sha256": "1ceffa8facaf0e0abd4891c5f00f50dd8b8592b918b645c4ef41626e11eecacf"
+  },
+  "research_upgrade/phase_4_1_corrections/PHASE_4_1_EXECUTION_REPORT.md": {
+    "size_bytes": 12781,
+    "sha256": "e24705f789b9267c4e420dab5fb79051d6c34ab6f67c5fab761c3940c1f78514"
+  },
+  "research_upgrade/phase_4_1_corrections/PHASE_4_1_INTEGRITY_AUDIT.md": {
+    "size_bytes": 5169,
+    "sha256": "baaa12a2eefd7533456588277256837194067173d0a87d43c108344759a67059"
+  },
+  "research_upgrade/phase_4_1_corrections/PHASE_4_1_RESEARCH_PAPER.md": {
+    "size_bytes": 16376,
+    "sha256": "df1e3a1b47b23f0f60a95c09b6c5e501f92d5dcadfa3839172f11e07d7d9220d"
+  },
+  "research_upgrade/phase_4_1_corrections/run_phase_4_1_execution.py": {
+    "size_bytes": 38878,
+    "sha256": "2169a54f00239ec8a6788669e753b28af81efba15a07b9cedfe87acdaa3a85be"
+  },
+  "research_upgrade/phase_4_1_corrections/src/__init__.py": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "research_upgrade/phase_4_1_corrections/src/calibration/__init__.py": {
+    "size_bytes": 152,
+    "sha256": "45bd8ac9b4618918c7a486974bbcd8fdef627af4bd5a07281f2cec666c5c2cea"
+  },
+  "research_upgrade/phase_4_1_corrections/src/calibration/group_conformal.py": {
+    "size_bytes": 7551,
+    "sha256": "bdeabb43ed00d93c3fe1e8b00c83702df9424dceea78fb1f0bef888eac817a1f"
+  },
+  "research_upgrade/phase_4_1_corrections/src/evaluation/__init__.py": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "research_upgrade/phase_4_1_corrections/src/evaluation/profiling.py": {
+    "size_bytes": 3191,
+    "sha256": "3339d7a6d8e410289fdc9fb18846ec38790c098263901a9c64d2ff92ec1619a0"
+  },
+  "research_upgrade/phase_4_1_corrections/src/evaluation/statistical_testing.py": {
+    "size_bytes": 11260,
+    "sha256": "7edeb48f693684a1b66d140fbd9b9a4c6562ccc0391d9a28288d2e99c4671ef2"
+  },
+  "research_upgrade/phase_4_1_corrections/src/explainability/__init__.py": {
+    "size_bytes": 387,
+    "sha256": "260bfe585fd3aa72a9f42a7d7e4f9ce1c951502424cc1919a5a83752acdf356a"
+  },
+  "research_upgrade/phase_4_1_corrections/src/explainability/dossier_generator.py": {
+    "size_bytes": 4247,
+    "sha256": "267af4c3adc53ab794c5a6957145e2fe190bf480f229dd1973f7a078e9ddad88"
+  },
+  "research_upgrade/phase_4_1_corrections/src/explainability/evidence_extractor.py": {
+    "size_bytes": 7829,
+    "sha256": "563e1f776b2e20472ee1388024079732563626b45ea9a54d09443b81ede1e970"
+  },
+  "research_upgrade/phase_4_1_corrections/src/pipeline/__init__.py": {
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "research_upgrade/phase_4_1_corrections/src/pipeline/integrated_framework.py": {
+    "size_bytes": 11742,
+    "sha256": "78af1a683e33ea64e53e65697311d061d9791ffb4f0a1e36dcfaa94c65395f2a"
+  },
+  "research_upgrade/phase_4_1_corrections/src/routing/__init__.py": {
+    "size_bytes": 141,
+    "sha256": "c053e61a7031ce91e324453c05537a66356b75381c5221310303d88333a7ca49"
+  },
+  "research_upgrade/phase_4_1_corrections/src/routing/code_group_evaluator.py": {
+    "size_bytes": 14538,
+    "sha256": "92a2d0ed6284a2f08451303adb7ed65f679d8fc90750dc67d2caf0d5fcc92a71"
+  },
+  "tests/test_phase_4_1_corrections.py": {
+    "size_bytes": 7182,
+    "sha256": "a291cc0eddeaa4f93fe626e152ebcb7bf43586a273fa6a03cb8cce13e7570414"
+  },
+  "research_upgrade/phase_4_1_corrections/PHASE_4_1_SHA256_MANIFEST.json": {
+    "size_bytes": 7677,
+    "sha256": "47ce6d243488b817b116b9b5710f735ab2d54f80c0c0893a68ce6fa515f3b5ec"
+  }
+}

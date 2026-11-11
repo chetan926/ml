@@ -1,0 +1,2 @@
+raw_total_rows,raw_val_rows,raw_test_rows,active_train,active_val,active_cal_prob,active_cal_conf,active_test,active_total,purged_cross_split_contamination,purged_exact_duplicate_rows,retained_development_reserve,retained_test_reserve,retained_reserve_total,arithmetic_sum_check,reconciliation_status
+19666,9842,9824,4000,1500,1000,1000,3000,10500,6,2,2337,6821,9158,19666,PASS

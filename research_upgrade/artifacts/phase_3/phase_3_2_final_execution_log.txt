@@ -1,0 +1,55 @@
+================================================================================
+PHASE 3.2 FINAL RECONCILIATION AND RESEARCH INTEGRITY AUDIT
+================================================================================
+Timestamp: 2026-11-11 13:03:36
+Project root: D:\ml rearcch project ad
+
+[1/6] Auditing Mandatory Baseline Integrity (src/)...
+  Baseline Status: PASSED
+  Matched Files  : 28 / 28
+  Phase 2 Final Audit Directory Files Verified: 12 files present
+
+[2/6] Executing and Reconciling Complete Test Suite...
+  Total Test Files   : 9
+  Total Tests Found  : 56
+  Total Tests Ran    : 56
+  Total Tests Passed : 56
+  Total Tests Failed : 0
+  Total Tests Errored: 0
+  Discrepancy Analysis: The historical Phase 3.2 documentation report table contained typographical / transcription errors in individual module counts (listing test_leakage_protection.py as 13 instead of 5, test_text_features.py as 13 instead of 5, test_governance.py as 5 instead of 8, test_schema_validation.py as 5 instead of 3, etc.). The sum of those erroneous table rows was 69. However, the actual test files in tests/ contain exactly 56 test cases, and all 56 tests are executed and pass 100%.
+
+[3/6] Verifying Exact Phase 2 Partition Membership...
+  Partition train       : P2= 4000, P3= 4000, Match=True
+  Partition val         : P2= 1500, P3= 1500, Match=True
+  Partition cal_prob    : P2= 1000, P3= 1000, Match=True
+  Partition cal_conf    : P2= 1000, P3= 1000, Match=True
+  Partition dev_reserve : P2= 2337, P3= 2337, Match=True
+  Partition test        : P2= 3000, P3= 3000, Match=True
+  Partition test_reserve: P2= 6821, P3= 6821, Match=True
+  Partition EXCLUDED    : P2=    8, P3=    8, Match=True
+  Code Policy A Retained: P2=720, P3=720, Match=True
+  Code Policy B Retained: P2=709, P3=709, Match=True
+  Code Label Mismatches : 0
+  EXACT_PARTITION_MEMBERSHIP_MATCH: True
+
+[4/6] Conducting Feature Extraction Benchmark Reconciliation...
+  Benchmarking Text Synchronous Breakdown (100 pairs)...
+    Text Sync Sum of Views: 32.4848 ms
+    Text Sync Total Mean  : 32.5847 ms
+    Text Sync Delta       : +0.0999 ms (dispatch & dict merging)
+  Benchmarking Code Synchronous Breakdown (50 pairs)...
+    Code Sync Sum of Views: 5.4015 ms
+    Code Sync Total Mean  : 5.4826 ms
+    Code Sync Delta       : +0.0811 ms (dispatch & dict merging)
+
+[5/6] Auditing All 24 Feature Implementations & Schemas...
+  Text Feature Matrix Quality: PASSED (0 NaNs, 0 Infs, [0.0, 1.0] bounds verified)
+  Code Feature Matrix Quality: PASSED (0 NaNs, 0 Infs, [0.0, 1.0] bounds verified)
+
+[6/6] Generating Final Phase 3.2 Audit Manifest & Decision...
+
+================================================================================
+FINAL AUDIT VERDICT: FULL_PASS
+All Phase 3.2 reconciliation gates verified and certified.
+Artifacts generated in: D:\ml rearcch project ad\research_upgrade\artifacts\phase_3\phase_3_2
+================================================================================

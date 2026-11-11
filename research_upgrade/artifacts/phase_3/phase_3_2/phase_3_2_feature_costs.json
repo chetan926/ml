@@ -1,0 +1,228 @@
+{
+  "status": "PASSED",
+  "timestamp": "2026-11-11 02:54:31",
+  "hardware_environment": {
+    "os": "Windows",
+    "python_version": "3.11.18 (main, Oct 26 2026, 14:08:50) [MSC v.1944 64 bit (AMD64)]",
+    "tracemalloc_enabled": true
+  },
+  "text_modality": {
+    "model_loading_overhead_ms": 132.18110002344474,
+    "full_pipeline": {
+      "modality": "text",
+      "extractor_name": "text_full_multiview_pipeline",
+      "sample_size_evaluated": 100,
+      "total_extraction_time_seconds": 3.4417,
+      "model_loading_time_ms": 132.18,
+      "latency_per_pair_ms": {
+        "mean": 34.4143,
+        "median": 33.605,
+        "p95": 44.9577,
+        "min": 24.5815,
+        "max": 58.4951,
+        "std": 5.5662
+      },
+      "memory_usage_mb": {
+        "peak_traced_mb": 0.4868,
+        "current_traced_mb": 0.1389
+      },
+      "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+      "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+    },
+    "per_view_breakdown": {
+      "view_1_lexical": {
+        "modality": "text",
+        "extractor_name": "view_1_lexical_tfidf",
+        "sample_size_evaluated": 100,
+        "total_extraction_time_seconds": 0.2265,
+        "model_loading_time_ms": 0.0,
+        "latency_per_pair_ms": {
+          "mean": 2.263,
+          "median": 2.1917,
+          "p95": 2.9851,
+          "min": 1.8533,
+          "max": 4.0165,
+          "std": 0.3568
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.2487,
+          "current_traced_mb": 0.016
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      },
+      "view_2_character": {
+        "modality": "text",
+        "extractor_name": "view_2_character_tfidf",
+        "sample_size_evaluated": 100,
+        "total_extraction_time_seconds": 0.3562,
+        "model_loading_time_ms": 0.0,
+        "latency_per_pair_ms": {
+          "mean": 3.5605,
+          "median": 3.3866,
+          "p95": 5.0822,
+          "min": 2.239,
+          "max": 8.7427,
+          "std": 0.9534
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.3591,
+          "current_traced_mb": 0.0101
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      },
+      "view_3_semantic": {
+        "modality": "text",
+        "extractor_name": "view_3_dense_semantic",
+        "sample_size_evaluated": 100,
+        "total_extraction_time_seconds": 2.2125,
+        "model_loading_time_ms": 132.18,
+        "latency_per_pair_ms": {
+          "mean": 22.1222,
+          "median": 21.8641,
+          "p95": 26.4954,
+          "min": 17.3907,
+          "max": 27.766,
+          "std": 2.2697
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.1545,
+          "current_traced_mb": 0.1301
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      },
+      "view_4_structural": {
+        "modality": "text",
+        "extractor_name": "view_4_structural_length",
+        "sample_size_evaluated": 100,
+        "total_extraction_time_seconds": 0.0075,
+        "model_loading_time_ms": 0.0,
+        "latency_per_pair_ms": {
+          "mean": 0.0746,
+          "median": 0.071,
+          "p95": 0.0998,
+          "min": 0.0574,
+          "max": 0.1021,
+          "std": 0.0116
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.0059,
+          "current_traced_mb": 0.0012
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      }
+    }
+  },
+  "code_modality": {
+    "full_pipeline": {
+      "modality": "code",
+      "extractor_name": "code_full_multiview_pipeline",
+      "sample_size_evaluated": 50,
+      "total_extraction_time_seconds": 0.2424,
+      "model_loading_time_ms": 0.0,
+      "latency_per_pair_ms": {
+        "mean": 4.8473,
+        "median": 4.5913,
+        "p95": 5.8885,
+        "min": 4.1541,
+        "max": 6.4445,
+        "std": 0.5635
+      },
+      "memory_usage_mb": {
+        "peak_traced_mb": 0.0185,
+        "current_traced_mb": 0.0013
+      },
+      "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+      "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+    },
+    "per_view_breakdown": {
+      "view_1_token": {
+        "modality": "code",
+        "extractor_name": "view_1_token_rkrgst",
+        "sample_size_evaluated": 50,
+        "total_extraction_time_seconds": 0.152,
+        "model_loading_time_ms": 0.0,
+        "latency_per_pair_ms": {
+          "mean": 3.0375,
+          "median": 2.9766,
+          "p95": 4.1342,
+          "min": 1.9668,
+          "max": 4.5457,
+          "std": 0.6393
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.0178,
+          "current_traced_mb": 0.0004
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      },
+      "view_2_identifier_normalized": {
+        "modality": "code",
+        "extractor_name": "view_2_identifier_normalized_rkrgst",
+        "sample_size_evaluated": 50,
+        "total_extraction_time_seconds": 0.1287,
+        "model_loading_time_ms": 0.0,
+        "latency_per_pair_ms": {
+          "mean": 2.5729,
+          "median": 2.5368,
+          "p95": 3.2347,
+          "min": 2.1157,
+          "max": 3.4954,
+          "std": 0.3484
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.0133,
+          "current_traced_mb": 0.0004
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      },
+      "view_3_structural_fallback": {
+        "modality": "code",
+        "extractor_name": "view_3_block_structure_fallback",
+        "sample_size_evaluated": 50,
+        "total_extraction_time_seconds": 0.0247,
+        "model_loading_time_ms": 0.0,
+        "latency_per_pair_ms": {
+          "mean": 0.4929,
+          "median": 0.492,
+          "p95": 0.5887,
+          "min": 0.4223,
+          "max": 0.6522,
+          "std": 0.0512
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.0063,
+          "current_traced_mb": 0.0004
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      },
+      "view_4_complexity": {
+        "modality": "code",
+        "extractor_name": "view_4_complexity_operators",
+        "sample_size_evaluated": 50,
+        "total_extraction_time_seconds": 0.023,
+        "model_loading_time_ms": 0.0,
+        "latency_per_pair_ms": {
+          "mean": 0.4595,
+          "median": 0.4488,
+          "p95": 0.5499,
+          "min": 0.3872,
+          "max": 0.7177,
+          "std": 0.0561
+        },
+        "memory_usage_mb": {
+          "peak_traced_mb": 0.0063,
+          "current_traced_mb": 0.0004
+        },
+        "measurement_type": "EMPIRICAL_PHYSICAL_MEASUREMENT",
+        "notes": "Model loading time is isolated and recorded separately from per-pair feature extraction."
+      }
+    }
+  }
+}

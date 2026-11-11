@@ -1,0 +1,191 @@
+{
+  "manifest_version": "3.2.0",
+  "phase": "Phase 3.2 \u2014 Dataset Loaders & Multi-View Feature Infrastructure",
+  "timestamp": "2026-11-11 02:54:31",
+  "baseline_integrity_verified": true,
+  "baseline_registered_files": 28,
+  "baseline_matched_files": 28,
+  "phase_3_2_tracked_files_count": 30,
+  "tracked_files": [
+    {
+      "relative_path": "research_upgrade/src/config.py",
+      "file_size_bytes": 6737,
+      "sha256_checksum": "98652db7f9ffb702e70e22c652cb587e1cff4c28290d751db58db777bfd1a811",
+      "component": "config.py"
+    },
+    {
+      "relative_path": "research_upgrade/src/governance.py",
+      "file_size_bytes": 5698,
+      "sha256_checksum": "1395ebb1db47f1101e5f52c2b06467fb68f15d6bfed476923c8db53ad61ec455",
+      "component": "governance.py"
+    },
+    {
+      "relative_path": "research_upgrade/src/data/__init__.py",
+      "file_size_bytes": 622,
+      "sha256_checksum": "ed5aa56ff2c990f4cdcc217e88059862814e369fbc92ef2d8a04c8cec7f0aaf4",
+      "component": "data"
+    },
+    {
+      "relative_path": "research_upgrade/src/data/schema_validation.py",
+      "file_size_bytes": 7759,
+      "sha256_checksum": "a5802dff2b6632f3ac69b2f6bddf61c87b22db8a6c6011addd612deaa7c52791",
+      "component": "data"
+    },
+    {
+      "relative_path": "research_upgrade/src/data/partition_validation.py",
+      "file_size_bytes": 5220,
+      "sha256_checksum": "657c9ea1f5c007070aac7c7405ea7df134149dbe938f02bceeae1a43cfe2a722",
+      "component": "data"
+    },
+    {
+      "relative_path": "research_upgrade/src/data/text_loader.py",
+      "file_size_bytes": 9038,
+      "sha256_checksum": "ae189d1da5cc6cf8228639e9793ab0cbdbb1260ffa3a84c4aa0c983d6d594c98",
+      "component": "data"
+    },
+    {
+      "relative_path": "research_upgrade/src/data/code_loader.py",
+      "file_size_bytes": 10658,
+      "sha256_checksum": "655fdcb550460ab90321efef4ec3b7b4ddbb100a77f47f7dbd68517789949535",
+      "component": "data"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/__init__.py",
+      "file_size_bytes": 1240,
+      "sha256_checksum": "4f8009135331c0327555ebb3332550860938fa7fdbae8752e7b0b7036f727f8a",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/text_lexical.py",
+      "file_size_bytes": 3645,
+      "sha256_checksum": "28360fd72d95c6797b6abaf7b8bd608107b832e7d772da67d272144b2f3a7720",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/text_character.py",
+      "file_size_bytes": 4453,
+      "sha256_checksum": "a3aaa1750b565491f4e760337fb0fafdb3c3f7ea389dd184e5d88f004dc34796",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/text_semantic.py",
+      "file_size_bytes": 4678,
+      "sha256_checksum": "3f2493eea670bdef7fe482732bbbc2fc3aa7bb47ea8e01544de8f619ee2b9195",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/text_structural.py",
+      "file_size_bytes": 3070,
+      "sha256_checksum": "e011b915a900ff9a448c1f97f631614b5da11bf578c1e344a98d94950d969292",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/code_token.py",
+      "file_size_bytes": 2940,
+      "sha256_checksum": "a83fe128baeb671df4b80c8c806e521aa9d74ef18470381ba27249081bcf8b02",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/code_identifier.py",
+      "file_size_bytes": 3536,
+      "sha256_checksum": "58c6ccfed832e0de2cb4de703da5b7b0fd4665bbb42308f158fa545e870aa8e7",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/code_ast.py",
+      "file_size_bytes": 6300,
+      "sha256_checksum": "94793fcdf3c3fe06bc18dd11b292510db886f009d7ddaaf0f1c8d5d44a83c141",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/code_complexity.py",
+      "file_size_bytes": 4200,
+      "sha256_checksum": "5105d6bde7320f64166bdead746c19151b5dd0e9b8dddeac4aba3f58288b29a3",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/features/feature_pipeline.py",
+      "file_size_bytes": 10155,
+      "sha256_checksum": "ab32c8d441569203aa0131aee5fec6b5f9ed0a5ecc16f6b240ea751c65a5e0ed",
+      "component": "features"
+    },
+    {
+      "relative_path": "research_upgrade/src/evaluation/__init__.py",
+      "file_size_bytes": 335,
+      "sha256_checksum": "61db19e8de0a3ed335cc6801c69c77c9588ea1bba76e6c493803032931828d06",
+      "component": "evaluation"
+    },
+    {
+      "relative_path": "research_upgrade/src/evaluation/feature_quality.py",
+      "file_size_bytes": 3170,
+      "sha256_checksum": "36399137cbe7b946cf77d06cc92ce63d98d21f413a71c1932a31c231f44e7b5a",
+      "component": "evaluation"
+    },
+    {
+      "relative_path": "research_upgrade/src/evaluation/feature_cost.py",
+      "file_size_bytes": 2732,
+      "sha256_checksum": "13eeeaa519d63102313218e21b49c540a3cceb0f255f0696bf8e45f6aa8c14e6",
+      "component": "evaluation"
+    },
+    {
+      "relative_path": "research_upgrade/audits/phase_3/run_phase_3_2_audit.py",
+      "file_size_bytes": 21531,
+      "sha256_checksum": "002585e9df457a9ded31a8197186eb6b7b6395247f77a904aef1c65600fbf3c6",
+      "component": "phase_3"
+    },
+    {
+      "relative_path": "tests/test_governance.py",
+      "file_size_bytes": 4703,
+      "sha256_checksum": "60589192684ce2fd64a835e9fe1488ddea32a0b1b75a9f7ad494a1cbf74406bb",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_leakage_protection.py",
+      "file_size_bytes": 7990,
+      "sha256_checksum": "462185a07bc93f892d794113f84ab91c4741429c7ce6ad38294ac82b5fb4fbf0",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_rkrgst.py",
+      "file_size_bytes": 5744,
+      "sha256_checksum": "4710667146844dbdecdf8e42f2e28dfd6da76322e9cc9c1ad1d49cfb9e86fba3",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_schema_validation.py",
+      "file_size_bytes": 3258,
+      "sha256_checksum": "9e6b455610108e1beaea103c0ac70c756af78adf89907691fcc1ad05a6c54e1b",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_data_loaders.py",
+      "file_size_bytes": 4181,
+      "sha256_checksum": "e378f0ca62129ff58551a19191874150dadc27f365010953cfcb9e5c23fc00a4",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_text_features.py",
+      "file_size_bytes": 5048,
+      "sha256_checksum": "0a2a3f1f055b901d14079b9659571987f1137b67560ee4c29cfcba22ed0ee28e",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_code_features.py",
+      "file_size_bytes": 7238,
+      "sha256_checksum": "264edf71c47973db6ae5cd15b54f61ff822c813473735ad9c0d8e6848a100bbd",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_feature_pipeline.py",
+      "file_size_bytes": 6219,
+      "sha256_checksum": "c7de936c08096254d0e7a73ffc17801515729b2009291d99d8c9ec4bee0cc80e",
+      "component": "tests"
+    },
+    {
+      "relative_path": "tests/test_feature_reproducibility.py",
+      "file_size_bytes": 4352,
+      "sha256_checksum": "653d75ac25a0f751cbba1629ae2e9d29b8cc6b61653c57010d00dcfa76a053e9",
+      "component": "tests"
+    }
+  ]
+}

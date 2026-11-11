@@ -1,0 +1,43 @@
+================================================================================
+PHASE 3.2 MASTER AUDIT RUNNER: DATASET LOADERS & FEATURE INFRASTRUCTURE
+================================================================================
+Timestamp: 2026-11-11 02:54:21
+Project root: D:\ml rearcch project ad
+
+[STEP 1/7] Auditing Baseline Governance Integrity (src/)...
+Baseline Status: PASSED
+Verified Matches: 28 / 28
+
+[STEP 2/7] Executing Full Unit Test Suite (tests/)...
+Tests Run: 56, Failures: 0, Errors: 0
+Elapsed: 1.3439s
+
+[STEP 3/7] Validating Dataset Schemas and Partitions...
+Text Benchmark Raw Rows: 19666, Clean: 19658, Purged: 8
+Text Partitions: train=4000, val=1500, cal_prob=1000, cal_conf=1000, test=3000
+Text Partition Target Status: PASSED, Total Clean Partitioned: 19658, Premise Leaks: 0
+Code Benchmark: Policy A = 720 pairs, Policy B = 709 pairs, Raw = 733 pairs
+Code Duplicate Groups: 11 groups
+Physical IR-Plag: Total files = 467, Case-05 files = 69
+Case-05 Cross-Fitting Proof: 5 folds generated, Fold 1 train pos=0, test pos=53
+
+[STEP 4/7] Compiling Feature Schema Specifications...
+
+[STEP 5/7] Extracting Features on Benchmark Subsets & Auditing Quality...
+Fitting TextMultiViewPipeline on D_train (4,000 pairs)...
+Text Feature Matrix Quality: PASSED (Evaluated 100 rows, 0 NaNs, 0 Infs)
+Code Feature Matrix Quality: PASSED (Evaluated 50 rows, 0 NaNs, 0 Infs)
+
+[STEP 6/7] Benchmarking Empirical Feature Extraction Costs...
+Measuring isolated SentenceTransformer loading latency...
+Model Loading Time (offline): 132.18 ms
+Text Pipeline Mean Latency: 34.414 ms/pair (p95: 44.958 ms), Peak Memory: 0.487 MB
+Code Pipeline Mean Latency: 4.847 ms/pair (p95: 5.888 ms), Peak Memory: 0.018 MB
+
+[STEP 7/7] Generating Phase 3.2 Implementation Manifest...
+
+================================================================================
+PHASE 3.2 AUDIT RESULT: FULL PASS
+All 7 verification steps completed successfully.
+Artifacts generated in: D:\ml rearcch project ad\research_upgrade\artifacts\phase_3\phase_3_2
+================================================================================

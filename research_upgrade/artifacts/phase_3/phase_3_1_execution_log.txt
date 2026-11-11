@@ -1,0 +1,69 @@
+Execution started at: 2026-11-11 02:11:36
+
+[TASK 1 & 2] Verifying Baseline SHA-256 Manifest and Integrity...
+  Status: PASSED
+  Total registered files: 28
+  Matched files: 28
+  Mismatched files: 0
+  Missing files: 0
+  Untracked files in src/: 0
+  --> PASS: All 28 baseline files match registered SHA-256 checksums byte-for-byte.
+
+[TASK 2 & 4] Executing Automated Test Suites under tests/...
+test_all_28_files_exist_on_disk (test_governance.TestBaselineGovernance.test_all_28_files_exist_on_disk)
+Asserts that every file listed in the manifest physically exists. ... ok
+test_all_28_sha256_hashes_match_manifest (test_governance.TestBaselineGovernance.test_all_28_sha256_hashes_match_manifest)
+Computes SHA-256 for all 28 files and asserts byte-exact match. ... ok
+test_assert_baseline_intact_does_not_raise (test_governance.TestBaselineGovernance.test_assert_baseline_intact_does_not_raise)
+Asserts that assert_baseline_intact() completes without error. ... ok
+test_baseline_manifest_exists (test_governance.TestBaselineGovernance.test_baseline_manifest_exists)
+Verifies that repository_sha256_manifest.csv exists on disk. ... ok
+test_governance_verification_function (test_governance.TestBaselineGovernance.test_governance_verification_function)
+Asserts that verify_baseline_integrity() returns PASSED. ... ok
+test_no_untracked_files_in_src (test_governance.TestBaselineGovernance.test_no_untracked_files_in_src)
+Asserts that no unauthorized files have been added to src/. ... ok
+test_registered_file_count_is_exactly_28 (test_governance.TestBaselineGovernance.test_registered_file_count_is_exactly_28)
+Asserts that exactly 28 files are registered in the baseline manifest. ... ok
+test_deterministic_seed_initialization (test_governance.TestReproducibilityConfig.test_deterministic_seed_initialization)
+Verifies that set_global_seed() produces identical random sequences. ... ok
+test_case_05_cross_fitting_proof_and_physical_files (test_leakage_protection.TestDatasetLeakageProtection.test_case_05_cross_fitting_proof_and_physical_files)
+Asserts that Case-05 single-class failure proof and file inventory are preserved. ... ok
+test_code_duplicate_accounting_reconciliation (test_leakage_protection.TestDatasetLeakageProtection.test_code_duplicate_accounting_reconciliation)
+Asserts that IR-Plag code duplicates match Policy A (720) and Policy B (709). ... ok
+test_text_exclusion_ledger_exact_reconciliation (test_leakage_protection.TestDatasetLeakageProtection.test_text_exclusion_ledger_exact_reconciliation)
+Asserts that exactly 8 purged rows are accounted for with verified exclusion reasons. ... ok
+test_text_leakage_report_zero_cross_overlap (test_leakage_protection.TestDatasetLeakageProtection.test_text_leakage_report_zero_cross_overlap)
+Asserts that the 7x7 partition overlap matrix has strictly 0 cross-split premise leaks. ... ok
+test_zero_overlap_lexical_positives_accounting (test_leakage_protection.TestDatasetLeakageProtection.test_zero_overlap_lexical_positives_accounting)
+Verifies separation between active test (33 pairs, 3.22%) and historical benchmark (119 pairs, 11.19%). ... ok
+test_comment_removal_safe (test_rkrgst.TestESPlagTokenizer.test_comment_removal_safe) ... ok
+test_tokenize_code (test_rkrgst.TestESPlagTokenizer.test_tokenize_code) ... ok
+test_boundary_zero_and_empty (test_rkrgst.TestPenaltySimilarity.test_boundary_zero_and_empty) ... ok
+test_multiple_subsequences_penalty_applied (test_rkrgst.TestPenaltySimilarity.test_multiple_subsequences_penalty_applied) ... ok
+test_single_subsequence_no_penalty (test_rkrgst.TestPenaltySimilarity.test_single_subsequence_no_penalty) ... ok
+test_disjoint_sequences (test_rkrgst.TestRKRGST.test_disjoint_sequences) ... ok
+test_identical_sequences (test_rkrgst.TestRKRGST.test_identical_sequences) ... ok
+test_mml_threshold (test_rkrgst.TestRKRGST.test_mml_threshold) ... ok
+test_scrambled_substrings (test_rkrgst.TestRKRGST.test_scrambled_substrings) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.604s
+
+OK
+
+  Total tests run: 22
+  Failures: 0
+  Errors: 0
+  --> PASS: All 22 automated tests passed cleanly.
+
+[TASK 5 & 6] Auditing Phase 3 Created Files & Generating Implementation Manifest...
+  Tracked: research_upgrade/src/__init__.py (410 bytes, SHA-256: ac20dff1e82dee76...)
+  Tracked: research_upgrade/src/config.py (6703 bytes, SHA-256: e004b99c738fdb91...)
+  Tracked: research_upgrade/src/governance.py (5698 bytes, SHA-256: 1395ebb1db47f110...)
+  Tracked: research_upgrade/src/logging_utils.py (4061 bytes, SHA-256: 0a56833e0cffb6fe...)
+  Tracked: tests/test_governance.py (4702 bytes, SHA-256: 95f7138be43e4f68...)
+  Tracked: tests/test_leakage_protection.py (7990 bytes, SHA-256: 462185a07bc93f89...)
+  Tracked: research_upgrade/audits/phase_3/run_phase_3_1_governance_audit.py (6956 bytes, SHA-256: d437917ee5daaed2...)
+
+Saved implementation manifest to: D:\ml rearcch project ad\research_upgrade\artifacts\phase_3\phase_3_1_implementation_manifest.json
+Execution completed successfully at: 2026-11-11 02:11:38

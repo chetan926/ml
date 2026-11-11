@@ -1,0 +1,170 @@
+{
+  "res_tok_cheap": {
+    "method": "Baseline Token Jaccard Filter",
+    "modality": "Source Code",
+    "threshold": 0.75,
+    "total_pairs": 210,
+    "accuracy": 0.5285714285714286,
+    "precision": 0.5082872928176796,
+    "recall": 0.9019607843137255,
+    "f1": 0.6501766784452296,
+    "specificity": 0.17592592592592593,
+    "fpr": 0.8240740740740741,
+    "candidate_recall": 0.9019607843137255,
+    "pruning_ratio": 0.0,
+    "expensive_detector_call_rate": 0.0,
+    "avg_latency_ms": 0.05,
+    "total_runtime_sec": 0.001,
+    "confusion_matrix": [
+      [
+        19,
+        89
+      ],
+      [
+        10,
+        92
+      ]
+    ]
+  },
+  "res_svm": {
+    "method": "SVM Syntactic/Token Detector (Gandhi et al. 2024 adapted to Java)",
+    "modality": "Source Code",
+    "threshold": 0.37,
+    "total_pairs": 210,
+    "accuracy": 0.7,
+    "precision": 0.6258064516129033,
+    "recall": 0.9509803921568627,
+    "f1": 0.754863813229572,
+    "specificity": 0.46296296296296297,
+    "fpr": 0.5370370370370371,
+    "roc_auc": 0.7785947712418301,
+    "pr_auc": 0.7198696963797231,
+    "confusion_matrix": [
+      [
+        50,
+        58
+      ],
+      [
+        5,
+        97
+      ]
+    ],
+    "level_recall": {
+      "L1": 0.9375,
+      "L2": 1.0,
+      "L3": 1.0,
+      "L4": 1.0,
+      "L5": 1.0,
+      "L6": 0.7777777777777778
+    },
+    "total_runtime_sec": 0.0028939999756403267,
+    "avg_latency_ms": 0.013780952264953936
+  },
+  "res_code_a": {
+    "method": "SVM Syntactic/Token Detector (Gandhi et al. 2024 adapted to Java)",
+    "modality": "Source Code",
+    "threshold": 0.37,
+    "total_pairs": 210,
+    "accuracy": 0.7,
+    "precision": 0.6258064516129033,
+    "recall": 0.9509803921568627,
+    "f1": 0.754863813229572,
+    "specificity": 0.46296296296296297,
+    "fpr": 0.5370370370370371,
+    "roc_auc": 0.7785947712418301,
+    "pr_auc": 0.7198696963797231,
+    "confusion_matrix": [
+      [
+        50,
+        58
+      ],
+      [
+        5,
+        97
+      ]
+    ],
+    "level_recall": {
+      "L1": 0.9375,
+      "L2": 1.0,
+      "L3": 1.0,
+      "L4": 1.0,
+      "L5": 1.0,
+      "L6": 0.7777777777777778
+    },
+    "total_runtime_sec": 0.0028939999756403267,
+    "avg_latency_ms": 0.013780952264953936,
+    "condition": "A: Full Analysis (100% SVM Model)",
+    "candidate_recall": 1.0,
+    "candidate_precision": 0.6258064516129033,
+    "pruning_ratio": 0.0,
+    "expensive_detector_call_rate": 1.0,
+    "filtered_pairs_count": 0,
+    "escalated_pairs_count": 210,
+    "direct_flagged_count": 0
+  },
+  "res_code_b": {
+    "condition": "B: Fixed-Threshold Filtering",
+    "modality": "Source Code",
+    "threshold": 0.7843137254901961,
+    "total_pairs": 210,
+    "accuracy": 0.638095238095238,
+    "precision": 0.6,
+    "recall": 0.7647058823529411,
+    "f1": 0.6724137931034483,
+    "specificity": 0.5185185185185185,
+    "fpr": 0.48148148148148145,
+    "candidate_recall": 0.7745098039215687,
+    "candidate_precision": 0.5,
+    "pruning_ratio": 0.24761904761904763,
+    "expensive_detector_call_rate": 0.7523809523809524,
+    "filtered_pairs_count": 52,
+    "escalated_pairs_count": 158,
+    "direct_flagged_count": 0,
+    "confusion_matrix": [
+      [
+        56,
+        52
+      ],
+      [
+        24,
+        78
+      ]
+    ],
+    "total_runtime_sec": 0.012677390457862727,
+    "avg_latency_ms": 0.06036852598982251,
+    "median_latency_ms": 0.06378095226495395,
+    "p95_latency_ms": 0.06378095226495395
+  },
+  "res_code_c": {
+    "condition": "C: Proposed Typed-Decision Pipeline",
+    "modality": "Source Code",
+    "total_pairs": 210,
+    "accuracy": 0.6761904761904762,
+    "precision": 0.6049382716049383,
+    "recall": 0.9607843137254902,
+    "f1": 0.7424242424242424,
+    "specificity": 0.4074074074074074,
+    "fpr": 0.5925925925925926,
+    "candidate_recall": 1.0,
+    "candidate_precision": 0.4880382775119617,
+    "pruning_ratio": 0.004761904761904762,
+    "expensive_detector_call_rate": 0.6333333333333333,
+    "filtered_pairs_count": 1,
+    "escalated_pairs_count": 133,
+    "direct_flagged_count": 76,
+    "confusion_matrix": [
+      [
+        44,
+        64
+      ],
+      [
+        4,
+        98
+      ]
+    ],
+    "total_runtime_sec": 0.002165700017940253,
+    "avg_latency_ms": 0.05971142851215387,
+    "median_latency_ms": 0.06533383449287455,
+    "p95_latency_ms": 0.06533383449287455
+  }
+}

@@ -1,0 +1,495 @@
+{
+  "audit_title": "Phase 3 Final Research Source Code and Evaluation Audit Package",
+  "project": "An Uncertainty-Aware, Budget-Constrained Multi-View Framework for Cost-Efficient Academic Integrity Detection",
+  "created_timestamp": "2026-11-11 16:16:00",
+  "total_files_included": 79,
+  "declared_missing_count": 2,
+  "declared_missing": [
+    {
+      "requested_component": "research_upgrade/src/evaluation/benchmarking.py",
+      "status": "MISSING",
+      "reason": "No standalone benchmarking.py module was designed or created. Benchmarking functionality is implemented in research_upgrade/src/data/text_loader.py (TextBenchmarkDataLoader), code_loader.py (CodeBenchmarkDataLoader), and research_upgrade/audits/final_research/run_final_research_pipeline.py."
+    },
+    {
+      "requested_component": "pair_level_predictions.csv",
+      "status": "MISSING",
+      "reason": "No standalone per-pair tabular predictions CSV was serialized to disk during the final research pipeline pass. Complete aggregated prediction metrics, conformal group metrics, and selective prediction statistics are fully captured in FINAL_RESEARCH_RESULTS.json and FINAL_CLASSIFICATION_METRICS.csv, while group identifiers and partition mappings are in text_partition_membership.csv."
+    }
+  ],
+  "files": [
+    {
+      "category": "1. Integrated Pipelines",
+      "relative_path": "research_upgrade/src/pipeline/integrated_framework.py",
+      "size_bytes": 17742,
+      "sha256": "c675a37102002fec2b0f274cb3e1bae84b842dd81563e9b67132f8d3e4f56e20"
+    },
+    {
+      "category": "1. Integrated Pipelines",
+      "relative_path": "research_upgrade/src/pipeline/__init__.py",
+      "size_bytes": 247,
+      "sha256": "e2aa013b1121a8b4273864e1e91342baf7c1764432d9bba703b492dcc25affe4"
+    },
+    {
+      "category": "2. Calibration & Uncertainty",
+      "relative_path": "research_upgrade/src/calibration/calibrators.py",
+      "size_bytes": 6167,
+      "sha256": "37367ef1453d4fb87d1b0ae59b0b4892845d4dff097208a78fa1c4b25a0e746a"
+    },
+    {
+      "category": "2. Calibration & Uncertainty",
+      "relative_path": "research_upgrade/src/calibration/uncertainty.py",
+      "size_bytes": 4180,
+      "sha256": "d610b4c9088ced763f2ea5f7adcbf550bf1346b4a4204331a8984ef482b0d83a"
+    },
+    {
+      "category": "2. Calibration & Uncertainty",
+      "relative_path": "research_upgrade/src/calibration/calibration_metrics.py",
+      "size_bytes": 5066,
+      "sha256": "25c34c960993f6df23caf3024df7a53f2ab524c208408f62d123e7e3a931c02b"
+    },
+    {
+      "category": "2. Calibration & Uncertainty",
+      "relative_path": "research_upgrade/src/calibration/__init__.py",
+      "size_bytes": 986,
+      "sha256": "76608eb331ab90b322daca9f5dd493708fdf1d81c24b518a7be145150ce8d1cd"
+    },
+    {
+      "category": "3. Routing, Verifiers, Cost & Pareto",
+      "relative_path": "research_upgrade/src/routing/router.py",
+      "size_bytes": 11134,
+      "sha256": "04c1ae0ad8a4404169f9b2ecafbb66f5632fa82e4f11500ca5345f4b2165f0b8"
+    },
+    {
+      "category": "3. Routing, Verifiers, Cost & Pareto",
+      "relative_path": "research_upgrade/src/routing/stage2_verifier.py",
+      "size_bytes": 5616,
+      "sha256": "1af8196243dd4e1659965eb959eaa06b1f1ef2737d6ff17ad6d565d2aa7e53ec"
+    },
+    {
+      "category": "3. Routing, Verifiers, Cost & Pareto",
+      "relative_path": "research_upgrade/src/routing/cost_model.py",
+      "size_bytes": 6000,
+      "sha256": "627346ae333cb7d3db92bf9addbb7f02ca94011c425e9a4286e62d3d7ceb3328"
+    },
+    {
+      "category": "3. Routing, Verifiers, Cost & Pareto",
+      "relative_path": "research_upgrade/src/routing/pareto.py",
+      "size_bytes": 3657,
+      "sha256": "a34437bbab474fd6ea78b59c376c8bdc300fd6411e55da09ad9030e1b3e58f2d"
+    },
+    {
+      "category": "3. Routing, Verifiers, Cost & Pareto",
+      "relative_path": "research_upgrade/src/routing/decision_states.py",
+      "size_bytes": 1635,
+      "sha256": "89121fe764db92ca06fa76ed88e794ecab69cf274738a0fb9a49330aa1068625"
+    },
+    {
+      "category": "3. Routing, Verifiers, Cost & Pareto",
+      "relative_path": "research_upgrade/src/routing/__init__.py",
+      "size_bytes": 844,
+      "sha256": "38aa62c60b3d53fc641f331d297ac87c51b038ded5ea5ca4d6ae7521b77aa6a9"
+    },
+    {
+      "category": "4. Group Conformal Prediction",
+      "relative_path": "research_upgrade/src/calibration/group_conformal.py",
+      "size_bytes": 6889,
+      "sha256": "6d962b61510bc30921e0e493355edec2f849742e91076eac2aeee3decf9f61af"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/evaluation/statistical_testing.py",
+      "size_bytes": 7858,
+      "sha256": "b43e166e4f641ce6f7eed88ef526c2a38be7c54f76ec261059c5d594fb6333cd"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/evaluation/feature_cost.py",
+      "size_bytes": 2733,
+      "sha256": "28ea3f77df48dfeda07dcb80eca673b1703bbed2d271d61bcf76a54132a177a9"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/evaluation/feature_quality.py",
+      "size_bytes": 3171,
+      "sha256": "be68d007b18e05edc1a2dc4e82123d2057824f7274d587cbb157490548a2bc28"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/evaluation/__init__.py",
+      "size_bytes": 336,
+      "sha256": "d50c44d287bdc62e2f6370b1a5d081910145fad3177afc83857ed17b59747604"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/ablation_experiments.py",
+      "size_bytes": 7792,
+      "sha256": "65bf1af67b29140cf2e98936d04d79a4197d4441e68baf9ab2fe7f2371848c0c"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/candidate_evaluation.py",
+      "size_bytes": 3797,
+      "sha256": "a5d8005513e008bbdd413af1e1e8cf168289c4550c51c02648a7e4d4dd7dc139"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/robustness_analysis.py",
+      "size_bytes": 5378,
+      "sha256": "93705832be67a7b3f1ee3c0a95c2bfb6db6550d2356abf986001c50c92dadea9"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/threshold_selection.py",
+      "size_bytes": 5436,
+      "sha256": "66cd6869091d2baf0b5bf7182fb7b4b54e93dd19c658da4306bc74851526ffb4"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/score_fusion.py",
+      "size_bytes": 9686,
+      "sha256": "914d58767c74b1ea2a115f57822a9fb556c98ed7edbdf32cf8df41cee7c54546"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/text_candidate_scorer.py",
+      "size_bytes": 8652,
+      "sha256": "f2c18c7cfc658c25b4bfe702f0919b77aa771cf7c76c58b2347e443e7782c76e"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/code_candidate_scorer.py",
+      "size_bytes": 9019,
+      "sha256": "c7ebd00befd26b7623c21efcc489ddb8a7c74835335268b6936201af11004393"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/candidate_generation/__init__.py",
+      "size_bytes": 1796,
+      "sha256": "4a88b1418e656ef4b5b9e46687f95ca013ff010677d6e197bd08b53fb3545780"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/explainability/evidence_metrics.py",
+      "size_bytes": 3026,
+      "sha256": "dd3feb6907e870424bab4084da3a524dee78fe1df9622b515c53e58575da8733"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/explainability/evidence_extractor.py",
+      "size_bytes": 7863,
+      "sha256": "57e79b0f22b3963fe8186a3ee4f21cef42f70377744b9b89584c34526c0ef784"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/explainability/dossier_generator.py",
+      "size_bytes": 2632,
+      "sha256": "79f3077a0f01451f3c6b2e454a82ffd6e0e1803f1adb98e2fa367a6206fb2e10"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/explainability/__init__.py",
+      "size_bytes": 527,
+      "sha256": "4a8a67cc863b7db0763e1f9f4bfff64d0d6318905b1e57ffd448210031988cb0"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/feature_pipeline.py",
+      "size_bytes": 10155,
+      "sha256": "ab32c8d441569203aa0131aee5fec6b5f9ed0a5ecc16f6b240ea751c65a5e0ed"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/text_lexical.py",
+      "size_bytes": 3646,
+      "sha256": "b811e3dce9ea82f0b20a06e136d644e84a5da61d602a3e7400541a6b61883687"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/text_character.py",
+      "size_bytes": 4454,
+      "sha256": "733597cee201b082e9666b951ecc36d57a4716241a1615e9559a2bd26fa7abea"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/text_semantic.py",
+      "size_bytes": 4679,
+      "sha256": "be8fab10bdcf4dab7f72f3069ae39f77b4dd4d0769e681f28da77665e38f14ef"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/text_structural.py",
+      "size_bytes": 3071,
+      "sha256": "b3071b849b7f22524653fd20c8f87c86502674290d0b9a7b165931bce680516b"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/code_token.py",
+      "size_bytes": 2940,
+      "sha256": "a83fe128baeb671df4b80c8c806e521aa9d74ef18470381ba27249081bcf8b02"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/code_identifier.py",
+      "size_bytes": 3536,
+      "sha256": "58c6ccfed832e0de2cb4de703da5b7b0fd4665bbb42308f158fa545e870aa8e7"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/code_ast.py",
+      "size_bytes": 6301,
+      "sha256": "7fffc50befa839a7b26e3d3ae78f2dfa7567a8d4edc2cb6cfc9cc8b9c8dec7af"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/code_complexity.py",
+      "size_bytes": 4201,
+      "sha256": "d0fa73ac05c12b20f3b853732be42bf559811a2ab33bc3a367003acef651373d"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/features/__init__.py",
+      "size_bytes": 1241,
+      "sha256": "33797393165a35673ef91eff439d7ff10e581c3d1f3578d0b496b9e34de4a820"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/data/text_loader.py",
+      "size_bytes": 9039,
+      "sha256": "d5d97baf08d4e23bf88852021eb341edc08e6cda4937f5a8e92c6c5b32ea4b0d"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/data/code_loader.py",
+      "size_bytes": 10659,
+      "sha256": "b102f7da7ab4c6da1fc0fbeaa0ed9235e86b62049e162838b9941a2f75b946d5"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/data/partition_validation.py",
+      "size_bytes": 5221,
+      "sha256": "517f6c0761f717b2719e777c45dee41a456e385ec6c314bb383484ab14e770f6"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/data/schema_validation.py",
+      "size_bytes": 7760,
+      "sha256": "b40f5e39522eb4f20b5d1e1beaa58cb910350104807f284b8c05ffea2428752b"
+    },
+    {
+      "category": "5. Evaluation, Metrics, Testing & Ablation Modules",
+      "relative_path": "research_upgrade/src/data/__init__.py",
+      "size_bytes": 623,
+      "sha256": "ea58d0d9adc0592ea2e07c069902c173c17083f9df5fff33e32784640cfc5b05"
+    },
+    {
+      "category": "6. Configuration Files",
+      "relative_path": "research_upgrade/src/config.py",
+      "size_bytes": 6737,
+      "sha256": "98652db7f9ffb702e70e22c652cb587e1cff4c28290d751db58db777bfd1a811"
+    },
+    {
+      "category": "6. Configuration Files",
+      "relative_path": "research_upgrade/src/logging_utils.py",
+      "size_bytes": 4062,
+      "sha256": "de839c7eb7f34a9a258f9be7eac6cc225b965ca5fdc58369756eaa530b699b84"
+    },
+    {
+      "category": "6. Configuration Files",
+      "relative_path": "research_upgrade/src/governance.py",
+      "size_bytes": 5698,
+      "sha256": "1395ebb1db47f1101e5f52c2b06467fb68f15d6bfed476923c8db53ad61ec455"
+    },
+    {
+      "category": "6. Configuration Files",
+      "relative_path": "research_upgrade/src/__init__.py",
+      "size_bytes": 411,
+      "sha256": "c2b5a23eb6635393e7606f63dcad49c7c4aa8371a1a5a4b7cc81dd1aead4f787"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_integrated_pipeline.py",
+      "size_bytes": 3254,
+      "sha256": "ace66642bae641ece8c564fe74e5b3b514b1b5906e5eb774ce92f1eed5c9ac3e"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_calibration.py",
+      "size_bytes": 4129,
+      "sha256": "b251b4beaadc1a69fe4e159612acaaa067e09d1232cc74de583b41d50ca4b9df"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_routing.py",
+      "size_bytes": 4235,
+      "sha256": "46190a9cfb9b1b429b9e1288d9a087926471d71852702c858a669157eeda1556"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_statistical_testing.py",
+      "size_bytes": 2203,
+      "sha256": "563be26d8b4ea16b8fee39fe27b93b5dbf978be574b64f155920d2507564923a"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_explainability.py",
+      "size_bytes": 3389,
+      "sha256": "d4420c84c247f2e8090c1db3df2b901f0086d16b9a93b9a2af39de365506a8c6"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_candidate_evaluation.py",
+      "size_bytes": 2756,
+      "sha256": "aa2471ce550b65d382d1f7ed8922fca6831260051593144200f75aaff485a4e7"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_threshold_selection.py",
+      "size_bytes": 2261,
+      "sha256": "e77c4c0772063f47f057a40e3e60a660376f04f7106fa80b263dc644e26eb84b"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_score_fusion.py",
+      "size_bytes": 2828,
+      "sha256": "ae855e6443699d403286071234a0e98966531b5307074a93e4ceed62df8f01f2"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_candidate_reproducibility.py",
+      "size_bytes": 2625,
+      "sha256": "2b9f684bdd112cffcd8818505ea7314d136b812107586af39a6e6414c978fdb6"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_text_candidate_generation.py",
+      "size_bytes": 2994,
+      "sha256": "bd7059776a5f14c629c75966e669af29a770c8a8e856d8b85bb2387bc8f83cf0"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_code_candidate_generation.py",
+      "size_bytes": 2887,
+      "sha256": "357d6b8af493ca3655d0c3ab9221088278332af2dc1321811402ad5d65fa0bbd"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_feature_pipeline.py",
+      "size_bytes": 6219,
+      "sha256": "c7de936c08096254d0e7a73ffc17801515729b2009291d99d8c9ec4bee0cc80e"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_text_features.py",
+      "size_bytes": 5049,
+      "sha256": "a4df26e574bb8132975acdf316756a259b84eafed70e0e2a375cedbc2f390355"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_code_features.py",
+      "size_bytes": 7239,
+      "sha256": "8dcd6ec01360082b4192c665c406cbfb1529b850b6424c32408cfbe159cb2e96"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_feature_reproducibility.py",
+      "size_bytes": 4353,
+      "sha256": "32a706a008972bbc7fbe4cb34cff3d099c93efab42a5eacbbf4f09b2e81b63f1"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_rkrgst.py",
+      "size_bytes": 5744,
+      "sha256": "4710667146844dbdecdf8e42f2e28dfd6da76322e9cc9c1ad1d49cfb9e86fba3"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_data_loaders.py",
+      "size_bytes": 4182,
+      "sha256": "31b6f4b2fae341a0768e40a199206879aabf249ebf7fd01aaae72328d0e1d822"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_leakage_protection.py",
+      "size_bytes": 7990,
+      "sha256": "462185a07bc93f892d794113f84ab91c4741429c7ce6ad38294ac82b5fb4fbf0"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_governance.py",
+      "size_bytes": 4703,
+      "sha256": "60589192684ce2fd64a835e9fe1488ddea32a0b1b75a9f7ad494a1cbf74406bb"
+    },
+    {
+      "category": "7. Automated Test Suites",
+      "relative_path": "tests/test_schema_validation.py",
+      "size_bytes": 3259,
+      "sha256": "4ca241553b6a1586ea43f140198d8bfca2f61afde978b74d9aab42e78e69eb73"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_RESEARCH_RESULTS.json",
+      "size_bytes": 29030,
+      "sha256": "666d58c99ca73ade7c2799cc210f5b47441c75303e5bb0e0364b71d43979f346"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_CLASSIFICATION_METRICS.csv",
+      "size_bytes": 1844,
+      "sha256": "ae563f716bdfb32424c5193b1d4efb54031eb69f514130d419a33b5d5c292225"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_CALIBRATION_METRICS.csv",
+      "size_bytes": 8149,
+      "sha256": "085588d061b490edde45689e8ecbf7a974b17b55cda7905f21bf63d9732ef23e"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_STATISTICAL_ANALYSIS.json",
+      "size_bytes": 2984,
+      "sha256": "65388e17fcb21dd8061a6f01af39893ad56152525524f3bc759ad52f7000fd5d"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_BASELINE_COMPARISON.csv",
+      "size_bytes": 665,
+      "sha256": "da2822c5a669248f9b0b644cb1009adb8f378759a3f9224a993ad4b908c6e269"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_COST_ANALYSIS.csv",
+      "size_bytes": 733,
+      "sha256": "e7d414993cfc7c1aa371c0930fb034b4c7f3d178663c5742a10ed976399c5119"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_ROBUSTNESS_RESULTS.csv",
+      "size_bytes": 378,
+      "sha256": "6feb7832476764f4229d094b92012316a03d3efa532aff8c3936cd3a22b3a97d"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/final_research/FINAL_ABLATION_RESULTS.csv",
+      "size_bytes": 946,
+      "sha256": "2c43377c2c2020b8d0747eaff63952d5ea61c900abd5b9b2ef6b43ffaeaaf710"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/audits/final_research/run_final_research_pipeline.py",
+      "size_bytes": 58093,
+      "sha256": "9793e1890328324e160ce366471f87157eb70008e31ef8a7b86e66f78fb1fffe"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/audits/phase_2_3_5/text_partition_membership.csv",
+      "size_bytes": 897904,
+      "sha256": "f18639813f65d9d686c7e1c59537fd940f7267652e0af4388707b6521a9ff414"
+    },
+    {
+      "category": "8. Final Evaluation Outputs & Group Identifiers",
+      "relative_path": "research_upgrade/artifacts/phase_3/phase_3_2/phase_3_2_partition_membership_audit.json",
+      "size_bytes": 2777,
+      "sha256": "486cada5ecb2ed2d548cc7d6385eb90b0fdf7827972e78364312db8d516ad5b4"
+    }
+  ]
+}

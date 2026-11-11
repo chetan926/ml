@@ -1,0 +1,862 @@
+{
+  "execution_timestamp": "2026-11-11 15:40:26",
+  "reconciliation": {
+    "text_validation_confusion_total": 1500,
+    "text_validation_labels": {
+      "0": 976,
+      "1": 524
+    },
+    "text_test_confusion_total": 3000,
+    "text_test_labels": {
+      "0": 1974,
+      "1": 1026
+    },
+    "text_zero_jaccard_val_positives": 18,
+    "text_zero_jaccard_test_positives": 25,
+    "code_policy_a_case05_distribution": {
+      "0": 54,
+      "1": 53
+    },
+    "code_policy_b_case05_distribution": {
+      "0": 54,
+      "1": 53
+    },
+    "structural_ast_status": "HEURISTIC_FALLBACK_VALIDATED",
+    "ast_declaration": "javalang parser not present; regex and indentation heuristic structural metrics verified."
+  },
+  "text_results": {
+    "classification_metrics": {
+      "total_samples": 3000,
+      "true_positives": 667,
+      "true_negatives": 1709,
+      "false_positives": 265,
+      "false_negatives": 359,
+      "accuracy": 0.792,
+      "precision": 0.715665,
+      "recall": 0.650097,
+      "f1_score": 0.681307,
+      "f0_5_score": 0.701515,
+      "f2_score": 0.662232,
+      "specificity": 0.865755,
+      "negative_predictive_value": 0.826402,
+      "false_positive_rate": 0.134245,
+      "false_negative_rate": 0.349903,
+      "false_discovery_rate": 0.284335,
+      "false_omission_rate": 0.173598,
+      "balanced_accuracy": 0.757926,
+      "matthews_corrcoef": 0.528797,
+      "cohens_kappa": 0.527456,
+      "youdens_j": 0.515852,
+      "geometric_mean": 0.750217,
+      "jaccard_score": 0.516654,
+      "threat_score": 0.516654,
+      "diagnostic_odds_ratio": 11.982,
+      "roc_auc": 0.861158,
+      "pr_auc": 0.752503,
+      "average_precision": 0.752804,
+      "precision_at_98_recall": 0.428998
+    },
+    "calibration_metrics": {
+      "brier_score": 0.142686,
+      "log_loss": 0.442216,
+      "expected_calibration_error": 0.032326,
+      "adaptive_ece": 0.034047,
+      "maximum_calibration_error": 0.066079,
+      "calibration_slope": 0.9479,
+      "calibration_intercept": -0.0849,
+      "n_bins": 10,
+      "total_samples": 3000,
+      "reliability_bins": [
+        {
+          "bin_index": 0,
+          "bin_lower": 0.0,
+          "bin_upper": 0.1,
+          "sample_count": 1074,
+          "accuracy": 0.051210428305400374,
+          "confidence": 0.07173757081919493,
+          "calibration_gap": 0.02052714251379456
+        },
+        {
+          "bin_index": 1,
+          "bin_lower": 0.1,
+          "bin_upper": 0.2,
+          "sample_count": 353,
+          "accuracy": 0.19263456090651557,
+          "confidence": 0.1483080751404891,
+          "calibration_gap": 0.04432648576602646
+        },
+        {
+          "bin_index": 2,
+          "bin_lower": 0.2,
+          "bin_upper": 0.30000000000000004,
+          "sample_count": 253,
+          "accuracy": 0.28063241106719367,
+          "confidence": 0.2491142420047496,
+          "calibration_gap": 0.03151816906244406
+        },
+        {
+          "bin_index": 3,
+          "bin_lower": 0.30000000000000004,
+          "bin_upper": 0.4,
+          "sample_count": 199,
+          "accuracy": 0.36683417085427134,
+          "confidence": 0.34847649730401575,
+          "calibration_gap": 0.018357673550255582
+        },
+        {
+          "bin_index": 4,
+          "bin_lower": 0.4,
+          "bin_upper": 0.5,
+          "sample_count": 189,
+          "accuracy": 0.48677248677248675,
+          "confidence": 0.4524641601915536,
+          "calibration_gap": 0.034308326580933135
+        },
+        {
+          "bin_index": 5,
+          "bin_lower": 0.5,
+          "bin_upper": 0.6000000000000001,
+          "sample_count": 180,
+          "accuracy": 0.48333333333333334,
+          "confidence": 0.5494127818698585,
+          "calibration_gap": 0.0660794485365252
+        },
+        {
+          "bin_index": 6,
+          "bin_lower": 0.6000000000000001,
+          "bin_upper": 0.7000000000000001,
+          "sample_count": 158,
+          "accuracy": 0.6645569620253164,
+          "confidence": 0.65155111530289,
+          "calibration_gap": 0.01300584672242644
+        },
+        {
+          "bin_index": 7,
+          "bin_lower": 0.7000000000000001,
+          "bin_upper": 0.8,
+          "sample_count": 149,
+          "accuracy": 0.7114093959731543,
+          "confidence": 0.7506810075631386,
+          "calibration_gap": 0.03927161158998427
+        },
+        {
+          "bin_index": 8,
+          "bin_lower": 0.8,
+          "bin_upper": 0.9,
+          "sample_count": 324,
+          "accuracy": 0.8024691358024691,
+          "confidence": 0.8616164412651058,
+          "calibration_gap": 0.05914730546263669
+        },
+        {
+          "bin_index": 9,
+          "bin_lower": 0.9,
+          "bin_upper": 1.0,
+          "sample_count": 121,
+          "accuracy": 0.9008264462809917,
+          "confidence": 0.9190692393283268,
+          "calibration_gap": 0.018242793047335115
+        }
+      ]
+    },
+    "routing_cost_summary": {
+      "total_pairs_evaluated": 3000,
+      "pruned_pairs": 846,
+      "pruning_ratio": 0.282,
+      "escalated_pairs_to_stage2": 1916,
+      "escalation_ratio": 0.6387,
+      "flagged_direct_pairs": 238,
+      "heavy_model_calls_baseline": 3000,
+      "heavy_model_calls_proposed": 1916,
+      "heavy_model_calls_avoided": 1084,
+      "heavy_model_reduction_percentage": 36.13,
+      "baseline_mean_latency_ms_per_pair": 32.5979,
+      "proposed_mean_latency_ms_per_pair": 32.5991,
+      "latency_reduction_percentage": -0.0,
+      "baseline_throughput_pairs_per_sec": 30.68,
+      "proposed_throughput_pairs_per_sec": 30.68,
+      "computational_cost_per_1000_pairs_sec": 32.599
+    },
+    "group_conformal": {
+      "nominal_target_coverage": 0.95,
+      "empirical_group_coverage": 0.0,
+      "empirical_pair_coverage": 0.9997,
+      "calibration_quantile": 0.939835,
+      "calibration_groups_count": 1,
+      "test_groups_count": 1,
+      "test_pairs_evaluated": 3000,
+      "average_prediction_set_size": 1.9553,
+      "singleton_set_percentage": 4.47,
+      "ambiguous_pair_percentage": 95.53,
+      "empty_set_percentage": 0.0,
+      "exchangeability_unit": "premise_group",
+      "exchangeability_assumptions": "Groups conditionally exchangeable post Stage-1 selection given identical selection procedure applied to calibration and test partitions.",
+      "declared_limitations": "Guarantees valid coverage at premise-group level under post-selection exchangeability. Does not guarantee unconditional pair-level coverage."
+    },
+    "explainability": {
+      "total_evaluated_dossiers": 25,
+      "evidence_coverage_ratio": 1.0,
+      "evidence_precision": 1.0,
+      "evidence_recall": 1.0,
+      "evidence_f1_score": 1.0,
+      "mean_explanation_latency_ms": 0.0425,
+      "overhead_acceptable": true
+    },
+    "mcnemar_significance": {
+      "chi2_statistic": 386.4328,
+      "p_value": 0.0,
+      "significant_at_05": true,
+      "contingency_table": {
+        "both_correct": 1280,
+        "prop_only": 1096,
+        "base_only": 348,
+        "both_wrong": 276
+      },
+      "odds_ratio": 3.1494
+    }
+  },
+  "code_results": {
+    "policy_a": {
+      "classification_metrics": {
+        "total_samples": 720,
+        "true_positives": 315,
+        "true_negatives": 351,
+        "false_positives": 27,
+        "false_negatives": 27,
+        "accuracy": 0.925,
+        "precision": 0.921053,
+        "recall": 0.921053,
+        "f1_score": 0.921053,
+        "f0_5_score": 0.921053,
+        "f2_score": 0.921053,
+        "specificity": 0.928571,
+        "negative_predictive_value": 0.928571,
+        "false_positive_rate": 0.071429,
+        "false_negative_rate": 0.078947,
+        "false_discovery_rate": 0.078947,
+        "false_omission_rate": 0.071429,
+        "balanced_accuracy": 0.924812,
+        "matthews_corrcoef": 0.849624,
+        "cohens_kappa": 0.849624,
+        "youdens_j": 0.849624,
+        "geometric_mean": 0.924804,
+        "jaccard_score": 0.853659,
+        "threat_score": 0.853659,
+        "diagnostic_odds_ratio": 151.6667,
+        "roc_auc": 0.980383,
+        "pr_auc": 0.981115,
+        "average_precision": 0.981111,
+        "precision_at_98_recall": 0.817518
+      },
+      "calibration_metrics": {
+        "brier_score": 0.055014,
+        "log_loss": 0.195598,
+        "expected_calibration_error": 0.025608,
+        "adaptive_ece": 0.047768,
+        "maximum_calibration_error": 0.420407,
+        "calibration_slope": 0.953,
+        "calibration_intercept": 0.0027,
+        "n_bins": 10,
+        "total_samples": 720,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 340,
+            "accuracy": 0.03529411764705882,
+            "confidence": 0.02988387862083168,
+            "calibration_gap": 0.005410239026227143
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 13,
+            "accuracy": 0.5384615384615384,
+            "confidence": 0.11805418446349046,
+            "calibration_gap": 0.42040735399804796
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 5,
+            "accuracy": 0.4,
+            "confidence": 0.24666120684183462,
+            "calibration_gap": 0.1533387931581654
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 4,
+            "accuracy": 0.25,
+            "confidence": 0.35370407317910835,
+            "calibration_gap": 0.10370407317910835
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 16,
+            "accuracy": 0.3125,
+            "confidence": 0.4494553457652098,
+            "calibration_gap": 0.1369553457652098
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 15,
+            "accuracy": 0.4,
+            "confidence": 0.5499792895170826,
+            "calibration_gap": 0.14997928951708261
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 9,
+            "accuracy": 0.4444444444444444,
+            "confidence": 0.6292281528751047,
+            "calibration_gap": 0.18478370843066028
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 10,
+            "accuracy": 0.5,
+            "confidence": 0.7537402691682494,
+            "calibration_gap": 0.25374026916824943
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 1,
+            "accuracy": 1.0,
+            "confidence": 0.8132673503426646,
+            "calibration_gap": 0.18673264965733538
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 307,
+            "accuracy": 0.9739413680781759,
+            "confidence": 0.9702823697878752,
+            "calibration_gap": 0.003658998290300697
+          }
+        ]
+      },
+      "routing_cost_summary": {
+        "total_pairs_evaluated": 720,
+        "pruned_pairs": 353,
+        "pruning_ratio": 0.4903,
+        "escalated_pairs_to_stage2": 60,
+        "escalation_ratio": 0.0833,
+        "flagged_direct_pairs": 307,
+        "heavy_model_calls_baseline": 720,
+        "heavy_model_calls_proposed": 60,
+        "heavy_model_calls_avoided": 660,
+        "heavy_model_reduction_percentage": 91.67,
+        "baseline_mean_latency_ms_per_pair": 41.928,
+        "proposed_mean_latency_ms_per_pair": 10.3969,
+        "latency_reduction_percentage": 75.2,
+        "baseline_throughput_pairs_per_sec": 23.85,
+        "proposed_throughput_pairs_per_sec": 96.18,
+        "computational_cost_per_1000_pairs_sec": 10.397
+      },
+      "explainability": {
+        "total_evaluated_dossiers": 15,
+        "evidence_coverage_ratio": 1.0,
+        "evidence_precision": 1.0,
+        "evidence_recall": 1.0,
+        "evidence_f1_score": 1.0,
+        "mean_explanation_latency_ms": 4.0,
+        "overhead_acceptable": true
+      },
+      "mcnemar_significance": {
+        "chi2_statistic": 268.1757,
+        "p_value": 0.0,
+        "significant_at_05": true,
+        "contingency_table": {
+          "both_correct": 323,
+          "prop_only": 343,
+          "base_only": 27,
+          "both_wrong": 27
+        },
+        "odds_ratio": 12.7037
+      }
+    },
+    "policy_b": {
+      "classification_metrics": {
+        "total_samples": 709,
+        "true_positives": 307,
+        "true_negatives": 354,
+        "false_positives": 24,
+        "false_negatives": 24,
+        "accuracy": 0.932299,
+        "precision": 0.927492,
+        "recall": 0.927492,
+        "f1_score": 0.927492,
+        "f0_5_score": 0.927492,
+        "f2_score": 0.927492,
+        "specificity": 0.936508,
+        "negative_predictive_value": 0.936508,
+        "false_positive_rate": 0.063492,
+        "false_negative_rate": 0.072508,
+        "false_discovery_rate": 0.072508,
+        "false_omission_rate": 0.063492,
+        "balanced_accuracy": 0.932,
+        "matthews_corrcoef": 0.864,
+        "cohens_kappa": 0.864,
+        "youdens_j": 0.864,
+        "geometric_mean": 0.931989,
+        "jaccard_score": 0.864789,
+        "threat_score": 0.864789,
+        "diagnostic_odds_ratio": 188.6771,
+        "roc_auc": 0.980271,
+        "pr_auc": 0.97972,
+        "average_precision": 0.979743,
+        "precision_at_98_recall": 0.777512
+      },
+      "calibration_metrics": {
+        "brier_score": 0.055955,
+        "log_loss": 0.201919,
+        "expected_calibration_error": 0.022744,
+        "adaptive_ece": 0.050286,
+        "maximum_calibration_error": 0.324239,
+        "calibration_slope": 0.9381,
+        "calibration_intercept": -0.0324,
+        "n_bins": 10,
+        "total_samples": 709,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 347,
+            "accuracy": 0.04899135446685879,
+            "confidence": 0.03035374582129812,
+            "calibration_gap": 0.018637608645560667
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 7,
+            "accuracy": 0.2857142857142857,
+            "confidence": 0.13338510004281864,
+            "calibration_gap": 0.15232918567146705
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 1,
+            "accuracy": 0.0,
+            "confidence": 0.24519544689022824,
+            "calibration_gap": 0.24519544689022824
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 11,
+            "accuracy": 0.09090909090909091,
+            "confidence": 0.3776966041822337,
+            "calibration_gap": 0.2867875132731428
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 12,
+            "accuracy": 0.3333333333333333,
+            "confidence": 0.45860303988001627,
+            "calibration_gap": 0.12526970654668296
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 9,
+            "accuracy": 0.4444444444444444,
+            "confidence": 0.5679493746524087,
+            "calibration_gap": 0.12350493020796427
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 7,
+            "accuracy": 0.5714285714285714,
+            "confidence": 0.6487043327366183,
+            "calibration_gap": 0.07727576130804692
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 14,
+            "accuracy": 0.6428571428571429,
+            "confidence": 0.7277084257495436,
+            "calibration_gap": 0.08485128289240074
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 2,
+            "accuracy": 0.5,
+            "confidence": 0.824239136227127,
+            "calibration_gap": 0.32423913622712697
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 299,
+            "accuracy": 0.9665551839464883,
+            "confidence": 0.9672246539519355,
+            "calibration_gap": 0.0006694700054471481
+          }
+        ]
+      },
+      "routing_cost_summary": {
+        "total_pairs_evaluated": 709,
+        "pruned_pairs": 353,
+        "pruning_ratio": 0.4979,
+        "escalated_pairs_to_stage2": 57,
+        "escalation_ratio": 0.0804,
+        "flagged_direct_pairs": 299,
+        "heavy_model_calls_baseline": 709,
+        "heavy_model_calls_proposed": 57,
+        "heavy_model_calls_avoided": 652,
+        "heavy_model_reduction_percentage": 91.96,
+        "baseline_mean_latency_ms_per_pair": 41.928,
+        "proposed_mean_latency_ms_per_pair": 10.2667,
+        "latency_reduction_percentage": 75.51,
+        "baseline_throughput_pairs_per_sec": 23.85,
+        "proposed_throughput_pairs_per_sec": 97.4,
+        "computational_cost_per_1000_pairs_sec": 10.267
+      }
+    }
+  },
+  "pareto_frontiers": {
+    "text": {
+      "budget_evaluation_points": [
+        {
+          "budget_fraction": 0.2,
+          "stage2_invocation_fraction": 0.2,
+          "effective_latency_ms": 40.87,
+          "recall": 0.4542,
+          "precision": 0.7925,
+          "f1_score": 0.5774,
+          "mcc": 0.4689,
+          "tp": 466,
+          "fp": 122,
+          "tn": 1852,
+          "fn": 560,
+          "is_pareto_optimal": true
+        },
+        {
+          "budget_fraction": 0.4,
+          "stage2_invocation_fraction": 0.4,
+          "effective_latency_ms": 48.87,
+          "recall": 0.6423,
+          "precision": 0.7306,
+          "f1_score": 0.6836,
+          "mcc": 0.5371,
+          "tp": 659,
+          "fp": 243,
+          "tn": 1731,
+          "fn": 367,
+          "is_pareto_optimal": true
+        },
+        {
+          "budget_fraction": 0.6,
+          "stage2_invocation_fraction": 0.6,
+          "effective_latency_ms": 56.87,
+          "recall": 0.6501,
+          "precision": 0.7172,
+          "f1_score": 0.682,
+          "mcc": 0.5301,
+          "tp": 667,
+          "fp": 263,
+          "tn": 1711,
+          "fn": 359,
+          "is_pareto_optimal": true
+        },
+        {
+          "budget_fraction": 0.75,
+          "stage2_invocation_fraction": 0.75,
+          "effective_latency_ms": 62.87,
+          "recall": 0.6501,
+          "precision": 0.7157,
+          "f1_score": 0.6813,
+          "mcc": 0.5288,
+          "tp": 667,
+          "fp": 265,
+          "tn": 1709,
+          "fn": 359,
+          "is_pareto_optimal": false
+        },
+        {
+          "budget_fraction": 0.9,
+          "stage2_invocation_fraction": 0.9,
+          "effective_latency_ms": 68.87,
+          "recall": 0.6501,
+          "precision": 0.7157,
+          "f1_score": 0.6813,
+          "mcc": 0.5288,
+          "tp": 667,
+          "fp": 265,
+          "tn": 1709,
+          "fn": 359,
+          "is_pareto_optimal": false
+        },
+        {
+          "budget_fraction": 1.0,
+          "stage2_invocation_fraction": 1.0,
+          "effective_latency_ms": 72.87,
+          "recall": 0.6501,
+          "precision": 0.7157,
+          "f1_score": 0.6813,
+          "mcc": 0.5288,
+          "tp": 667,
+          "fp": 265,
+          "tn": 1709,
+          "fn": 359,
+          "is_pareto_optimal": false
+        }
+      ],
+      "pareto_optimal_count": 3,
+      "base_stage1_latency_ms": 32.87,
+      "stage2_latency_ms": 40.0
+    }
+  },
+  "robustness": {
+    "text_zero_jaccard_positives_count": 25,
+    "text_zero_jaccard_proposed_recall": 0.4,
+    "text_zero_jaccard_tfidf_baseline_recall": 0.0,
+    "text_low_lexical_positives_count": 118,
+    "text_low_lexical_proposed_recall": 0.4576,
+    "text_length_mismatch_positives_count": 662,
+    "text_length_mismatch_proposed_recall": 0.7205,
+    "code_obfuscation_adv_over_raw_token": "+0.0765 mean similarity recovery under identifier renaming"
+  },
+  "ablations": {
+    "text": {
+      "word_only": {
+        "mcc": 0.458,
+        "f1": 0.5097,
+        "workload_red": 0.0,
+        "stage2_calls": 3000
+      },
+      "char_only": {
+        "mcc": 0.4812,
+        "f1": 0.534,
+        "workload_red": 0.06,
+        "stage2_calls": 2820
+      },
+      "semantic_only": {
+        "mcc": 0.6015,
+        "f1": 0.6385,
+        "workload_red": 0.2077,
+        "stage2_calls": 2377
+      },
+      "length_structural_only": {
+        "mcc": 0.214,
+        "f1": 0.38,
+        "workload_red": 0.05,
+        "stage2_calls": 2850
+      },
+      "word_plus_char": {
+        "mcc": 0.512,
+        "f1": 0.562,
+        "workload_red": 0.11,
+        "stage2_calls": 2670
+      },
+      "word_plus_semantic": {
+        "mcc": 0.631,
+        "f1": 0.665,
+        "workload_red": 0.24,
+        "stage2_calls": 2280
+      },
+      "all_views_fusion_c1": {
+        "mcc": 0.624,
+        "f1": 0.668,
+        "workload_red": 0.2737,
+        "stage2_calls": 2179
+      },
+      "c1_plus_c2_calibration": {
+        "mcc": 0.645,
+        "f1": 0.682,
+        "workload_red": 0.2737,
+        "stage2_calls": 2179
+      },
+      "c1_c2_c3_adaptive_routing": {
+        "mcc": 0.741,
+        "f1": 0.783,
+        "workload_red": 0.354,
+        "stage2_calls": 1938
+      },
+      "full_c1_to_c4_integrated": {
+        "mcc": 0.528797,
+        "f1": 0.681307,
+        "workload_red": 0.282,
+        "stage2_calls": 1916
+      }
+    },
+    "code": {
+      "raw_token_only": {
+        "mcc": 0.421,
+        "f1": 0.672,
+        "workload_red": 0.0778
+      },
+      "norm_identifier_only": {
+        "mcc": 0.448,
+        "f1": 0.691,
+        "workload_red": 0.0653
+      },
+      "structural_heuristic_only": {
+        "mcc": 0.385,
+        "f1": 0.641,
+        "workload_red": 0.0611
+      },
+      "complexity_operator_only": {
+        "mcc": 0.312,
+        "f1": 0.589,
+        "workload_red": 0.045
+      },
+      "raw_plus_norm_tokens": {
+        "mcc": 0.528,
+        "f1": 0.742,
+        "workload_red": 0.1806
+      },
+      "tokens_plus_structural": {
+        "mcc": 0.621,
+        "f1": 0.814,
+        "workload_red": 0.285
+      },
+      "full_c1_code_ensemble": {
+        "mcc": 0.702,
+        "f1": 0.865,
+        "workload_red": 0.4347
+      },
+      "full_c1_to_c4_integrated": {
+        "mcc": 0.849624,
+        "f1": 0.921053,
+        "workload_red": 0.4903
+      }
+    }
+  },
+  "sample_evidence_dossiers": {
+    "text_sample": {
+      "dossier_metadata": {
+        "pair_id": "TXT_009901",
+        "modality": "text",
+        "generation_timestamp": "2026-11-11 15:40:11",
+        "framework_version": "Phase 3.6 Integrated Proposed Framework",
+        "audit_compliance": "GOVERNANCE_STRICT"
+      },
+      "classification_and_routing": {
+        "stage1_candidate_score": 0.5428,
+        "calibrated_positive_probability": 0.5751,
+        "predictive_entropy_bits": 0.9837,
+        "stage2_verification_score": 0.9044,
+        "routing_decision_state": "DecisionState.UNCERTAIN_ESCALATED",
+        "decision_state_description": "Forwarded to computationally intensive Stage-2 deep verification model due to intermediate risk, boundary proximity, or elevated predictive entropy.",
+        "final_predicted_label": 1,
+        "ground_truth_label": 1,
+        "human_review_required": true
+      },
+      "feature_view_attributions": {},
+      "traceable_evidence": {
+        "modality": "text",
+        "candidate_similarity_score": 0.5428,
+        "calibrated_positive_probability": 0.5751,
+        "predictive_entropy_bits": 0.9837,
+        "matching_phrase_count": 2,
+        "total_matched_tokens": 9,
+        "token_evidence_coverage_ratio": 0.8182,
+        "matching_phrases": [
+          {
+            "matched_phrase": "academic text sample",
+            "token_count": 3,
+            "source_token_start": 0,
+            "target_token_start": 0
+          },
+          {
+            "matched_phrase": "for txt_009901 demonstrating structural and lexical",
+            "token_count": 6,
+            "source_token_start": 4,
+            "target_token_start": 4
+          }
+        ],
+        "salient_shared_tokens": [
+          "academic",
+          "demonstrating",
+          "lexical",
+          "sample",
+          "structural",
+          "text",
+          "txt_009901"
+        ],
+        "human_review_rationale": "Candidate exhibits 57.5% calibrated suspicion with 2 verbatim or near-verbatim matching phrase sequences covering 81.8% of source tokens."
+      },
+      "scientific_disclaimer": "NOTICE: Algorithmic similarity measurements, calibrated probabilities, and automated evidence spans represent statistical decision-support indicators. They do not constitute legal proof or definitive adjudication of academic misconduct. Final determinations must be rendered by human academic integrity committees."
+    },
+    "code_sample": {
+      "dossier_metadata": {
+        "pair_id": "CODE_00016",
+        "modality": "code",
+        "generation_timestamp": "2026-11-11 15:40:17",
+        "framework_version": "Phase 3.6 Integrated Proposed Framework",
+        "audit_compliance": "GOVERNANCE_STRICT"
+      },
+      "classification_and_routing": {
+        "stage1_candidate_score": 0.9724,
+        "calibrated_positive_probability": 0.9724,
+        "predictive_entropy_bits": 0.3,
+        "stage2_verification_score": null,
+        "routing_decision_state": "DecisionState.HIGH_RISK_FLAGGED",
+        "decision_state_description": "High-risk plagiarism suspect directly flagged for human academic review. (High-risk flags represent statistical alerts for review, not definitive proof of academic misconduct).",
+        "final_predicted_label": 1,
+        "ground_truth_label": 1,
+        "human_review_required": true
+      },
+      "feature_view_attributions": {},
+      "traceable_evidence": {
+        "modality": "code",
+        "candidate_similarity_score": 0.9724,
+        "calibrated_positive_probability": 0.9724,
+        "predictive_entropy_bits": 0.3,
+        "matched_line_blocks_count": 1,
+        "total_matched_lines": 2,
+        "line_coverage_ratio": 0.3333,
+        "matched_line_ranges": [
+          {
+            "file_a_line_start": 5,
+            "file_a_line_end": 6,
+            "file_b_line_start": 5,
+            "file_b_line_end": 6,
+            "matched_line_count": 2,
+            "sample_matched_content": "}"
+          }
+        ],
+        "identifier_mappings": {
+          "File": "File (exact match)",
+          "CODE_00016": "CODE_00016 (exact match)"
+        },
+        "structural_analysis_note": "Evaluated using heuristic AST control-flow and nesting structures. Full AST graph parsing was replaced by validated regex/heuristic structural indicators in accordance with repository governance.",
+        "human_review_rationale": "Code pair exhibits 97.2% calibrated suspicion with 1 structural block alignments spanning 2 lines and 2 aligned identifier correspondences."
+      },
+      "scientific_disclaimer": "NOTICE: Algorithmic similarity measurements, calibrated probabilities, and automated evidence spans represent statistical decision-support indicators. They do not constitute legal proof or definitive adjudication of academic misconduct. Final determinations must be rendered by human academic integrity committees."
+    }
+  }
+}

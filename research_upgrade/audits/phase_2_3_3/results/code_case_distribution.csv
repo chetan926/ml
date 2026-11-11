@@ -1,0 +1,8 @@
+case,total_pairs,positive_pairs,negative_pairs,duplicate_pair_rows,physical_java_files
+case-01,94,40,54,7,56
+case-02,108,54,54,7,70
+case-03,106,52,54,6,68
+case-04,108,54,54,0,70
+case-05,107,53,54,0,69
+case-06,105,51,54,4,67
+case-07,105,51,54,0,67

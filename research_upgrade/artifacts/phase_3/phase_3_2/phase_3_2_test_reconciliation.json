@@ -1,0 +1,367 @@
+{
+  "audit_phase": "Phase 3.2 Test-Count Reconciliation",
+  "timestamp": "2026-11-11 13:03:37",
+  "total_test_files": 9,
+  "total_tests_collected": 56,
+  "total_tests_executed": 56,
+  "total_tests_passed": 56,
+  "total_tests_failed": 0,
+  "total_tests_errored": 0,
+  "total_tests_skipped": 0,
+  "total_execution_time_seconds": 1.4006,
+  "discrepancy_explanation": "The historical Phase 3.2 documentation report table contained typographical / transcription errors in individual module counts (listing test_leakage_protection.py as 13 instead of 5, test_text_features.py as 13 instead of 5, test_governance.py as 5 instead of 8, test_schema_validation.py as 5 instead of 3, etc.). The sum of those erroneous table rows was 69. However, the actual test files in tests/ contain exactly 56 test cases, and all 56 tests are executed and pass 100%.",
+  "per_file_audit": {
+    "test_code_features.py": {
+      "file_name": "test_code_features.py",
+      "test_count": 13,
+      "test_classes": [
+        "TestCodeTokenExtractor",
+        "TestCodeComplexityExtractor",
+        "TestCodeIdentifierNormalizedExtractor",
+        "TestCodeStructuralExtractor"
+      ]
+    },
+    "test_data_loaders.py": {
+      "file_name": "test_data_loaders.py",
+      "test_count": 7,
+      "test_classes": [
+        "TestDataLoaders"
+      ]
+    },
+    "test_feature_pipeline.py": {
+      "file_name": "test_feature_pipeline.py",
+      "test_count": 4,
+      "test_classes": [
+        "TestTextMultiViewPipeline",
+        "TestCodeMultiViewPipeline"
+      ]
+    },
+    "test_feature_reproducibility.py": {
+      "file_name": "test_feature_reproducibility.py",
+      "test_count": 2,
+      "test_classes": [
+        "TestFeatureReproducibility"
+      ]
+    },
+    "test_governance.py": {
+      "file_name": "test_governance.py",
+      "test_count": 8,
+      "test_classes": [
+        "TestReproducibilityConfig",
+        "TestBaselineGovernance"
+      ]
+    },
+    "test_leakage_protection.py": {
+      "file_name": "test_leakage_protection.py",
+      "test_count": 5,
+      "test_classes": [
+        "TestDatasetLeakageProtection"
+      ]
+    },
+    "test_rkrgst.py": {
+      "file_name": "test_rkrgst.py",
+      "test_count": 9,
+      "test_classes": [
+        "TestPenaltySimilarity",
+        "TestRKRGST",
+        "TestESPlagTokenizer"
+      ]
+    },
+    "test_schema_validation.py": {
+      "file_name": "test_schema_validation.py",
+      "test_count": 3,
+      "test_classes": [
+        "TestSchemaValidation"
+      ]
+    },
+    "test_text_features.py": {
+      "file_name": "test_text_features.py",
+      "test_count": 5,
+      "test_classes": [
+        "TestTextFeatures"
+      ]
+    }
+  },
+  "detailed_test_records": [
+    {
+      "test_id": "tests.test_code_features.TestCodeComplexityExtractor.test_feature_names",
+      "status": "PASSED",
+      "duration_ms": 0.024
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeComplexityExtractor.test_helpers",
+      "status": "PASSED",
+      "duration_ms": 0.158
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeComplexityExtractor.test_identical_and_empty",
+      "status": "PASSED",
+      "duration_ms": 0.58
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeIdentifierNormalizedExtractor.test_feature_names",
+      "status": "PASSED",
+      "duration_ms": 0.015
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeIdentifierNormalizedExtractor.test_identifier_normalizer_function",
+      "status": "PASSED",
+      "duration_ms": 0.085
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeIdentifierNormalizedExtractor.test_renaming_invariance_benefit",
+      "status": "PASSED",
+      "duration_ms": 2.153
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeStructuralExtractor.test_fallback_disclosure",
+      "status": "PASSED",
+      "duration_ms": 0.014
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeStructuralExtractor.test_feature_names",
+      "status": "PASSED",
+      "duration_ms": 0.01
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeStructuralExtractor.test_identical_and_differing_code",
+      "status": "PASSED",
+      "duration_ms": 0.731
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeTokenExtractor.test_empty_and_none_code",
+      "status": "PASSED",
+      "duration_ms": 0.057
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeTokenExtractor.test_feature_names",
+      "status": "PASSED",
+      "duration_ms": 0.008
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeTokenExtractor.test_identical_code",
+      "status": "PASSED",
+      "duration_ms": 0.791
+    },
+    {
+      "test_id": "tests.test_code_features.TestCodeTokenExtractor.test_value_ranges",
+      "status": "PASSED",
+      "duration_ms": 2.617
+    },
+    {
+      "test_id": "tests.test_data_loaders.TestDataLoaders.test_code_loader_case_05_folds",
+      "status": "PASSED",
+      "duration_ms": 7.86
+    },
+    {
+      "test_id": "tests.test_data_loaders.TestDataLoaders.test_code_loader_duplicate_groups",
+      "status": "PASSED",
+      "duration_ms": 2.387
+    },
+    {
+      "test_id": "tests.test_data_loaders.TestDataLoaders.test_code_loader_physical_files",
+      "status": "PASSED",
+      "duration_ms": 3.115
+    },
+    {
+      "test_id": "tests.test_data_loaders.TestDataLoaders.test_code_loader_policies",
+      "status": "PASSED",
+      "duration_ms": 0.121
+    },
+    {
+      "test_id": "tests.test_data_loaders.TestDataLoaders.test_text_loader_partitions_and_counts",
+      "status": "PASSED",
+      "duration_ms": 3.231
+    },
+    {
+      "test_id": "tests.test_data_loaders.TestDataLoaders.test_text_loader_premise_groups",
+      "status": "PASSED",
+      "duration_ms": 21.029
+    },
+    {
+      "test_id": "tests.test_data_loaders.TestDataLoaders.test_text_loader_purged_rows",
+      "status": "PASSED",
+      "duration_ms": 0.074
+    },
+    {
+      "test_id": "tests.test_feature_pipeline.TestCodeMultiViewPipeline.test_schema",
+      "status": "PASSED",
+      "duration_ms": 0.023
+    },
+    {
+      "test_id": "tests.test_feature_pipeline.TestCodeMultiViewPipeline.test_transform_dataframe",
+      "status": "PASSED",
+      "duration_ms": 4.158
+    },
+    {
+      "test_id": "tests.test_feature_pipeline.TestTextMultiViewPipeline.test_schema",
+      "status": "PASSED",
+      "duration_ms": 0.03
+    },
+    {
+      "test_id": "tests.test_feature_pipeline.TestTextMultiViewPipeline.test_transform_dataframe",
+      "status": "PASSED",
+      "duration_ms": 46.463
+    },
+    {
+      "test_id": "tests.test_feature_reproducibility.TestFeatureReproducibility.test_code_feature_reproducibility",
+      "status": "PASSED",
+      "duration_ms": 26.821
+    },
+    {
+      "test_id": "tests.test_feature_reproducibility.TestFeatureReproducibility.test_text_feature_reproducibility",
+      "status": "PASSED",
+      "duration_ms": 436.648
+    },
+    {
+      "test_id": "tests.test_governance.TestBaselineGovernance.test_all_28_files_exist_on_disk",
+      "status": "PASSED",
+      "duration_ms": 3.564
+    },
+    {
+      "test_id": "tests.test_governance.TestBaselineGovernance.test_all_28_sha256_hashes_match_manifest",
+      "status": "PASSED",
+      "duration_ms": 6.943
+    },
+    {
+      "test_id": "tests.test_governance.TestBaselineGovernance.test_assert_baseline_intact_does_not_raise",
+      "status": "PASSED",
+      "duration_ms": 15.899
+    },
+    {
+      "test_id": "tests.test_governance.TestBaselineGovernance.test_baseline_manifest_exists",
+      "status": "PASSED",
+      "duration_ms": 0.172
+    },
+    {
+      "test_id": "tests.test_governance.TestBaselineGovernance.test_governance_verification_function",
+      "status": "PASSED",
+      "duration_ms": 14.016
+    },
+    {
+      "test_id": "tests.test_governance.TestBaselineGovernance.test_no_untracked_files_in_src",
+      "status": "PASSED",
+      "duration_ms": 2.838
+    },
+    {
+      "test_id": "tests.test_governance.TestBaselineGovernance.test_registered_file_count_is_exactly_28",
+      "status": "PASSED",
+      "duration_ms": 0.502
+    },
+    {
+      "test_id": "tests.test_governance.TestReproducibilityConfig.test_deterministic_seed_initialization",
+      "status": "PASSED",
+      "duration_ms": 15.237
+    },
+    {
+      "test_id": "tests.test_leakage_protection.TestDatasetLeakageProtection.test_case_05_cross_fitting_proof_and_physical_files",
+      "status": "PASSED",
+      "duration_ms": 0.5
+    },
+    {
+      "test_id": "tests.test_leakage_protection.TestDatasetLeakageProtection.test_code_duplicate_accounting_reconciliation",
+      "status": "PASSED",
+      "duration_ms": 0.456
+    },
+    {
+      "test_id": "tests.test_leakage_protection.TestDatasetLeakageProtection.test_text_exclusion_ledger_exact_reconciliation",
+      "status": "PASSED",
+      "duration_ms": 0.435
+    },
+    {
+      "test_id": "tests.test_leakage_protection.TestDatasetLeakageProtection.test_text_leakage_report_zero_cross_overlap",
+      "status": "PASSED",
+      "duration_ms": 0.415
+    },
+    {
+      "test_id": "tests.test_leakage_protection.TestDatasetLeakageProtection.test_zero_overlap_lexical_positives_accounting",
+      "status": "PASSED",
+      "duration_ms": 0.405
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestESPlagTokenizer.test_comment_removal_safe",
+      "status": "PASSED",
+      "duration_ms": 0.048
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestESPlagTokenizer.test_tokenize_code",
+      "status": "PASSED",
+      "duration_ms": 0.033
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestPenaltySimilarity.test_boundary_zero_and_empty",
+      "status": "PASSED",
+      "duration_ms": 0.021
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestPenaltySimilarity.test_multiple_subsequences_penalty_applied",
+      "status": "PASSED",
+      "duration_ms": 0.11
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestPenaltySimilarity.test_single_subsequence_no_penalty",
+      "status": "PASSED",
+      "duration_ms": 0.044
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestRKRGST.test_disjoint_sequences",
+      "status": "PASSED",
+      "duration_ms": 0.036
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestRKRGST.test_identical_sequences",
+      "status": "PASSED",
+      "duration_ms": 0.043
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestRKRGST.test_mml_threshold",
+      "status": "PASSED",
+      "duration_ms": 0.036
+    },
+    {
+      "test_id": "tests.test_rkrgst.TestRKRGST.test_scrambled_substrings",
+      "status": "PASSED",
+      "duration_ms": 0.054
+    },
+    {
+      "test_id": "tests.test_schema_validation.TestSchemaValidation.test_code_benchmark_raw_schema",
+      "status": "PASSED",
+      "duration_ms": 9.934
+    },
+    {
+      "test_id": "tests.test_schema_validation.TestSchemaValidation.test_synthetic_malformed_text_detection",
+      "status": "PASSED",
+      "duration_ms": 7.838
+    },
+    {
+      "test_id": "tests.test_schema_validation.TestSchemaValidation.test_text_benchmark_raw_schema",
+      "status": "PASSED",
+      "duration_ms": 18.602
+    },
+    {
+      "test_id": "tests.test_text_features.TestTextFeatures.test_character_extractor_boundaries",
+      "status": "PASSED",
+      "duration_ms": 2.276
+    },
+    {
+      "test_id": "tests.test_text_features.TestTextFeatures.test_lexical_identical_and_disjoint_strings",
+      "status": "PASSED",
+      "duration_ms": 1.606
+    },
+    {
+      "test_id": "tests.test_text_features.TestTextFeatures.test_lexical_unfitted_raises_runtime_error",
+      "status": "PASSED",
+      "duration_ms": 0.029
+    },
+    {
+      "test_id": "tests.test_text_features.TestTextFeatures.test_semantic_extractor_boundaries",
+      "status": "PASSED",
+      "duration_ms": 22.109
+    },
+    {
+      "test_id": "tests.test_text_features.TestTextFeatures.test_structural_extractor_boundaries",
+      "status": "PASSED",
+      "duration_ms": 0.126
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "category": "cross_split_contamination",
+    "premise": "A dog catching a Frisbee.",
+    "rows_affected": 6,
+    "action": "purged_by_premise_id"
+  },
+  {
+    "category": "exact_ordered_duplicate",
+    "ids": "TXT_002505 (dupe of TXT_002504)",
+    "rows_affected": 1,
+    "action": "purged_duplicate"
+  },
+  {
+    "category": "exact_ordered_duplicate",
+    "ids": "TXT_003942 (dupe of TXT_003940)",
+    "rows_affected": 1,
+    "action": "purged_duplicate"
+  },
+  {
+    "category": "active_partitions",
+    "subsets": "train(4000), val(1500), cal_prob(1000), cal_conf(1000), test(3000)",
+    "rows_affected": 10500,
+    "action": "retained_in_benchmark"
+  },
+  {
+    "category": "retained_development_reserve",
+    "origin": "snli_val",
+    "rows_affected": 2337,
+    "action": "preserved_for_audits"
+  },
+  {
+    "category": "retained_test_reserve",
+    "origin": "snli_test",
+    "rows_affected": 6821,
+    "action": "preserved_for_ood_audits"
+  }
+]

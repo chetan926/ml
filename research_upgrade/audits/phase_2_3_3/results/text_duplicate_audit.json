@@ -1,0 +1,33 @@
+{
+  "exact_ordered_duplicate_rows_count": 4,
+  "reversed_duplicate_pairs_count": 0,
+  "normalized_duplicate_rows_count": 4,
+  "exact_ordered_duplicate_pair_groups": [
+    {
+      "ids": [
+        "TXT_002504",
+        "TXT_002505"
+      ],
+      "reference_text": "A dog carrying a stick in its mouth runs through a snow-covered field.",
+      "suspicious_text": "A animal carried a stick through a snow covered field.",
+      "is_plagiarized": 1,
+      "splits": [
+        "val",
+        "val"
+      ]
+    },
+    {
+      "ids": [
+        "TXT_003940",
+        "TXT_003942"
+      ],
+      "reference_text": "A lone, 2-3 year old blond child in a blue jacket is putting a small black plastic item in his mouth as he kneels on a waiting room couch pointed toward the back while looking at something or someone not in the room.",
+      "suspicious_text": "The child is blonde.",
+      "is_plagiarized": 1,
+      "splits": [
+        "val",
+        "val"
+      ]
+    }
+  ]
+}

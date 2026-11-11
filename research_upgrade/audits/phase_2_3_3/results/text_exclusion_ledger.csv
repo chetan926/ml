@@ -1,0 +1,7 @@
+category,premise,rows_affected,action,ids,subsets,origin
+cross_split_contamination,A dog catching a Frisbee.,6,purged_by_premise_id,,,
+exact_ordered_duplicate,,1,purged_duplicate,TXT_002505 (dupe of TXT_002504),,
+exact_ordered_duplicate,,1,purged_duplicate,TXT_003942 (dupe of TXT_003940),,
+active_partitions,,10500,retained_in_benchmark,,"train(4000), val(1500), cal_prob(1000), cal_conf(1000), test(3000)",
+retained_development_reserve,,2337,preserved_for_audits,,,snli_val
+retained_test_reserve,,6821,preserved_for_ood_audits,,,snli_test

@@ -1,0 +1,4 @@
+Domain,total_pairs_evaluated,pruned_pairs,pruning_ratio,escalated_pairs_to_stage2,escalation_ratio,flagged_direct_pairs,heavy_model_calls_baseline,heavy_model_calls_proposed,heavy_model_calls_avoided,heavy_model_reduction_percentage,baseline_mean_latency_ms_per_pair,proposed_mean_latency_ms_per_pair,latency_reduction_percentage,baseline_throughput_pairs_per_sec,proposed_throughput_pairs_per_sec,computational_cost_per_1000_pairs_sec
+Text,3000,846,0.282,1916,0.6387,238,3000,1916,1084,36.13,32.5979,32.5991,-0.0,30.68,30.68,32.599
+Code_PolicyA,720,353,0.4903,60,0.0833,307,720,60,660,91.67,41.928,10.3969,75.2,23.85,96.18,10.397
+Code_PolicyB,709,353,0.4979,57,0.0804,299,709,57,652,91.96,41.928,10.2667,75.51,23.85,97.4,10.267

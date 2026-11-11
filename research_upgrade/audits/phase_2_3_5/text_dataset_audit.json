@@ -1,0 +1,40 @@
+{
+  "total_raw_rows": 19666,
+  "split_counts": {
+    "val": 9842,
+    "test": 9824
+  },
+  "null_or_empty": {
+    "null_reference": 0,
+    "null_suspicious": 0,
+    "empty_reference": 0,
+    "empty_suspicious": 0
+  },
+  "exact_ordered_duplicate_rows": 4,
+  "reversed_duplicate_pairs": 0,
+  "crossing_premises": [
+    "A dog catching a Frisbee."
+  ],
+  "crossing_rows_count": 6,
+  "partition_pair_counts": {
+    "train": 4000,
+    "val": 1500,
+    "cal_prob": 1000,
+    "cal_conf": 1000,
+    "test": 3000,
+    "dev_reserve": 2337,
+    "test_reserve": 6821
+  },
+  "reconciliation": {
+    "raw_rows": 19666,
+    "active_pairs": 10500,
+    "purged_cross_contamination": 6,
+    "purged_redundant_duplicates": 2,
+    "retained_development_reserve": 2337,
+    "retained_test_reserve": 6821,
+    "total_retained_reserves": 9158,
+    "sum_check": 19666,
+    "discrepancy": 0,
+    "status": "PASS"
+  }
+}

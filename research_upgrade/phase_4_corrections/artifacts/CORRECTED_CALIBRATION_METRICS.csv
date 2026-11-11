@@ -1,0 +1,5 @@
+Domain,Calibrator,brier_score,log_loss,expected_calibration_error,adaptive_ece,maximum_calibration_error,calibration_slope,calibration_intercept,n_bins,total_samples
+Text,uncalibrated,0.141296,0.433121,0.014504,0.014413,0.031432,1.0739,0.0147,10,3000
+Text,platt_scaling,0.142258,0.43974,0.031524,0.032101,0.070119,1.0098,-0.0925,10,3000
+Text,isotonic_regression,0.142585,0.440523,0.022431,0.020185,0.118874,0.8688,-0.1307,10,3000
+Text,temperature_scaling,0.141166,0.432718,0.015558,0.011552,0.047265,0.9694,0.0144,10,3000

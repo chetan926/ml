@@ -1,0 +1,8 @@
+Domain,total_samples,true_positives,false_positives,true_negatives,false_negatives,tpr_recall,fpr,tnr_specificity,fnr,precision_ppv,negative_predictive_value,accuracy,f1_score,matthews_corrcoef
+Text_Proposed,3000,667,265,1709,359,0.6501,0.1342,0.8658,0.3499,0.7157,0.8264,0.792,0.6813,0.5288
+Text_Semantic_Baseline,3000,887,765,1209,139,0.8645,0.3875,0.6125,0.1355,0.5369,0.8969,0.6987,0.6624,0.4549
+Text_TFIDF_Baseline,3000,700,831,1143,326,0.6823,0.421,0.579,0.3177,0.4572,0.7781,0.6143,0.5475,0.248
+Code_Proposed_PolicyA_GroupDisjoint,720,301,72,306,41,0.8801,0.1905,0.8095,0.1199,0.807,0.8818,0.8431,0.842,0.6892
+Code_Proposed_PolicyA_StratifiedLeakage,720,320,26,352,22,0.9357,0.0688,0.9312,0.0643,0.9249,0.9412,0.9333,0.9302,0.8665
+Code_Proposed_PolicyB_GroupDisjoint,709,295,68,310,36,0.8912,0.1799,0.8201,0.1088,0.8127,0.896,0.8533,0.8501,0.71
+Code_TokenJaccard_Baseline,720,342,378,0,0,1.0,1.0,0.0,0.0,0.475,0.0,0.475,0.6441,0.0

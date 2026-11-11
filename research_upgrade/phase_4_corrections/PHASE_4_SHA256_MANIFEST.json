@@ -1,0 +1,184 @@
+{
+  "manifest_version": "1.1.0",
+  "phase": "Phase 4 Independent Verification",
+  "generation_timestamp": "2026-11-11 18:18:00",
+  "baseline_verified": "28/28 original files matched",
+  "total_phase4_files": 35,
+  "files": [
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_ABLATION_RESULTS.csv",
+      "size_bytes": 799,
+      "sha256": "214fdc071e1695133655468c6e6864f0c1ca0228c84af0c3a12be434d933ec92"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_BASELINE_PREDICTIONS_CODE_OOF.csv",
+      "size_bytes": 17338,
+      "sha256": "48508be88d478a914068ac1e75a23c63a522035a020eb16276cd5169377e3d7e"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_BASELINE_PREDICTIONS_TEXT_TEST.csv",
+      "size_bytes": 273475,
+      "sha256": "88b4172f4be9ecad21e3e69f6ef1f07b95f15c5314524d7689ca3c7d39af70fb"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_CALIBRATION_METRICS.csv",
+      "size_bytes": 527,
+      "sha256": "e43837f61c8da86df0515795cbf22804b6fa778ceeea428dd5987825c8743afa"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_CLASSIFICATION_METRICS.csv",
+      "size_bytes": 2111,
+      "sha256": "3d6a963bf7d34a18f97f7dedde2e5c3e05e0ee1dee48c53bcbfc2c095d89a31b"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_CONFUSION_MATRICES.csv",
+      "size_bytes": 946,
+      "sha256": "5df953c351773d4d7f2a5b4c1e920a6dd9f71ce7dc52d3f6b00979657d4acca7"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_COST_ANALYSIS.csv",
+      "size_bytes": 516,
+      "sha256": "7134a7f98b466d7e83ad5eb5c1b5b58da71d876bd91e0d0d7308c578695be545"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_EXPERIMENT_CONFIG_AND_FOLDS.json",
+      "size_bytes": 3952,
+      "sha256": "1b6d0aa4ebca7a51fac1f350068eea19ebee7856816d95f1d4871a2f568c98b1"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_PREDICTIONS_CODE_OOF.csv",
+      "size_bytes": 50652,
+      "sha256": "af15f28a7e4979ff451c767409e0cacb6a9e1c3fc2427bf87162de05e47af67c"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_PREDICTIONS_TEXT_TEST.csv",
+      "size_bytes": 440431,
+      "sha256": "f9d35fd85d62f50ea9e73ab25037a8e9ccbd8533dbba6c20f997baccd779f63f"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_RESEARCH_RESULTS.json",
+      "size_bytes": 58028,
+      "sha256": "7b2b2d540c32a6ab626f70820e1e1fa31ff527b0be8434b13e127c8dca61efeb"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_ROBUSTNESS_RESULTS.csv",
+      "size_bytes": 409,
+      "sha256": "90b1fc2681c9ae34cb4c096e3742c0dd2154b07f865d7b68e5a781a0d95cf338"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\CORRECTED_STATISTICAL_ANALYSIS.json",
+      "size_bytes": 3752,
+      "sha256": "038c5c1f34068a557aea71e13b13fddeaa079f33fdd9ad647d4db726424bd671"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\figures\\figure_1_corrected_calibration.png",
+      "size_bytes": 238330,
+      "sha256": "fba3eaf66b63fc6c0bbd9c98022c8842d67fb224e929f3d8054c7bdb522e322d"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\figures\\figure_2_corrected_risk_coverage.png",
+      "size_bytes": 150529,
+      "sha256": "d891379e350222ab49a5355d0fb4d4cefa35b96716866148c1eae38bebe62881"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\figures\\figure_3_corrected_pareto_cost_recall.png",
+      "size_bytes": 159432,
+      "sha256": "28b2596c153b7d2814e4e5b45ab08ebab2af1d8aa12a87e4855c4caf7d45d855"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\artifacts\\figures\\figure_4_corrected_ablation_mcc.png",
+      "size_bytes": 123229,
+      "sha256": "2e97c6d1db8d7fe9edde7f1f94027c3b7aea33b39b31935a0016728aa1745f6a"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\PHASE_4_CORRECTION_LEDGER.md",
+      "size_bytes": 10262,
+      "sha256": "f5aace4866a6738ecf83c64807f7be0897d7741ac07bb6c7e1a63cbf67772115"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\PHASE_4_EXECUTION_LOG.txt",
+      "size_bytes": 26572,
+      "sha256": "0047aaee4f6cd911d44231c6127c86126d2d5faeebdb26ccac77e3869ac4c630"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\PHASE_4_EXECUTION_REPORT.md",
+      "size_bytes": 8060,
+      "sha256": "5699ad476adc470e7d5e868f2a1f504318059f79ed18e75591259a7e8f9cbd3e"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\PHASE_4_INTEGRITY_AUDIT.md",
+      "size_bytes": 4404,
+      "sha256": "941ecaeacba232934e58e455290b8c13e67685a439979a343dbbec7929909619"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\PHASE_4_RESEARCH_PAPER.md",
+      "size_bytes": 11984,
+      "sha256": "f66d1ef97cfc90efd90573c65287dae3bd15ede438729bb42e1f69e9a45d5c10"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\run_phase_4_execution.py",
+      "size_bytes": 36296,
+      "sha256": "8b8face1eddbf24807b5ef3789e0881d4e8d60e6223a84082e92cbc91c365fb3"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\calibration\\__init__.py",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\calibration\\group_conformal.py",
+      "size_bytes": 8842,
+      "sha256": "544a328bc9b084fb99a0780289fc67c732d783aa924aaafb9315088823d598f6"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\evaluation\\__init__.py",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\evaluation\\profiling.py",
+      "size_bytes": 3341,
+      "sha256": "ba4645986715ac3906a6e2e91d60035e6deed3cbdebdd2f1885790a19919d84c"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\evaluation\\statistical_testing.py",
+      "size_bytes": 11998,
+      "sha256": "61ea11520ed71771459d7efb3f8962081c28639a934196858aeb803c0a0ca7cd"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\explainability\\__init__.py",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\explainability\\dossier_generator.py",
+      "size_bytes": 3682,
+      "sha256": "0a6617cf00b16e274205d172a51df93789b7a3f88fb24397c7142cbfca63e4c9"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\explainability\\evidence_extractor.py",
+      "size_bytes": 10356,
+      "sha256": "ca8891c71bc0839898f7176d4a43b0ee41c3754150dfdbfd5b44a278ea8cf508"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\pipeline\\__init__.py",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\pipeline\\integrated_framework.py",
+      "size_bytes": 14745,
+      "sha256": "b110cab850e14b1c1b3430dfa4dcbc61a51cdf08d75e11145c6500ef4a83b9ff"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\routing\\__init__.py",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "research_upgrade\\phase_4_corrections\\src\\routing\\code_group_evaluator.py",
+      "size_bytes": 10911,
+      "sha256": "bb424c54d05831ec81a1ba7bd8348a307481bc6a9abe3ecc6b742baa2bb845d4"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "task_id": "case-05",
+  "physical_java_files": 69,
+  "total_pairs": 107,
+  "positive_pairs": 53,
+  "negative_pairs": 54,
+  "base_program_identities_count": 16,
+  "structural_degeneracy": "ALL_53_POSITIVES_SHARE_PROG_ORIGINAL",
+  "fold_cross_fitting_proof": [
+    {
+      "fold_index": 1,
+      "held_out_identities": "original, non-plag-01, non-plag-02",
+      "pos_train_count": 0,
+      "neg_train_count": 39,
+      "pos_test_count": 53,
+      "neg_test_count": 15,
+      "platt_scaling_feasible": false,
+      "mathematical_status": "DIVERGES_ZERO_TRAIN_POSITIVES",
+      "unregularized_effect": "Unregularized MLE diverges: loss strictly decreases as B -> -inf",
+      "regularized_effect": "Regularized LogisticRegression raises ValueError: solver needs samples of at least 2 classes"
+    },
+    {
+      "fold_index": 2,
+      "held_out_identities": "non-plag-03, non-plag-04, non-plag-05",
+      "pos_train_count": 53,
+      "neg_train_count": 40,
+      "pos_test_count": 0,
+      "neg_test_count": 14,
+      "platt_scaling_feasible": false,
+      "mathematical_status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "unregularized_effect": "Training feasible but held-out test evaluation degenerate",
+      "regularized_effect": "Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined (0/0)"
+    },
+    {
+      "fold_index": 3,
+      "held_out_identities": "non-plag-06, non-plag-07, non-plag-08",
+      "pos_train_count": 53,
+      "neg_train_count": 39,
+      "pos_test_count": 0,
+      "neg_test_count": 15,
+      "platt_scaling_feasible": false,
+      "mathematical_status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "unregularized_effect": "Training feasible but held-out test evaluation degenerate",
+      "regularized_effect": "Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined (0/0)"
+    },
+    {
+      "fold_index": 4,
+      "held_out_identities": "non-plag-09, non-plag-10, non-plag-11",
+      "pos_train_count": 53,
+      "neg_train_count": 39,
+      "pos_test_count": 0,
+      "neg_test_count": 15,
+      "platt_scaling_feasible": false,
+      "mathematical_status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "unregularized_effect": "Training feasible but held-out test evaluation degenerate",
+      "regularized_effect": "Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined (0/0)"
+    },
+    {
+      "fold_index": 5,
+      "held_out_identities": "non-plag-12, non-plag-13, non-plag-14, non-plag-15",
+      "pos_train_count": 53,
+      "neg_train_count": 42,
+      "pos_test_count": 0,
+      "neg_test_count": 12,
+      "platt_scaling_feasible": false,
+      "mathematical_status": "UNDEFINED_ZERO_TEST_POSITIVES",
+      "unregularized_effect": "Training feasible but held-out test evaluation degenerate",
+      "regularized_effect": "Test fold has 0 positives: ROC-AUC, PR-AUC, Precision, Recall, ECE are undefined (0/0)"
+    }
+  ],
+  "methodological_consequence": "CALIBRATION_IMPOSSIBLE_RAW_MARGIN_ENFORCED"
+}

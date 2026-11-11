@@ -1,0 +1,6 @@
+Method / Condition,Modality,Accuracy,Precision,Recall,F1,Specificity,FPR,Candidate Recall,Pruning Ratio (%),Expensive Call Rate (%),Avg Latency (ms),Filtered Pairs,Escalated Pairs,Direct Flagged Pairs
+TF-IDF + Cosine Similarity (Sajid et al. 2025),Text,0.5723,0.4417,0.7846,0.5652,0.4559,0.5441,0.7846,0.0,100.0,0.023,0,3000,0
+Contextual SBERT Semantic Detector (Setu et al. 2025),Text,0.72,0.5697,0.857,0.6844,0.6448,0.3552,0.857,0.0,100.0,3.974,0,3000,0
+A: Full Analysis (100% Expensive Detector),Text,0.72,0.5697,0.857,0.6844,0.6448,0.3552,1.0,0.0,100.0,3.974,0,3000,0
+B: Fixed-Threshold Filtering,Text,0.709,0.575,0.6849,0.6252,0.7223,0.2777,0.7366,42.87,57.13,2.892,1286,1714,0
+C: Proposed Typed-Decision Pipeline,Text,0.718,0.5751,0.7817,0.6627,0.683,0.317,0.8598,26.53,70.03,3.212,796,2101,103

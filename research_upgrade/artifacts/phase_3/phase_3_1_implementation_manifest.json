@@ -1,0 +1,76 @@
+{
+  "manifest_title": "Phase 3.1 Repository Setup and Governance Implementation Manifest",
+  "phase": "Phase 3.1",
+  "timestamp": "2026-11-11T02:11:38.460830",
+  "random_seed": 42,
+  "baseline_frozen_files_count": 28,
+  "baseline_integrity_status": "VERIFIED_UNTOUCHED",
+  "phase_3_1_created_files_count": 7,
+  "created_files": [
+    {
+      "relative_path": "research_upgrade/src/__init__.py",
+      "file_size_bytes": 410,
+      "sha256_checksum": "ac20dff1e82dee7610ff7af3da120fceb72e427c8ae0529f73a7489d4df12c51",
+      "phase": "Phase 3.1",
+      "module_category": "Automated Tests",
+      "status": "PHASE_3_1_CREATED"
+    },
+    {
+      "relative_path": "research_upgrade/src/config.py",
+      "file_size_bytes": 6703,
+      "sha256_checksum": "e004b99c738fdb911badd4172ab2821388364d9da2c4ec371b632adf6f525d71",
+      "phase": "Phase 3.1",
+      "module_category": "Governance / Setup",
+      "status": "PHASE_3_1_CREATED"
+    },
+    {
+      "relative_path": "research_upgrade/src/governance.py",
+      "file_size_bytes": 5698,
+      "sha256_checksum": "1395ebb1db47f1101e5f52c2b06467fb68f15d6bfed476923c8db53ad61ec455",
+      "phase": "Phase 3.1",
+      "module_category": "Governance / Setup",
+      "status": "PHASE_3_1_CREATED"
+    },
+    {
+      "relative_path": "research_upgrade/src/logging_utils.py",
+      "file_size_bytes": 4061,
+      "sha256_checksum": "0a56833e0cffb6fecece9318f81fb917ded61d355e26af8af371a5ac36583ef7",
+      "phase": "Phase 3.1",
+      "module_category": "Governance / Setup",
+      "status": "PHASE_3_1_CREATED"
+    },
+    {
+      "relative_path": "tests/test_governance.py",
+      "file_size_bytes": 4702,
+      "sha256_checksum": "95f7138be43e4f6884a8bc46bd311718095b41956986ca357410da6de3c7bc3b",
+      "phase": "Phase 3.1",
+      "module_category": "Governance / Setup",
+      "status": "PHASE_3_1_CREATED"
+    },
+    {
+      "relative_path": "tests/test_leakage_protection.py",
+      "file_size_bytes": 7990,
+      "sha256_checksum": "462185a07bc93f892d794113f84ab91c4741429c7ce6ad38294ac82b5fb4fbf0",
+      "phase": "Phase 3.1",
+      "module_category": "Automated Tests",
+      "status": "PHASE_3_1_CREATED"
+    },
+    {
+      "relative_path": "research_upgrade/audits/phase_3/run_phase_3_1_governance_audit.py",
+      "file_size_bytes": 6956,
+      "sha256_checksum": "d437917ee5daaed2deae2b210af74c2ebc5b10e4d4917723f41f323712af369e",
+      "phase": "Phase 3.1",
+      "module_category": "Governance / Setup",
+      "status": "PHASE_3_1_CREATED"
+    }
+  ],
+  "acceptance_criteria_verification": {
+    "all_28_baseline_hashes_match": true,
+    "governance_tests_passed": true,
+    "dataset_leakage_tests_passed": true,
+    "reproducibility_config_documented": true,
+    "machine_readable_manifest_created": true,
+    "clean_execution_log_generated": true
+  },
+  "phase_3_1_status": "COMPLETED_ACCEPTANCE_CRITERIA_MET"
+}

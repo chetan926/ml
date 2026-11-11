@@ -1,0 +1,113 @@
+{
+  "text_robustness_subsets": {
+    "applied_threshold": 0.094515,
+    "zero_word_overlap_positives": {
+      "total_pairs_in_val": 18,
+      "escalated_pairs": 16,
+      "missed_pairs": 2,
+      "candidate_recall": 0.8889,
+      "historical_distinction_note": "The historical 119 zero-overlap positive cases belong to the historical stress test distribution, while the active validation set contains 18 zero-word-overlap positive pairs."
+    },
+    "low_lexical_overlap_positives": {
+      "total_pairs_in_val": 232,
+      "escalated_pairs": 226,
+      "candidate_recall": 0.9741
+    },
+    "high_semantic_similarity_positives": {
+      "total_pairs_in_val": 235,
+      "escalated_pairs": 235,
+      "candidate_recall": 1.0
+    },
+    "length_mismatched_pairs": {
+      "threshold": 0.094515,
+      "total_pairs": 613,
+      "total_positives": 248,
+      "total_negatives": 365,
+      "escalated_pairs": 486,
+      "filtered_pairs": 127,
+      "true_positives": 246,
+      "false_positives": 240,
+      "true_negatives": 125,
+      "false_negatives": 2,
+      "candidate_recall": 0.991935,
+      "workload_reduction": 0.207178,
+      "candidate_precision": 0.506173,
+      "retention_rate": 0.792822,
+      "f1_score": 0.6703,
+      "f2_score": 0.832206
+    }
+  },
+  "code_robustness_by_obfuscation": {
+    "applied_threshold": 0.3,
+    "obfuscation_level_breakdown": {
+      "L1": {
+        "obfuscation_level": "L1",
+        "total_pairs": 60,
+        "positive_pairs": 60,
+        "negative_pairs": 0,
+        "candidate_recall": 1.0,
+        "workload_reduction": 0.0,
+        "escalated_pairs": 60
+      },
+      "L2": {
+        "obfuscation_level": "L2",
+        "total_pairs": 55,
+        "positive_pairs": 55,
+        "negative_pairs": 0,
+        "candidate_recall": 0.981818,
+        "workload_reduction": 0.018182,
+        "escalated_pairs": 54
+      },
+      "L3": {
+        "obfuscation_level": "L3",
+        "total_pairs": 53,
+        "positive_pairs": 53,
+        "negative_pairs": 0,
+        "candidate_recall": 0.981132,
+        "workload_reduction": 0.018868,
+        "escalated_pairs": 52
+      },
+      "L4": {
+        "obfuscation_level": "L4",
+        "total_pairs": 60,
+        "positive_pairs": 60,
+        "negative_pairs": 0,
+        "candidate_recall": 0.983333,
+        "workload_reduction": 0.016667,
+        "escalated_pairs": 59
+      },
+      "L5": {
+        "obfuscation_level": "L5",
+        "total_pairs": 55,
+        "positive_pairs": 55,
+        "negative_pairs": 0,
+        "candidate_recall": 0.927273,
+        "workload_reduction": 0.072727,
+        "escalated_pairs": 51
+      },
+      "L6": {
+        "obfuscation_level": "L6",
+        "total_pairs": 59,
+        "positive_pairs": 59,
+        "negative_pairs": 0,
+        "candidate_recall": 0.830508,
+        "workload_reduction": 0.169492,
+        "escalated_pairs": 49
+      },
+      "nan": {
+        "obfuscation_level": "nan",
+        "total_pairs": 378,
+        "positive_pairs": 0,
+        "negative_pairs": 378,
+        "candidate_recall": 1.0,
+        "workload_reduction": 0.531746,
+        "escalated_pairs": 177
+      }
+    },
+    "renaming_invariance_analysis": {
+      "mean_token_jaccard_raw": 0.7745,
+      "mean_token_jaccard_normalized": 0.851,
+      "mean_identifier_normalization_gain": 0.0765
+    }
+  }
+}

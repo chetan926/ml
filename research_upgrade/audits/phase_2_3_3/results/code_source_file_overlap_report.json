@@ -1,0 +1,64 @@
+{
+  "total_physical_java_files": 467,
+  "total_pairs": 733,
+  "total_duplicate_rows": 24,
+  "reversed_duplicate_pairs": 0,
+  "case_summary": [
+    {
+      "case": "case-01",
+      "total_pairs": 94,
+      "positive_pairs": 40,
+      "negative_pairs": 54,
+      "duplicate_pair_rows": 7,
+      "physical_java_files": 56
+    },
+    {
+      "case": "case-02",
+      "total_pairs": 108,
+      "positive_pairs": 54,
+      "negative_pairs": 54,
+      "duplicate_pair_rows": 7,
+      "physical_java_files": 70
+    },
+    {
+      "case": "case-03",
+      "total_pairs": 106,
+      "positive_pairs": 52,
+      "negative_pairs": 54,
+      "duplicate_pair_rows": 6,
+      "physical_java_files": 68
+    },
+    {
+      "case": "case-04",
+      "total_pairs": 108,
+      "positive_pairs": 54,
+      "negative_pairs": 54,
+      "duplicate_pair_rows": 0,
+      "physical_java_files": 70
+    },
+    {
+      "case": "case-05",
+      "total_pairs": 107,
+      "positive_pairs": 53,
+      "negative_pairs": 54,
+      "duplicate_pair_rows": 0,
+      "physical_java_files": 69
+    },
+    {
+      "case": "case-06",
+      "total_pairs": 105,
+      "positive_pairs": 51,
+      "negative_pairs": 54,
+      "duplicate_pair_rows": 4,
+      "physical_java_files": 67
+    },
+    {
+      "case": "case-07",
+      "total_pairs": 105,
+      "positive_pairs": 51,
+      "negative_pairs": 54,
+      "duplicate_pair_rows": 0,
+      "physical_java_files": 67
+    }
+  ]
+}

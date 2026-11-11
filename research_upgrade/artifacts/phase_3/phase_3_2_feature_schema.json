@@ -1,0 +1,114 @@
+{
+  "status": "PASSED",
+  "timestamp": "2026-11-11 02:54:23",
+  "text_modality": {
+    "total_features": 11,
+    "feature_columns": [
+      "text_word_tfidf_sim",
+      "text_word_jaccard",
+      "text_word_overlap_ratio",
+      "text_char_tfidf_sim",
+      "text_char_jaccard_3gram",
+      "text_char_lcs_ratio",
+      "text_semantic_minilm_sim",
+      "text_length_ratio",
+      "text_token_count_delta",
+      "text_sentence_delta",
+      "text_ttr_sim"
+    ],
+    "pipeline_schema": {
+      "modality": "text",
+      "total_features": 11,
+      "views": {
+        "view_1_lexical": [
+          "text_word_tfidf_sim",
+          "text_word_jaccard",
+          "text_word_overlap_ratio"
+        ],
+        "view_2_character": [
+          "text_char_tfidf_sim",
+          "text_char_jaccard_3gram",
+          "text_char_lcs_ratio"
+        ],
+        "view_3_semantic": [
+          "text_semantic_minilm_sim"
+        ],
+        "view_4_structural": [
+          "text_length_ratio",
+          "text_token_count_delta",
+          "text_sentence_delta",
+          "text_ttr_sim"
+        ]
+      },
+      "numerical_range": "[0.0, 1.0]",
+      "train_only_fitted_views": [
+        "view_1_lexical",
+        "view_2_character"
+      ]
+    },
+    "learned_transformations": {
+      "view_1_lexical": "TF-IDF vectorizer strictly fitted on D_train texts only.",
+      "view_2_character": "Char 3-5 gram TF-IDF vectorizer strictly fitted on D_train texts only.",
+      "view_3_semantic": "SentenceTransformer('all-MiniLM-L6-v2') 384-d dense embeddings (frozen offline weights).",
+      "view_4_structural": "Deterministic statistical length and token/sentence deltas."
+    }
+  },
+  "code_modality": {
+    "total_features": 13,
+    "feature_columns": [
+      "code_token_jaccard",
+      "code_token_frequency_overlap",
+      "code_rkrgst_sim",
+      "code_norm_token_jaccard",
+      "code_norm_freq_overlap",
+      "code_norm_rkrgst_sim",
+      "code_nesting_depth_sim",
+      "code_control_block_sim",
+      "code_method_structure_sim",
+      "code_operator_dist_sim",
+      "code_control_flow_sim",
+      "code_cyclomatic_sim",
+      "code_sloc_ratio"
+    ],
+    "pipeline_schema": {
+      "modality": "code",
+      "total_features": 13,
+      "views": {
+        "view_1_token": [
+          "code_token_jaccard",
+          "code_token_frequency_overlap",
+          "code_rkrgst_sim"
+        ],
+        "view_2_identifier_normalized": [
+          "code_norm_token_jaccard",
+          "code_norm_freq_overlap",
+          "code_norm_rkrgst_sim"
+        ],
+        "view_3_structural": [
+          "code_nesting_depth_sim",
+          "code_control_block_sim",
+          "code_method_structure_sim"
+        ],
+        "view_4_complexity": [
+          "code_operator_dist_sim",
+          "code_control_flow_sim",
+          "code_cyclomatic_sim",
+          "code_sloc_ratio"
+        ]
+      },
+      "numerical_range": "[0.0, 1.0]",
+      "ast_parser_fallback_disclosed": true
+    },
+    "view_specifications": {
+      "view_1_token": "Raw token Jaccard, multiset frequency overlap, RKR-GST sequence coverage.",
+      "view_2_identifier_normalized": "Identifier-normalized Jaccard, frequency overlap, normalized RKR-GST.",
+      "view_3_structural": "Structural block nesting profile, control block signature, method modifier profile (BLOCK_STRUCTURE_HEURISTIC_FALLBACK).",
+      "view_4_complexity": "Operator frequency cosine, control-flow keyword cosine, cyclomatic complexity ratio, SLOC ratio."
+    },
+    "ast_parser_disclosure": {
+      "ast_parser_available": false,
+      "active_methodology": "BLOCK_STRUCTURE_HEURISTIC_FALLBACK",
+      "disclosure_statement": "javalang AST parser is not installed in the environment. View 3 strictly executes regex block-structure fallback analysis and does NOT claim genuine AST syntax tree parsing."
+    }
+  }
+}

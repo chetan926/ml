@@ -1,0 +1,127 @@
+{
+  "random_seed": 42,
+  "conformal_prediction": {
+    "significance_level_alpha": 0.05,
+    "nominal_coverage": 0.95,
+    "exact_finite_sample_rank_formula": "k = ceil((m + 1) * (1 - alpha))",
+    "fallback_rule": "If k > m, set quantile = inf (conservative fallback)",
+    "aggregation": "Group-supremum nonconformity score S_g = max_{i in g} (1 - f(x_i, y_i))",
+    "calibration_premise_groups": 254,
+    "calibration_data_source": "Partitioned from D_val",
+    "test_evaluation_premise_groups": 1015,
+    "test_data_source": "Entire held-out test split D_test",
+    "empirical_group_coverage": 0.9369,
+    "empirical_pair_coverage": 0.978,
+    "calibrated_quantile": 0.881103,
+    "average_set_size": 1.608
+  },
+  "text_modality": {
+    "total_test_pairs": 3000,
+    "positive_pairs": 1026,
+    "negative_pairs": 1974,
+    "routing_tau_low": 0.2,
+    "routing_tau_high": 0.7,
+    "uncertainty_entropy_threshold": 0.6
+  },
+  "code_modality": {
+    "evaluation_paradigm": "Nested Leave-One-Group-Out (LOGO) cross-validation across 7 assignment cases",
+    "total_pairs_policy_a": 720,
+    "routing_tau_low": 0.25,
+    "routing_tau_high": 0.75,
+    "nested_calibration": "Platt scaler fit exclusively on inner Leave-One-Group-Out training folds",
+    "logo_folds": [
+      {
+        "fold": 1,
+        "held_out_case": "case-01",
+        "train_samples": 630,
+        "test_samples": 90,
+        "test_positives": 36,
+        "test_negatives": 54,
+        "accuracy": 0.5444,
+        "precision": 0.4444,
+        "recall": 0.5556,
+        "f1": 0.4938,
+        "mcc": 0.0907
+      },
+      {
+        "fold": 2,
+        "held_out_case": "case-02",
+        "train_samples": 616,
+        "test_samples": 104,
+        "test_positives": 50,
+        "test_negatives": 54,
+        "accuracy": 0.9423,
+        "precision": 0.9783,
+        "recall": 0.9,
+        "f1": 0.9375,
+        "mcc": 0.8868
+      },
+      {
+        "fold": 3,
+        "held_out_case": "case-03",
+        "train_samples": 617,
+        "test_samples": 103,
+        "test_positives": 49,
+        "test_negatives": 54,
+        "accuracy": 0.9029,
+        "precision": 0.9535,
+        "recall": 0.8367,
+        "f1": 0.8913,
+        "mcc": 0.8099
+      },
+      {
+        "fold": 4,
+        "held_out_case": "case-04",
+        "train_samples": 612,
+        "test_samples": 108,
+        "test_positives": 54,
+        "test_negatives": 54,
+        "accuracy": 0.9815,
+        "precision": 0.9643,
+        "recall": 1.0,
+        "f1": 0.9818,
+        "mcc": 0.9636
+      },
+      {
+        "fold": 5,
+        "held_out_case": "case-05",
+        "train_samples": 613,
+        "test_samples": 107,
+        "test_positives": 53,
+        "test_negatives": 54,
+        "accuracy": 0.8785,
+        "precision": 0.8571,
+        "recall": 0.9057,
+        "f1": 0.8807,
+        "mcc": 0.7583
+      },
+      {
+        "fold": 6,
+        "held_out_case": "case-06",
+        "train_samples": 617,
+        "test_samples": 103,
+        "test_positives": 49,
+        "test_negatives": 54,
+        "accuracy": 0.7864,
+        "precision": 0.7143,
+        "recall": 0.9184,
+        "f1": 0.8036,
+        "mcc": 0.5995
+      },
+      {
+        "fold": 7,
+        "held_out_case": "case-07",
+        "train_samples": 615,
+        "test_samples": 105,
+        "test_positives": 51,
+        "test_negatives": 54,
+        "accuracy": 0.8571,
+        "precision": 0.8,
+        "recall": 0.9412,
+        "f1": 0.8649,
+        "mcc": 0.7261
+      }
+    ],
+    "program_identity_verification": "Verified via SHA-256 program content hashing: 0 reference and 0 suspicious programs shared across cases"
+  }
+}

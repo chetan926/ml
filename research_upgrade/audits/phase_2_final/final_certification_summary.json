@@ -1,0 +1,178 @@
+{
+  "project_title": "An Uncertainty-Aware, Budget-Constrained Multi-View Framework for Cost-Efficient Academic Integrity Detection",
+  "phase": "Phase 2 Final Completion",
+  "version": "Phase 2 Final Release",
+  "execution_date": "2026-11-11",
+  "certification_status": "READY_FOR_PHASE_3_WITH_DECLARED_LIMITATIONS",
+  "gate_summary": {
+    "total_gates": 16,
+    "full_pass_count": 16,
+    "qualified_pass_count": 0,
+    "fail_count": 0,
+    "not_verifiable_count": 0,
+    "full_pass_percentage": 100.0
+  },
+  "gates": [
+    {
+      "gate_id": "G01",
+      "gate_name": "Research Problem & Four Contributions Definition",
+      "evidence_source": "01_final_research_problem_and_objectives.md, 02_four_contributions_final_design.md",
+      "pass_criteria": "Both documents exist with non-empty specifications covering all 4 novel contributions.",
+      "measured_result": "Docs present: True; 4 Contributions present: C1=True, C2=True, C3=True, C4=True",
+      "status": "FULL PASS",
+      "notes": "Covers multi-view candidate generation, cost-aware routing, group conformal prediction, and multimodal attribution."
+    },
+    {
+      "gate_id": "G02",
+      "gate_name": "Mathematical Formulations & Pseudocode Alignment",
+      "evidence_source": "03_final_mathematical_formulations.md, 04_final_algorithm_pseudocode.md",
+      "pass_criteria": "Formulations match pseudocode: exact order statistic, fusion weights, routing bounds.",
+      "measured_result": "Docs present: True; Formulations verified: fusion=True, order_stat=True",
+      "status": "FULL PASS",
+      "notes": "Mathematical equations in Doc 03 align directly with Algorithm 1-4 pseudocode in Doc 04."
+    },
+    {
+      "gate_id": "G03",
+      "gate_name": "Calibration Lifecycle Separation",
+      "evidence_source": "text_dataset_accounting.json",
+      "pass_criteria": "Exact pair allocation: Train=4000, Val=1500, Cal-Prob=1000, Cal-Conf=1000, Test=3000 (Active=10500).",
+      "measured_result": "Allocations: Train=4000, Val=1500, Cal-Prob=1000, Cal-Conf=1000, Test=3000 | Total Active=10500",
+      "status": "FULL PASS",
+      "notes": "Probability calibration and conformal calibration partitions are strictly isolated."
+    },
+    {
+      "gate_id": "G04",
+      "gate_name": "Exact Group Conformal Quantile Formulation",
+      "evidence_source": "03_final_mathematical_formulations.md",
+      "pass_criteria": "Exact finite-sample order statistic k = ceil((n+1)(1-eps)) used; coverage explicitly bounded to escalated slice.",
+      "measured_result": "Exact order statistic present: True; Escalated population restriction: True",
+      "status": "FULL PASS",
+      "notes": "Rejects interpolated percentiles; restricts theoretical validity strictly to Stage-1 escalated pairs."
+    },
+    {
+      "gate_id": "G05",
+      "gate_name": "Code Calibration Limitations & Fallback",
+      "evidence_source": "case_05_fold_feasibility_report.json",
+      "pass_criteria": "Fold 1 train positives=0 (Platt infeasible); Folds 2-5 test positives=0 (ROC/Recall undefined, Precision undefined if predicted pos=0 / 0.0 if FP>0, Brier defined); fallback declared.",
+      "measured_result": "Fold 1 pos_train=0 (Platt feasible=False); Fold 2 pos_test=0 (Train Platt feasible=True)",
+      "status": "FULL PASS",
+      "notes": "Structural single-class topology mathematically audited; exploratory raw decision margins enforced."
+    },
+    {
+      "gate_id": "G06",
+      "gate_name": "Text Dataset Accounting Reproducibility",
+      "evidence_source": "text_dataset_accounting.json",
+      "pass_criteria": "All 19666 rows accounted for: 10500 active + 9158 reserve + 8 purged = 19666; discrepancy=0; nulls=0.",
+      "measured_result": "Raw rows=19666, Sum check=19666, Discrepancy=0, Null/Empty=0",
+      "status": "FULL PASS",
+      "notes": "Exact accounting fully verified across raw CSV and partition membership ledger."
+    },
+    {
+      "gate_id": "G07",
+      "gate_name": "Code Dataset Accounting Reproducibility",
+      "evidence_source": "code_duplicate_accounting.json, code_source_file_inventory.csv",
+      "pass_criteria": "733 raw pairs, 24 duplicate rows, 11 duplicate groups, 467 physical Java files; Policy A=720, Policy B=709.",
+      "measured_result": "Raw pairs=733, Dupe rows=24, Dupe groups=11, Physical Java=467, Policy A=720, Policy B=709",
+      "status": "FULL PASS",
+      "notes": "Every code pair mapped to task, duplicate group, and physical source file."
+    },
+    {
+      "gate_id": "G08",
+      "gate_name": "Group Leakage & Duplicate Elimination",
+      "evidence_source": "text_group_leakage_report.json, text_dataset_accounting.json, code_duplicate_accounting.json",
+      "pass_criteria": "7x7 premise overlap matrix off-diagonals=0; reversed duplicates=0 in text and code.",
+      "measured_result": "Cross-partition premise overlap=0, Text reversed pairs=0, Code reversed pairs=0",
+      "status": "FULL PASS",
+      "notes": "Strict group-aware allocation guarantees zero cross-partition leakage."
+    },
+    {
+      "gate_id": "G09",
+      "gate_name": "Statistical Inference & Dependence Respect",
+      "evidence_source": "10_final_statistical_validity_report.md",
+      "pass_criteria": "Group-aware cluster bootstrap over premises specified; code task generalization explicitly bounded.",
+      "measured_result": "Doc present: True; Group cluster bootstrap specified: True; Code generalization bounded: True",
+      "status": "FULL PASS",
+      "notes": "Prevents optimistic standard errors from paired sentence dependencies; bounds cross-task generalization."
+    },
+    {
+      "gate_id": "G10",
+      "gate_name": "Modality-Specific Stage-2 Architecture",
+      "evidence_source": "component_implementation_status.json, 05_final_system_architecture.md",
+      "pass_criteria": "Text Stage 2 (cross-encoder) and Code Stage 2 (hybrid AST-token classifier) separated; code model status DESIGN_SPECIFIED.",
+      "measured_result": "MOD_06=TextStage2CrossEncoder (RUNTIME_VERIFIED), MOD_07=CodeStage2Detector (DESIGN_SPECIFIED)",
+      "status": "FULL PASS",
+      "notes": "Text cross-encoder qualified as passage-ranking model; Code stage-2 is a hybrid structural-semantic classifier."
+    },
+    {
+      "gate_id": "G11",
+      "gate_name": "Cost Accounting Consistent Units & Scopes",
+      "evidence_source": "08_final_cost_and_resource_accounting.md",
+      "pass_criteria": "10 operations decomposed; 0.050 ms identified as pre-indexed dot product design target; 1.138 ms labeled modeled estimate.",
+      "measured_result": "Doc present: True; 10 ops present: True; 1.138 ms modeled label: True; 0.050 ms design target: True",
+      "status": "FULL PASS",
+      "notes": "Distinguishes heavy-model invocation reduction (75.0%) from FLOPs and latency reductions."
+    },
+    {
+      "gate_id": "G12",
+      "gate_name": "Literature & Novelty Claims Defensibility",
+      "evidence_source": "09_final_literature_and_novelty_analysis.md",
+      "pass_criteria": "DOIs verified for key citations; SNLI proxy limitations documented; 119 zero-overlap pairs framed as stress-test evaluation target.",
+      "measured_result": "Doc present: True; DOIs present: True; SNLI proxy documented: True; 119 zero-overlap evaluation target framed: True",
+      "status": "FULL PASS",
+      "notes": "Claims grounded in verifiable external literature and declared empirical evaluation targets."
+    },
+    {
+      "gate_id": "G13",
+      "gate_name": "Existing Implementation Status Classification",
+      "evidence_source": "component_implementation_status.json",
+      "pass_criteria": "Accurate component classification: legacy loader SOURCE_IMPLEMENTED, audit script RUNTIME_VERIFIED, planned modules DESIGN_SPECIFIED.",
+      "measured_result": "MOD_11=SOURCE_IMPLEMENTED, MOD_12=RUNTIME_VERIFIED, DESIGN_SPECIFIED components=9",
+      "status": "FULL PASS",
+      "notes": "Prevents misrepresenting design specifications as already implemented source code."
+    },
+    {
+      "gate_id": "G14",
+      "gate_name": "Audit Script Executability & Reproducibility",
+      "evidence_source": "run_final_phase2_audit.py, audit_execution_log.txt",
+      "pass_criteria": "run_final_phase2_audit.py executes cleanly without assertion errors, recording full log and artifacts.",
+      "measured_result": "Audit script path=run_final_phase2_audit.py; Output directory=phase_2_final",
+      "status": "FULL PASS",
+      "notes": "Audits are programmatically repeatable from command line."
+    },
+    {
+      "gate_id": "G15",
+      "gate_name": "Cross-Document Harmonization & Agreement",
+      "evidence_source": "research_upgrade/documentation/phase_2_final/*.md",
+      "pass_criteria": "All 16 deliverable markdown documents exist and present harmonized numbers, terms, and classifications.",
+      "measured_result": "Total deliverable markdown documents in phase_2_final/ = 16",
+      "status": "FULL PASS",
+      "notes": "Reconciled numbers (19666, 10500, 733, 24, 69, 467) are consistently referenced across all documents."
+    },
+    {
+      "gate_id": "G16",
+      "gate_name": "Phase 3 Implementation Blueprint Completeness",
+      "evidence_source": "15_phase_3_implementation_blueprint.md, 16_phase_3_test_and_experiment_execution_plan.md",
+      "pass_criteria": "Detailed blueprint covering Phases 3.1 to 3.8 and test execution plan with acceptance criteria.",
+      "measured_result": "Docs present: True; Sub-phases 3.1-3.8 specified: True",
+      "status": "FULL PASS",
+      "notes": "Provides fully actionable implementation sequence and quantitative acceptance gates."
+    }
+  ],
+  "declared_limitations": [
+    "IR-Plag case-05 exhibits single-class topology under group-disjoint splits: Fold 1 pos_train=0 (Platt scaling diverges / ValueError); Folds 2-5 pos_test=0 (ROC-AUC and Recall undefined; Precision undefined [0/0] when predicted pos=0, or 0.0 if FP>0; Brier score mathematically defined). Valid cross-fitted probability calibration and conformal evaluation are structurally impossible; raw decision margins are enforced as an exploratory ranking signal.",
+    "Historical git commit log prior to Phase 2 is absent from repository; baseline state is frozen via SHA-256 fingerprints in repository_sha256_manifest.csv with status CURRENT_SNAPSHOT_HASHED.",
+    "Conformal prediction coverage guarantee holds strictly conditional on the Stage-1 escalated subpopulation; unconditional coverage over the raw input population is neither claimed nor mathematically valid.",
+    "The 119 historical zero-overlap positive pairs and 33 active test partition zero-Jaccard pairs represent structural failure modes of lexical screening and pre-registered Phase 3 evaluation targets, not completed empirical retrievals.",
+    "Text Stage 2 cross-encoder (cross-encoder/ms-marco-MiniLM-L-6-v2) is a passage-ranking model; its suitability for plagiarism detection requires empirical validation and fine-tuning in Phase 3.",
+    "Code Stage 2 classifier is DESIGN_SPECIFIED as a hybrid AST-token classifier, not yet implemented on disk.",
+    "The 1.1375 ms/pair cost metric is strictly a modelled pre-indexed online latency projection; 75.0% FLOPs reduction is a projected theoretical reduction, not a measured hardware profile.",
+    "SNLI text benchmark serves as a controlled semantic inference proxy benchmark; full institutional deployment requires fine-tuning on domain-specific academic essays.",
+    "Stage-1 candidate multi-view score is an uncalibrated heuristic similarity score, not a calibrated posterior probability."
+  ],
+  "artifact_accounting": {
+    "structured_machine_readable_artifacts": 10,
+    "plain_text_execution_logs": 1,
+    "audit_scripts": 1,
+    "total_directory_files": 12
+  }
+}

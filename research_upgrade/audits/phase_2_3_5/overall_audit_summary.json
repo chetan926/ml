@@ -1,0 +1,43 @@
+{
+  "audit_version": "3.6",
+  "audit_phase": "Phase 2.3.5",
+  "execution_date": "2026-11-10",
+  "status": "READY_FOR_PHASE_3_IMPLEMENTATION_REVIEW",
+  "text_benchmark_summary": {
+    "total_raw_rows": 19666,
+    "exact_ordered_duplicate_rows": 4,
+    "reversed_duplicate_pairs": 0,
+    "purged_cross_contamination_rows": 6,
+    "purged_redundant_duplicate_rows": 2,
+    "clean_active_rows": 10500,
+    "retained_reserve_rows": 9158,
+    "partitions": {
+      "train": 4000,
+      "val": 1500,
+      "cal_prob": 1000,
+      "cal_conf": 1000,
+      "test": 3000,
+      "dev_reserve": 2337,
+      "test_reserve": 6821
+    }
+  },
+  "code_benchmark_summary": {
+    "total_raw_pairs": 733,
+    "participating_duplicate_rows": 24,
+    "duplicate_groups_count": 11,
+    "reversed_duplicate_pairs": 0,
+    "policy_a_retained_total": 720,
+    "policy_b_retained_total": 709,
+    "case_05_physical_java_files": 69,
+    "case_05_pairs": 107,
+    "case_05_cross_fitting_degeneracy": "PROVEN_STRUCTURAL_ZERO_POSITIVES"
+  },
+  "loaders_summary": {
+    "text_loader_status": "DESIGN_SPECIFIED_NOT_IMPLEMENTED",
+    "code_loader_status": "DESIGN_SPECIFIED_NOT_IMPLEMENTED"
+  },
+  "source_inventory_summary": {
+    "total_files": 28,
+    "all_files_hashed": true
+  }
+}

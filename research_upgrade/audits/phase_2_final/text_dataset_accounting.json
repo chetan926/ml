@@ -1,0 +1,79 @@
+{
+  "total_raw_rows": 19666,
+  "split_counts": {
+    "val": 9842,
+    "test": 9824
+  },
+  "null_or_empty": {
+    "null_reference": 0,
+    "null_suspicious": 0,
+    "empty_reference": 0,
+    "empty_suspicious": 0
+  },
+  "exact_ordered_duplicate_rows": 4,
+  "reversed_duplicate_pairs": 0,
+  "duplicate_groups": [
+    {
+      "duplicate_group_id": "TEXT_DUPE_GRP_01",
+      "row_ids": [
+        "TXT_002504",
+        "TXT_002505"
+      ],
+      "reference_text": "A dog carrying a stick in its mouth runs through a snow-covered field.",
+      "suspicious_text": "A animal carried a stick through a snow covered field.",
+      "is_plagiarized": 1,
+      "split": [
+        "val",
+        "val"
+      ]
+    },
+    {
+      "duplicate_group_id": "TEXT_DUPE_GRP_02",
+      "row_ids": [
+        "TXT_003940",
+        "TXT_003942"
+      ],
+      "reference_text": "A lone, 2-3 year old blond child in a blue jacket is putting a small black plastic item in his mouth as he kneels on a waiting room couch pointed toward the back while looking at something or someone not in the room.",
+      "suspicious_text": "The child is blonde.",
+      "is_plagiarized": 1,
+      "split": [
+        "val",
+        "val"
+      ]
+    }
+  ],
+  "crossing_premises": [
+    "A dog catching a Frisbee."
+  ],
+  "crossing_rows_count": 6,
+  "partition_pair_counts": {
+    "train": 4000,
+    "val": 1500,
+    "cal_prob": 1000,
+    "cal_conf": 1000,
+    "test": 3000,
+    "dev_reserve": 2337,
+    "test_reserve": 6821
+  },
+  "test_partition_stats": {
+    "test_total_pairs": 3000,
+    "test_positive_pairs": 1026,
+    "test_zero_jaccard_positives": 33,
+    "historical_stress_test_positives": 1063,
+    "historical_zero_tfidf_positives": 119,
+    "historical_zero_tfidf_pct": 11.19,
+    "historical_nonzero_lexical_pct": 88.81
+  },
+  "reconciliation": {
+    "raw_rows": 19666,
+    "active_pairs": 10500,
+    "purged_cross_contamination": 6,
+    "purged_redundant_duplicates": 2,
+    "retained_development_reserve": 2337,
+    "retained_test_reserve": 6821,
+    "total_retained_reserves": 9158,
+    "sum_check": 19666,
+    "discrepancy": 0,
+    "status": "PASS"
+  }
+}

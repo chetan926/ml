@@ -1,0 +1,87 @@
+================================================================================
+PHASE 3.3 MASTER AUDIT RUNNER: MULTI-VIEW CANDIDATE GENERATION
+================================================================================
+Timestamp: 2026-11-11 14:01:27
+Project root: D:\ml rearcch project ad
+
+[STEP 1/8] Verifying Baseline and Historical Integrity...
+  Baseline Status: PASSED (28 / 28 files)
+  Phase 3.2 Artifacts Verified: 8 JSON artifacts present.
+
+[STEP 2/8] Executing Automated Test Suite (tests/)...
+  Tests Run: 77, Passed: 77, Failures: 0, Errors: 0
+  Elapsed: 6.221s
+
+[STEP 3/8] Loading Datasets and Extracting Multi-View Features...
+  Extracting text features for train (4000), val (1500), test (3000)...
+  Text feature extraction completed in 81.75s.
+  Extracting code features for Policy A (720 pairs) and Policy B (709 pairs)...
+  Code feature extraction completed in 41.35s.
+
+[STEP 4/8] Training Text Candidate Scorers and Selecting Validation Thresholds...
+  Target Recall Constraint: 98.0%
+
+  TEXT CANDIDATE SCORER RESULTS (Validation Selection -> Test Evaluation):
+  Model Name                   | Val Recall | Val WR   | Test Recall | Test WR  | Test Prec | Test FN
+  -----------------------------------------------------------------------------------------------
+  single_view_word_tfidf       |    100.00% |    0.00% |     100.00% |    0.00% |    34.20% |       0
+  single_view_word_jaccard     |    100.00% |    0.00% |     100.00% |    0.00% |    34.20% |       0
+  single_view_dense_semantic   |     98.09% |   20.47% |      99.03% |   20.77% |    42.74% |      10
+  weighted_multiview           |     98.28% |   11.73% |      98.54% |   10.00% |    37.44% |      15
+  logistic_regression          |     98.09% |   26.60% |      97.47% |   27.37% |    45.89% |      26
+  random_forest                |     98.09% |   21.47% |      98.05% |   21.70% |    42.83% |      20
+  gradient_boosting            |     98.09% |   24.47% |      97.66% |   25.30% |    44.71% |      24
+
+[STEP 5/8] Evaluating Code Candidate Generation (5-Fold CV)...
+
+  CODE CANDIDATE SCORER RESULTS (Policy A, 5-Fold Stratified CV):
+  Model Name                   | Mean Recall | Mean WR  | Mean Prec | Selected Tau
+  ---------------------------------------------------------------------------
+  single_view_token_jaccard    |      98.54% |    7.78% |    50.82% |       0.5875
+  single_view_rkrgst           |      98.54% |    5.69% |    49.69% |       0.4640
+  single_view_norm_rkrgst      |      98.54% |    6.11% |    49.94% |       0.5764
+  weighted_multiview           |      98.54% |    8.89% |    51.54% |       0.6261
+  logistic_regression          |      98.54% |   12.08% |    53.38% |       0.1846
+  random_forest                |      98.54% |   41.25% |    79.97% |       0.2746
+  gradient_boosting            |      98.83% |   43.47% |    83.21% |       0.1012
+
+[STEP 6/8] Executing Controlled Feature Ablation Experiments...
+
+  TEXT FEATURE VIEW ABLATIONS (Logistic Regression, Target Recall >= 98%):
+  Configuration                | Features | Val Recall | Val WR   | Test Recall | Test WR 
+  -------------------------------------------------------------------------------------
+  word_only                    | 3        |    100.00% |    0.00% |     100.00% |    0.00%
+  character_only               | 3        |     98.09% |    4.67% |      98.54% |    3.77%
+  semantic_only                | 1        |     98.09% |   20.47% |      99.03% |   20.77%
+  structural_only              | 4        |     98.09% |    3.33% |      97.86% |    3.43%
+  word_plus_character          | 6        |     98.09% |    3.33% |      98.05% |    3.60%
+  word_plus_semantic           | 4        |     98.09% |   18.53% |      99.32% |   17.83%
+  character_plus_semantic      | 4        |     98.09% |   21.40% |      98.73% |   22.73%
+  all_available_views          | 11       |     98.09% |   26.60% |      97.47% |   27.37%
+
+  CODE FEATURE VIEW ABLATIONS (Policy A, 5-Fold CV, Target Recall >= 98%):
+  Configuration                | Features | Mean Recall | Mean WR  | Mean Prec
+  ---------------------------------------------------------------------------
+  raw_token_only               | 3        |      98.83% |    7.78% |    50.96%
+  normalized_token_only        | 3        |      98.54% |   11.67% |    53.24%
+  structural_only              | 3        |      99.12% |    6.67% |    50.47%
+  complexity_only              | 4        |      98.54% |    4.58% |    49.16%
+  raw_plus_normalized          | 6        |      98.54% |   13.06% |    54.06%
+  token_plus_structural        | 6        |      98.54% |    8.75% |    51.38%
+  normalized_plus_structural   | 6        |      98.54% |   18.06% |    57.81%
+  all_available_views          | 13       |      98.54% |   12.08% |    53.38%
+
+[STEP 7/8] Conducting Robustness and Stress Testing...
+  Text Zero-Word-Overlap Positives in Val: Total=18, Escalated=16, Recall=88.9%
+  Text Low-Lexical Positives (TF-IDF < 0.2): Total=232, Recall=97.4%
+  Text High-Semantic Positives (MiniLM > 0.7): Total=235, Recall=100.0%
+  Code Obfuscation Levels Evaluated: ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'nan']
+  Identifier Normalization Advantage: +0.0765 mean similarity gain over raw token Jaccard
+
+[STEP 8/8] Measuring Computational Costs and Emitting Machine-Readable Artifacts...
+  Measuring candidate score inference latency...
+
+================================================================================
+PHASE 3.3 AUDIT EXECUTION COMPLETE: FULL PASS
+All artifacts generated in: D:\ml rearcch project ad\research_upgrade\artifacts\phase_3\phase_3_3
+================================================================================

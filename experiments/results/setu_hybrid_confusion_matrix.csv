@@ -1,0 +1,4 @@
+Condition,TN,FP,FN,TP
+E1_Full_Hybrid_Ref0.30,547,1390,12,1051
+E1_Full_Hybrid_Calibrated,1351,586,202,861
+E2_Staged_Hybrid,1384,553,256,807

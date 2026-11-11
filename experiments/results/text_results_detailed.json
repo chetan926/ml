@@ -1,0 +1,153 @@
+{
+  "res_tfidf": {
+    "method": "TF-IDF + Cosine Similarity (Sajid et al. 2025)",
+    "modality": "Text",
+    "threshold": 0.1,
+    "total_pairs": 3000,
+    "accuracy": 0.5723333333333334,
+    "precision": 0.4417372881355932,
+    "recall": 0.7845719661335842,
+    "f1": 0.5652321247034904,
+    "specificity": 0.4558595766649458,
+    "fpr": 0.5441404233350542,
+    "roc_auc": 0.6795490208743822,
+    "pr_auc": 0.5204477943984057,
+    "confusion_matrix": [
+      [
+        883,
+        1054
+      ],
+      [
+        229,
+        834
+      ]
+    ],
+    "total_runtime_sec": 0.06969789997674525,
+    "avg_latency_ms": 0.02323263332558175
+  },
+  "res_sbert": {
+    "method": "Contextual SBERT Semantic Detector (Setu et al. 2025)",
+    "modality": "Text",
+    "threshold": 0.5,
+    "total_pairs": 3000,
+    "accuracy": 0.72,
+    "precision": 0.5697310819262039,
+    "recall": 0.8570084666039511,
+    "f1": 0.6844477836213373,
+    "specificity": 0.6448115642746515,
+    "fpr": 0.3551884357253485,
+    "roc_auc": 0.8198453544409968,
+    "pr_auc": 0.6729303405087244,
+    "confusion_matrix": [
+      [
+        1249,
+        688
+      ],
+      [
+        152,
+        911
+      ]
+    ],
+    "total_runtime_sec": 11.921813799999654,
+    "avg_latency_ms": 3.973937933333218
+  },
+  "res_cond_a": {
+    "method": "Contextual SBERT Semantic Detector (Setu et al. 2025)",
+    "modality": "Text",
+    "threshold": 0.5,
+    "total_pairs": 3000,
+    "accuracy": 0.72,
+    "precision": 0.5697310819262039,
+    "recall": 0.8570084666039511,
+    "f1": 0.6844477836213373,
+    "specificity": 0.6448115642746515,
+    "fpr": 0.3551884357253485,
+    "roc_auc": 0.8198453544409968,
+    "pr_auc": 0.6729303405087244,
+    "confusion_matrix": [
+      [
+        1249,
+        688
+      ],
+      [
+        152,
+        911
+      ]
+    ],
+    "total_runtime_sec": 11.921813799999654,
+    "avg_latency_ms": 3.973937933333218,
+    "condition": "A: Full Analysis (100% Expensive Detector)",
+    "candidate_recall": 1.0,
+    "candidate_precision": 0.5697310819262039,
+    "pruning_ratio": 0.0,
+    "expensive_detector_call_rate": 1.0,
+    "filtered_pairs_count": 0,
+    "escalated_pairs_count": 3000,
+    "direct_flagged_count": 0
+  },
+  "res_cond_b": {
+    "condition": "B: Fixed-Threshold Filtering",
+    "modality": "Text",
+    "threshold": 0.13864739570855394,
+    "total_pairs": 3000,
+    "accuracy": 0.709,
+    "precision": 0.5750394944707741,
+    "recall": 0.6848541862652869,
+    "f1": 0.6251610133104336,
+    "specificity": 0.7222509034589571,
+    "fpr": 0.27774909654104285,
+    "candidate_recall": 0.7365945437441204,
+    "candidate_precision": 0.45682613768961494,
+    "pruning_ratio": 0.42866666666666664,
+    "expensive_detector_call_rate": 0.5713333333333334,
+    "filtered_pairs_count": 1286,
+    "escalated_pairs_count": 1714,
+    "direct_flagged_count": 0,
+    "confusion_matrix": [
+      [
+        1399,
+        538
+      ],
+      [
+        335,
+        728
+      ]
+    ],
+    "total_runtime_sec": 8.674632199981716,
+    "avg_latency_ms": 2.891544066660572,
+    "median_latency_ms": 5.043614371951586,
+    "p95_latency_ms": 5.043614371951586
+  },
+  "res_cond_c": {
+    "condition": "C: Proposed Typed-Decision Pipeline",
+    "modality": "Text",
+    "total_pairs": 3000,
+    "accuracy": 0.718,
+    "precision": 0.5750865051903115,
+    "recall": 0.7817497648165569,
+    "f1": 0.6626794258373205,
+    "specificity": 0.6830149716055757,
+    "fpr": 0.3169850283944244,
+    "candidate_recall": 0.8598306679209784,
+    "candidate_precision": 0.4147005444646098,
+    "pruning_ratio": 0.2653333333333333,
+    "expensive_detector_call_rate": 0.7003333333333334,
+    "filtered_pairs_count": 796,
+    "escalated_pairs_count": 2101,
+    "direct_flagged_count": 103,
+    "confusion_matrix": [
+      [
+        1323,
+        614
+      ],
+      [
+        232,
+        831
+      ]
+    ],
+    "total_runtime_sec": 9.640941100020427,
+    "avg_latency_ms": 3.2124066999919405,
+    "median_latency_ms": 4.573774067161305,
+    "p95_latency_ms": 4.573774067161305
+  }
+}

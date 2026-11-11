@@ -1,0 +1,96 @@
+======================================================================
+PHASE 2.3.4 FINAL INDEPENDENT AUDIT & CERTIFICATION SCRIPT
+Execution Timestamp: November 10, 2026
+Project Root: D:\ml rearcch project ad
+======================================================================
+
+============================================================
+AUDIT A: TEXT DATASET ACCOUNTING & EXCLUSION AUDIT
+============================================================
+Total raw text rows in CSV: 19666
+Null or empty text fields: ref_null=0, sus_null=0, ref_empty=0, sus_empty=0
+Split counts in CSV: {'val': 9842, 'test': 9824}
+Exact ordered duplicate rows: 4 across 2 duplicate groups
+  TEXT_DUPE_GRP_01: ['TXT_002504', 'TXT_002505'] | Label=1 | Splits=['val', 'val']
+  TEXT_DUPE_GRP_02: ['TXT_003940', 'TXT_003942'] | Label=1 | Splits=['val', 'val']
+Reversed duplicate pairs count: 0
+Whitespace/Case normalized duplicate rows: 4
+Premises crossing val and test: 1: ['A dog catching a Frisbee.']
+Affected crossing rows (6 total):
+  TXT_001181 (val): Label=1 | Premise='A dog catching a Frisbee.'
+  TXT_001182 (val): Label=0 | Premise='A dog catching a Frisbee.'
+  TXT_001183 (val): Label=0 | Premise='A dog catching a Frisbee.'
+  TXT_016302 (test): Label=1 | Premise='A dog catching a Frisbee.'
+  TXT_016303 (test): Label=0 | Premise='A dog catching a Frisbee.'
+  TXT_016304 (test): Label=0 | Premise='A dog catching a Frisbee.'
+Overlap between duplicate rows and contamination rows: 0 rows
+Partition pair counts: {'test_reserve': 6820, 'train': 4000, 'test': 3001, 'dev_reserve': 2337, 'val': 1500, 'cal_conf': 1000, 'cal_prob': 1000}
+7x7 Premise Overlap Matrix (Diagonal = Unique Premises, Off-diagonal = Overlap):
+  train       :  1349 unique premises | Cross-overlap = 0
+  val         :   508 unique premises | Cross-overlap = 0
+  cal_prob    :   336 unique premises | Cross-overlap = 0
+  cal_conf    :   334 unique premises | Cross-overlap = 0
+  test        :  1015 unique premises | Cross-overlap = 0
+  dev_reserve :   791 unique premises | Cross-overlap = 0
+  test_reserve:  2307 unique premises | Cross-overlap = 0
+
+Final Arithmetic Sum Check:
+  Active(10501) + DevRes(2337) + TestRes(6820) + CrossPurge(6) + DupePurge(2) = 19666
+  Target Raw Rows = 19666 | Discrepancy = 0
+
+============================================================
+AUDIT C: CODE DATASET ACCOUNTING & CASE-05 DEGENERACY AUDIT
+============================================================
+Total pairs in code CSV: 733
+Physical Java files on disk: 467
+Code duplicates: Exact duplicate rows = 24 | Reversed duplicate pairs = 0
+Code duplicate groups: 11 groups across 24 duplicate rows
+
+Task Accounting Breakdown (Raw vs Deduplicated):
+Task      | Raw   (Pos,Neg) | Dupes | Policy A (Keep 1st)  | Policy B (Drop All)  | Files
+case-01   | 94    (40 ,54 ) | 7     | 90  (Pos=36 , Neg=54 ) | 87  (Pos=33 , Neg=54 ) | 56   
+case-02   | 108   (54 ,54 ) | 7     | 104 (Pos=50 , Neg=54 ) | 101 (Pos=47 , Neg=54 ) | 70   
+case-03   | 106   (52 ,54 ) | 6     | 103 (Pos=49 , Neg=54 ) | 100 (Pos=46 , Neg=54 ) | 68   
+case-04   | 108   (54 ,54 ) | 0     | 108 (Pos=54 , Neg=54 ) | 108 (Pos=54 , Neg=54 ) | 70   
+case-05   | 107   (53 ,54 ) | 0     | 107 (Pos=53 , Neg=54 ) | 107 (Pos=53 , Neg=54 ) | 69   
+case-06   | 105   (51 ,54 ) | 4     | 103 (Pos=49 , Neg=54 ) | 101 (Pos=47 , Neg=54 ) | 67   
+case-07   | 105   (51 ,54 ) | 0     | 105 (Pos=51 , Neg=54 ) | 105 (Pos=51 , Neg=54 ) | 67   
+
+case-05 Group Structure: Total=107 | Positives=53 (All with ref_type='original': True)
+
+case-05 5-Fold Group Cross-Fitting Feasibility Table:
+  Fold 1: PosTrain=0, NegTrain=39 | PosTest=53, NegTest=15 -> DIVERGES_ZERO_TRAIN_POSITIVES
+  Fold 2: PosTrain=53, NegTrain=40 | PosTest=0, NegTest=14 -> UNDEFINED_ZERO_TEST_POSITIVES
+  Fold 3: PosTrain=53, NegTrain=39 | PosTest=0, NegTest=15 -> UNDEFINED_ZERO_TEST_POSITIVES
+  Fold 4: PosTrain=53, NegTrain=39 | PosTest=0, NegTest=15 -> UNDEFINED_ZERO_TEST_POSITIVES
+  Fold 5: PosTrain=53, NegTrain=42 | PosTest=0, NegTest=12 -> UNDEFINED_ZERO_TEST_POSITIVES
+
+============================================================
+AUDIT H: REPOSITORY SOURCE CODE INVENTORY & SHA-256 MANIFEST
+============================================================
+Total Python source files in 'src/': 28
+  - Root of 'src/': 17 files
+  - 'src/code/': 9 files
+  - 'src/text/': 7 files
+  Sum verification: 17 + 9 + 7 = 28
+Git repository on disk (.git): False
+
+============================================================
+SAVING MACHINE-READABLE AUDIT ARTIFACTS IN phase_2_3_4/
+============================================================
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\text_dataset_audit.json
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\text_exclusion_ledger.csv
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\text_partition_overlap_matrix.csv
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\text_duplicate_audit.csv
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\code_dataset_audit.json
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\code_duplicate_audit.csv
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\code_task_accounting.csv
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\case05_fold_audit.csv
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\source_file_inventory.csv
+Saved: D:\ml rearcch project ad\research_upgrade\audits\phase_2_3_4\source_sha256_manifest.csv
+
+======================================================================
+PHASE 2.3.4 AUDIT EXECUTION COMPLETED SUCCESSFULLY
+ALL 11 AUDIT ARTIFACTS GENERATED AND CERTIFIED.
+======================================================================
+

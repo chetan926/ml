@@ -1,0 +1,3 @@
+Domain,offline_feature_extraction_status,total_pairs_evaluated,pruned_pairs,flagged_direct_pairs,escalated_to_stage2_pairs,stage2_calls_avoided,stage2_calls_avoided_percent,stage1_inference_ms_per_pair,stage1_throughput_pairs_sec,stage1_p50_ms,stage1_p90_ms,stage1_p95_ms,routing_overhead_ms_per_pair,stage2_verifier_ms_per_pair,complete_pipeline_escalated_ms,peak_memory_mb
+Text,Precomputed ETL (Offline),3000,1174,243,1583,1417,47.23,0.000195,5120266.53,0.618,0.6995,0.7452,0.000129,0.068933,0.069257,0.3851
+Code_PolicyA_Nested_LOGO,Precomputed ETL (Offline),720,82,27,611,109,15.14,0.000371,2694005.84,0.1744,0.3872,0.4429,3.8e-05,0.06749,0.067899,0.2789

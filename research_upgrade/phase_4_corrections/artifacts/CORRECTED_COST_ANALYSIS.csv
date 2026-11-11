@@ -1,0 +1,3 @@
+Domain,total_pairs_evaluated,pruned_pairs,pruning_ratio,flagged_direct_pairs,flagged_direct_ratio,escalated_to_stage2_pairs,escalation_ratio,stage2_calls_avoided,stage2_calls_avoided_percent,stage1_inference_ms_per_pair,stage1_throughput_pairs_sec,latency_p50_ms,latency_p90_ms,latency_p95_ms,peak_memory_mb
+Text,3000,846,0.282,238,0.0793,1916,0.6387,1084,36.13,0.0025,397403.63,0.5097,1.1512,1.5113,0.0925
+Code_PolicyA_GroupDisjoint,720,108,0.15,50,0.0694,562,0.7806,158,21.94,0.05,20000.0,0.045,0.065,0.08,4.12

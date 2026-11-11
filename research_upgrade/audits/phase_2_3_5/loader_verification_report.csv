@@ -1,0 +1,5 @@
+component_name,specified_location,exists_on_disk,classification,justification
+TextBenchmarkDataLoader,research_upgrade/src/text_data_loader.py,False,DESIGN_SPECIFIED_NOT_IMPLEMENTED,Phase 3 implementation has not been authorized. No executable loader exists in research_upgrade/src/.
+CodeBenchmarkDataLoader,research_upgrade/src/code_data_loader.py,False,DESIGN_SPECIFIED_NOT_IMPLEMENTED,Phase 3 implementation has not been authorized. No executable loader exists in research_upgrade/src/.
+LegacyDataLoader,src/data_loader.py,True,LEGACY_BASELINE_IMPLEMENTATION,Existing baseline loader on disk; lacks group-aware 5-partition allocation and deduplication.
+Phase235AuditScript,research_upgrade/audits/phase_2_3_5/run_phase_2_3_5_audit.py,True,AUDIT_SIMULATION_SCRIPT,Independent audit script performing verification; must NOT be conflated with production data loader.

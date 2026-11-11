@@ -1,0 +1,8 @@
+task_id,raw_total_pairs,raw_pos_pairs,raw_neg_pairs,duplicate_rows,policy_a_retained_pairs,policy_a_pos,policy_a_neg,policy_b_non_collision_pairs,policy_b_pos,policy_b_neg,physical_java_files
+case-01,94,40,54,7,90,36,54,87,33,54,56
+case-02,108,54,54,7,104,50,54,101,47,54,70
+case-03,106,52,54,6,103,49,54,100,46,54,68
+case-04,108,54,54,0,108,54,54,108,54,54,70
+case-05,107,53,54,0,107,53,54,107,53,54,69
+case-06,105,51,54,4,103,49,54,101,47,54,67
+case-07,105,51,54,0,105,51,54,105,51,54,67

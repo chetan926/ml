@@ -1,0 +1,5 @@
+Configuration,TN,FP,FN,TP
+ES-Plag_Penalized_Avg,7,101,14,88
+ES-Plag_Penalized_Max,7,101,14,88
+ES-Plag_Raw_GST,7,101,14,88
+ES-Plag_No_Filtering,3,105,2,100

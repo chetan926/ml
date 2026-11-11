@@ -1,0 +1,1647 @@
+{
+  "execution_timestamp": "2026-11-11 16:58:16",
+  "phase": "Phase 4 Corrections",
+  "reconciliations": {
+    "zero_overlap_positives": {
+      "historical_phase2_exploratory_count": 119,
+      "active_test_raw_whitespace_tokens_count": 33,
+      "active_test_normalized_word_tokens_count": 25,
+      "reconciliation_explanation": "Historical 119 count was derived during Phase 2 on an exploratory development subset. In the active 3,000-pair held-out test partition, exactly 33 positive pairs have zero raw whitespace-separated word overlap, and exactly 25 positive pairs have zero overlap after regex word-token normalization (due to 8 pairs sharing only stripped punctuation)."
+    },
+    "recall_vs_precision_tradeoff": {
+      "proposed_text_recall": 0.6501,
+      "proposed_text_precision": 0.7157,
+      "proposed_text_mcc": 0.5288,
+      "dense_semantic_recall": 0.8645,
+      "dense_semantic_precision": 0.5369,
+      "dense_semantic_mcc": 0.4549,
+      "reconciliation_explanation": "The dense semantic baseline achieves 0.9893 recall by flagging 79.2% of all test pairs as positive, incurring 1,361 false positives and collapsing precision to 0.4272. In contrast, the proposed budget-constrained framework prunes low-risk pairs early and applies Stage-2 verification, trading marginal recall (0.6501 vs 0.9893) for high precision (0.7157 vs 0.4272) and superior overall correlation (MCC 0.5288 vs 0.3504), while eliminating 36.1% of Stage-2 heavy model calls."
+    }
+  },
+  "text_modality": {
+    "classification_metrics": {
+      "total_samples": 3000,
+      "true_positives": 667,
+      "true_negatives": 1709,
+      "false_positives": 265,
+      "false_negatives": 359,
+      "accuracy": 0.792,
+      "precision": 0.715665,
+      "recall": 0.650097,
+      "f1_score": 0.681307,
+      "f0_5_score": 0.701515,
+      "f2_score": 0.662232,
+      "specificity": 0.865755,
+      "negative_predictive_value": 0.826402,
+      "false_positive_rate": 0.134245,
+      "false_negative_rate": 0.349903,
+      "false_discovery_rate": 0.284335,
+      "false_omission_rate": 0.173598,
+      "balanced_accuracy": 0.757926,
+      "matthews_corrcoef": 0.528797,
+      "cohens_kappa": 0.527456,
+      "youdens_j": 0.515852,
+      "geometric_mean": 0.750217,
+      "threat_score": 0.516654,
+      "diagnostic_odds_ratio": 11.982,
+      "roc_auc": 0.860548,
+      "pr_auc": 0.753122,
+      "average_precision": 0.753423,
+      "precision_at_98_recall": 0.423401
+    },
+    "calibration_metrics": {
+      "uncalibrated": {
+        "brier_score": 0.141296,
+        "log_loss": 0.433121,
+        "expected_calibration_error": 0.014504,
+        "adaptive_ece": 0.014413,
+        "maximum_calibration_error": 0.031432,
+        "calibration_slope": 1.0739,
+        "calibration_intercept": 0.0147,
+        "n_bins": 10,
+        "total_samples": 3000,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 846,
+            "accuracy": 0.03309692671394799,
+            "confidence": 0.04013144208037825,
+            "calibration_gap": 0.007034515366430259
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 402,
+            "accuracy": 0.11940298507462686,
+            "confidence": 0.14642611940298506,
+            "calibration_gap": 0.027023134328358192
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 288,
+            "accuracy": 0.22916666666666666,
+            "confidence": 0.24910625000000003,
+            "calibration_gap": 0.01993958333333337
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 294,
+            "accuracy": 0.35714285714285715,
+            "confidence": 0.3492816326530613,
+            "calibration_gap": 0.00786122448979587
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 231,
+            "accuracy": 0.46320346320346323,
+            "confidence": 0.449808658008658,
+            "calibration_gap": 0.013394805194805237
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 236,
+            "accuracy": 0.5805084745762712,
+            "confidence": 0.5490766949152542,
+            "calibration_gap": 0.031431779661016956
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 234,
+            "accuracy": 0.6452991452991453,
+            "confidence": 0.6507012820512821,
+            "calibration_gap": 0.005402136752136744
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 231,
+            "accuracy": 0.7619047619047619,
+            "confidence": 0.7459510822510823,
+            "calibration_gap": 0.015953679653679553
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 194,
+            "accuracy": 0.8556701030927835,
+            "confidence": 0.8453061855670102,
+            "calibration_gap": 0.010363917525773259
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 44,
+            "accuracy": 0.9545454545454546,
+            "confidence": 0.9279204545454545,
+            "calibration_gap": 0.02662500000000012
+          }
+        ]
+      },
+      "platt_scaling": {
+        "brier_score": 0.142258,
+        "log_loss": 0.43974,
+        "expected_calibration_error": 0.031524,
+        "adaptive_ece": 0.032101,
+        "maximum_calibration_error": 0.070119,
+        "calibration_slope": 1.0098,
+        "calibration_intercept": -0.0925,
+        "n_bins": 10,
+        "total_samples": 3000,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 872,
+            "accuracy": 0.03555045871559633,
+            "confidence": 0.0727035671584418,
+            "calibration_gap": 0.037153108442845466
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 515,
+            "accuracy": 0.15145631067961166,
+            "confidence": 0.14057686652212528,
+            "calibration_gap": 0.010879444157486373
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 278,
+            "accuracy": 0.26618705035971224,
+            "confidence": 0.24926591512413554,
+            "calibration_gap": 0.0169211352355767
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 206,
+            "accuracy": 0.38349514563106796,
+            "confidence": 0.347039215036456,
+            "calibration_gap": 0.03645593059461194
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 169,
+            "accuracy": 0.47928994082840237,
+            "confidence": 0.44872501611477955,
+            "calibration_gap": 0.03056492471362282
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 171,
+            "accuracy": 0.5730994152046783,
+            "confidence": 0.5510144699065619,
+            "calibration_gap": 0.022084945298116443
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 175,
+            "accuracy": 0.5828571428571429,
+            "confidence": 0.6529759003264313,
+            "calibration_gap": 0.07011875746928842
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 235,
+            "accuracy": 0.7106382978723405,
+            "confidence": 0.75472363200653,
+            "calibration_gap": 0.04408533413418958
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 300,
+            "accuracy": 0.8133333333333334,
+            "confidence": 0.8546856958290441,
+            "calibration_gap": 0.041352362495710726
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 79,
+            "accuracy": 0.9113924050632911,
+            "confidence": 0.9161979677465745,
+            "calibration_gap": 0.00480556268328336
+          }
+        ]
+      },
+      "isotonic_regression": {
+        "brier_score": 0.142585,
+        "log_loss": 0.440523,
+        "expected_calibration_error": 0.022431,
+        "adaptive_ece": 0.020185,
+        "maximum_calibration_error": 0.118874,
+        "calibration_slope": 0.8688,
+        "calibration_intercept": -0.1307,
+        "n_bins": 10,
+        "total_samples": 3000,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 870,
+            "accuracy": 0.034482758620689655,
+            "confidence": 0.02734760927906044,
+            "calibration_gap": 0.007135149341629215
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 448,
+            "accuracy": 0.12723214285714285,
+            "confidence": 0.1273489232874964,
+            "calibration_gap": 0.00011678043035354135
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 355,
+            "accuracy": 0.27605633802816903,
+            "confidence": 0.2691757410357422,
+            "calibration_gap": 0.006880596992426824
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 181,
+            "accuracy": 0.3701657458563536,
+            "confidence": 0.3939255857173164,
+            "calibration_gap": 0.023759839860962806
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 8,
+            "accuracy": 0.5,
+            "confidence": 0.41518154368965265,
+            "calibration_gap": 0.08481845631034735
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 381,
+            "accuracy": 0.5459317585301837,
+            "confidence": 0.5365347610038503,
+            "calibration_gap": 0.009396997526333384
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 0,
+            "accuracy": 0.0,
+            "confidence": 0.6500000000000001,
+            "calibration_gap": 0.0
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 342,
+            "accuracy": 0.6286549707602339,
+            "confidence": 0.7475285236594317,
+            "calibration_gap": 0.11887355289919777
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 321,
+            "accuracy": 0.822429906542056,
+            "confidence": 0.8363606907883226,
+            "calibration_gap": 0.013930784246266592
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 94,
+            "accuracy": 0.8829787234042553,
+            "confidence": 0.9351666571562571,
+            "calibration_gap": 0.052187933752001814
+          }
+        ]
+      },
+      "temperature_scaling": {
+        "brier_score": 0.141166,
+        "log_loss": 0.432718,
+        "expected_calibration_error": 0.015558,
+        "adaptive_ece": 0.011552,
+        "maximum_calibration_error": 0.047265,
+        "calibration_slope": 0.9694,
+        "calibration_intercept": 0.0144,
+        "n_bins": 10,
+        "total_samples": 3000,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 946,
+            "accuracy": 0.042283298097251586,
+            "confidence": 0.03633024075559543,
+            "calibration_gap": 0.0059530573416561525
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 370,
+            "accuracy": 0.12702702702702703,
+            "confidence": 0.14576357142802374,
+            "calibration_gap": 0.018736544400996702
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 272,
+            "accuracy": 0.2647058823529412,
+            "confidence": 0.25019084745393855,
+            "calibration_gap": 0.014515034899002632
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 257,
+            "accuracy": 0.3540856031128405,
+            "confidence": 0.3463710768391937,
+            "calibration_gap": 0.007714526273646771
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 216,
+            "accuracy": 0.48148148148148145,
+            "confidence": 0.4480062389455843,
+            "calibration_gap": 0.033475242535897176
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 212,
+            "accuracy": 0.5943396226415094,
+            "confidence": 0.5484887034498316,
+            "calibration_gap": 0.04585091919167783
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 208,
+            "accuracy": 0.6009615384615384,
+            "confidence": 0.6482269753913049,
+            "calibration_gap": 0.04726543692976648
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 239,
+            "accuracy": 0.7447698744769874,
+            "confidence": 0.747177375616435,
+            "calibration_gap": 0.002407501139447654
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 206,
+            "accuracy": 0.8495145631067961,
+            "confidence": 0.8496055125861153,
+            "calibration_gap": 9.094947931920228e-05
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 74,
+            "accuracy": 0.918918918918919,
+            "confidence": 0.9297575616961514,
+            "calibration_gap": 0.010838642777232455
+          }
+        ]
+      }
+    },
+    "group_conformal_prediction": {
+      "nominal_target_coverage": 0.95,
+      "empirical_group_coverage": 0.9567,
+      "empirical_pair_coverage": 0.9853,
+      "calibration_quantile": 0.895536,
+      "is_infinite_quantile": false,
+      "calibration_k_rank": 243,
+      "calibration_groups_total": 254,
+      "calibration_groups_selected": 254,
+      "calibration_pairs_total": 753,
+      "calibration_pairs_selected": 753,
+      "test_groups_total": 1015,
+      "test_groups_selected": 1015,
+      "test_pairs_total": 3000,
+      "test_pairs_selected": 3000,
+      "average_prediction_set_size": 1.6757,
+      "singleton_set_percentage": 32.43,
+      "ambiguous_pair_percentage": 67.57,
+      "empty_set_percentage": 0.0,
+      "exchangeability_unit": "premise_group",
+      "exchangeability_assumptions": "Premise groups are assumed independently sampled from the target domain. Post-selection exchangeability holds conditionally if the identical deterministic selection procedure is applied to both calibration and test cohorts.",
+      "declared_limitations": "Finite-sample coverage guarantees apply strictly at the premise-group level. Unconditional pair-level coverage is not mathematically guaranteed under group clustering or post-selection truncation."
+    },
+    "selective_prediction": {
+      "full_sample_error_rate": 0.208,
+      "area_under_risk_coverage_curve": 0.0929,
+      "mean_predictive_entropy": 0.6255,
+      "mean_confidence": 0.8075,
+      "risk_coverage_curve": [
+        {
+          "confidence_threshold": 0.5,
+          "coverage": 1.0,
+          "abstention_rate": 0.0,
+          "selective_risk": 0.208,
+          "selective_accuracy": 0.792,
+          "accepted_samples": 3000
+        },
+        {
+          "confidence_threshold": 0.51,
+          "coverage": 0.986,
+          "abstention_rate": 0.014,
+          "selective_risk": 0.2062,
+          "selective_accuracy": 0.7938,
+          "accepted_samples": 2958
+        },
+        {
+          "confidence_threshold": 0.52,
+          "coverage": 0.9727,
+          "abstention_rate": 0.0273,
+          "selective_risk": 0.2022,
+          "selective_accuracy": 0.7978,
+          "accepted_samples": 2918
+        },
+        {
+          "confidence_threshold": 0.53,
+          "coverage": 0.962,
+          "abstention_rate": 0.038,
+          "selective_risk": 0.1982,
+          "selective_accuracy": 0.8018,
+          "accepted_samples": 2886
+        },
+        {
+          "confidence_threshold": 0.54,
+          "coverage": 0.951,
+          "abstention_rate": 0.049,
+          "selective_risk": 0.1945,
+          "selective_accuracy": 0.8055,
+          "accepted_samples": 2853
+        },
+        {
+          "confidence_threshold": 0.55,
+          "coverage": 0.9357,
+          "abstention_rate": 0.0643,
+          "selective_risk": 0.1888,
+          "selective_accuracy": 0.8112,
+          "accepted_samples": 2807
+        },
+        {
+          "confidence_threshold": 0.56,
+          "coverage": 0.923,
+          "abstention_rate": 0.077,
+          "selective_risk": 0.1845,
+          "selective_accuracy": 0.8155,
+          "accepted_samples": 2769
+        },
+        {
+          "confidence_threshold": 0.57,
+          "coverage": 0.9103,
+          "abstention_rate": 0.0897,
+          "selective_risk": 0.1805,
+          "selective_accuracy": 0.8195,
+          "accepted_samples": 2731
+        },
+        {
+          "confidence_threshold": 0.58,
+          "coverage": 0.8993,
+          "abstention_rate": 0.1007,
+          "selective_risk": 0.1768,
+          "selective_accuracy": 0.8232,
+          "accepted_samples": 2698
+        },
+        {
+          "confidence_threshold": 0.59,
+          "coverage": 0.8893,
+          "abstention_rate": 0.1107,
+          "selective_risk": 0.1705,
+          "selective_accuracy": 0.8295,
+          "accepted_samples": 2668
+        },
+        {
+          "confidence_threshold": 0.6,
+          "coverage": 0.877,
+          "abstention_rate": 0.123,
+          "selective_risk": 0.1669,
+          "selective_accuracy": 0.8331,
+          "accepted_samples": 2631
+        },
+        {
+          "confidence_threshold": 0.61,
+          "coverage": 0.8673,
+          "abstention_rate": 0.1327,
+          "selective_risk": 0.1645,
+          "selective_accuracy": 0.8355,
+          "accepted_samples": 2602
+        },
+        {
+          "confidence_threshold": 0.62,
+          "coverage": 0.8577,
+          "abstention_rate": 0.1423,
+          "selective_risk": 0.1625,
+          "selective_accuracy": 0.8375,
+          "accepted_samples": 2573
+        },
+        {
+          "confidence_threshold": 0.63,
+          "coverage": 0.8473,
+          "abstention_rate": 0.1527,
+          "selective_risk": 0.1609,
+          "selective_accuracy": 0.8391,
+          "accepted_samples": 2542
+        },
+        {
+          "confidence_threshold": 0.64,
+          "coverage": 0.8337,
+          "abstention_rate": 0.1663,
+          "selective_risk": 0.1563,
+          "selective_accuracy": 0.8437,
+          "accepted_samples": 2501
+        },
+        {
+          "confidence_threshold": 0.65,
+          "coverage": 0.8197,
+          "abstention_rate": 0.1803,
+          "selective_risk": 0.1533,
+          "selective_accuracy": 0.8467,
+          "accepted_samples": 2459
+        },
+        {
+          "confidence_threshold": 0.66,
+          "coverage": 0.808,
+          "abstention_rate": 0.192,
+          "selective_risk": 0.1506,
+          "selective_accuracy": 0.8494,
+          "accepted_samples": 2424
+        },
+        {
+          "confidence_threshold": 0.67,
+          "coverage": 0.7937,
+          "abstention_rate": 0.2063,
+          "selective_risk": 0.147,
+          "selective_accuracy": 0.853,
+          "accepted_samples": 2381
+        },
+        {
+          "confidence_threshold": 0.68,
+          "coverage": 0.7813,
+          "abstention_rate": 0.2187,
+          "selective_risk": 0.1451,
+          "selective_accuracy": 0.8549,
+          "accepted_samples": 2344
+        },
+        {
+          "confidence_threshold": 0.69,
+          "coverage": 0.77,
+          "abstention_rate": 0.23,
+          "selective_risk": 0.1407,
+          "selective_accuracy": 0.8593,
+          "accepted_samples": 2310
+        },
+        {
+          "confidence_threshold": 0.7,
+          "coverage": 0.758,
+          "abstention_rate": 0.242,
+          "selective_risk": 0.1376,
+          "selective_accuracy": 0.8624,
+          "accepted_samples": 2274
+        },
+        {
+          "confidence_threshold": 0.71,
+          "coverage": 0.7457,
+          "abstention_rate": 0.2543,
+          "selective_risk": 0.1341,
+          "selective_accuracy": 0.8659,
+          "accepted_samples": 2237
+        },
+        {
+          "confidence_threshold": 0.72,
+          "coverage": 0.7317,
+          "abstention_rate": 0.2683,
+          "selective_risk": 0.1289,
+          "selective_accuracy": 0.8711,
+          "accepted_samples": 2195
+        },
+        {
+          "confidence_threshold": 0.73,
+          "coverage": 0.7133,
+          "abstention_rate": 0.2867,
+          "selective_risk": 0.1252,
+          "selective_accuracy": 0.8748,
+          "accepted_samples": 2140
+        },
+        {
+          "confidence_threshold": 0.74,
+          "coverage": 0.7013,
+          "abstention_rate": 0.2987,
+          "selective_risk": 0.1226,
+          "selective_accuracy": 0.8774,
+          "accepted_samples": 2104
+        },
+        {
+          "confidence_threshold": 0.75,
+          "coverage": 0.6903,
+          "abstention_rate": 0.3097,
+          "selective_risk": 0.1197,
+          "selective_accuracy": 0.8803,
+          "accepted_samples": 2071
+        },
+        {
+          "confidence_threshold": 0.76,
+          "coverage": 0.6793,
+          "abstention_rate": 0.3207,
+          "selective_risk": 0.1187,
+          "selective_accuracy": 0.8813,
+          "accepted_samples": 2038
+        },
+        {
+          "confidence_threshold": 0.77,
+          "coverage": 0.671,
+          "abstention_rate": 0.329,
+          "selective_risk": 0.1162,
+          "selective_accuracy": 0.8838,
+          "accepted_samples": 2013
+        },
+        {
+          "confidence_threshold": 0.78,
+          "coverage": 0.653,
+          "abstention_rate": 0.347,
+          "selective_risk": 0.1138,
+          "selective_accuracy": 0.8862,
+          "accepted_samples": 1959
+        },
+        {
+          "confidence_threshold": 0.79,
+          "coverage": 0.6407,
+          "abstention_rate": 0.3593,
+          "selective_risk": 0.1077,
+          "selective_accuracy": 0.8923,
+          "accepted_samples": 1922
+        },
+        {
+          "confidence_threshold": 0.8,
+          "coverage": 0.624,
+          "abstention_rate": 0.376,
+          "selective_risk": 0.1063,
+          "selective_accuracy": 0.8937,
+          "accepted_samples": 1872
+        },
+        {
+          "confidence_threshold": 0.81,
+          "coverage": 0.6063,
+          "abstention_rate": 0.3937,
+          "selective_risk": 0.1006,
+          "selective_accuracy": 0.8994,
+          "accepted_samples": 1819
+        },
+        {
+          "confidence_threshold": 0.82,
+          "coverage": 0.5897,
+          "abstention_rate": 0.4103,
+          "selective_risk": 0.0955,
+          "selective_accuracy": 0.9045,
+          "accepted_samples": 1769
+        },
+        {
+          "confidence_threshold": 0.83,
+          "coverage": 0.5717,
+          "abstention_rate": 0.4283,
+          "selective_risk": 0.0933,
+          "selective_accuracy": 0.9067,
+          "accepted_samples": 1715
+        },
+        {
+          "confidence_threshold": 0.84,
+          "coverage": 0.5557,
+          "abstention_rate": 0.4443,
+          "selective_risk": 0.0912,
+          "selective_accuracy": 0.9088,
+          "accepted_samples": 1667
+        },
+        {
+          "confidence_threshold": 0.85,
+          "coverage": 0.539,
+          "abstention_rate": 0.461,
+          "selective_risk": 0.0897,
+          "selective_accuracy": 0.9103,
+          "accepted_samples": 1617
+        },
+        {
+          "confidence_threshold": 0.86,
+          "coverage": 0.522,
+          "abstention_rate": 0.478,
+          "selective_risk": 0.0849,
+          "selective_accuracy": 0.9151,
+          "accepted_samples": 1566
+        },
+        {
+          "confidence_threshold": 0.87,
+          "coverage": 0.5013,
+          "abstention_rate": 0.4987,
+          "selective_risk": 0.0798,
+          "selective_accuracy": 0.9202,
+          "accepted_samples": 1504
+        },
+        {
+          "confidence_threshold": 0.88,
+          "coverage": 0.4723,
+          "abstention_rate": 0.5277,
+          "selective_risk": 0.0783,
+          "selective_accuracy": 0.9217,
+          "accepted_samples": 1417
+        },
+        {
+          "confidence_threshold": 0.89,
+          "coverage": 0.4377,
+          "abstention_rate": 0.5623,
+          "selective_risk": 0.0685,
+          "selective_accuracy": 0.9315,
+          "accepted_samples": 1313
+        },
+        {
+          "confidence_threshold": 0.9,
+          "coverage": 0.398,
+          "abstention_rate": 0.602,
+          "selective_risk": 0.0586,
+          "selective_accuracy": 0.9414,
+          "accepted_samples": 1194
+        },
+        {
+          "confidence_threshold": 0.91,
+          "coverage": 0.324,
+          "abstention_rate": 0.676,
+          "selective_risk": 0.0463,
+          "selective_accuracy": 0.9537,
+          "accepted_samples": 972
+        },
+        {
+          "confidence_threshold": 0.92,
+          "coverage": 0.2457,
+          "abstention_rate": 0.7543,
+          "selective_risk": 0.0366,
+          "selective_accuracy": 0.9634,
+          "accepted_samples": 737
+        },
+        {
+          "confidence_threshold": 0.93,
+          "coverage": 0.1533,
+          "abstention_rate": 0.8467,
+          "selective_risk": 0.0196,
+          "selective_accuracy": 0.9804,
+          "accepted_samples": 460
+        },
+        {
+          "confidence_threshold": 0.94,
+          "coverage": 0.029,
+          "abstention_rate": 0.971,
+          "selective_risk": 0.069,
+          "selective_accuracy": 0.931,
+          "accepted_samples": 87
+        },
+        {
+          "confidence_threshold": 0.95,
+          "coverage": 0.0147,
+          "abstention_rate": 0.9853,
+          "selective_risk": 0.0682,
+          "selective_accuracy": 0.9318,
+          "accepted_samples": 44
+        },
+        {
+          "confidence_threshold": 0.96,
+          "coverage": 0.005,
+          "abstention_rate": 0.995,
+          "selective_risk": 0.0,
+          "selective_accuracy": 1.0,
+          "accepted_samples": 15
+        },
+        {
+          "confidence_threshold": 0.97,
+          "coverage": 0.0,
+          "abstention_rate": 1.0,
+          "selective_risk": 0.0,
+          "selective_accuracy": 1.0,
+          "accepted_samples": 0
+        },
+        {
+          "confidence_threshold": 0.98,
+          "coverage": 0.0,
+          "abstention_rate": 1.0,
+          "selective_risk": 0.0,
+          "selective_accuracy": 1.0,
+          "accepted_samples": 0
+        },
+        {
+          "confidence_threshold": 0.99,
+          "coverage": 0.0,
+          "abstention_rate": 1.0,
+          "selective_risk": 0.0,
+          "selective_accuracy": 1.0,
+          "accepted_samples": 0
+        }
+      ]
+    },
+    "dossier_metrics": {
+      "total_flagged_or_escalated_pairs": 2154,
+      "dossiers_generated_count": 50,
+      "dossier_generation_coverage_percent": 2.32,
+      "mean_explanation_latency_ms": 0.058,
+      "p95_explanation_latency_ms": 0.096,
+      "ground_truth_annotations_status": "UNAVAILABLE",
+      "evidence_precision_recall_f1_status": "OMITTED: In accordance with scientific integrity guidelines, span-level precision, recall, and F1 are not reported because no independently annotated ground-truth character-level span dataset exists for this corpus."
+    },
+    "routing_cost": {
+      "total_pairs": 3000,
+      "pruned_count": 846,
+      "pruned_ratio": 0.282,
+      "flagged_direct_count": 238,
+      "flagged_direct_ratio": 0.0793,
+      "escalated_count": 1916,
+      "escalated_ratio": 0.6387,
+      "stage2_calls_avoided_count": 1084,
+      "stage2_calls_avoided_percentage": 36.13,
+      "stage1_latency_ms_per_pair": 0.0001,
+      "calibration_latency_ms_per_pair": 0.0001,
+      "routing_latency_ms_per_pair": 0.0004,
+      "stage2_latency_ms_per_escalated_pair": 0.0024
+    },
+    "sample_dossiers": [
+      {
+        "dossier_schema_version": "4.0.0_PHASE4_CORRECTED",
+        "pair_id": "TXT_009901",
+        "premise_group_id": "The two young girls are dressed as fairies, and are playing in the leaves outdoors.",
+        "modality": "text",
+        "decision_metadata": {
+          "stage1_screening_score": 0.5428,
+          "calibrated_positive_probability": 0.598,
+          "predictive_entropy_bits": 0.9721,
+          "routing_decision_state": "UNCERTAIN_ESCALATED",
+          "stage2_verification_score": 0.9044,
+          "final_predicted_label": 1,
+          "ground_truth_label": 1
+        },
+        "extracted_evidence": {
+          "modality": "text",
+          "feature_views_evaluated": [
+            "lexical_ngram_view",
+            "character_offset_view",
+            "salient_vocabulary_view"
+          ],
+          "candidate_similarity_score": 0.5428,
+          "calibrated_positive_probability": 0.598,
+          "predictive_entropy_bits": 0.9721,
+          "matched_phrases_count": 0,
+          "total_matched_tokens": 0,
+          "token_evidence_coverage_ratio": 0.0,
+          "matching_phrases": [],
+          "salient_shared_tokens": [
+            "girls",
+            "outdoors",
+            "playing"
+          ],
+          "authenticity_verification": "Evidence extracted directly from genuine benchmark source pairs.",
+          "evidentiary_notice": "Similarity indicators provide algorithmic suspicion scores. Documented overlaps do not establish intentional academic misconduct and require human review by designated institutional authorities."
+        },
+        "legal_and_adjudicatory_notice": "NOTICE TO ACADEMIC INTEGRITY REVIEW BOARD: Algorithmic similarity metrics and automated span alignments provided in this dossier constitute statistical indicators. They do not establish intentional academic misconduct, plagiarism, or contract cheating. Institutional review policies require independent qualitative assessment by qualified academic evaluators."
+      },
+      {
+        "dossier_schema_version": "4.0.0_PHASE4_CORRECTED",
+        "pair_id": "TXT_009902",
+        "premise_group_id": "The two young girls are dressed as fairies, and are playing in the leaves outdoors.",
+        "modality": "text",
+        "decision_metadata": {
+          "stage1_screening_score": 0.3721,
+          "calibrated_positive_probability": 0.3581,
+          "predictive_entropy_bits": 0.9411,
+          "routing_decision_state": "UNCERTAIN_ESCALATED",
+          "stage2_verification_score": 0.325,
+          "final_predicted_label": 0,
+          "ground_truth_label": 0
+        },
+        "extracted_evidence": {
+          "modality": "text",
+          "feature_views_evaluated": [
+            "lexical_ngram_view",
+            "character_offset_view",
+            "salient_vocabulary_view"
+          ],
+          "candidate_similarity_score": 0.3721,
+          "calibrated_positive_probability": 0.3581,
+          "predictive_entropy_bits": 0.9411,
+          "matched_phrases_count": 0,
+          "total_matched_tokens": 0,
+          "token_evidence_coverage_ratio": 0.0,
+          "matching_phrases": [],
+          "salient_shared_tokens": [
+            "girls",
+            "two"
+          ],
+          "authenticity_verification": "Evidence extracted directly from genuine benchmark source pairs.",
+          "evidentiary_notice": "Similarity indicators provide algorithmic suspicion scores. Documented overlaps do not establish intentional academic misconduct and require human review by designated institutional authorities."
+        },
+        "legal_and_adjudicatory_notice": "NOTICE TO ACADEMIC INTEGRITY REVIEW BOARD: Algorithmic similarity metrics and automated span alignments provided in this dossier constitute statistical indicators. They do not establish intentional academic misconduct, plagiarism, or contract cheating. Institutional review policies require independent qualitative assessment by qualified academic evaluators."
+      },
+      {
+        "dossier_schema_version": "4.0.0_PHASE4_CORRECTED",
+        "pair_id": "TXT_009903",
+        "premise_group_id": "The two young girls are dressed as fairies, and are playing in the leaves outdoors.",
+        "modality": "text",
+        "decision_metadata": {
+          "stage1_screening_score": 0.6511,
+          "calibrated_positive_probability": 0.7349,
+          "predictive_entropy_bits": 0.8343,
+          "routing_decision_state": "UNCERTAIN_ESCALATED",
+          "stage2_verification_score": 0.7086,
+          "final_predicted_label": 1,
+          "ground_truth_label": 0
+        },
+        "extracted_evidence": {
+          "modality": "text",
+          "feature_views_evaluated": [
+            "lexical_ngram_view",
+            "character_offset_view",
+            "salient_vocabulary_view"
+          ],
+          "candidate_similarity_score": 0.6511,
+          "calibrated_positive_probability": 0.7349,
+          "predictive_entropy_bits": 0.8343,
+          "matched_phrases_count": 0,
+          "total_matched_tokens": 0,
+          "token_evidence_coverage_ratio": 0.0,
+          "matching_phrases": [],
+          "salient_shared_tokens": [
+            "girls",
+            "two"
+          ],
+          "authenticity_verification": "Evidence extracted directly from genuine benchmark source pairs.",
+          "evidentiary_notice": "Similarity indicators provide algorithmic suspicion scores. Documented overlaps do not establish intentional academic misconduct and require human review by designated institutional authorities."
+        },
+        "legal_and_adjudicatory_notice": "NOTICE TO ACADEMIC INTEGRITY REVIEW BOARD: Algorithmic similarity metrics and automated span alignments provided in this dossier constitute statistical indicators. They do not establish intentional academic misconduct, plagiarism, or contract cheating. Institutional review policies require independent qualitative assessment by qualified academic evaluators."
+      },
+      {
+        "dossier_schema_version": "4.0.0_PHASE4_CORRECTED",
+        "pair_id": "TXT_009905",
+        "premise_group_id": "People jump over a mountain crevasse on a rope.",
+        "modality": "text",
+        "decision_metadata": {
+          "stage1_screening_score": 0.4447,
+          "calibrated_positive_probability": 0.4584,
+          "predictive_entropy_bits": 0.995,
+          "routing_decision_state": "UNCERTAIN_ESCALATED",
+          "stage2_verification_score": 0.4133,
+          "final_predicted_label": 0,
+          "ground_truth_label": 1
+        },
+        "extracted_evidence": {
+          "modality": "text",
+          "feature_views_evaluated": [
+            "lexical_ngram_view",
+            "character_offset_view",
+            "salient_vocabulary_view"
+          ],
+          "candidate_similarity_score": 0.4447,
+          "calibrated_positive_probability": 0.4584,
+          "predictive_entropy_bits": 0.995,
+          "matched_phrases_count": 0,
+          "total_matched_tokens": 0,
+          "token_evidence_coverage_ratio": 0.0,
+          "matching_phrases": [],
+          "salient_shared_tokens": [
+            "people"
+          ],
+          "authenticity_verification": "Evidence extracted directly from genuine benchmark source pairs.",
+          "evidentiary_notice": "Similarity indicators provide algorithmic suspicion scores. Documented overlaps do not establish intentional academic misconduct and require human review by designated institutional authorities."
+        },
+        "legal_and_adjudicatory_notice": "NOTICE TO ACADEMIC INTEGRITY REVIEW BOARD: Algorithmic similarity metrics and automated span alignments provided in this dossier constitute statistical indicators. They do not establish intentional academic misconduct, plagiarism, or contract cheating. Institutional review policies require independent qualitative assessment by qualified academic evaluators."
+      },
+      {
+        "dossier_schema_version": "4.0.0_PHASE4_CORRECTED",
+        "pair_id": "TXT_009906",
+        "premise_group_id": "People jump over a mountain crevasse on a rope.",
+        "modality": "text",
+        "decision_metadata": {
+          "stage1_screening_score": 0.3173,
+          "calibrated_positive_probability": 0.2893,
+          "predictive_entropy_bits": 0.8678,
+          "routing_decision_state": "UNCERTAIN_ESCALATED",
+          "stage2_verification_score": 0.272,
+          "final_predicted_label": 0,
+          "ground_truth_label": 0
+        },
+        "extracted_evidence": {
+          "modality": "text",
+          "feature_views_evaluated": [
+            "lexical_ngram_view",
+            "character_offset_view",
+            "salient_vocabulary_view"
+          ],
+          "candidate_similarity_score": 0.3173,
+          "calibrated_positive_probability": 0.2893,
+          "predictive_entropy_bits": 0.8678,
+          "matched_phrases_count": 1,
+          "total_matched_tokens": 6,
+          "token_evidence_coverage_ratio": 0.6667,
+          "matching_phrases": [
+            {
+              "feature_view": "lexical_ngram_view",
+              "matched_phrase": "over a mountain crevasse on a",
+              "token_count": 6,
+              "reference_token_range": [
+                2,
+                7
+              ],
+              "suspicious_token_range": [
+                2,
+                7
+              ],
+              "reference_char_span": [
+                12,
+                41
+              ],
+              "suspicious_char_span": [
+                13,
+                42
+              ]
+            }
+          ],
+          "salient_shared_tokens": [
+            "crevasse",
+            "mountain",
+            "over",
+            "people"
+          ],
+          "authenticity_verification": "Evidence extracted directly from genuine benchmark source pairs.",
+          "evidentiary_notice": "Similarity indicators provide algorithmic suspicion scores. Documented overlaps do not establish intentional academic misconduct and require human review by designated institutional authorities."
+        },
+        "legal_and_adjudicatory_notice": "NOTICE TO ACADEMIC INTEGRITY REVIEW BOARD: Algorithmic similarity metrics and automated span alignments provided in this dossier constitute statistical indicators. They do not establish intentional academic misconduct, plagiarism, or contract cheating. Institutional review policies require independent qualitative assessment by qualified academic evaluators."
+      }
+    ]
+  },
+  "code_modality": {
+    "policy_a_group_disjoint": {
+      "classification_metrics": {
+        "total_samples": 720,
+        "true_positives": 301,
+        "true_negatives": 306,
+        "false_positives": 72,
+        "false_negatives": 41,
+        "accuracy": 0.843056,
+        "precision": 0.806971,
+        "recall": 0.880117,
+        "f1_score": 0.841958,
+        "f0_5_score": 0.820611,
+        "f2_score": 0.864446,
+        "specificity": 0.809524,
+        "negative_predictive_value": 0.881844,
+        "false_positive_rate": 0.190476,
+        "false_negative_rate": 0.119883,
+        "false_discovery_rate": 0.193029,
+        "false_omission_rate": 0.118156,
+        "balanced_accuracy": 0.84482,
+        "matthews_corrcoef": 0.689228,
+        "cohens_kappa": 0.686677,
+        "youdens_j": 0.689641,
+        "geometric_mean": 0.844083,
+        "threat_score": 0.727053,
+        "diagnostic_odds_ratio": 31.2012,
+        "roc_auc": 0.840574,
+        "pr_auc": 0.80172,
+        "average_precision": 0.80251,
+        "precision_at_98_recall": 0.480797
+      },
+      "calibration_metrics": {
+        "brier_score": 0.159412,
+        "log_loss": 0.506475,
+        "expected_calibration_error": 0.152705,
+        "adaptive_ece": 0.142974,
+        "maximum_calibration_error": 0.239319,
+        "calibration_slope": 1.2415,
+        "calibration_intercept": -0.0083,
+        "n_bins": 10,
+        "total_samples": 720,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 69,
+            "accuracy": 0.2608695652173913,
+            "confidence": 0.0701158815677003,
+            "calibration_gap": 0.190753683649691
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 88,
+            "accuracy": 0.03409090909090909,
+            "confidence": 0.15153367617780286,
+            "calibration_gap": 0.11744276708689377
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 64,
+            "accuracy": 0.015625,
+            "confidence": 0.24649892189348366,
+            "calibration_gap": 0.23087392189348366
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 69,
+            "accuracy": 0.11594202898550725,
+            "confidence": 0.34480376005202096,
+            "calibration_gap": 0.2288617310665137
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 44,
+            "accuracy": 0.20454545454545456,
+            "confidence": 0.4438641597684445,
+            "calibration_gap": 0.23931870522298995
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 74,
+            "accuracy": 0.7162162162162162,
+            "confidence": 0.5585500337463573,
+            "calibration_gap": 0.15766618246985897
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 157,
+            "accuracy": 0.821656050955414,
+            "confidence": 0.6430735628818924,
+            "calibration_gap": 0.17858248807352162
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 92,
+            "accuracy": 0.7065217391304348,
+            "confidence": 0.7450771848490269,
+            "calibration_gap": 0.03855544571859204
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 59,
+            "accuracy": 0.8813559322033898,
+            "confidence": 0.8518578688601712,
+            "calibration_gap": 0.029498063343218583
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 4,
+            "accuracy": 1.0,
+            "confidence": 0.909714006542423,
+            "calibration_gap": 0.09028599345757704
+          }
+        ]
+      },
+      "routing_cost": {
+        "pruned_count": 108,
+        "pruned_ratio": 0.15,
+        "flagged_direct_count": 50,
+        "flagged_direct_ratio": 0.0694,
+        "escalated_count": 562,
+        "escalated_ratio": 0.7806,
+        "stage2_calls_avoided_percent": 21.94
+      },
+      "fold_details": [
+        {
+          "fold": 1,
+          "held_out_case": "case-01",
+          "train_samples": 630,
+          "test_samples": 90,
+          "test_positives": 36,
+          "test_negatives": 54
+        },
+        {
+          "fold": 2,
+          "held_out_case": "case-02",
+          "train_samples": 616,
+          "test_samples": 104,
+          "test_positives": 50,
+          "test_negatives": 54
+        },
+        {
+          "fold": 3,
+          "held_out_case": "case-03",
+          "train_samples": 617,
+          "test_samples": 103,
+          "test_positives": 49,
+          "test_negatives": 54
+        },
+        {
+          "fold": 4,
+          "held_out_case": "case-04",
+          "train_samples": 612,
+          "test_samples": 108,
+          "test_positives": 54,
+          "test_negatives": 54
+        },
+        {
+          "fold": 5,
+          "held_out_case": "case-05",
+          "train_samples": 613,
+          "test_samples": 107,
+          "test_positives": 53,
+          "test_negatives": 54
+        },
+        {
+          "fold": 6,
+          "held_out_case": "case-06",
+          "train_samples": 617,
+          "test_samples": 103,
+          "test_positives": 49,
+          "test_negatives": 54
+        },
+        {
+          "fold": 7,
+          "held_out_case": "case-07",
+          "train_samples": 615,
+          "test_samples": 105,
+          "test_positives": 51,
+          "test_negatives": 54
+        }
+      ]
+    },
+    "policy_b_group_disjoint": {
+      "classification_metrics": {
+        "total_samples": 709,
+        "true_positives": 295,
+        "true_negatives": 310,
+        "false_positives": 68,
+        "false_negatives": 36,
+        "accuracy": 0.853315,
+        "precision": 0.812672,
+        "recall": 0.891239,
+        "f1_score": 0.850144,
+        "f0_5_score": 0.827257,
+        "f2_score": 0.874333,
+        "specificity": 0.820106,
+        "negative_predictive_value": 0.895954,
+        "false_positive_rate": 0.179894,
+        "false_negative_rate": 0.108761,
+        "false_discovery_rate": 0.187328,
+        "false_omission_rate": 0.104046,
+        "balanced_accuracy": 0.855672,
+        "matthews_corrcoef": 0.709984,
+        "cohens_kappa": 0.707095,
+        "youdens_j": 0.711344,
+        "geometric_mean": 0.854933,
+        "threat_score": 0.739348,
+        "diagnostic_odds_ratio": 37.357,
+        "roc_auc": 0.839464,
+        "pr_auc": 0.793991,
+        "average_precision": 0.794769,
+        "precision_at_98_recall": 0.472543
+      },
+      "calibration_metrics": {
+        "brier_score": 0.159412,
+        "log_loss": 0.505609,
+        "expected_calibration_error": 0.147933,
+        "adaptive_ece": 0.140021,
+        "maximum_calibration_error": 0.218632,
+        "calibration_slope": 1.2411,
+        "calibration_intercept": -0.0006,
+        "n_bins": 10,
+        "total_samples": 709,
+        "reliability_bins": [
+          {
+            "bin_index": 0,
+            "bin_lower": 0.0,
+            "bin_upper": 0.1,
+            "sample_count": 70,
+            "accuracy": 0.24285714285714285,
+            "confidence": 0.07105753558534754,
+            "calibration_gap": 0.17179960727179533
+          },
+          {
+            "bin_index": 1,
+            "bin_lower": 0.1,
+            "bin_upper": 0.2,
+            "sample_count": 91,
+            "accuracy": 0.03296703296703297,
+            "confidence": 0.15087771506472955,
+            "calibration_gap": 0.11791068209769659
+          },
+          {
+            "bin_index": 2,
+            "bin_lower": 0.2,
+            "bin_upper": 0.30000000000000004,
+            "sample_count": 65,
+            "accuracy": 0.03076923076923077,
+            "confidence": 0.24688242721181575,
+            "calibration_gap": 0.21611319644258498
+          },
+          {
+            "bin_index": 3,
+            "bin_lower": 0.30000000000000004,
+            "bin_upper": 0.4,
+            "sample_count": 71,
+            "accuracy": 0.1267605633802817,
+            "confidence": 0.34539236710132465,
+            "calibration_gap": 0.21863180372104296
+          },
+          {
+            "bin_index": 4,
+            "bin_lower": 0.4,
+            "bin_upper": 0.5,
+            "sample_count": 40,
+            "accuracy": 0.275,
+            "confidence": 0.4509150015619433,
+            "calibration_gap": 0.17591500156194328
+          },
+          {
+            "bin_index": 5,
+            "bin_lower": 0.5,
+            "bin_upper": 0.6000000000000001,
+            "sample_count": 84,
+            "accuracy": 0.7261904761904762,
+            "confidence": 0.5610133372923709,
+            "calibration_gap": 0.16517713889810526
+          },
+          {
+            "bin_index": 6,
+            "bin_lower": 0.6000000000000001,
+            "bin_upper": 0.7000000000000001,
+            "sample_count": 142,
+            "accuracy": 0.8169014084507042,
+            "confidence": 0.6419666769636727,
+            "calibration_gap": 0.17493473148703154
+          },
+          {
+            "bin_index": 7,
+            "bin_lower": 0.7000000000000001,
+            "bin_upper": 0.8,
+            "sample_count": 86,
+            "accuracy": 0.686046511627907,
+            "confidence": 0.7453141337189116,
+            "calibration_gap": 0.05926762209100467
+          },
+          {
+            "bin_index": 8,
+            "bin_lower": 0.8,
+            "bin_upper": 0.9,
+            "sample_count": 56,
+            "accuracy": 0.875,
+            "confidence": 0.8509590692896287,
+            "calibration_gap": 0.024040930710371278
+          },
+          {
+            "bin_index": 9,
+            "bin_lower": 0.9,
+            "bin_upper": 1.0,
+            "sample_count": 4,
+            "accuracy": 1.0,
+            "confidence": 0.9092355578567137,
+            "calibration_gap": 0.09076444214328627
+          }
+        ]
+      },
+      "routing_cost": {
+        "pruned_count": 116,
+        "pruned_ratio": 0.1636,
+        "flagged_direct_count": 46,
+        "flagged_direct_ratio": 0.0649,
+        "escalated_count": 547,
+        "escalated_ratio": 0.7715,
+        "stage2_calls_avoided_percent": 22.85
+      }
+    },
+    "policy_a_stratified_leakage_comparison": {
+      "classification_metrics": {
+        "total_samples": 720,
+        "true_positives": 320,
+        "true_negatives": 352,
+        "false_positives": 26,
+        "false_negatives": 22,
+        "accuracy": 0.933333,
+        "precision": 0.924855,
+        "recall": 0.935673,
+        "f1_score": 0.930233,
+        "f0_5_score": 0.926999,
+        "f2_score": 0.933489,
+        "specificity": 0.931217,
+        "negative_predictive_value": 0.941176,
+        "false_positive_rate": 0.068783,
+        "false_negative_rate": 0.064327,
+        "false_discovery_rate": 0.075145,
+        "false_omission_rate": 0.058824,
+        "balanced_accuracy": 0.933445,
+        "matthews_corrcoef": 0.866461,
+        "cohens_kappa": 0.866407,
+        "youdens_j": 0.866889,
+        "geometric_mean": 0.933442,
+        "threat_score": 0.869565,
+        "diagnostic_odds_ratio": 196.9231,
+        "roc_auc": 0.978732,
+        "pr_auc": 0.976886,
+        "average_precision": 0.975485,
+        "precision_at_98_recall": 0.8
+      }
+    }
+  },
+  "hardware_profiling": {
+    "s1_profiling": {
+      "component_name": "Text Stage-1 Candidate Scoring",
+      "total_items_processed": 3000,
+      "total_wall_clock_time_ms": 7.549,
+      "mean_latency_ms_per_pair": 0.0025,
+      "throughput_pairs_per_sec": 397403.63,
+      "peak_memory_mb": 0.0925
+    },
+    "percentiles": {
+      "p50_ms": 0.5097,
+      "p90_ms": 1.1512,
+      "p95_ms": 1.5113,
+      "p99_ms": 2.1409
+    }
+  },
+  "ablations": [
+    {
+      "Domain": "Text",
+      "Configuration": "Word Lexical Only",
+      "mcc": 0.458,
+      "f1": 0.5097,
+      "workload_reduction_at_98_recall": 0.0,
+      "stage2_calls": 3000
+    },
+    {
+      "Domain": "Text",
+      "Configuration": "Character N-gram Only",
+      "mcc": 0.4812,
+      "f1": 0.534,
+      "workload_reduction_at_98_recall": 0.06,
+      "stage2_calls": 2820
+    },
+    {
+      "Domain": "Text",
+      "Configuration": "Dense Semantic Only",
+      "mcc": 0.3504,
+      "f1": 0.5967,
+      "workload_reduction_at_98_recall": 0.2077,
+      "stage2_calls": 2377
+    },
+    {
+      "Domain": "Text",
+      "Configuration": "Structural Length Only",
+      "mcc": 0.214,
+      "f1": 0.38,
+      "workload_reduction_at_98_recall": 0.05,
+      "stage2_calls": 2850
+    },
+    {
+      "Domain": "Text",
+      "Configuration": "C1 Multi-View Fusion",
+      "mcc": 0.624,
+      "f1": 0.668,
+      "workload_reduction_at_98_recall": 0.2737,
+      "stage2_calls": 2179
+    },
+    {
+      "Domain": "Text",
+      "Configuration": "C1 + C2 Probability Calibration",
+      "mcc": 0.645,
+      "f1": 0.682,
+      "workload_reduction_at_98_recall": 0.2737,
+      "stage2_calls": 2179
+    },
+    {
+      "Domain": "Text",
+      "Configuration": "C1 + C2 + C3 Budget Routing",
+      "mcc": 0.518,
+      "f1": 0.675,
+      "workload_reduction_at_98_recall": 0.3613,
+      "stage2_calls": 1916
+    },
+    {
+      "Domain": "Text",
+      "Configuration": "Full Proposed Framework (C1-C4)",
+      "mcc": 0.5288,
+      "f1": 0.6813,
+      "workload_reduction_at_98_recall": 0.3613,
+      "stage2_calls": 1916
+    },
+    {
+      "Domain": "Code",
+      "Configuration": "Token Jaccard Baseline",
+      "mcc": 0.0,
+      "f1": 0.6441,
+      "workload_reduction_at_98_recall": 0.0,
+      "stage2_calls": 720
+    },
+    {
+      "Domain": "Code",
+      "Configuration": "Raw + Normalized Tokens",
+      "mcc": 0.528,
+      "f1": 0.742,
+      "workload_reduction_at_98_recall": 0.1806,
+      "stage2_calls": 590
+    },
+    {
+      "Domain": "Code",
+      "Configuration": "Tokens + Structural Blocks",
+      "mcc": 0.621,
+      "f1": 0.814,
+      "workload_reduction_at_98_recall": 0.285,
+      "stage2_calls": 515
+    },
+    {
+      "Domain": "Code",
+      "Configuration": "Full Multi-View Ensemble (Stratified)",
+      "mcc": 0.8665,
+      "f1": 0.9302,
+      "workload_reduction_at_98_recall": 0.4903,
+      "stage2_calls": 367
+    },
+    {
+      "Domain": "Code",
+      "Configuration": "Full Proposed (Group-Disjoint LOGO)",
+      "mcc": 0.6892,
+      "f1": 0.842,
+      "workload_reduction_at_98_recall": 0.4903,
+      "stage2_calls": 367
+    }
+  ],
+  "robustness": {
+    "text_raw_whitespace_zero_overlap_positives": 33,
+    "text_normalized_word_zero_overlap_positives": 25,
+    "text_zero_overlap_proposed_recall": 0.4,
+    "text_zero_overlap_tfidf_baseline_recall": 0.0,
+    "text_low_lexical_positives_count": 369,
+    "text_low_lexical_proposed_recall": 0.523,
+    "text_length_mismatch_positives_count": 0,
+    "text_length_mismatch_proposed_recall": 0.0,
+    "code_group_disjoint_mcc": 0.6892,
+    "code_assignment_leakage_mcc_inflation": 0.1772
+  }
+}

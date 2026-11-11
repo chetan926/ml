@@ -1,0 +1,122 @@
+[
+  {
+    "component_id": "MOD_01",
+    "component_name": "TextBenchmarkDataLoader",
+    "scope": "Data Ingestion & Group Partitioning",
+    "specification_path": "research_upgrade/documentation/phase_2_final/04_final_algorithm_pseudocode.md",
+    "source_path": "research_upgrade/src/text_data_loader.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Algorithm fully specified in Phase 2 documentation; implementation scheduled for Phase 3.1."
+  },
+  {
+    "component_id": "MOD_02",
+    "component_name": "CodeBenchmarkDataLoader",
+    "scope": "Data Ingestion & Policy A/B Deduplication",
+    "specification_path": "research_upgrade/documentation/phase_2_final/04_final_algorithm_pseudocode.md",
+    "source_path": "research_upgrade/src/code_data_loader.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Algorithm fully specified in Phase 2 documentation; implementation scheduled for Phase 3.1."
+  },
+  {
+    "component_id": "MOD_03",
+    "component_name": "TextMultiViewExtractor",
+    "scope": "Stage-1 Text Candidate Screening",
+    "specification_path": "research_upgrade/documentation/phase_2_final/02_four_contributions_final_design.md",
+    "source_path": "research_upgrade/src/text_multiview.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Extracts Char, Word, MiniLM dense embedding, and linguistic surface views."
+  },
+  {
+    "component_id": "MOD_04",
+    "component_name": "CodeMultiViewExtractor",
+    "scope": "Stage-1 Code Candidate Screening",
+    "specification_path": "research_upgrade/documentation/phase_2_final/02_four_contributions_final_design.md",
+    "source_path": "research_upgrade/src/code_multiview.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Extracts Token RKR-GST, AST Subtree, and Software Metrics views."
+  },
+  {
+    "component_id": "MOD_05",
+    "component_name": "AdaptiveRoutingEngine",
+    "scope": "Three-Way Routing & FLOPs Conservation",
+    "specification_path": "research_upgrade/documentation/phase_2_final/05_final_system_architecture.md",
+    "source_path": "research_upgrade/src/routing_engine.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Direct bypass for low-risk and high-risk pairs; escalates ambiguous slice."
+  },
+  {
+    "component_id": "MOD_06",
+    "component_name": "TextStage2CrossEncoder",
+    "scope": "Stage-2 Semantic Verification",
+    "specification_path": "research_upgrade/documentation/phase_2_final/05_final_system_architecture.md",
+    "source_path": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "exists_on_disk": true,
+    "status": "RUNTIME_VERIFIED",
+    "notes": "Passage-ranking cross-encoder verified for token length; domain fine-tuning required in Phase 3."
+  },
+  {
+    "component_id": "MOD_07",
+    "component_name": "CodeStage2Detector",
+    "scope": "Stage-2 Structural-Semantic Verification",
+    "specification_path": "research_upgrade/documentation/phase_2_final/05_final_system_architecture.md",
+    "source_path": "research_upgrade/src/code_stage2_detector.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Hybrid AST-token classifier specifically designed for source code; planned for Phase 3.2."
+  },
+  {
+    "component_id": "MOD_08",
+    "component_name": "PlattProbabilityCalibrator",
+    "scope": "Probability Calibration (Text Modality)",
+    "specification_path": "research_upgrade/documentation/phase_2_final/03_final_mathematical_formulations.md",
+    "source_path": "research_upgrade/src/calibration.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Fitted strictly on escalated probability calibration split D_cal-prob."
+  },
+  {
+    "component_id": "MOD_09",
+    "component_name": "GroupSplitConformalPredictor",
+    "scope": "Statistical Coverage Guarantees (Text)",
+    "specification_path": "research_upgrade/documentation/phase_2_final/03_final_mathematical_formulations.md",
+    "source_path": "research_upgrade/src/conformal.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Exact finite-sample order statistic over premise groups; handles empty set abstention."
+  },
+  {
+    "component_id": "MOD_10",
+    "component_name": "MultiModalAttributionSynthesizer",
+    "scope": "Explainable Evidence Dossier Generation",
+    "specification_path": "research_upgrade/documentation/phase_2_final/02_four_contributions_final_design.md",
+    "source_path": "research_upgrade/src/attribution.py",
+    "exists_on_disk": false,
+    "status": "DESIGN_SPECIFIED",
+    "notes": "Myers diff token alignment and AST subtree isomorphism extraction."
+  },
+  {
+    "component_id": "MOD_11",
+    "component_name": "LegacyBaselineLoader",
+    "scope": "Original Data Loader",
+    "specification_path": "README.md",
+    "source_path": "src/data_loader.py",
+    "exists_on_disk": true,
+    "status": "SOURCE_IMPLEMENTED",
+    "notes": "Existing baseline loader on disk; lacks group-aware 5-partition allocation."
+  },
+  {
+    "component_id": "MOD_12",
+    "component_name": "Phase2FinalAuditScript",
+    "scope": "Independent Automated Audit Suite",
+    "specification_path": "research_upgrade/documentation/phase_2_final/14_final_independent_audit_and_certification_report.md",
+    "source_path": "research_upgrade/audits/phase_2_final/run_final_phase2_audit.py",
+    "exists_on_disk": true,
+    "status": "RUNTIME_VERIFIED",
+    "notes": "Fully executable audit entry point executing all verification assertions."
+  }
+]

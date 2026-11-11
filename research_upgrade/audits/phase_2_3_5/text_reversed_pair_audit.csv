@@ -1,0 +1,3 @@
+canonical_key_hash,participating_row_ids,group_size,forward_count,reversed_count,classification,conflicting_label
+b29d25814ba93ee3,"['TXT_002504', 'TXT_002505']",2,0,2,EXACT_REVERSED_ONLY_DUPLICATE,False
+a53afa4f4e3d5d27,"['TXT_003940', 'TXT_003942']",2,2,0,EXACT_FORWARD_ONLY_DUPLICATE,False

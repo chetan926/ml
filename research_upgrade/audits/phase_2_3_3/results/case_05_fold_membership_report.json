@@ -1,0 +1,78 @@
+[
+  {
+    "fold": 1,
+    "held_out_groups": [
+      "original",
+      "non-plag-01",
+      "non-plag-02"
+    ],
+    "train_groups_count": 13,
+    "pos_train": 0,
+    "neg_train": 39,
+    "pos_test": 53,
+    "neg_test": 15,
+    "two_class_feasible": false,
+    "solver_status": "DIVERGES_ZERO_POSITIVES"
+  },
+  {
+    "fold": 2,
+    "held_out_groups": [
+      "non-plag-03",
+      "non-plag-04",
+      "non-plag-05"
+    ],
+    "train_groups_count": 13,
+    "pos_train": 53,
+    "neg_train": 40,
+    "pos_test": 0,
+    "neg_test": 14,
+    "two_class_feasible": false,
+    "solver_status": "UNDEFINED_METRICS_ZERO_TEST_POSITIVES"
+  },
+  {
+    "fold": 3,
+    "held_out_groups": [
+      "non-plag-06",
+      "non-plag-07",
+      "non-plag-08"
+    ],
+    "train_groups_count": 13,
+    "pos_train": 53,
+    "neg_train": 39,
+    "pos_test": 0,
+    "neg_test": 15,
+    "two_class_feasible": false,
+    "solver_status": "UNDEFINED_METRICS_ZERO_TEST_POSITIVES"
+  },
+  {
+    "fold": 4,
+    "held_out_groups": [
+      "non-plag-09",
+      "non-plag-10",
+      "non-plag-11"
+    ],
+    "train_groups_count": 13,
+    "pos_train": 53,
+    "neg_train": 39,
+    "pos_test": 0,
+    "neg_test": 15,
+    "two_class_feasible": false,
+    "solver_status": "UNDEFINED_METRICS_ZERO_TEST_POSITIVES"
+  },
+  {
+    "fold": 5,
+    "held_out_groups": [
+      "non-plag-12",
+      "non-plag-13",
+      "non-plag-14",
+      "non-plag-15"
+    ],
+    "train_groups_count": 12,
+    "pos_train": 53,
+    "neg_train": 42,
+    "pos_test": 0,
+    "neg_test": 12,
+    "two_class_feasible": false,
+    "solver_status": "UNDEFINED_METRICS_ZERO_TEST_POSITIVES"
+  }
+]

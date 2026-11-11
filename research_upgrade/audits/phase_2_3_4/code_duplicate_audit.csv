@@ -1,0 +1,12 @@
+duplicate_group_id,case,pair_ids,obfuscation_levels,labels,row_count
+CODE_DUPE_GRP_01,case-01,"['CODE_00018', 'CODE_00026', 'CODE_00031']","['L1', 'L2', 'L3']","[1, 1, 1]",3
+CODE_DUPE_GRP_02,case-01,"['CODE_00045', 'CODE_00052']","['L5', 'L6']","[1, 1]",2
+CODE_DUPE_GRP_03,case-01,"['CODE_00028', 'CODE_00033']","['L2', 'L3']","[1, 1]",2
+CODE_DUPE_GRP_04,case-06,"['CODE_00549', 'CODE_00557']","['L2', 'L3']","[1, 1]",2
+CODE_DUPE_GRP_05,case-06,"['CODE_00551', 'CODE_00559']","['L2', 'L3']","[1, 1]",2
+CODE_DUPE_GRP_06,case-02,"['CODE_00139', 'CODE_00148', 'CODE_00157']","['L4', 'L5', 'L6']","[1, 1, 1]",3
+CODE_DUPE_GRP_07,case-02,"['CODE_00142', 'CODE_00151']","['L4', 'L5']","[1, 1]",2
+CODE_DUPE_GRP_08,case-02,"['CODE_00147', 'CODE_00156']","['L5', 'L6']","[1, 1]",2
+CODE_DUPE_GRP_09,case-03,"['CODE_00254', 'CODE_00263']","['L5', 'L6']","[1, 1]",2
+CODE_DUPE_GRP_10,case-03,"['CODE_00249', 'CODE_00258']","['L4', 'L5']","[1, 1]",2
+CODE_DUPE_GRP_11,case-03,"['CODE_00248', 'CODE_00257']","['L4', 'L5']","[1, 1]",2

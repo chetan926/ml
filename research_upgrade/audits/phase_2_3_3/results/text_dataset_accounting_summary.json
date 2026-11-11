@@ -1,0 +1,18 @@
+{
+  "raw_total_rows": 19666,
+  "raw_val_rows": 9842,
+  "raw_test_rows": 9824,
+  "active_train": 4000,
+  "active_val": 1500,
+  "active_cal_prob": 1000,
+  "active_cal_conf": 1000,
+  "active_test": 3000,
+  "active_total": 10500,
+  "purged_cross_split_contamination": 6,
+  "purged_exact_duplicate_rows": 2,
+  "retained_development_reserve": 2337,
+  "retained_test_reserve": 6821,
+  "retained_reserve_total": 9158,
+  "arithmetic_sum_check": 19666,
+  "reconciliation_status": "PASS"
+}

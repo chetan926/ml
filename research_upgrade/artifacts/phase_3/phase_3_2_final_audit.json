@@ -1,0 +1,49 @@
+{
+  "audit_version": "3.2.1-FINAL",
+  "phase": "Phase 3.2 \u2014 Final Reconciliation and Research Integrity Audit",
+  "timestamp": "2026-11-11 13:03:44",
+  "certification_verdict": "FULL_PASS",
+  "mandatory_checks": {
+    "baseline_sha256_integrity": {
+      "status": "PASSED",
+      "matched_files": 28,
+      "total_registered": 28
+    },
+    "test_count_reconciliation": {
+      "status": "PASSED",
+      "total_tests": 56,
+      "passed_tests": 56,
+      "failed_tests": 0,
+      "resolution": "Typographical error in historical documentation table (claimed 69 due to erroneous rows) reconciled with actual 56 passing tests."
+    },
+    "exact_partition_membership": {
+      "status": "PASSED",
+      "exact_partition_membership_match": true,
+      "text_clean_pairs": 19658,
+      "text_excluded_pairs": 8,
+      "text_total_rows": 19666,
+      "code_raw_pairs": 733,
+      "code_policy_a_retained": 720,
+      "code_policy_b_retained": 709,
+      "label_mismatches": 0,
+      "premise_mismatches": 0
+    },
+    "benchmark_reconciliation": {
+      "status": "PASSED",
+      "synchronous_arithmetic_verified": true,
+      "tracemalloc_scope_clarified": true
+    },
+    "feature_implementation_integrity": {
+      "status": "PASSED",
+      "total_features": 24,
+      "zero_label_snooping": true,
+      "train_only_tfidf_fitting": true,
+      "block_structure_heuristic_disclosed": true
+    },
+    "dataset_loader_integrity": {
+      "status": "PASSED",
+      "authentic_datasets_read": true,
+      "zero_synthetic_records": true
+    }
+  }
+}

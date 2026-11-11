@@ -1,0 +1,168 @@
+{
+  "archive_name": "phase_4_1_independent_verification.zip",
+  "size_bytes": 799484,
+  "sha256": "8c2bb8259376d134a683345768feeb02c0aa3a2eef992bab17a4da19027af3f7",
+  "total_files": 40,
+  "files": {
+    "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_1_calibration_curves.png": {
+      "size": 248699,
+      "crc32": "1EF0F16A"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_2_risk_coverage.png": {
+      "size": 141248,
+      "crc32": "BC10E21B"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_3_pareto_cost_recall.png": {
+      "size": 139434,
+      "crc32": "5D20551E"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/figures/figure_4_ablation_mcc.png": {
+      "size": 112276,
+      "crc32": "61C320A9"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_ABLATION_RESULTS.csv": {
+      "size": 871,
+      "crc32": "1E1C108C"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_BASELINE_PREDICTIONS_CODE_OOF.csv": {
+      "size": 16972,
+      "crc32": "24BE12C2"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_BASELINE_PREDICTIONS_TEXT_TEST.csv": {
+      "size": 313762,
+      "crc32": "49BF9B75"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_CALIBRATION_METRICS.csv": {
+      "size": 522,
+      "crc32": "3725BA84"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_CLASSIFICATION_METRICS.csv": {
+      "size": 1941,
+      "crc32": "7293B6AB"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_CONFUSION_MATRICES.csv": {
+      "size": 948,
+      "crc32": "0C908721"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_COST_ANALYSIS.csv": {
+      "size": 661,
+      "crc32": "45C3A8F2"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_EXPERIMENT_CONFIG_AND_FOLDS.json": {
+      "size": 3764,
+      "crc32": "85D8168F"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_PARETO_OPERATING_POINTS.csv": {
+      "size": 458,
+      "crc32": "AC9DB621"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_PREDICTIONS_CODE_OOF.csv": {
+      "size": 50909,
+      "crc32": "E9E6E832"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_PREDICTIONS_TEXT_TEST.csv": {
+      "size": 437167,
+      "crc32": "84CBD9E1"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_RESEARCH_RESULTS.json": {
+      "size": 47024,
+      "crc32": "EBB0594F"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_ROBUSTNESS_RESULTS.csv": {
+      "size": 158,
+      "crc32": "5DF89044"
+    },
+    "research_upgrade/phase_4_1_corrections/artifacts/PHASE_4_1_STATISTICAL_ANALYSIS.json": {
+      "size": 3893,
+      "crc32": "EAA4EE66"
+    },
+    "research_upgrade/phase_4_1_corrections/package_phase_4_1.py": {
+      "size": 3102,
+      "crc32": "89ADA99C"
+    },
+    "research_upgrade/phase_4_1_corrections/PHASE_4_1_CORRECTION_LEDGER.md": {
+      "size": 9560,
+      "crc32": "AE62972F"
+    },
+    "research_upgrade/phase_4_1_corrections/PHASE_4_1_EXECUTION_LOG.txt": {
+      "size": 7550,
+      "crc32": "AE1D4482"
+    },
+    "research_upgrade/phase_4_1_corrections/PHASE_4_1_EXECUTION_REPORT.md": {
+      "size": 12781,
+      "crc32": "B5C6123B"
+    },
+    "research_upgrade/phase_4_1_corrections/PHASE_4_1_INTEGRITY_AUDIT.md": {
+      "size": 5169,
+      "crc32": "74F754C3"
+    },
+    "research_upgrade/phase_4_1_corrections/PHASE_4_1_RESEARCH_PAPER.md": {
+      "size": 16376,
+      "crc32": "1575E6FC"
+    },
+    "research_upgrade/phase_4_1_corrections/run_phase_4_1_execution.py": {
+      "size": 38878,
+      "crc32": "DD4752BC"
+    },
+    "research_upgrade/phase_4_1_corrections/src/__init__.py": {
+      "size": 0,
+      "crc32": "00000000"
+    },
+    "research_upgrade/phase_4_1_corrections/src/calibration/__init__.py": {
+      "size": 152,
+      "crc32": "AC4B8E4B"
+    },
+    "research_upgrade/phase_4_1_corrections/src/calibration/group_conformal.py": {
+      "size": 7551,
+      "crc32": "AB63526B"
+    },
+    "research_upgrade/phase_4_1_corrections/src/evaluation/__init__.py": {
+      "size": 0,
+      "crc32": "00000000"
+    },
+    "research_upgrade/phase_4_1_corrections/src/evaluation/profiling.py": {
+      "size": 3191,
+      "crc32": "56540008"
+    },
+    "research_upgrade/phase_4_1_corrections/src/evaluation/statistical_testing.py": {
+      "size": 11260,
+      "crc32": "0534EFED"
+    },
+    "research_upgrade/phase_4_1_corrections/src/explainability/__init__.py": {
+      "size": 387,
+      "crc32": "EBB7B6BA"
+    },
+    "research_upgrade/phase_4_1_corrections/src/explainability/dossier_generator.py": {
+      "size": 4247,
+      "crc32": "46A545A0"
+    },
+    "research_upgrade/phase_4_1_corrections/src/explainability/evidence_extractor.py": {
+      "size": 7829,
+      "crc32": "3514F1E1"
+    },
+    "research_upgrade/phase_4_1_corrections/src/pipeline/__init__.py": {
+      "size": 0,
+      "crc32": "00000000"
+    },
+    "research_upgrade/phase_4_1_corrections/src/pipeline/integrated_framework.py": {
+      "size": 11742,
+      "crc32": "D13D32B9"
+    },
+    "research_upgrade/phase_4_1_corrections/src/routing/__init__.py": {
+      "size": 141,
+      "crc32": "FD2CE265"
+    },
+    "research_upgrade/phase_4_1_corrections/src/routing/code_group_evaluator.py": {
+      "size": 14538,
+      "crc32": "68A97BA3"
+    },
+    "tests/test_phase_4_1_corrections.py": {
+      "size": 7182,
+      "crc32": "1D311F18"
+    },
+    "research_upgrade/phase_4_1_corrections/PHASE_4_1_SHA256_MANIFEST.json": {
+      "size": 7868,
+      "crc32": "758F659D"
+    }
+  }
+}

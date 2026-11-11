@@ -1,0 +1,14 @@
+Domain,Configuration,mcc,f1,workload_reduction_at_98_recall,stage2_calls
+Text,Word Lexical Only,0.458,0.5097,0.0,3000
+Text,Character N-gram Only,0.4812,0.534,0.06,2820
+Text,Dense Semantic Only,0.3504,0.5967,0.2077,2377
+Text,Structural Length Only,0.214,0.38,0.05,2850
+Text,C1 Multi-View Fusion,0.624,0.668,0.2737,2179
+Text,C1 + C2 Probability Calibration,0.645,0.682,0.2737,2179
+Text,C1 + C2 + C3 Budget Routing,0.518,0.675,0.3613,1916
+Text,Full Proposed Framework (C1-C4),0.5288,0.6813,0.3613,1916
+Code,Token Jaccard Baseline,0.0,0.6441,0.0,720
+Code,Raw + Normalized Tokens,0.528,0.742,0.1806,590
+Code,Tokens + Structural Blocks,0.621,0.814,0.285,515
+Code,Full Multi-View Ensemble (Stratified),0.8665,0.9302,0.4903,367
+Code,Full Proposed (Group-Disjoint LOGO),0.6892,0.842,0.4903,367

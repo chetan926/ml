@@ -1,0 +1,89 @@
+{
+  "manifest_version": "3.6.0_FINAL",
+  "phase": "Final Complete Research Package",
+  "generation_timestamp": "2026-11-11 15:45:00",
+  "baseline_verified": true,
+  "total_deliverable_files": 16,
+  "deliverables": [
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\figures\\figure_1_calibration_reliability.png",
+      "size_bytes": 174175,
+      "sha256": "43881f8db754fbd65b008667e0b8a7a5829735e031fa4b6f614cf655b4d0d8e7"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\figures\\figure_2_risk_coverage_curve.png",
+      "size_bytes": 129152,
+      "sha256": "871e6c82b0eb47137382bd03964d0b8376aba35d4e7f37552a8e3a435be79472"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\figures\\figure_3_pareto_cost_recall.png",
+      "size_bytes": 137782,
+      "sha256": "b2c3bde4f7f1fab10f182da5161733febec4c8271a96d7c887e6bd644d88984b"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\figures\\figure_4_ablation_mcc_comparison.png",
+      "size_bytes": 138183,
+      "sha256": "b5ff04af1cb866873b8fbc9b323dc1ebb2c29fa46c21a769dfcbbd8e20986942"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_ABLATION_RESULTS.csv",
+      "size_bytes": 946,
+      "sha256": "2c43377c2c2020b8d0747eaff63952d5ea61c900abd5b9b2ef6b43ffaeaaf710"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_BASELINE_COMPARISON.csv",
+      "size_bytes": 665,
+      "sha256": "da2822c5a669248f9b0b644cb1009adb8f378759a3f9224a993ad4b908c6e269"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_CALIBRATION_METRICS.csv",
+      "size_bytes": 8149,
+      "sha256": "085588d061b490edde45689e8ecbf7a974b17b55cda7905f21bf63d9732ef23e"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_CLASSIFICATION_METRICS.csv",
+      "size_bytes": 1844,
+      "sha256": "ae563f716bdfb32424c5193b1d4efb54031eb69f514130d419a33b5d5c292225"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_COST_ANALYSIS.csv",
+      "size_bytes": 733,
+      "sha256": "e7d414993cfc7c1aa371c0930fb034b4c7f3d178663c5742a10ed976399c5119"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_EXECUTION_LOG.txt",
+      "size_bytes": 2789,
+      "sha256": "f6fc0ca6d2d0e72145098664a2cb2ce4a102e0c8ec394a8a82c18dc5b481f670"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_INTEGRITY_AUDIT.md",
+      "size_bytes": 1874,
+      "sha256": "fec106fcb83a415c3d8257bf1f9af6da1fc49e92856de216f66b61894cd388d4"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_RESEARCH_EXECUTION_REPORT.md",
+      "size_bytes": 4872,
+      "sha256": "64820f4505025fff93fa68c45fb107ecd53f7b56b4684d81a7f8224f82f34804"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_RESEARCH_PAPER.md",
+      "size_bytes": 11695,
+      "sha256": "4c5ca212d25b8c7750ccc17356d1632592f4e411a741824bf7f5da1cff309906"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_RESEARCH_RESULTS.json",
+      "size_bytes": 29030,
+      "sha256": "666d58c99ca73ade7c2799cc210f5b47441c75303e5bb0e0364b71d43979f346"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_ROBUSTNESS_RESULTS.csv",
+      "size_bytes": 378,
+      "sha256": "6feb7832476764f4229d094b92012316a03d3efa532aff8c3936cd3a22b3a97d"
+    },
+    {
+      "relative_path": "research_upgrade\\artifacts\\final_research\\FINAL_STATISTICAL_ANALYSIS.json",
+      "size_bytes": 2984,
+      "sha256": "65388e17fcb21dd8061a6f01af39893ad56152525524f3bc759ad52f7000fd5d"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "random_seeds": {
+    "global_random_seed": 42,
+    "bootstrap_seed": 42,
+    "conformal_split_seed": 42
+  },
+  "dataset_partitions": {
+    "text": {
+      "train_pairs": 4000,
+      "val_pairs": 1500,
+      "test_pairs": 3000,
+      "test_premise_groups": 1015,
+      "calibration_premise_groups": 254,
+      "evaluation_premise_groups": 761,
+      "group_disjoint": true,
+      "leakage_status": "ZERO_LEAKAGE"
+    },
+    "code": {
+      "total_pairs_policy_a": 720,
+      "total_pairs_policy_b": 709,
+      "evaluation_paradigm": "Leave-One-Group-Out (LOGO) across 7 programming assignment cases",
+      "leakage_status": "ZERO_PROGRAM_LEAKAGE",
+      "folds": [
+        {
+          "fold": 1,
+          "held_out_case": "case-01",
+          "train_samples": 630,
+          "test_samples": 90,
+          "test_positives": 36,
+          "test_negatives": 54,
+          "accuracy": 0.5333,
+          "precision": 0.4375,
+          "recall": 0.5833,
+          "f1": 0.5,
+          "mcc": 0.0818
+        },
+        {
+          "fold": 2,
+          "held_out_case": "case-02",
+          "train_samples": 616,
+          "test_samples": 104,
+          "test_positives": 50,
+          "test_negatives": 54,
+          "accuracy": 0.9327,
+          "precision": 0.9778,
+          "recall": 0.88,
+          "f1": 0.9263,
+          "mcc": 0.8688
+        },
+        {
+          "fold": 3,
+          "held_out_case": "case-03",
+          "train_samples": 617,
+          "test_samples": 103,
+          "test_positives": 49,
+          "test_negatives": 54,
+          "accuracy": 0.8835,
+          "precision": 0.9111,
+          "recall": 0.8367,
+          "f1": 0.8723,
+          "mcc": 0.7679
+        },
+        {
+          "fold": 4,
+          "held_out_case": "case-04",
+          "train_samples": 612,
+          "test_samples": 108,
+          "test_positives": 54,
+          "test_negatives": 54,
+          "accuracy": 0.9907,
+          "precision": 0.9818,
+          "recall": 1.0,
+          "f1": 0.9908,
+          "mcc": 0.9816
+        },
+        {
+          "fold": 5,
+          "held_out_case": "case-05",
+          "train_samples": 613,
+          "test_samples": 107,
+          "test_positives": 53,
+          "test_negatives": 54,
+          "accuracy": 0.8879,
+          "precision": 0.8596,
+          "recall": 0.9245,
+          "f1": 0.8909,
+          "mcc": 0.778
+        },
+        {
+          "fold": 6,
+          "held_out_case": "case-06",
+          "train_samples": 617,
+          "test_samples": 103,
+          "test_positives": 49,
+          "test_negatives": 54,
+          "accuracy": 0.7767,
+          "precision": 0.7097,
+          "recall": 0.898,
+          "f1": 0.7928,
+          "mcc": 0.5761
+        },
+        {
+          "fold": 7,
+          "held_out_case": "case-07",
+          "train_samples": 615,
+          "test_samples": 105,
+          "test_positives": 51,
+          "test_negatives": 54,
+          "accuracy": 0.8476,
+          "precision": 0.7869,
+          "recall": 0.9412,
+          "f1": 0.8571,
+          "mcc": 0.7095
+        }
+      ]
+    }
+  },
+  "conformal_prediction_configuration": {
+    "nominal_error_rate_alpha": 0.05,
+    "target_coverage": 0.95,
+    "finite_sample_rank_formula": "k = ceil((m + 1) * (1 - alpha))",
+    "calibrated_rank": 243,
+    "calibrated_quantile_value": 0.8955,
+    "empirical_group_coverage": 0.9567,
+    "empirical_pair_coverage": 0.9853,
+    "average_prediction_set_size": 1.6757,
+    "fallback_rule": "Set quantile = inf if k > m (conservative infinite set)"
+  },
+  "budget_constrained_routing": {
+    "text_routing": {
+      "tau_low": 0.2,
+      "tau_high": 0.7,
+      "uncertainty_entropy_threshold": 0.6
+    },
+    "code_routing": {
+      "tau_low": 0.25,
+      "tau_high": 0.75,
+      "uncertainty_entropy_threshold": 0.6
+    }
+  }
+}

@@ -1,0 +1,9 @@
+row_id,original_split,ground_truth_label,exclusion_reason,duplicate_group_id,premise_string,final_disposition
+TXT_001181,val,1,CROSS_SPLIT_PREMISE_CONTAMINATION,NONE,A dog catching a Frisbee.,PURGED_PRE_SPLIT
+TXT_001182,val,0,CROSS_SPLIT_PREMISE_CONTAMINATION,NONE,A dog catching a Frisbee.,PURGED_PRE_SPLIT
+TXT_001183,val,0,CROSS_SPLIT_PREMISE_CONTAMINATION,NONE,A dog catching a Frisbee.,PURGED_PRE_SPLIT
+TXT_016302,test,1,CROSS_SPLIT_PREMISE_CONTAMINATION,NONE,A dog catching a Frisbee.,PURGED_PRE_SPLIT
+TXT_016303,test,0,CROSS_SPLIT_PREMISE_CONTAMINATION,NONE,A dog catching a Frisbee.,PURGED_PRE_SPLIT
+TXT_016304,test,0,CROSS_SPLIT_PREMISE_CONTAMINATION,NONE,A dog catching a Frisbee.,PURGED_PRE_SPLIT
+TXT_002505,val,1,REDUNDANT_EXACT_DUPLICATE_ROW,TEXT_DUPE_GRP_01,A dog carrying a stick in its mouth runs through a,PURGED_PRE_SPLIT
+TXT_003942,val,1,REDUNDANT_EXACT_DUPLICATE_ROW,TEXT_DUPE_GRP_02,"A lone, 2-3 year old blond child in a blue jacket ",PURGED_PRE_SPLIT

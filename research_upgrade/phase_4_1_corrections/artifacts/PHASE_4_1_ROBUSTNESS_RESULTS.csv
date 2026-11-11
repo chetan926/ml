@@ -1,0 +1,2 @@
+zero_jaccard_test_positives_count,proposed_zero_jaccard_recall,proposed_zero_jaccard_hits,tfidf_zero_jaccard_recall,tfidf_zero_jaccard_hits
+25,0.28,7,0.0,0

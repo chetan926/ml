@@ -1,0 +1,304 @@
+{
+  "total_raw_pairs": 733,
+  "participating_duplicate_rows": 24,
+  "duplicate_groups_count": 11,
+  "duplicate_groups": [
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_01",
+      "case": "case-01",
+      "pair_ids": [
+        "CODE_00018",
+        "CODE_00026",
+        "CODE_00031"
+      ],
+      "obfuscation_levels": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "labels": [
+        1,
+        1,
+        1
+      ],
+      "row_count": 3
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_02",
+      "case": "case-01",
+      "pair_ids": [
+        "CODE_00045",
+        "CODE_00052"
+      ],
+      "obfuscation_levels": [
+        "L5",
+        "L6"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_03",
+      "case": "case-01",
+      "pair_ids": [
+        "CODE_00028",
+        "CODE_00033"
+      ],
+      "obfuscation_levels": [
+        "L2",
+        "L3"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_04",
+      "case": "case-06",
+      "pair_ids": [
+        "CODE_00549",
+        "CODE_00557"
+      ],
+      "obfuscation_levels": [
+        "L2",
+        "L3"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_05",
+      "case": "case-06",
+      "pair_ids": [
+        "CODE_00551",
+        "CODE_00559"
+      ],
+      "obfuscation_levels": [
+        "L2",
+        "L3"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_06",
+      "case": "case-02",
+      "pair_ids": [
+        "CODE_00139",
+        "CODE_00148",
+        "CODE_00157"
+      ],
+      "obfuscation_levels": [
+        "L4",
+        "L5",
+        "L6"
+      ],
+      "labels": [
+        1,
+        1,
+        1
+      ],
+      "row_count": 3
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_07",
+      "case": "case-02",
+      "pair_ids": [
+        "CODE_00142",
+        "CODE_00151"
+      ],
+      "obfuscation_levels": [
+        "L4",
+        "L5"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_08",
+      "case": "case-02",
+      "pair_ids": [
+        "CODE_00147",
+        "CODE_00156"
+      ],
+      "obfuscation_levels": [
+        "L5",
+        "L6"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_09",
+      "case": "case-03",
+      "pair_ids": [
+        "CODE_00254",
+        "CODE_00263"
+      ],
+      "obfuscation_levels": [
+        "L5",
+        "L6"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_10",
+      "case": "case-03",
+      "pair_ids": [
+        "CODE_00249",
+        "CODE_00258"
+      ],
+      "obfuscation_levels": [
+        "L4",
+        "L5"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    },
+    {
+      "duplicate_group_id": "CODE_DUPE_GRP_11",
+      "case": "case-03",
+      "pair_ids": [
+        "CODE_00248",
+        "CODE_00257"
+      ],
+      "obfuscation_levels": [
+        "L4",
+        "L5"
+      ],
+      "labels": [
+        1,
+        1
+      ],
+      "row_count": 2
+    }
+  ],
+  "reversed_duplicate_pairs": 0,
+  "task_accounting": [
+    {
+      "task_id": "case-01",
+      "raw_total_pairs": 94,
+      "raw_pos_pairs": 40,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 7,
+      "policy_a_retained_pairs": 90,
+      "policy_a_pos": 36,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 87,
+      "policy_b_pos": 33,
+      "policy_b_neg": 54,
+      "physical_java_files": 56
+    },
+    {
+      "task_id": "case-02",
+      "raw_total_pairs": 108,
+      "raw_pos_pairs": 54,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 7,
+      "policy_a_retained_pairs": 104,
+      "policy_a_pos": 50,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 101,
+      "policy_b_pos": 47,
+      "policy_b_neg": 54,
+      "physical_java_files": 70
+    },
+    {
+      "task_id": "case-03",
+      "raw_total_pairs": 106,
+      "raw_pos_pairs": 52,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 6,
+      "policy_a_retained_pairs": 103,
+      "policy_a_pos": 49,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 100,
+      "policy_b_pos": 46,
+      "policy_b_neg": 54,
+      "physical_java_files": 68
+    },
+    {
+      "task_id": "case-04",
+      "raw_total_pairs": 108,
+      "raw_pos_pairs": 54,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 0,
+      "policy_a_retained_pairs": 108,
+      "policy_a_pos": 54,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 108,
+      "policy_b_pos": 54,
+      "policy_b_neg": 54,
+      "physical_java_files": 70
+    },
+    {
+      "task_id": "case-05",
+      "raw_total_pairs": 107,
+      "raw_pos_pairs": 53,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 0,
+      "policy_a_retained_pairs": 107,
+      "policy_a_pos": 53,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 107,
+      "policy_b_pos": 53,
+      "policy_b_neg": 54,
+      "physical_java_files": 69
+    },
+    {
+      "task_id": "case-06",
+      "raw_total_pairs": 105,
+      "raw_pos_pairs": 51,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 4,
+      "policy_a_retained_pairs": 103,
+      "policy_a_pos": 49,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 101,
+      "policy_b_pos": 47,
+      "policy_b_neg": 54,
+      "physical_java_files": 67
+    },
+    {
+      "task_id": "case-07",
+      "raw_total_pairs": 105,
+      "raw_pos_pairs": 51,
+      "raw_neg_pairs": 54,
+      "duplicate_rows": 0,
+      "policy_a_retained_pairs": 105,
+      "policy_a_pos": 51,
+      "policy_a_neg": 54,
+      "policy_b_non_collision_pairs": 105,
+      "policy_b_pos": 51,
+      "policy_b_neg": 54,
+      "physical_java_files": 67
+    }
+  ],
+  "policy_a_total_retained": 720,
+  "policy_b_total_retained": 709,
+  "justified_primary_policy": "POLICY_A_REPRESENTATIVE_RETENTION"
+}

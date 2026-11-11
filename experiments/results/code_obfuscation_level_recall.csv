@@ -1,0 +1,7 @@
+Obfuscation Level,Description,SVM Recall
+L1,Exact code copying (comments/formatting),0.9375
+L2,Identifier renaming (student variables),1.0
+L3,Statement reordering & declaration order,1.0
+L4,Control flow replacement (loop constructs),1.0
+L5,Method abstraction & procedural restructuring,1.0
+L6,Combined obfuscation attacks,0.7778

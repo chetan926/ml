@@ -1,0 +1,65 @@
+{
+  "train": {
+    "train": 1349,
+    "val": 0,
+    "cal_prob": 0,
+    "cal_conf": 0,
+    "test": 0,
+    "dev_reserve": 0,
+    "test_reserve": 0
+  },
+  "val": {
+    "train": 0,
+    "val": 508,
+    "cal_prob": 0,
+    "cal_conf": 0,
+    "test": 0,
+    "dev_reserve": 0,
+    "test_reserve": 0
+  },
+  "cal_prob": {
+    "train": 0,
+    "val": 0,
+    "cal_prob": 336,
+    "cal_conf": 0,
+    "test": 0,
+    "dev_reserve": 0,
+    "test_reserve": 0
+  },
+  "cal_conf": {
+    "train": 0,
+    "val": 0,
+    "cal_prob": 0,
+    "cal_conf": 334,
+    "test": 0,
+    "dev_reserve": 0,
+    "test_reserve": 0
+  },
+  "test": {
+    "train": 0,
+    "val": 0,
+    "cal_prob": 0,
+    "cal_conf": 0,
+    "test": 1015,
+    "dev_reserve": 0,
+    "test_reserve": 0
+  },
+  "dev_reserve": {
+    "train": 0,
+    "val": 0,
+    "cal_prob": 0,
+    "cal_conf": 0,
+    "test": 0,
+    "dev_reserve": 791,
+    "test_reserve": 0
+  },
+  "test_reserve": {
+    "train": 0,
+    "val": 0,
+    "cal_prob": 0,
+    "cal_conf": 0,
+    "test": 0,
+    "dev_reserve": 0,
+    "test_reserve": 2307
+  }
+}

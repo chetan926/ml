@@ -1,0 +1,2 @@
+text_zero_jaccard_positives_count,text_zero_jaccard_proposed_recall,text_zero_jaccard_tfidf_baseline_recall,text_low_lexical_positives_count,text_low_lexical_proposed_recall,text_length_mismatch_positives_count,text_length_mismatch_proposed_recall,code_obfuscation_adv_over_raw_token
+25,0.4,0.0,118,0.4576,662,0.7205,+0.0765 mean similarity recovery under identifier renaming

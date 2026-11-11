@@ -1,0 +1,85 @@
+{
+  "manifest_version": "3.3.0",
+  "phase": "Phase 3.3 \u2014 Robust Multi-View Candidate Generation",
+  "timestamp": "2026-11-11 14:03:51",
+  "baseline_integrity_verified": true,
+  "baseline_registered_files": 28,
+  "phase_3_3_tracked_files_count": 15,
+  "tracked_files": [
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/__init__.py",
+      "file_size_bytes": 1796,
+      "sha256_checksum": "4a88b1418e656ef4b5b9e46687f95ca013ff010677d6e197bd08b53fb3545780"
+    },
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/candidate_evaluation.py",
+      "file_size_bytes": 3797,
+      "sha256_checksum": "a5d8005513e008bbdd413af1e1e8cf168289c4550c51c02648a7e4d4dd7dc139"
+    },
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/threshold_selection.py",
+      "file_size_bytes": 5436,
+      "sha256_checksum": "66cd6869091d2baf0b5bf7182fb7b4b54e93dd19c658da4306bc74851526ffb4"
+    },
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/score_fusion.py",
+      "file_size_bytes": 9686,
+      "sha256_checksum": "914d58767c74b1ea2a115f57822a9fb556c98ed7edbdf32cf8df41cee7c54546"
+    },
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/text_candidate_scorer.py",
+      "file_size_bytes": 8652,
+      "sha256_checksum": "f2c18c7cfc658c25b4bfe702f0919b77aa771cf7c76c58b2347e443e7782c76e"
+    },
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/code_candidate_scorer.py",
+      "file_size_bytes": 9019,
+      "sha256_checksum": "c7ebd00befd26b7623c21efcc489ddb8a7c74835335268b6936201af11004393"
+    },
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/ablation_experiments.py",
+      "file_size_bytes": 7792,
+      "sha256_checksum": "65bf1af67b29140cf2e98936d04d79a4197d4441e68baf9ab2fe7f2371848c0c"
+    },
+    {
+      "relative_path": "research_upgrade/src/candidate_generation/robustness_analysis.py",
+      "file_size_bytes": 5378,
+      "sha256_checksum": "93705832be67a7b3f1ee3c0a95c2bfb6db6550d2356abf986001c50c92dadea9"
+    },
+    {
+      "relative_path": "research_upgrade/audits/phase_3/run_phase_3_3_audit.py",
+      "file_size_bytes": 19363,
+      "sha256_checksum": "1a21f1ac5a448a152b2b403cde377b20471b204ce377ed65ea7e8b4c94b87ee3"
+    },
+    {
+      "relative_path": "tests/test_candidate_evaluation.py",
+      "file_size_bytes": 2756,
+      "sha256_checksum": "aa2471ce550b65d382d1f7ed8922fca6831260051593144200f75aaff485a4e7"
+    },
+    {
+      "relative_path": "tests/test_threshold_selection.py",
+      "file_size_bytes": 2261,
+      "sha256_checksum": "e77c4c0772063f47f057a40e3e60a660376f04f7106fa80b263dc644e26eb84b"
+    },
+    {
+      "relative_path": "tests/test_score_fusion.py",
+      "file_size_bytes": 2828,
+      "sha256_checksum": "ae855e6443699d403286071234a0e98966531b5307074a93e4ceed62df8f01f2"
+    },
+    {
+      "relative_path": "tests/test_text_candidate_generation.py",
+      "file_size_bytes": 2994,
+      "sha256_checksum": "bd7059776a5f14c629c75966e669af29a770c8a8e856d8b85bb2387bc8f83cf0"
+    },
+    {
+      "relative_path": "tests/test_code_candidate_generation.py",
+      "file_size_bytes": 2887,
+      "sha256_checksum": "357d6b8af493ca3655d0c3ab9221088278332af2dc1321811402ad5d65fa0bbd"
+    },
+    {
+      "relative_path": "tests/test_candidate_reproducibility.py",
+      "file_size_bytes": 2625,
+      "sha256_checksum": "2b9f684bdd112cffcd8818505ea7314d136b812107586af39a6e6414c978fdb6"
+    }
+  ]
+}

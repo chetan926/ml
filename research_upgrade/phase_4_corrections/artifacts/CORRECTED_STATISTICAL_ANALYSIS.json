@@ -1,0 +1,137 @@
+{
+  "text_group_aware_bootstrap_ci_95": {
+    "mcc": {
+      "mean": 0.5289,
+      "std_error": 0.0157,
+      "ci_lower": 0.4983,
+      "ci_upper": 0.5601
+    },
+    "f1_score": {
+      "mean": 0.6812,
+      "std_error": 0.0113,
+      "ci_lower": 0.6582,
+      "ci_upper": 0.7027
+    },
+    "recall": {
+      "mean": 0.65,
+      "std_error": 0.0152,
+      "ci_lower": 0.6204,
+      "ci_upper": 0.679
+    },
+    "precision": {
+      "mean": 0.7158,
+      "std_error": 0.0133,
+      "ci_lower": 0.69,
+      "ci_upper": 0.7412
+    },
+    "accuracy": {
+      "mean": 0.7921,
+      "std_error": 0.0069,
+      "ci_lower": 0.7786,
+      "ci_upper": 0.8049
+    }
+  },
+  "text_paired_differences_vs_semantic_ci_95": {
+    "delta_mcc": {
+      "mean_difference": 0.0737,
+      "std_error": 0.0169,
+      "ci_lower": 0.0394,
+      "ci_upper": 0.1082,
+      "is_statistically_significant": true
+    },
+    "delta_f1": {
+      "mean_difference": 0.0187,
+      "std_error": 0.0115,
+      "ci_lower": -0.0036,
+      "ci_upper": 0.0409,
+      "is_statistically_significant": false
+    },
+    "delta_accuracy": {
+      "mean_difference": 0.0932,
+      "std_error": 0.0088,
+      "ci_lower": 0.0759,
+      "ci_upper": 0.1105,
+      "is_statistically_significant": true
+    },
+    "delta_recall": {
+      "mean_difference": -0.2146,
+      "std_error": 0.0152,
+      "ci_lower": -0.2447,
+      "ci_upper": -0.1853,
+      "is_statistically_significant": true
+    },
+    "delta_precision": {
+      "mean_difference": 0.1787,
+      "std_error": 0.0118,
+      "ci_lower": 0.1548,
+      "ci_upper": 0.2023,
+      "is_statistically_significant": true
+    }
+  },
+  "text_mcnemar_test_vs_semantic": {
+    "contingency_table": {
+      "both_correct": 1827,
+      "proposed_only_correct (b)": 549,
+      "baseline_only_correct (c)": 269,
+      "both_incorrect": 355
+    },
+    "chi2_statistic": 95.1601,
+    "raw_p_value": 1.7558988234911841e-22,
+    "formatted_p_value": "< 1e-16",
+    "is_significant_at_05": true,
+    "is_significant_at_001": true,
+    "odds_ratio": 2.0409
+  },
+  "code_group_aware_bootstrap_ci_95": {
+    "mcc": {
+      "mean": 0.6865,
+      "std_error": 0.0987,
+      "ci_lower": 0.4675,
+      "ci_upper": 0.8484
+    },
+    "f1_score": {
+      "mean": 0.84,
+      "std_error": 0.0518,
+      "ci_lower": 0.7243,
+      "ci_upper": 0.9243
+    },
+    "recall": {
+      "mean": 0.8782,
+      "std_error": 0.0416,
+      "ci_lower": 0.7824,
+      "ci_upper": 0.9446
+    },
+    "precision": {
+      "mean": 0.806,
+      "std_error": 0.0648,
+      "ci_lower": 0.6658,
+      "ci_upper": 0.9172
+    },
+    "accuracy": {
+      "mean": 0.8412,
+      "std_error": 0.0506,
+      "ci_lower": 0.7287,
+      "ci_upper": 0.9242
+    }
+  },
+  "code_mcnemar_test_vs_jaccard": {
+    "contingency_table": {
+      "both_correct": 301,
+      "proposed_only_correct (b)": 306,
+      "baseline_only_correct (c)": 41,
+      "both_incorrect": 72
+    },
+    "chi2_statistic": 200.853,
+    "raw_p_value": 1.3604559292948664e-45,
+    "formatted_p_value": "< 1e-16",
+    "is_significant_at_05": true,
+    "is_significant_at_001": true,
+    "odds_ratio": 7.4634
+  },
+  "code_leakage_inflation_analysis": {
+    "group_disjoint_mcc": 0.689228,
+    "stratified_leakage_mcc": 0.866461,
+    "leakage_inflation_delta_mcc": 0.1772,
+    "case_05_limitation": "Case-05 consists of 107 complete pairs where all 53 plagiarized pairs involve a single base program ('prog_original'). Holding out 'prog_original' leaves 0 positive pairs in training. This mathematical topology makes balanced single-case internal cross-fitting impossible without cross-case training."
+  }
+}

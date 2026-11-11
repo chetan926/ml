@@ -1,0 +1,12 @@
+Modality,Method_or_Condition,Condition_Type,Accuracy,Precision,Recall,F1_Score,Specificity,False_Positive_Rate,Candidate_Recall,Pruning_Ratio_Pct,Expensive_Call_Rate_Pct,Direct_Flag_Rate_Pct,Total_Workload_Reduction_Pct,Avg_Latency_ms,Total_Pairs,Filtered_Pairs,Escalated_Pairs,Direct_Flagged_Pairs,Verification_Status
+Text,Traditional Baseline: TF-IDF (Sajid et al. 2025),Traditional Supporting Baseline,0.5723,0.4417,0.7846,0.5652,0.4559,0.5441,N/A,0.00,100.00,0.00,0.00,0.020,3000,0,3000,0,Verified Authentic Baseline
+Text,Method 1: Contextual SBERT (Setu et al. 2025),Recent Methodology (2025),0.7200,0.5697,0.8570,0.6844,0.6448,0.3552,N/A,0.00,100.00,0.00,0.00,4.143,3000,0,3000,0,Verified Authentic (2025)
+Text,Condition A: Full Analysis,Operating Condition,0.7200,0.5697,0.8570,0.6844,0.6448,0.3552,1.0000,0.00,100.00,0.00,0.00,4.143,3000,0,3000,0,Verified Authentic
+Text,Condition B: Fixed-Threshold Filtering,Operating Condition,0.7090,0.5750,0.6849,0.6252,0.7223,0.2777,0.7366,42.87,57.13,0.00,42.87,2.904,3000,1286,1714,0,Verified Authentic
+Text,Condition C: Proposed Typed-Decision Pipeline,Proposed Contribution,0.7180,0.5751,0.7817,0.6627,0.6830,0.3170,0.8598,26.53,70.03,3.43,29.97,3.167,3000,796,2101,103,Verified Authentic
+Source Code,Traditional Baseline: Token Jaccard Filter,Traditional Supporting Baseline,0.5286,0.5083,0.9020,0.6502,0.1759,0.8241,N/A,0.00,0.00,0.00,0.00,0.050,210,0,210,0,Verified Authentic Baseline
+Source Code,Method 2: Multi-Dimensional SVM (Gandhi et al. 2024),Recent Methodology (2024),0.7000,0.6258,0.9510,0.7549,0.4630,0.5370,N/A,0.00,100.00,0.00,0.00,0.013,210,0,210,0,Verified Authentic (2024)
+Source Code,Method 3: Random Forest Ensemble (Mehsen & Joshi 2024),Recent Methodology (2024),0.7333,0.6643,0.9118,0.7686,0.5648,0.4352,N/A,0.00,100.00,0.00,0.00,0.025,210,0,210,0,Verified Authentic (2024)
+Source Code,Condition A: Full SVM Analysis,Operating Condition,0.7000,0.6258,0.9510,0.7549,0.4630,0.5370,1.0000,0.00,100.00,0.00,0.00,0.013,210,0,210,0,Verified Authentic
+Source Code,Condition B: Fixed-Threshold Filtering,Operating Condition,0.6381,0.6000,0.7647,0.6724,0.5185,0.4815,0.7745,24.76,75.24,0.00,24.76,0.060,210,52,158,0,Verified Authentic
+Source Code,Condition C: Proposed Typed-Decision Pipeline,Proposed Contribution,0.6762,0.6049,0.9608,0.7424,0.4074,0.5926,1.0000,0.48,63.33,36.19,36.67,0.058,210,1,133,76,Verified Authentic

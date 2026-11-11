@@ -1,0 +1,114 @@
+{
+  "text_group_aware_bootstrap_ci_95": {
+    "accuracy": {
+      "mean": 0.7896,
+      "ci_lower": 0.7765,
+      "ci_upper": 0.8028
+    },
+    "precision": {
+      "mean": 0.7241,
+      "ci_lower": 0.6975,
+      "ci_upper": 0.7518
+    },
+    "recall": {
+      "mean": 0.622,
+      "ci_lower": 0.592,
+      "ci_upper": 0.6512
+    },
+    "f1_score": {
+      "mean": 0.669,
+      "ci_lower": 0.6461,
+      "ci_upper": 0.6917
+    },
+    "matthews_corrcoef": {
+      "mean": 0.5195,
+      "ci_lower": 0.4896,
+      "ci_upper": 0.5507
+    }
+  },
+  "text_paired_differences_vs_semantic_ci_95": {
+    "delta_accuracy": {
+      "mean_delta": 0.0906,
+      "ci_lower": 0.0761,
+      "ci_upper": 0.1069
+    },
+    "delta_precision": {
+      "mean_delta": 0.1868,
+      "ci_lower": 0.1644,
+      "ci_upper": 0.2118
+    },
+    "delta_recall": {
+      "mean_delta": -0.2429,
+      "ci_lower": -0.2705,
+      "ci_upper": -0.2144
+    },
+    "delta_f1": {
+      "mean_delta": 0.0063,
+      "ci_lower": -0.015,
+      "ci_upper": 0.0272
+    },
+    "delta_mcc": {
+      "mean_delta": 0.0638,
+      "ci_lower": 0.0348,
+      "ci_upper": 0.0951
+    }
+  },
+  "text_mcnemar_test_vs_semantic": {
+    "b_proposed_only_correct": 544,
+    "c_baseline_only_correct": 272,
+    "mcnemar_chi2": 90.0012,
+    "p_value_raw": 0.0,
+    "p_value_formatted": "< 1e-16",
+    "statistically_significant_05": true,
+    "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+  },
+  "code_group_aware_bootstrap_ci_95": {
+    "mcc": {
+      "mean": 0.6965,
+      "std_error": 0.0968,
+      "ci_lower": 0.4824,
+      "ci_upper": 0.8528
+    },
+    "f1_score": {
+      "mean": 0.8444,
+      "std_error": 0.0514,
+      "ci_lower": 0.7309,
+      "ci_upper": 0.9244
+    },
+    "recall": {
+      "mean": 0.8778,
+      "std_error": 0.0445,
+      "ci_lower": 0.776,
+      "ci_upper": 0.9474
+    },
+    "precision": {
+      "mean": 0.8144,
+      "std_error": 0.0628,
+      "ci_lower": 0.6778,
+      "ci_upper": 0.9229
+    },
+    "accuracy": {
+      "mean": 0.8467,
+      "std_error": 0.0492,
+      "ci_lower": 0.7366,
+      "ci_upper": 0.926
+    }
+  },
+  "code_mcnemar_test_vs_jaccard": {
+    "b_proposed_only_correct": 310,
+    "c_baseline_only_correct": 41,
+    "mcnemar_chi2": 204.6268,
+    "p_value_raw": 0.0,
+    "p_value_formatted": "< 1e-16",
+    "statistically_significant_05": true,
+    "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+  },
+  "code_leakage_inflation_analysis": {
+    "group_disjoint_mcc": 0.699566,
+    "stratified_leakage_mcc": 0.821743,
+    "leakage_inflation_delta_mcc": 0.1222,
+    "identical_model_architecture": "LogisticRegression(C=1.0) Stage-1 + PlattScaler + RandomForest(depth=8) Stage-2",
+    "program_overlap_verification": "SHA-256 content hashing confirms 0 program overlap between cases in LOGO, but identical programs appear in train and test in Stratified 5-Fold",
+    "case_05_limitation": "Case-05 consists of 107 complete pairs where all 53 plagiarized pairs involve a single base program ('prog_original'). Holding out 'prog_original' leaves 0 positive pairs in training. This mathematical topology makes balanced single-case internal cross-fitting impossible without cross-case training."
+  }
+}

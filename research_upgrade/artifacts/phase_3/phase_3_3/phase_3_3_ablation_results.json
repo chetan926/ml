@@ -1,0 +1,302 @@
+{
+  "text_feature_ablations": {
+    "word_only": {
+      "configuration": "word_only",
+      "feature_count": 3,
+      "features_used": [
+        "text_word_tfidf_sim",
+        "text_word_jaccard",
+        "text_word_overlap_ratio"
+      ],
+      "selected_threshold": 0.087175,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 1.0,
+      "validation_workload_reduction": 0.0,
+      "validation_precision": 0.349333,
+      "test_recall": 1.0,
+      "test_workload_reduction": 0.0,
+      "test_precision": 0.342,
+      "test_false_negatives": 0,
+      "test_escalated_pairs": 3000
+    },
+    "character_only": {
+      "configuration": "character_only",
+      "feature_count": 3,
+      "features_used": [
+        "text_char_tfidf_sim",
+        "text_char_jaccard_3gram",
+        "text_char_lcs_ratio"
+      ],
+      "selected_threshold": 0.17796,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 0.980916,
+      "validation_workload_reduction": 0.046667,
+      "validation_precision": 0.359441,
+      "test_recall": 0.98538,
+      "test_workload_reduction": 0.037667,
+      "test_precision": 0.350191,
+      "test_false_negatives": 15,
+      "test_escalated_pairs": 2887
+    },
+    "semantic_only": {
+      "configuration": "semantic_only",
+      "feature_count": 1,
+      "features_used": [
+        "text_semantic_minilm_sim"
+      ],
+      "selected_threshold": 0.111044,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 0.980916,
+      "validation_workload_reduction": 0.204667,
+      "validation_precision": 0.430847,
+      "test_recall": 0.990253,
+      "test_workload_reduction": 0.207667,
+      "test_precision": 0.42743,
+      "test_false_negatives": 10,
+      "test_escalated_pairs": 2377
+    },
+    "structural_only": {
+      "configuration": "structural_only",
+      "feature_count": 4,
+      "features_used": [
+        "text_length_ratio",
+        "text_token_count_delta",
+        "text_sentence_delta",
+        "text_ttr_sim"
+      ],
+      "selected_threshold": 0.219025,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 0.980916,
+      "validation_workload_reduction": 0.033333,
+      "validation_precision": 0.354483,
+      "test_recall": 0.978558,
+      "test_workload_reduction": 0.034333,
+      "test_precision": 0.346565,
+      "test_false_negatives": 22,
+      "test_escalated_pairs": 2897
+    },
+    "word_plus_character": {
+      "configuration": "word_plus_character",
+      "feature_count": 6,
+      "features_used": [
+        "text_word_tfidf_sim",
+        "text_word_jaccard",
+        "text_word_overlap_ratio",
+        "text_char_tfidf_sim",
+        "text_char_jaccard_3gram",
+        "text_char_lcs_ratio"
+      ],
+      "selected_threshold": 0.095349,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 0.980916,
+      "validation_workload_reduction": 0.033333,
+      "validation_precision": 0.354483,
+      "test_recall": 0.980507,
+      "test_workload_reduction": 0.036,
+      "test_precision": 0.347856,
+      "test_false_negatives": 20,
+      "test_escalated_pairs": 2892
+    },
+    "word_plus_semantic": {
+      "configuration": "word_plus_semantic",
+      "feature_count": 4,
+      "features_used": [
+        "text_word_tfidf_sim",
+        "text_word_jaccard",
+        "text_word_overlap_ratio",
+        "text_semantic_minilm_sim"
+      ],
+      "selected_threshold": 0.060867,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 0.980916,
+      "validation_workload_reduction": 0.185333,
+      "validation_precision": 0.420622,
+      "test_recall": 0.993177,
+      "test_workload_reduction": 0.178333,
+      "test_precision": 0.413387,
+      "test_false_negatives": 7,
+      "test_escalated_pairs": 2465
+    },
+    "character_plus_semantic": {
+      "configuration": "character_plus_semantic",
+      "feature_count": 4,
+      "features_used": [
+        "text_char_tfidf_sim",
+        "text_char_jaccard_3gram",
+        "text_char_lcs_ratio",
+        "text_semantic_minilm_sim"
+      ],
+      "selected_threshold": 0.1009,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 0.980916,
+      "validation_workload_reduction": 0.214,
+      "validation_precision": 0.435963,
+      "test_recall": 0.987329,
+      "test_workload_reduction": 0.227333,
+      "test_precision": 0.437015,
+      "test_false_negatives": 13,
+      "test_escalated_pairs": 2318
+    },
+    "all_available_views": {
+      "configuration": "all_available_views",
+      "feature_count": 11,
+      "features_used": [
+        "text_word_tfidf_sim",
+        "text_word_jaccard",
+        "text_word_overlap_ratio",
+        "text_char_tfidf_sim",
+        "text_char_jaccard_3gram",
+        "text_char_lcs_ratio",
+        "text_semantic_minilm_sim",
+        "text_length_ratio",
+        "text_token_count_delta",
+        "text_sentence_delta",
+        "text_ttr_sim"
+      ],
+      "selected_threshold": 0.094515,
+      "target_recall_constraint": 0.98,
+      "validation_recall": 0.980916,
+      "validation_workload_reduction": 0.266,
+      "validation_precision": 0.466848,
+      "test_recall": 0.974659,
+      "test_workload_reduction": 0.273667,
+      "test_precision": 0.458926,
+      "test_false_negatives": 26,
+      "test_escalated_pairs": 2179
+    }
+  },
+  "code_feature_ablations": {
+    "raw_token_only": {
+      "configuration": "raw_token_only",
+      "feature_count": 3,
+      "features_used": [
+        "code_token_jaccard",
+        "code_token_frequency_overlap",
+        "code_rkrgst_sim"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9883,
+      "mean_validation_workload_reduction": 0.0778,
+      "mean_validation_precision": 0.5096,
+      "std_workload_reduction": 0.0327
+    },
+    "normalized_token_only": {
+      "configuration": "normalized_token_only",
+      "feature_count": 3,
+      "features_used": [
+        "code_norm_token_jaccard",
+        "code_norm_freq_overlap",
+        "code_norm_rkrgst_sim"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9854,
+      "mean_validation_workload_reduction": 0.1167,
+      "mean_validation_precision": 0.5324,
+      "std_workload_reduction": 0.0592
+    },
+    "structural_only": {
+      "configuration": "structural_only",
+      "feature_count": 3,
+      "features_used": [
+        "code_nesting_depth_sim",
+        "code_control_block_sim",
+        "code_method_structure_sim"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9912,
+      "mean_validation_workload_reduction": 0.0667,
+      "mean_validation_precision": 0.5047,
+      "std_workload_reduction": 0.0199
+    },
+    "complexity_only": {
+      "configuration": "complexity_only",
+      "feature_count": 4,
+      "features_used": [
+        "code_operator_dist_sim",
+        "code_control_flow_sim",
+        "code_cyclomatic_sim",
+        "code_sloc_ratio"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9854,
+      "mean_validation_workload_reduction": 0.0458,
+      "mean_validation_precision": 0.4916,
+      "std_workload_reduction": 0.0399
+    },
+    "raw_plus_normalized": {
+      "configuration": "raw_plus_normalized",
+      "feature_count": 6,
+      "features_used": [
+        "code_token_jaccard",
+        "code_token_frequency_overlap",
+        "code_rkrgst_sim",
+        "code_norm_token_jaccard",
+        "code_norm_freq_overlap",
+        "code_norm_rkrgst_sim"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9854,
+      "mean_validation_workload_reduction": 0.1306,
+      "mean_validation_precision": 0.5406,
+      "std_workload_reduction": 0.0553
+    },
+    "token_plus_structural": {
+      "configuration": "token_plus_structural",
+      "feature_count": 6,
+      "features_used": [
+        "code_token_jaccard",
+        "code_token_frequency_overlap",
+        "code_rkrgst_sim",
+        "code_nesting_depth_sim",
+        "code_control_block_sim",
+        "code_method_structure_sim"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9854,
+      "mean_validation_workload_reduction": 0.0875,
+      "mean_validation_precision": 0.5138,
+      "std_workload_reduction": 0.0374
+    },
+    "normalized_plus_structural": {
+      "configuration": "normalized_plus_structural",
+      "feature_count": 6,
+      "features_used": [
+        "code_norm_token_jaccard",
+        "code_norm_freq_overlap",
+        "code_norm_rkrgst_sim",
+        "code_nesting_depth_sim",
+        "code_control_block_sim",
+        "code_method_structure_sim"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9854,
+      "mean_validation_workload_reduction": 0.1806,
+      "mean_validation_precision": 0.5781,
+      "std_workload_reduction": 0.0853
+    },
+    "all_available_views": {
+      "configuration": "all_available_views",
+      "feature_count": 13,
+      "features_used": [
+        "code_token_jaccard",
+        "code_token_frequency_overlap",
+        "code_rkrgst_sim",
+        "code_norm_token_jaccard",
+        "code_norm_freq_overlap",
+        "code_norm_rkrgst_sim",
+        "code_nesting_depth_sim",
+        "code_control_block_sim",
+        "code_method_structure_sim",
+        "code_operator_dist_sim",
+        "code_control_flow_sim",
+        "code_cyclomatic_sim",
+        "code_sloc_ratio"
+      ],
+      "target_recall_constraint": 0.98,
+      "mean_validation_recall": 0.9854,
+      "mean_validation_workload_reduction": 0.1208,
+      "mean_validation_precision": 0.5338,
+      "std_workload_reduction": 0.0462
+    }
+  }
+}

@@ -1,0 +1,4 @@
+Routing_State,Pair_Count,Percentage,SBERT_Invocations
+Pruned_Low_Risk,655,21.833333333333332,0
+Escalated_Uncertain,2229,74.3,2229
+Directly_Flagged_High_Risk,116,3.8666666666666667,0

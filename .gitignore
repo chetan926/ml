@@ -1,0 +1,35 @@
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Binaries and executables
+uv.exe
+*.exe
+*.dll
+*.pyd
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Matplotlib and UI caches
+.matplotlib/
+matplotlib_cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Scratch & temporary dirs
+scratch/
+tmp/
+temp/
