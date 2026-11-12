@@ -1,0 +1,52 @@
+==============================================================================
+PHASE 6 Q1 HARDENING — MASTER EXECUTION
+Timestamp: 2026-11-12 07:18:45  Base seed: 42
+==============================================================================
+
+[S1] Loading benchmark data + phase-3 feature stores + external corpora...
+      Text train/val/test = 4000/1500/3000; Code A=720 B=709; CS=95 CSX=475 MRPC=1725
+
+[S2] Multi-seed text pipeline (seeds=[42, 123, 2024]) ...
+      seed=42: Acc=0.8083 F1=0.7276 MCC=0.5805 GCov=0.9300 S2-avoided=61.37%
+      seed=123: Acc=0.8133 F1=0.7214 MCC=0.5814 GCov=0.9478 S2-avoided=72.5%
+      seed=2024: Acc=0.8090 F1=0.7239 MCC=0.5780 GCov=0.9635 S2-avoided=76.63%
+
+[S3] Group-conformal coverage repair (target 0.95, alpha=0.05)...
+      [A] Standard:    coverage=0.9300 Wilson95=[0.9127,0.9442] qhat=0.8720
+      [B] Mondrian-size:    coverage=0.9300 Wilson95=[0.9127,0.9442]
+      [C] Mondrian-parity:  coverage=0.9281 Wilson95=[0.9105,0.9424]
+      [D] Alpha-tuned:      coverage=1.0000 Wilson95=[0.9962,1.0000] alpha*=0.010
+      RECOMMENDED: D_split_sample_alpha_tuned
+
+[S4] Stage-2 heavy-verifier ablation (MLP vs RF vs HGB vs LR)...
+      MLP cross-style (proposed)       valMCC=0.5605 testMCC(β=1)=0.5462
+      RandomForest                     valMCC=0.4115 testMCC(β=1)=0.4314
+      HistGradientBoosting             valMCC=0.6187 testMCC(β=1)=0.5739
+      LogisticRegression               valMCC=0.6007 testMCC(β=1)=0.5814
+
+[S5] External text validity (evaluation-only transfer)...
+      Offline variant refit on ORIGINAL train only; val operating point: {'tau_low': 0.0, 'tau_high': 1.0, 'entropy_threshold': 0.0, 'stage2_decision_threshold': 0.5, 'val_escalation_ratio': 1.0, 'val_mcc': 0.42999401933400216, 'val_f1': 0.5984930032292788}
+      MRPC test:    Acc=0.4012 F1=0.2851 MCC=0.0255 (β=1 MCC=0.0255)
+      C-S canonical: Acc=0.2526 F1=0.0000 MCC=-0.1726
+      C-S cross-topic (caveated): Acc=0.8505
+      C-S grade g1: recall=0.0000 Wilson95=[0.0, 0.2039]
+      C-S grade g2: recall=0.0000 Wilson95=[0.0, 0.1611]
+      C-S grade g3: recall=0.0000 Wilson95=[0.0, 0.2039]
+      C-S grade g4: recall=0.0000 Wilson95=[0.0, 0.1611]
+
+[S6] Code: multi-seed LOGO (A aug, B) + unseen-severity L6 transfer + Policy A/B consistency ...
+      seed=42 Policy A: MCC=0.6143 S2-avoided=25.69%
+      seed=42 Policy B: MCC=0.6974 S2-avoided=71.09%
+      seed=123 Policy A: MCC=0.6308 S2-avoided=32.78%
+      seed=123 Policy B: MCC=0.7033 S2-avoided=81.1%
+      seed=2024 Policy A: MCC=0.6333 S2-avoided=34.72%
+      seed=2024 Policy B: MCC=0.6900 S2-avoided=74.33%
+      Policy A↔B MCC Spearman ρ=-0.5000 (Δ mean=-0.0708)
+
+      Unseen-severity L6 transfer (LOGO trained w/o any L6 pair)...
+      L6 transfer: n=59 (pos=59) MCC=NR (held-out L6 slice is single-class: all-positive) detection_recall=0.6949 (in-dist MCC=0.6906)
+
+[S7] C4 expert-review walkthrough packet (20 grey-zone test pairs)...
+      Grey-zone pairs: 1293 (43.1%); packet saved (20 sheets).
+
+DONE in 663.8s — artifacts in /home/user/ml/research_upgrade/phase_6_q1_hardening/artifacts

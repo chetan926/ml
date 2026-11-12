@@ -1,0 +1,5 @@
+verifier,val_mcc@0.5,test_accuracy,test_precision,test_recall,test_f1,test_mcc,test_n,fit_sec,latency_ms
+MLP cross-style (proposed),0.5605,0.8003,0.7344,0.652,0.6908,0.5462,3000,3.83,0.146374
+RandomForest,0.4115,0.7583,0.7813,0.4074,0.5356,0.4314,3000,17.5,NR
+HistGradientBoosting,0.6187,0.8087,0.7224,0.7154,0.7189,0.5739,3000,19.18,NR
+LogisticRegression,0.6007,0.8153,0.7554,0.6803,0.7159,0.5814,3000,0.97,NR
