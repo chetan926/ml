@@ -1,0 +1,11 @@
+Domain,Configuration,accuracy,precision,recall,f1,mcc
+Text,Word lexical only,0.7243,0.6932,0.348,0.4633,0.337
+Text,Char n-gram only,0.7027,0.6642,0.2641,0.378,0.2695
+Text,MiniLM semantic only,0.746,0.6549,0.5439,0.5942,0.4155
+Text,LSA semantic only,0.6583,0.5029,0.0858,0.1465,0.0844
+Text,Structural only,0.6583,0.5333,0.0078,0.0154,0.0286
+Text,C1 multi-view fusion (12 views),0.793,0.7125,0.6618,0.6862,0.5329
+Text,C1 + C2 calibration,0.7947,0.7131,0.6686,0.6901,0.5375
+Text,C1+C2+C3+C4 full framework (heavy S2),0.808,0.7072,0.7485,0.7273,0.5799
+Code,C1 multi-view fusion LR (OOF-LOGO ref: Phase 4.1),0.8486,0.8157,0.8801,0.8467,0.6996
+Code,"C1+C2+C3+C4 full framework (heavy S2, LOGO)",0.8306,0.7973,0.8626,0.8287,0.6636

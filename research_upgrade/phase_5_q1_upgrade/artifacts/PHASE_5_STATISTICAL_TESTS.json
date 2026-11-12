@@ -1,0 +1,500 @@
+{
+  "text": {
+    "B-T1 TF-IDF Lexical (Sajid 2025)": {
+      "mcnemar": {
+        "b_proposed_only_correct": 985,
+        "c_baseline_only_correct": 252,
+        "mcnemar_chi2": 433.1641,
+        "p_value_raw": 0.0,
+        "p_value_formatted": "< 1e-16",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.244,
+          "ci_lower": 0.2239,
+          "ci_upper": 0.2646
+        },
+        "delta_precision": {
+          "mean_delta": 0.2823,
+          "ci_lower": 0.2598,
+          "ci_upper": 0.306
+        },
+        "delta_recall": {
+          "mean_delta": -0.0311,
+          "ci_lower": -0.0647,
+          "ci_upper": 0.0029
+        },
+        "delta_f1": {
+          "mean_delta": 0.1772,
+          "ci_lower": 0.1562,
+          "ci_upper": 0.1984
+        },
+        "delta_mcc": {
+          "mean_delta": 0.3527,
+          "ci_lower": 0.316,
+          "ci_upper": 0.3901
+        }
+      }
+    },
+    "B-T2 Dense Semantic MiniLM (Setu 2025)": {
+      "mcnemar": {
+        "b_proposed_only_correct": 409,
+        "c_baseline_only_correct": 214,
+        "mcnemar_chi2": 60.4109,
+        "p_value_raw": 7.66053886991358e-15,
+        "p_value_formatted": "7.6605e-15",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.065,
+          "ci_lower": 0.0505,
+          "ci_upper": 0.079
+        },
+        "delta_precision": {
+          "mean_delta": 0.1077,
+          "ci_lower": 0.0858,
+          "ci_upper": 0.1283
+        },
+        "delta_recall": {
+          "mean_delta": 0.0003,
+          "ci_lower": -0.0302,
+          "ci_upper": 0.0328
+        },
+        "delta_f1": {
+          "mean_delta": 0.0616,
+          "ci_lower": 0.0412,
+          "ci_upper": 0.0809
+        },
+        "delta_mcc": {
+          "mean_delta": 0.1113,
+          "ci_lower": 0.0798,
+          "ci_upper": 0.1422
+        }
+      }
+    },
+    "B-T3 Flat Multi-View Hybrid LR": {
+      "mcnemar": {
+        "b_proposed_only_correct": 271,
+        "c_baseline_only_correct": 173,
+        "mcnemar_chi2": 21.1914,
+        "p_value_raw": 4.156163155744075e-06,
+        "p_value_formatted": "4.1562e-06",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.0327,
+          "ci_lower": 0.0198,
+          "ci_upper": 0.0458
+        },
+        "delta_precision": {
+          "mean_delta": 0.076,
+          "ci_lower": 0.058,
+          "ci_upper": 0.0942
+        },
+        "delta_recall": {
+          "mean_delta": -0.0761,
+          "ci_lower": -0.1005,
+          "ci_upper": -0.0503
+        },
+        "delta_f1": {
+          "mean_delta": 0.0122,
+          "ci_lower": -0.0044,
+          "ci_upper": 0.0301
+        },
+        "delta_mcc": {
+          "mean_delta": 0.0319,
+          "ci_lower": 0.0061,
+          "ci_upper": 0.0594
+        }
+      }
+    }
+  },
+  "code": {
+    "B-C1 Token Jaccard": {
+      "mcnemar": {
+        "b_proposed_only_correct": 223,
+        "c_baseline_only_correct": 49,
+        "mcnemar_chi2": 110.0331,
+        "p_value_raw": 0.0,
+        "p_value_formatted": "< 1e-16",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.2395,
+          "ci_lower": 0.1439,
+          "ci_upper": 0.3361
+        },
+        "delta_precision": {
+          "mean_delta": 0.2524,
+          "ci_lower": 0.1515,
+          "ci_upper": 0.3673
+        },
+        "delta_recall": {
+          "mean_delta": 0.002,
+          "ci_lower": -0.0538,
+          "ci_upper": 0.0629
+        },
+        "delta_f1": {
+          "mean_delta": 0.1611,
+          "ci_lower": 0.0982,
+          "ci_upper": 0.2261
+        },
+        "delta_mcc": {
+          "mean_delta": 0.4267,
+          "ci_lower": 0.2519,
+          "ci_upper": 0.6173
+        }
+      }
+    },
+    "B-C1 Token Jaccard | vs PROPOSED beta=1": {
+      "mcnemar": {
+        "b_proposed_only_correct": 227,
+        "c_baseline_only_correct": 41,
+        "mcnemar_chi2": 127.7052,
+        "p_value_raw": 0.0,
+        "p_value_formatted": "< 1e-16",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.2565,
+          "ci_lower": 0.1713,
+          "ci_upper": 0.3429
+        },
+        "delta_precision": {
+          "mean_delta": 0.2585,
+          "ci_lower": 0.1821,
+          "ci_upper": 0.3442
+        },
+        "delta_recall": {
+          "mean_delta": 0.0376,
+          "ci_lower": -0.0118,
+          "ci_upper": 0.0926
+        },
+        "delta_f1": {
+          "mean_delta": 0.181,
+          "ci_lower": 0.1234,
+          "ci_upper": 0.2362
+        },
+        "delta_mcc": {
+          "mean_delta": 0.4629,
+          "ci_lower": 0.301,
+          "ci_upper": 0.6294
+        }
+      }
+    },
+    "B-C2 RKRGST String Tiling": {
+      "mcnemar": {
+        "b_proposed_only_correct": 276,
+        "c_baseline_only_correct": 43,
+        "mcnemar_chi2": 168.7273,
+        "p_value_raw": 0.0,
+        "p_value_formatted": "< 1e-16",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.3218,
+          "ci_lower": 0.2557,
+          "ci_upper": 0.3854
+        },
+        "delta_precision": {
+          "mean_delta": 0.3069,
+          "ci_lower": 0.2262,
+          "ci_upper": 0.4021
+        },
+        "delta_recall": {
+          "mean_delta": -0.0614,
+          "ci_lower": -0.1265,
+          "ci_upper": 0.0027
+        },
+        "delta_f1": {
+          "mean_delta": 0.1871,
+          "ci_lower": 0.142,
+          "ci_upper": 0.237
+        },
+        "delta_mcc": {
+          "mean_delta": 0.5727,
+          "ci_lower": 0.4362,
+          "ci_upper": 0.7161
+        }
+      }
+    },
+    "B-C2 RKRGST String Tiling | vs PROPOSED beta=1": {
+      "mcnemar": {
+        "b_proposed_only_correct": 279,
+        "c_baseline_only_correct": 34,
+        "mcnemar_chi2": 190.2109,
+        "p_value_raw": 0.0,
+        "p_value_formatted": "< 1e-16",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.3388,
+          "ci_lower": 0.2873,
+          "ci_upper": 0.3885
+        },
+        "delta_precision": {
+          "mean_delta": 0.313,
+          "ci_lower": 0.2554,
+          "ci_upper": 0.3782
+        },
+        "delta_recall": {
+          "mean_delta": -0.0258,
+          "ci_lower": -0.0721,
+          "ci_upper": 0.0204
+        },
+        "delta_f1": {
+          "mean_delta": 0.2071,
+          "ci_lower": 0.1769,
+          "ci_upper": 0.2437
+        },
+        "delta_mcc": {
+          "mean_delta": 0.6089,
+          "ci_lower": 0.5068,
+          "ci_upper": 0.7237
+        }
+      }
+    },
+    "B-C3 Gandhi RBF-SVM (2024)": {
+      "mcnemar": {
+        "b_proposed_only_correct": 48,
+        "c_baseline_only_correct": 51,
+        "mcnemar_chi2": 0.0404,
+        "p_value_raw": 0.840692660305486,
+        "p_value_formatted": "8.4069e-01",
+        "statistically_significant_05": false,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": -0.0038,
+          "ci_lower": -0.0524,
+          "ci_upper": 0.0552
+        },
+        "delta_precision": {
+          "mean_delta": 0.0065,
+          "ci_lower": -0.0751,
+          "ci_upper": 0.0878
+        },
+        "delta_recall": {
+          "mean_delta": -0.0264,
+          "ci_lower": -0.055,
+          "ci_upper": 0.0028
+        },
+        "delta_f1": {
+          "mean_delta": -0.0083,
+          "ci_lower": -0.0464,
+          "ci_upper": 0.0327
+        },
+        "delta_mcc": {
+          "mean_delta": -0.0115,
+          "ci_lower": -0.0974,
+          "ci_upper": 0.0898
+        }
+      }
+    },
+    "B-C3 Gandhi RBF-SVM (2024) | vs PROPOSED beta=1": {
+      "mcnemar": {
+        "b_proposed_only_correct": 60,
+        "c_baseline_only_correct": 51,
+        "mcnemar_chi2": 0.5766,
+        "p_value_raw": 0.44765733086275317,
+        "p_value_formatted": "4.4766e-01",
+        "statistically_significant_05": false,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.0131,
+          "ci_lower": -0.0406,
+          "ci_upper": 0.0818
+        },
+        "delta_precision": {
+          "mean_delta": 0.0126,
+          "ci_lower": -0.0629,
+          "ci_upper": 0.0984
+        },
+        "delta_recall": {
+          "mean_delta": 0.0092,
+          "ci_lower": -0.0118,
+          "ci_upper": 0.0333
+        },
+        "delta_f1": {
+          "mean_delta": 0.0117,
+          "ci_lower": -0.0351,
+          "ci_upper": 0.0675
+        },
+        "delta_mcc": {
+          "mean_delta": 0.0247,
+          "ci_lower": -0.0779,
+          "ci_upper": 0.1472
+        }
+      }
+    },
+    "B-C4 Mehsen RandomForest (2024)": {
+      "mcnemar": {
+        "b_proposed_only_correct": 77,
+        "c_baseline_only_correct": 47,
+        "mcnemar_chi2": 6.7823,
+        "p_value_raw": 0.009206834553084686,
+        "p_value_formatted": "9.2068e-03",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.0414,
+          "ci_lower": 0.0135,
+          "ci_upper": 0.0685
+        },
+        "delta_precision": {
+          "mean_delta": 0.0381,
+          "ci_lower": -0.0335,
+          "ci_upper": 0.1043
+        },
+        "delta_recall": {
+          "mean_delta": 0.0474,
+          "ci_lower": -0.0259,
+          "ci_upper": 0.1157
+        },
+        "delta_f1": {
+          "mean_delta": 0.0426,
+          "ci_lower": 0.0174,
+          "ci_upper": 0.0654
+        },
+        "delta_mcc": {
+          "mean_delta": 0.0832,
+          "ci_lower": 0.0303,
+          "ci_upper": 0.1362
+        }
+      }
+    },
+    "B-C4 Mehsen RandomForest (2024) | vs PROPOSED beta=1": {
+      "mcnemar": {
+        "b_proposed_only_correct": 84,
+        "c_baseline_only_correct": 42,
+        "mcnemar_chi2": 13.3413,
+        "p_value_raw": 0.00025962847995775196,
+        "p_value_formatted": "2.5963e-04",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.0584,
+          "ci_lower": 0.0205,
+          "ci_upper": 0.0953
+        },
+        "delta_precision": {
+          "mean_delta": 0.0442,
+          "ci_lower": -0.0247,
+          "ci_upper": 0.0996
+        },
+        "delta_recall": {
+          "mean_delta": 0.083,
+          "ci_lower": 0.0269,
+          "ci_upper": 0.14
+        },
+        "delta_f1": {
+          "mean_delta": 0.0625,
+          "ci_lower": 0.028,
+          "ci_upper": 0.1023
+        },
+        "delta_mcc": {
+          "mean_delta": 0.1194,
+          "ci_lower": 0.0465,
+          "ci_upper": 0.1955
+        }
+      }
+    },
+    "B-C5 ES-Plag (2019)": {
+      "mcnemar": {
+        "b_proposed_only_correct": 276,
+        "c_baseline_only_correct": 45,
+        "mcnemar_chi2": 164.7975,
+        "p_value_raw": 0.0,
+        "p_value_formatted": "< 1e-16",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.3192,
+          "ci_lower": 0.2535,
+          "ci_upper": 0.3827
+        },
+        "delta_precision": {
+          "mean_delta": 0.3053,
+          "ci_lower": 0.2235,
+          "ci_upper": 0.3976
+        },
+        "delta_recall": {
+          "mean_delta": -0.0781,
+          "ci_lower": -0.1416,
+          "ci_upper": -0.012
+        },
+        "delta_f1": {
+          "mean_delta": 0.1818,
+          "ci_lower": 0.1458,
+          "ci_upper": 0.2207
+        },
+        "delta_mcc": {
+          "mean_delta": 0.5549,
+          "ci_lower": 0.439,
+          "ci_upper": 0.668
+        }
+      }
+    },
+    "B-C5 ES-Plag (2019) | vs PROPOSED beta=1": {
+      "mcnemar": {
+        "b_proposed_only_correct": 277,
+        "c_baseline_only_correct": 34,
+        "mcnemar_chi2": 188.3087,
+        "p_value_raw": 0.0,
+        "p_value_formatted": "< 1e-16",
+        "statistically_significant_05": true,
+        "cluster_adjustment_notice": "CAUTIONARY AUDIT NOTE: Standard McNemar test evaluates marginal pair-level discordance assuming independent Bernoulli trials. For clustered instances within premise groups or assignment cases, pair observations are correlated; inference should be corroborated with group-aware paired bootstrap confidence intervals."
+      },
+      "paired_bootstrap": {
+        "delta_accuracy": {
+          "mean_delta": 0.3362,
+          "ci_lower": 0.2876,
+          "ci_upper": 0.383
+        },
+        "delta_precision": {
+          "mean_delta": 0.3114,
+          "ci_lower": 0.2549,
+          "ci_upper": 0.3762
+        },
+        "delta_recall": {
+          "mean_delta": -0.0424,
+          "ci_lower": -0.0977,
+          "ci_upper": 0.0211
+        },
+        "delta_f1": {
+          "mean_delta": 0.2018,
+          "ci_lower": 0.1797,
+          "ci_upper": 0.2278
+        },
+        "delta_mcc": {
+          "mean_delta": 0.5911,
+          "ci_lower": 0.51,
+          "ci_upper": 0.6727
+        }
+      }
+    }
+  }
+}

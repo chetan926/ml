@@ -1,0 +1,134 @@
+==============================================================================
+PHASE 5 Q1 UPGRADE — MASTER EXECUTION
+Timestamp: 2026-11-12 04:31:29  Seed: 42
+==============================================================================
+
+[S1] Loading benchmark data + precomputed Phase-3 feature stores...
+      Text row alignment (raw vs features): EXACT; Code: EXACT
+      Text: train=4000, val=1500, test=3000 | Code Policy A=720, Policy B=709
+
+[S2] TEXT — existing peers under corrected protocol (B-T1..B-T3)...
+
+[S3] TEXT — proposed Phase-5 framework (12-view S1 + heavy cross-style S2)...
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+      Proposed: Acc=0.8080 Prec=0.7072 Rec=0.7485 F1=0.7273 MCC=0.5799 | S2 avoided=61.37%
+      Operating point (val-tuned): {'tau_low': 0.15, 'tau_high': 0.55, 'entropy_threshold': 0.9, 'stage2_decision_threshold': 0.45, 'val_escalation_ratio': 0.3973333333333333, 'val_mcc': 0.6298119611166092, 'val_f1': 0.7597340930674265, 'val_accuracy': 0.8313333333333334, 'val_precision': 0.7561436672967864, 'val_recall': 0.7633587786259542}
+      Heavy S2: 175873 params, 0.2235 ms/pair
+
+[S4] TEXT — iso-recall comparison (OP tuned on D_val only)...
+      Common iso-recall target (max feasible on D_val): 0.93
+      PROPOSED (iso-recall OP)                     P=0.6650 R=0.7817 F1=0.7186 MCC=0.5583
+      PROPOSED heavy verifier (beta=1.0, iso-recall thr) P=0.5263 R=0.9376 F1=0.6741 MCC=0.4851
+      B-T1 TF-IDF Lexical (Sajid 2025)             P=0.3590 R=0.9415 F1=0.5198 MCC=0.1056
+      B-T2 Dense Semantic MiniLM (Setu 2025)       P=0.4909 R=0.9211 F1=0.6405 MCC=0.4201
+      B-T3 Flat Multi-View Hybrid LR               P=0.5422 R=0.9259 F1=0.6839 MCC=0.5001
+
+[S5] TEXT — iso-cost Pareto routing frontiers (shared heavy verifier)...
+      Frontiers computed for 20 budgets x 4 methods.
+
+[S6] TEXT — simulated adversarial paraphrase robustness study...
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+      Offline-variant heavy S2 (adversarially augmented, N=5347) fitted in 12.0s (175617 params)
+      [ synonym_light] PROPOSED (offline variant, tuned OP, budget-capped) PosRec=0.5166
+      [ synonym_light] PROPOSED heavy verifier (beta=1.0)     PosRec=0.6452
+      [ synonym_light] TF-IDF threshold (offline)             PosRec=0.7212
+      [ synonym_light] LSA semantic threshold (offline)       PosRec=0.7788
+      [ synonym_light] Flat hybrid LR (offline)               PosRec=0.6209
+      [ synonym_heavy] PROPOSED (offline variant, tuned OP, budget-capped) PosRec=0.5351
+      [ synonym_heavy] PROPOSED heavy verifier (beta=1.0)     PosRec=0.6998
+      [ synonym_heavy] TF-IDF threshold (offline)             PosRec=0.6842
+      [ synonym_heavy] LSA semantic threshold (offline)       PosRec=0.7310
+      [ synonym_heavy] Flat hybrid LR (offline)               PosRec=0.5351
+      [    word_order] PROPOSED (offline variant, tuned OP, budget-capped) PosRec=0.5322
+      [    word_order] PROPOSED heavy verifier (beta=1.0)     PosRec=0.6062
+      [    word_order] TF-IDF threshold (offline)             PosRec=0.7661
+      [    word_order] LSA semantic threshold (offline)       PosRec=0.8197
+      [    word_order] Flat hybrid LR (offline)               PosRec=0.6998
+      [    char_noise] PROPOSED (offline variant, tuned OP, budget-capped) PosRec=0.4639
+      [    char_noise] PROPOSED heavy verifier (beta=1.0)     PosRec=0.5448
+      [    char_noise] TF-IDF threshold (offline)             PosRec=0.7290
+      [    char_noise] LSA semantic threshold (offline)       PosRec=0.7924
+      [    char_noise] Flat hybrid LR (offline)               PosRec=0.6676
+      [        filler] PROPOSED (offline variant, tuned OP, budget-capped) PosRec=0.6092
+      [        filler] PROPOSED heavy verifier (beta=1.0)     PosRec=0.6520
+      [        filler] TF-IDF threshold (offline)             PosRec=0.7456
+      [        filler] LSA semantic threshold (offline)       PosRec=0.8226
+      [        filler] Flat hybrid LR (offline)               PosRec=0.3158
+      [      combined] PROPOSED (offline variant, tuned OP, budget-capped) PosRec=0.6764
+      [      combined] PROPOSED heavy verifier (beta=1.0)     PosRec=0.7671
+      [      combined] TF-IDF threshold (offline)             PosRec=0.6745
+      [      combined] LSA semantic threshold (offline)       PosRec=0.7758
+      [      combined] Flat hybrid LR (offline)               PosRec=0.2135
+
+[S7] CODE — proposed Phase-5 framework under nested LOGO (heavy S2)...
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+      Policy A: Acc=0.8403 Prec=0.8011 Rec=0.8830 F1=0.8401 MCC=0.6845 | S2 avoided=6.11% | verifiers: ['HGB(400,d8)', 'RF(500,d12)', 'RF(500,d12)', 'RF(500,d12)', 'RF(500,d12)', 'HGB(400,d8)', 'RF(500,d12)']
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+/home/user/ml/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:1381: FutureWarning: 'penalty' was deprecated in version 1.8 and will be removed in 1.10. To avoid this warning, leave 'penalty' set to its default value and use 'l1_ratio' or 'C' instead. Use l1_ratio=0 instead of penalty='l2', l1_ratio=1 instead of penalty='l1', l1_ratio set to a float between 0 and 1 instead of penalty='elasticnet', and C=np.inf instead of penalty=None.
+  warnings.warn(
+      Policy B MCC=0.7089 | Stratified(leak) MCC=0.7827 -> leakage inflation ΔMCC=+0.0982
+
+[S8] CODE — existing peers under nested LOGO (B-C1..B-C5)...
+      B-C1 Token Jaccard                 F1=0.6652 MCC=0.2356
+      B-C2 RKRGST String Tiling          F1=0.6403 MCC=0.0876
+      B-C3 Gandhi RBF-SVM (2024)         F1=0.8363 MCC=0.6754
+      B-C4 Mehsen RandomForest (2024)    F1=0.7859 MCC=0.5798
+      B-C5 ES-Plag (2019)                F1=0.6459 MCC=0.1055 (filter pass: 667/720)
+
+[S9] CODE — extra-benchmark systematic identifier-renaming attack...
+      Renaming attack computed in 10.3s | PROPOSED pos-recall clean=0.8830 -> attacked=0.8772
+
+[S10] Statistical significance tests (McNemar + clustered paired bootstrap)...
+      Text ΔF1 vs B-T1 TF-IDF Lexical (Sajid 202: +0.1772 CI=[+0.1562,+0.1984]
+      Text ΔF1 vs B-T2 Dense Semantic MiniLM (Se: +0.0616 CI=[+0.0412,+0.0809]
+      Text ΔF1 vs B-T3 Flat Multi-View Hybrid LR: +0.0122 CI=[-0.0044,+0.0301]
+      Code ΔF1 vs B-C1 Token Jaccard            : +0.1723 CI=[+0.1131,+0.2300]
+      Code ΔF1 vs B-C2 RKRGST String Tiling     : +0.1983 CI=[+0.1513,+0.2425]
+      Code ΔF1 vs B-C3 Gandhi RBF-SVM (2024)    : +0.0029 CI=[-0.0355,+0.0388]
+      Code ΔF1 vs B-C4 Mehsen RandomForest (2024: +0.0538 CI=[+0.0252,+0.0820]
+      Code ΔF1 vs B-C5 ES-Plag (2019)           : +0.1930 CI=[+0.1547,+0.2260]
+      Group coverage 0.9300 Wilson95=[0.9127, 0.9442] vs nominal 0.95
+      Measured batched latency S2/S1: text=18.9x, code=21.1x | params/nodes ratio: text 175873/12, code ~8169/13
+
+[S11] Contribution-wise ablations...
+
+[S12] Figures...
+
+Phase 5 complete in 818.4s. Artifacts: /home/user/ml/research_upgrade/phase_5_q1_upgrade/artifacts
+EXIT=0

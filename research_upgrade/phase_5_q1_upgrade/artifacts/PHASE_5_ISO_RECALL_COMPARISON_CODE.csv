@@ -1,0 +1,6 @@
+Modality,Method,Recall_Target,Threshold,accuracy,precision,recall,f1,mcc
+Code,"PROPOSED (nested LOGO, tuned OP)",0.95,per-fold inner-OOF tuned,0.8306,0.7973,0.8626,0.8287,0.6636
+Code,B-C1 Token Jaccard,0.95,per-fold train-tuned,0.5486,0.5135,0.9474,0.666,0.2051
+Code,B-C2 RKRGST String Tiling,0.95,per-fold train-tuned,0.5,0.4867,0.962,0.6464,0.0917
+Code,B-C3 Gandhi RBF-SVM (2024),0.95,per-fold train-tuned,0.8347,0.7896,0.8889,0.8363,0.6754
+Code,B-C4 Mehsen RandomForest (2024),0.95,per-fold train-tuned,0.7889,0.7582,0.8158,0.7859,0.5798

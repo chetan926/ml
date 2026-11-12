@@ -1,0 +1,8 @@
+Method,Condition,positive_recall
+PROPOSED (tuned OP),clean positives,0.8626
+PROPOSED (tuned OP),identifier-renamed positives (extra-benchmark attack),0.7456
+PROPOSED heavy verifier (beta=1.0),identifier-renamed positives (extra-benchmark attack),0.8918
+B-C1 Token Jaccard,identifier-renamed positives,0.1725
+B-C2 RKRGST,identifier-renamed positives,0.8041
+B-C3 Gandhi RBF-SVM (2024),identifier-renamed positives,0.2778
+B-C4 Mehsen RF (2024),identifier-renamed positives,0.3216

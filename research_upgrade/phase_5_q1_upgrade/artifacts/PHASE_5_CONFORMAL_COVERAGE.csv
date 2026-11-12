@@ -1,0 +1,2 @@
+alpha,nominal_coverage,empirical_group_coverage,group_wilson_ci_95,empirical_pair_coverage,pair_wilson_ci_95,average_set_size,calibration_quantile
+0.05,0.95,0.93,"{'n': 1015, 'wilson_lower': 0.9127, 'wilson_upper': 0.9442, 'nominal_target': 0.95}",0.9753,"{'n': 3000, 'wilson_lower': 0.9691, 'wilson_upper': 0.9803, 'nominal_target': 0.95}",1.5823,0.871977
