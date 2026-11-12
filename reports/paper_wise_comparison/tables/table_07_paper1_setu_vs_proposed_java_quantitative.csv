@@ -1,0 +1,20 @@
+TABLE,Table 7: Quantitative Comparison of Paper 1 (Setu et al. 2025) and Proposed Framework on Java Source-Code Plagiarism Detection (Not Applicable)
+CAPTION,Paper 1 is a text modality methodology; it has no Java source-code implementation or evaluation. All metric cells are N/A.
+STATUS,NOT APPLICABLE
+REASON,"Not applicable: Paper 1 (Setu et al. 2025) addresses natural-language text plagiarism (hybrid TF-IDF/SBERT) and reports no Java source-code experiments. No source-code metrics exist for this paper, so a quantitative comparison on the Java modality cannot be constructed without fabricating results."
+
+Evaluation Metric,Paper Implementation,Proposed Solution,Absolute Difference (Improvement),Relative Improvement (%),Better Method
+Accuracy,N/A,N/A,N/A,N/A,N/A
+Precision,N/A,N/A,N/A,N/A,N/A
+Recall,N/A,N/A,N/A,N/A,N/A
+F1-Score,N/A,N/A,N/A,N/A,N/A
+Specificity,N/A,N/A,N/A,N/A,N/A
+ROC-AUC,N/A,N/A,N/A,N/A,N/A
+PR-AUC,N/A,N/A,N/A,N/A,N/A
+MCC,N/A,N/A,N/A,N/A,N/A
+Candidate Recall,N/A,N/A,N/A,N/A,N/A
+Pruning Ratio (%),N/A,N/A,N/A,N/A,N/A
+Expensive Call Rate (%),N/A,N/A,N/A,N/A,N/A
+Average Latency (ms),N/A,N/A,N/A,N/A,N/A
+Training Time (s),N/A,N/A,N/A,N/A,N/A
+Memory Consumption (MB),N/A,N/A,N/A,N/A,N/A

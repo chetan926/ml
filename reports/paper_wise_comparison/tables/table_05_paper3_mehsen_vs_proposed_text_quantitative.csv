@@ -1,0 +1,20 @@
+TABLE,Table 5: Quantitative Comparison of Paper 3 (Mehsen & Joshi 2024) and Proposed Framework on Text Plagiarism Detection (Not Applicable)
+CAPTION,Paper 3 is a source-code methodology; it has no text-modality implementation or evaluation. All metric cells are N/A.
+STATUS,NOT APPLICABLE
+REASON,Not applicable: Paper 3 (Mehsen & Joshi 2024) addresses source-code plagiarism and reports no natural-language text experiments. No text-modality metrics exist for this paper.
+
+Evaluation Metric,Paper Implementation,Proposed Solution,Absolute Difference (Improvement),Relative Improvement (%),Better Method
+Accuracy,N/A,N/A,N/A,N/A,N/A
+Precision,N/A,N/A,N/A,N/A,N/A
+Recall,N/A,N/A,N/A,N/A,N/A
+F1-Score,N/A,N/A,N/A,N/A,N/A
+Specificity,N/A,N/A,N/A,N/A,N/A
+ROC-AUC,N/A,N/A,N/A,N/A,N/A
+PR-AUC,N/A,N/A,N/A,N/A,N/A
+MCC,N/A,N/A,N/A,N/A,N/A
+Candidate Recall,N/A,N/A,N/A,N/A,N/A
+Pruning Ratio (%),N/A,N/A,N/A,N/A,N/A
+Expensive Call Rate (%),N/A,N/A,N/A,N/A,N/A
+Average Latency (ms),N/A,N/A,N/A,N/A,N/A
+Training Time (s),N/A,N/A,N/A,N/A,N/A
+Memory Consumption (MB),N/A,N/A,N/A,N/A,N/A
