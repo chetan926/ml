@@ -1,0 +1,6 @@
+Modality,Method,Recall_Target,Val_Recall_Achieved,Threshold,accuracy,precision,recall,f1,mcc,S2_Escalation_Ratio_Test
+Text,PROPOSED (iso-recall OP),0.93,0.7729,"tau=(0.0,1.0,H=0.0)",0.7907,0.665,0.7817,0.7186,0.5583,1.0
+Text,"PROPOSED heavy verifier (beta=1.0, iso-recall thr)",0.93,0.9332,0.04,0.69,0.5263,0.9376,0.6741,0.4851,1.0
+Text,B-T1 TF-IDF Lexical (Sajid 2025),0.93,0.9332,0.01,0.405,0.359,0.9415,0.5198,0.1056,
+Text,B-T2 Dense Semantic MiniLM (Setu 2025),0.93,0.9313,0.445,0.6463,0.4909,0.9211,0.6405,0.4201,
+Text,B-T3 Flat Multi-View Hybrid LR,0.93,0.9313,0.2,0.7073,0.5422,0.9259,0.6839,0.5001,
