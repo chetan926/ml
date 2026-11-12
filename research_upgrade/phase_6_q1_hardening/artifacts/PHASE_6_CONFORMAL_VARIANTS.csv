@@ -1,0 +1,5 @@
+variant,n_groups,coverage,wilson95,qhat,group_sizes_median,median_size,qhat_small,qhat_large,m_small,m_large,qhat_posdom,qhat_negdom,m_posdom,m_negdom,alpha_star
+A_standard_group_supremum (phase-5),1015,0.930049,"[0.912682, 0.944173]",0.8719770465238494,3.0,,,,,,,,,,
+B_mondrian_group_size,1015,0.930049,"[0.912682, 0.944173]",,,3.0,0.8719770465238494,inf,254.0,0.0,,,,,
+C_mondrian_class_parity,1015,0.928079,"[0.910519, 0.942411]",,,,,,,,0.9382557674457997,0.864937102239329,26.0,228.0,
+D_split_sample_alpha_tuned,1015,1.0,"[0.99623, 1.0]",0.9382557674457997,3.0,,,,,,,,,,0.01

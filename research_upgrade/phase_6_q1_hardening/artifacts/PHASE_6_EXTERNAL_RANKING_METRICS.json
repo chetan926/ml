@@ -1,0 +1,73 @@
+{
+  "MRPC_TEST": {
+    "n": 1725,
+    "stage1_calibrated_prob": {
+      "roc_auc": 0.6436,
+      "average_precision": 0.7261
+    },
+    "stage2_score": {
+      "roc_auc": 0.5875,
+      "average_precision": 0.7057
+    }
+  },
+  "CLOUGH_STEVENSON": {
+    "n": 95,
+    "stage1_calibrated_prob": {
+      "roc_auc": 0.3886,
+      "average_precision": 0.6754
+    },
+    "stage2_score": {
+      "roc_auc": 0.3923,
+      "average_precision": 0.661
+    }
+  },
+  "CLOUGH_STEVENSON_CROSSTOPIC": {
+    "n": 475,
+    "stage1_calibrated_prob": {
+      "roc_auc": 0.9064,
+      "average_precision": 0.6029
+    },
+    "stage2_score": {
+      "roc_auc": 0.8066,
+      "average_precision": 0.4005
+    }
+  },
+  "CLOUGH_STEVENSON_grade_ranking": {
+    "g1": {
+      "n_plag": 15,
+      "auc_vs_g0": 0.3493,
+      "median_s2_plag": 0.1108,
+      "median_s2_g0": 0.2073
+    },
+    "g2": {
+      "n_plag": 20,
+      "auc_vs_g0": 0.35,
+      "median_s2_plag": 0.1583,
+      "median_s2_g0": 0.2073
+    },
+    "g3": {
+      "n_plag": 15,
+      "auc_vs_g0": 0.4787,
+      "median_s2_plag": 0.1609,
+      "median_s2_g0": 0.2073
+    },
+    "g4": {
+      "n_plag": 20,
+      "auc_vs_g0": 0.402,
+      "median_s2_plag": 0.1611,
+      "median_s2_g0": 0.2073
+    },
+    "monotonicity": {
+      "median_s2_g0_g1_g2_g3_g4": [
+        0.2073,
+        0.1108,
+        0.1583,
+        0.1609,
+        0.1611
+      ],
+      "spearman_grade_vs_medianscore": 0.0,
+      "p_value": 1.0,
+      "note": "Spearman over per-grade medians (5 points); interpret descriptively."
+    }
+  }
+}

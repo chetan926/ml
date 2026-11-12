@@ -1,0 +1,414 @@
+{
+  "phase": "6_q1_hardening",
+  "timestamp": "2026-11-12 07:18:46",
+  "external_protocol_note": "External corpora are used for EVALUATION ONLY. No external sample enters any fitting, calibration, operating-point or conformal pool.",
+  "multiseed_text": {
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "mean_std": {
+      "accuracy": {
+        "mean": 0.8102,
+        "std": 0.0027
+      },
+      "precision": {
+        "mean": 0.7202,
+        "std": 0.015
+      },
+      "recall": {
+        "mean": 0.729,
+        "std": 0.0211
+      },
+      "f1": {
+        "mean": 0.7243,
+        "std": 0.0031
+      },
+      "mcc": {
+        "mean": 0.58,
+        "std": 0.0018
+      },
+      "group_coverage": {
+        "mean": 0.9471,
+        "std": 0.0168
+      },
+      "s2_avoided_pct": {
+        "mean": 70.1667,
+        "std": 7.893
+      }
+    }
+  },
+  "conformal_repair": [
+    {
+      "variant": "A_standard_group_supremum (phase-5)",
+      "n_groups": 1015,
+      "coverage": 0.930049,
+      "wilson95": [
+        0.912682,
+        0.944173
+      ],
+      "qhat": 0.8719770465238494,
+      "group_sizes_median": 3.0
+    },
+    {
+      "variant": "B_mondrian_group_size",
+      "n_groups": 1015,
+      "coverage": 0.930049,
+      "wilson95": [
+        0.912682,
+        0.944173
+      ],
+      "median_size": 3.0,
+      "qhat_small": 0.8719770465238494,
+      "qhat_large": Infinity,
+      "m_small": 254,
+      "m_large": 0
+    },
+    {
+      "variant": "C_mondrian_class_parity",
+      "n_groups": 1015,
+      "coverage": 0.928079,
+      "wilson95": [
+        0.910519,
+        0.942411
+      ],
+      "qhat_posdom": 0.9382557674457997,
+      "qhat_negdom": 0.864937102239329,
+      "m_posdom": 26,
+      "m_negdom": 228
+    },
+    {
+      "variant": "D_split_sample_alpha_tuned",
+      "n_groups": 1015,
+      "coverage": 1.0,
+      "wilson95": [
+        0.99623,
+        1.0
+      ],
+      "qhat": 0.9382557674457997,
+      "group_sizes_median": 3.0,
+      "alpha_star": 0.01,
+      "alpha_tuning_detail": {
+        "alpha_star_conservative": 0.01,
+        "alpha_star_first": 0.01,
+        "alpha_star_swap": 0.01,
+        "target": 0.95,
+        "m_groups_total": 254,
+        "half": 127
+      }
+    }
+  ],
+  "conformal_recommendation": "D_split_sample_alpha_tuned",
+  "verifier_ablation": [
+    {
+      "verifier": "MLP cross-style (proposed)",
+      "val_mcc@0.5": 0.5605,
+      "test_beta1_metrics": {
+        "accuracy": 0.8003,
+        "precision": 0.7344,
+        "recall": 0.652,
+        "f1": 0.6908,
+        "mcc": 0.5462,
+        "n": 3000
+      },
+      "fit_sec": 3.83,
+      "latency_ms": 0.146374
+    },
+    {
+      "verifier": "RandomForest",
+      "val_mcc@0.5": 0.4115,
+      "test_beta1_metrics": {
+        "accuracy": 0.7583,
+        "precision": 0.7813,
+        "recall": 0.4074,
+        "f1": 0.5356,
+        "mcc": 0.4314,
+        "n": 3000
+      },
+      "fit_sec": 17.5,
+      "latency_ms": "NR"
+    },
+    {
+      "verifier": "HistGradientBoosting",
+      "val_mcc@0.5": 0.6187,
+      "test_beta1_metrics": {
+        "accuracy": 0.8087,
+        "precision": 0.7224,
+        "recall": 0.7154,
+        "f1": 0.7189,
+        "mcc": 0.5739,
+        "n": 3000
+      },
+      "fit_sec": 19.18,
+      "latency_ms": "NR"
+    },
+    {
+      "verifier": "LogisticRegression",
+      "val_mcc@0.5": 0.6007,
+      "test_beta1_metrics": {
+        "accuracy": 0.8153,
+        "precision": 0.7554,
+        "recall": 0.6803,
+        "f1": 0.7159,
+        "mcc": 0.5814,
+        "n": 3000
+      },
+      "fit_sec": 0.97,
+      "latency_ms": "NR"
+    }
+  ],
+  "external_text": [
+    {
+      "dataset": "MRPC_TEST",
+      "n": 1725,
+      "n_groups": 50,
+      "positives": 1147,
+      "routed_metrics": {
+        "accuracy": 0.4012,
+        "precision": 0.6913,
+        "recall": 0.1796,
+        "f1": 0.2851,
+        "mcc": 0.0255,
+        "n": 1725
+      },
+      "beta1_metrics": {
+        "accuracy": 0.4012,
+        "precision": 0.6913,
+        "recall": 0.1796,
+        "f1": 0.2851,
+        "mcc": 0.0255,
+        "n": 1725
+      },
+      "stage2_escalated_pct": 100.0,
+      "routing_cost": {
+        "total_pairs": 1725,
+        "pruned_count": 0,
+        "flagged_direct_count": 0,
+        "escalated_count": 1725,
+        "stage2_calls_avoided_count": 0,
+        "stage2_calls_avoided_percent": 0.0
+      },
+      "group_bootstrap_acc_ci": {
+        "mean": 0.3997,
+        "ci_lower": 0.3763,
+        "ci_upper": 0.4241
+      },
+      "elapsed_sec": 18.6
+    },
+    {
+      "dataset": "CLOUGH_STEVENSON",
+      "n": 95,
+      "n_groups": 5,
+      "positives": 70,
+      "routed_metrics": {
+        "accuracy": 0.2526,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "mcc": -0.1726,
+        "n": 95
+      },
+      "beta1_metrics": {
+        "accuracy": 0.2526,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "mcc": -0.1726,
+        "n": 95
+      },
+      "stage2_escalated_pct": 100.0,
+      "routing_cost": {
+        "total_pairs": 95,
+        "pruned_count": 0,
+        "flagged_direct_count": 0,
+        "escalated_count": 95,
+        "stage2_calls_avoided_count": 0,
+        "stage2_calls_avoided_percent": 0.0
+      },
+      "group_bootstrap_acc_ci": {
+        "mean": 0.2525,
+        "ci_lower": 0.2316,
+        "ci_upper": 0.2632
+      },
+      "elapsed_sec": 21.1
+    },
+    {
+      "dataset": "CLOUGH_STEVENSON_CROSSTOPIC",
+      "n": 475,
+      "n_groups": 25,
+      "positives": 70,
+      "routed_metrics": {
+        "accuracy": 0.8505,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "mcc": -0.0191,
+        "n": 475
+      },
+      "beta1_metrics": {
+        "accuracy": 0.8505,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "mcc": -0.0191,
+        "n": 475
+      },
+      "stage2_escalated_pct": 100.0,
+      "routing_cost": {
+        "total_pairs": 475,
+        "pruned_count": 0,
+        "flagged_direct_count": 0,
+        "escalated_count": 475,
+        "stage2_calls_avoided_count": 0,
+        "stage2_calls_avoided_percent": 0.0
+      },
+      "group_bootstrap_acc_ci": {
+        "mean": 0.8481,
+        "ci_lower": 0.7294,
+        "ci_upper": 0.9684
+      },
+      "elapsed_sec": 96.7,
+      "caveat": "Cross-topic negatives are trivially separable distractors; reported separately, never pooled with canonical protocol."
+    }
+  ],
+  "cs_severity_recall": [
+    {
+      "grade": "g1",
+      "n": 15,
+      "recall": 0.0,
+      "wilson_recall_ci_95": [
+        0.0,
+        0.2039
+      ]
+    },
+    {
+      "grade": "g2",
+      "n": 20,
+      "recall": 0.0,
+      "wilson_recall_ci_95": [
+        0.0,
+        0.1611
+      ]
+    },
+    {
+      "grade": "g3",
+      "n": 15,
+      "recall": 0.0,
+      "wilson_recall_ci_95": [
+        0.0,
+        0.2039
+      ]
+    },
+    {
+      "grade": "g4",
+      "n": 20,
+      "recall": 0.0,
+      "wilson_recall_ci_95": [
+        0.0,
+        0.1611
+      ]
+    }
+  ],
+  "multiseed_code": {
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "by_policy": {
+      "A": {
+        "accuracy": {
+          "mean": 0.8107,
+          "std": 0.0044
+        },
+        "precision": {
+          "mean": 0.7699,
+          "std": 0.001
+        },
+        "recall": {
+          "mean": 0.8577,
+          "std": 0.0135
+        },
+        "f1": {
+          "mean": 0.8114,
+          "std": 0.006
+        },
+        "mcc": {
+          "mean": 0.6261,
+          "std": 0.0103
+        },
+        "s2_avoided_pct": {
+          "mean": 31.0633,
+          "std": 4.7535
+        }
+      },
+      "B": {
+        "accuracy": {
+          "mean": 0.8467,
+          "std": 0.003
+        },
+        "precision": {
+          "mean": 0.8063,
+          "std": 0.0052
+        },
+        "recall": {
+          "mean": 0.8842,
+          "std": 0.0115
+        },
+        "f1": {
+          "mean": 0.8434,
+          "std": 0.0038
+        },
+        "mcc": {
+          "mean": 0.6969,
+          "std": 0.0067
+        },
+        "s2_avoided_pct": {
+          "mean": 75.5067,
+          "std": 5.1077
+        }
+      }
+    }
+  },
+  "policy_consistency": {
+    "spearman_rho_mcc": -0.5,
+    "p_value": 0.666667,
+    "note": "Only 3 seeds: interpret as protocol-level consistency check, not inferential claim.",
+    "delta_mcc_mean": -0.0708
+  },
+  "code_severity_transfer": {
+    "train_scope": "LOGO folds over Policy-A cases, severities L1..L5 + unlabelled ONLY",
+    "held_out": "All L6 (most obfuscated) pairs",
+    "n_l6": 59,
+    "positive_l6": 59,
+    "in_distribution_noL6_mcc": 0.6906,
+    "l6_transfer_metrics": {
+      "detection_recall": 0.6949,
+      "accuracy": 0.6949,
+      "mcc": "NR (held-out L6 slice is single-class: all-positive)",
+      "precision_balance_note": "NR (no legitimate pairs present in L6)"
+    },
+    "operating_point": {
+      "tau_low": 0.38,
+      "tau_high": 0.62,
+      "entropy_threshold": 1.0,
+      "stage2_decision_threshold": 0.5
+    },
+    "routing_cost": {
+      "total_pairs": 59,
+      "pruned_count": 15,
+      "flagged_direct_count": 18,
+      "escalated_count": 26,
+      "stage2_calls_avoided_count": 33,
+      "stage2_calls_avoided_percent": 55.93
+    }
+  },
+  "c4_packet": {
+    "n_grey_zone_pairs": 1293,
+    "grey_zone_pct": 43.1,
+    "n_packet_pairs": 20,
+    "disclosure": "What is provided: an inspection-ready packet reproducing the C4 review workflow end-to-end (grey-zone retrieval, per-pair multi-view flag sheet, tracking fields) as validation of the review deliverables & protocol. What is NOT claimed: measured human accuracy gains \u2014 no live expert study was feasible; this is stated in the manuscript limitations."
+  },
+  "runtime_sec": 663.8
+}

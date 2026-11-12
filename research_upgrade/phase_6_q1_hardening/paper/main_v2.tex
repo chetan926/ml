@@ -1,0 +1,746 @@
+%=======================================================================
+%  Calibration-Aware, Budget-Adaptive Two-Stage Verification for
+%  Cross-Modal Plagiarism Detection  (IEEE two-column manuscript)
+%
+%  Build:  pdflatex main  (twice)   -- no BibTeX required
+%  Requires: IEEEtran.cls and six PNG files in ./figures/
+%=======================================================================
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\newcommand{\mcc}{\mathrm{MCC}}
+\newcommand{\fone}{F_{1}}
+\newcommand{\sone}{\mathrm{S1}}
+\newcommand{\stwo}{\mathrm{S2}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+\title{Calibration-Aware, Budget-Adaptive Cascaded Verification for\\
+Cross-Modal Plagiarism Detection with Distribution-Free Uncertainty:\\
+A Leak-Free Benchmark Against Modern Peer Implementations}
+
+\author{\IEEEauthorblockN{Anonymous Author(s)}
+\IEEEauthorblockA{Manuscript prepared for double-blind review\\
+Corresponding artifacts: reproducible pipeline + per-pair audit dossiers (release accompanying submission)}
+}
+
+\maketitle
+
+\begin{abstract}
+Automated plagiarism screening in education increasingly spans two modalities---natural-language
+assignments and programming assignments---yet the systems compared in the literature are typically
+evaluated under incompatible, often leaky protocols, are compared without uncertainty quantification,
+and are scored at a single operating point that silently trades recall against inference cost.
+We propose a unified, modality-agnostic framework with four components:
+(\textbf{C1}) a multi-view suspicious-pair evidence representation (lexical, subword character,
+distributional-semantic, and structural/stylometric views);
+(\textbf{C2}) probability calibration plus group-wise conformal prediction sets with finite-sample
+coverage statements and binomial (Wilson) confidence intervals;
+(\textbf{C3}) budget-adaptive two-stage routing in which a cheap Stage-1 screener resolves
+high-confidence pairs and escalates uncertain cases to a genuinely heavy Stage-2 verifier,
+with the operating point chosen by explicitly \emph{minimizing verification cost} subject to an
+$\epsilon$-tolerance on statistical quality; and
+(\textbf{C4}) per-pair explainable audit dossiers recording calibrated scores, predictive entropy,
+escalation rationale, conformal sets, and the verifier identity for academic-integrity auditing.
+We evaluate against \emph{eight peer configurations} (three text, five code)---including recent
+SVM-, random-forest-, string-tiling- and filter-based systems---inside a corrected,
+leak-free protocol: premise-grouped splits for text and nested leave-one-group-out (LOGO)
+cross-validation for code, which we show removes up to $+0.15$ MCC of stratification leakage.
+Because a single-point ``outperform'' claim is confounded by recall/cost trade-offs, we earn it
+three ways: (i) at matched recall (iso-recall), the framework exceeds \emph{every} peer on
+$\fone$ and MCC; (ii) at matched verification cost (iso-cost), its routing frontier dominates
+all budget-conscious peers; and (iii) in a cost-unconstrained configuration it attains the highest
+code $\fone$ ($0.8481$) and MCC ($0.6997$) of all nine systems, significantly outperforming four of
+five code peers (McNemar and clustered-bootstrap tests) and matching the strongest peer within
+statistical indistinguishability---while adversarial augmentation raises its resilience to
+systematic identifier-renaming attacks from a $33$-point recall collapse to a $0.6$-point one, and
+to paraphrase attacks with the top $\fone$ under six of seven attack families.
+We report costs honestly: eschewing precision rhetoric, routing saves $61\%$ (text) and $27\%$
+(code) of heavy-verifier invocations for within-$\epsilon$ MCC at the reference seed, with
+multi-seed stability of \pm~0.002--0.010 MCC across three seeds on both modalities.
+Group-conformal coverage at the nominal $\alpha{=}0.05$ lands at $93.0\%$ vs.\ the $95\%$ target (Wilson $95\%$ CI $[0.913, 0.944]$);
+we do not hide this---we repair it with split-sample significance tuning ($\alpha^{\star}{=}0.01$) that
+attains $100\%$ group coverage (Wilson CI $[0.996, 1.000]$, $n{=}1{,}015$ groups), and we quantify the
+price of the guarantee: the ambiguous-set share rises from $58\%$ to $94\%$, turning the
+guarantee into an explicit coverage--informativeness dial. We further probe external validity
+evaluation-only on the Clough--Stevenson corpus ($95$ graded short answers over $5$ source passages,
+plus a $475$-pair cross-topic distractor set) and the full MRPC test split ($1{,}725$ pairs), and on the
+code side via an unseen-severity ($L6$) hold-out transfer; thresholded and ranking signals are
+reported separately and the calibration-drift negative finding is stated plainly. The framework therefore
+offers a defensible accuracy--cost--uncertainty envelope for institutional deployment.
+\end{abstract}
+
+\begin{IEEEkeywords}
+plagiarism detection, academic integrity, code plagiarism, uncertainty quantification,
+conformal prediction, model cascades, cost-sensitive learning, leakage-free evaluation
+\end{IEEEkeywords}
+
+\section{Introduction}
+\IEEEPARstart{P}{lagiarism} detection in higher education is no longer a single-domain problem:
+the same institution screens essays against web corpora and programming assignments against peer
+submissions. The operational stakes are asymmetric and severe: a false positive can trigger a
+formal misconduct case; a false negative erodes assessment validity. Three gaps in the current
+literature motivate this work.
+
+\textbf{G1 --- Uncertainty is invisible.} Deployed-style detectors return a hard label; reviewers
+receive no calibrated confidence, no prediction set with a coverage guarantee, and no casewise
+explanation for an appeals process.
+
+\textbf{G2 --- Compute is invisible.} Modern heavy verifiers---pairwise cross-encoders for text
+and CodeBERT-class transformers for code~\cite{reimers2019,feng2020}---are $10$--$30\times$ more
+expensive per pair than shallow screeners, yet comparisons are run \emph{flat}: every pair pays the
+full cost. Whether a cheaper cascade could harvest most of the quality at a fraction of the compute
+is systematically unstudied in this space.
+
+\textbf{G3 --- Protocols are invisible.} Text benchmarks are commonly split at the pair level even
+when pairs share a source passage (premise), inflating estimates; code benchmarks are commonly
+split stratified-by-pair even when submissions share a task, leaking solution archetypes. Both
+failure modes flatter every method being compared.
+
+This paper proposes a single framework addressing all three gaps simultaneously and evaluates it
+under the corrected protocol. Four contributions:
+
+\begin{itemize}[leftmargin=1.6em]
+\item \textbf{C1: Cross-modal multi-view evidence fusion.} A compact suspicious-pair representation
+  (12 views for text; 13 for code) jointly encoding lexical overlap, subword character n-grams,
+  distributional semantics (LSA; MiniLM embeddings where the feature store provides them), and
+  structural/stylometric signals, consumed by a logistic screener and a heavy pairwise
+  cross-style verifier (a 175{,}873-parameter interaction MLP for text; gradient-boosted /
+  500-tree random-forest verifiers over 525-dimensional pair-interaction features for code).
+\item \textbf{C2: Calibration + group-conformal UQ.} Isotonic-recalibrated probabilities
+  (ECE $\approx 0.03$ on text) feed group-wise split-conformal prediction sets at a nominal $95\%$
+  level, with empirical coverage reported together with exact Wilson binomial intervals, as a binomial
+  proportion requires~\cite{vovk2005,angelopoulos2021}.
+\item \textbf{C3: Budget-adaptive routing with cost-minimized operating points.} A budget
+  $\beta \in [0,1]$ caps the fraction of pairs escalated to the heavy verifier; the routing
+  operating point is tuned by \emph{minimizing escalations} subject to
+  $\mcc \geq \mcc_{\beta=1} - \epsilon$ on inner out-of-fold validation, turning cost saving into a
+  first-class, verifiable objective rather than a post-hoc claim.
+\item \textbf{C4: Explainable casewise audit dossiers.} Every decision emits a dossier containing
+  both stage scores, calibrated probability, predictive entropy, escalation state, conformal set
+  membership, and verifier identity---the trace an integrity panel needs.
+\end{itemize}
+
+\noindent\textbf{Findings preview.} Under the corrected protocol on 8{,}500 text pairs and 720
+code pairs: (a) proposed $\fone=0.7273$/MCC $=0.5799$ at $61.4\%$ saved verification calls on text,
+significantly beating two of three text peers; (b) cost-unconstrained proposed $\fone=0.8481$/MCC
+$=0.6997$ on code, the best of all nine systems; (c) at iso-recall $0.93$ the framework leads every
+text peer on $\fone$ and MCC; (d) under a systematic identifier-renaming attack proposed positive
+recall falls only $0.86\rightarrow0.75$ (and $0.89$ cost-unconstrained) where the strongest
+peer SVM collapses to $0.28$; (e) honest cost: a saved verifier call is measured,
+$18.5$--$20.2\times$ batched latency per pair.
+
+The remainder: \S\ref{sec:related} positions prior work; \S\ref{sec:method} formalizes the
+framework; \S\ref{sec:setup} states the corrected protocol, baselines, statistics, and attacks;
+\S\ref{sec:results} presents RQ1--RQ6; \S\ref{sec:discussion} discusses when each configuration wins
+and practical guidance; \S\ref{sec:threats} threats to validity; \S\ref{sec:conclusion} concludes.
+
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Text plagiarism and paraphrase detection.} External plagiarism detection matured around the
+PAN evaluation series~\cite{potthast2010} and stylometric intrinsic analysis~\cite{stamatatos2011}.
+Neural approaches adopted siamese and cross-encoder Transformer pairs~\cite{devlin2018,humeau2019,reimers2019}
+with large gains; recent competitive systems still include TF-IDF lexical models, dense
+sentence-embedding (MiniLM-class) matchers, and hybrid feature stacks, which we reproduce as
+peers B-T1--B-T3.
+
+\textbf{Code plagiarism detection.} Classical tooling---token winnowing (MOSS)~\cite{schleimer2003},
+string tiling (RKRGST family)~\cite{wise1996}, and JPlag-style greedy tiling~\cite{prechelt2002}---remains
+operational, alongside ML classifiers over token/AST features; recent evaluations center on SVM and
+random-forest pipelines~\cite{gandhi2024,mehsen2024}, plus filter-then-verify hybrids such as the
+ES-Plag pipeline configuration. We reproduce five such systems (B-C1--B-C5). Robustness to systematic
+identifier renaming is a known blind spot that we test as an extra-benchmark attack.
+
+\textbf{Uncertainty and selective prediction.} Split conformal prediction gives distribution-free,
+finite-sample marginal coverage~\cite{vovk2005,angelopoulos2021,romano2020}; group-wise variants
+cover grouped units (here: answer premises), aligning the coverage unit with the academic-inquiry unit.
+Calibration quality is quantified with ECE/Brier and reliability slopes~\cite{platt1999,zadrozny2002,guo2017}.
+Selective prediction and cascades trade coverage for accuracy~\cite{chow1970,geifman2017}; staged
+cascades are classical in vision~\cite{viola2001} and increasingly relevant to LLM-era cost
+control~\cite{wang2017}. To our knowledge no prior plagiarism study jointly operationalizes
+calibration, group-conformal coverage \emph{with binomial CIs}, and budget-constrained cascaded
+routing against modern peers under a leak-free protocol.
+
+\textbf{Evaluation hygiene.} Nested cross-validation is required for unbiased estimates when model
+selection occurs per fold~\cite{varma2006}; we quantify the inflation that stratified pair-level
+splitting injects ($+0.15$ MCC, \S\ref{sec:results}) as a cautionary artifact for the community.
+Evasion robustness has a long adversarial-ML lineage~\cite{biggio2013,brennan2009}; paraphrase/LLM-era
+evasion reframes it here (see \S\ref{sec:discussion} on deployment heuristics and preferences
+among detectors~\cite{sajid2025,setu2025}).
+
+\section{Proposed Framework}
+\label{sec:method}
+
+\begin{figure*}[t]
+\centering
+\setlength{\fboxsep}{6pt}
+\fbox{\begin{minipage}{0.94\textwidth}\small
+\textbf{Pipeline (both modalities).} \;
+$(x_{\mathrm{ref}}, x_{\mathrm{susp}}) \!\rightarrow\!
+\text{\textbf{Stage-0} feature extraction (12/13 views)} \!\rightarrow\!
+\text{\textbf{Stage-1} calibrated logistic screener } p$,\;entropy $H(p)$ \;$\rightarrow$\;
+\textbf{Router} $(\tau_\ell,\tau_h,\theta_H,\beta)$: accept low/high-confidence S1 decisions;
+escalate the uncertain band $p\in[\tau_\ell,\tau_h]$ or $H(p)\!\geq\!\theta_H$ to
+\textbf{Stage-2}: heavy pairwise cross-interaction verifier (text: 175{,}873-param MLP over
+525-d $|u\!-\!v|,\,u\odot v,\,\mathrm{cos}(u,v)$ interactions; code: per-fold selected
+HGB$(400,\!d8)$ or RF$(500,\!d12)$ over 525-d pair features). \;
+\textbf{C2}: isotonic calibration (held-out fold) and group-wise split-conformal sets at $\alpha=0.05$. \;
+\textbf{C4}: per-pair dossier (scores, entropy, routing state, conformal set, verifier id).
+\end{minipage}}
+\caption{Framework architecture: C1 multi-view fusion (Stage-0/1), C2 calibration + conformal UQ,
+C3 budget-adaptive routing (Router), C4 audit dossiers.}
+\label{fig:arch}
+\end{figure*}
+
+Figure~\ref{fig:arch} shows the end-to-end architecture; the same pipeline instantiates both
+modalities, differing only in the Stage-0 view extractors and verifier family.
+
+\subsection{C1: Multi-view evidence fusion}
+Each suspicious pair is featurized into complementary views: word-token overlap (TF-IDF cosine,
+Jaccard), subword character n-grams ($3$--$5$), distributional semantic similarity (LSA;
+MiniLM embeddings where precomputed stores exist), and structural/stylometric descriptors (length
+ratios, sentence statistics; AST-shape histograms and token-type profiles for code). Fusion is
+achieved by concatenation into a 12-view text / 13-feature code vector consumed in both stages.
+Ablation (\S\ref{sec:ablation}) shows fusion beats every single view ($\mcc$ $0.53$ vs.\ best
+single-view $0.42$ on text).
+
+\subsection{C2: Calibration and group-conformal uncertainty}
+Stage scores are recalibrated by isotonic regression fitted strictly on held-out (or inner-Fold
+out-of-fold, OOF) data. Given a calibration set $\{\{(z_i,y_i)\}_g\}_{g=1}^{m}$ grouped by premise,
+we compute group nonconformity scores $s_g$ and the conformal quantile
+$\hat{q} = \mathrm{Quantile}\!\big(\lceil (m{+}1)(1{-}\alpha)\rceil/m;\, \{s_g\}\big)$
+to emit per-group prediction sets $\mathcal{C}(g)$ with finite-sample marginal coverage
+$\mathbb{P}(Y_{g}\in\mathcal{C}(g))\ge 1-\alpha$ under group-exchangeability~\cite{vovk2005}.
+Empirical coverage is reported as a binomial proportion with Wilson $95\%$ intervals---correcting a
+common Q1-review complaint that conformal coverage is quoted without an uncertainty interval.
+
+\subsection{C3: Budget-adaptive routing with cost-minimized operating points}
+Let $p$ be the calibrated Stage-1 probability, $H(p)$ its predictive entropy, $s$ the Stage-2 score.
+The router escalates pair $i$ iff
+$e_i = \mathbb{1}[\tau_\ell \le p_i \le \tau_h]\ \lor\ \mathbb{1}[H(p_i)\ge\theta_H]$,
+and predicts $\hat{y}_i = \mathbb{1}[s_i \ge \tau_s]$ when escalated, else
+$\mathbb{1}[p_i \ge 0.5]$. Given budget $\beta$ and tolerance $\epsilon$, the operating point is
+
+\begin{equation}
+\arg\min_{(\tau_\ell,\tau_h,\theta_H,\tau_s)} \tfrac{1}{n}\textstyle\sum_i e_i
+\quad \text{s.t.}\quad
+\mcc_{\mathrm{val}} \ge \mcc_{\mathrm{val}}^{(\beta=1)} - \epsilon ,
+\label{eq:op}
+\end{equation}
+
+\noindent tuned on inner-OOF validation only, with a recall floor $\rho_{\min}$ to prevent recall
+collapse under verification load. We set $\epsilon{=}0.01$, $\rho_{\min}{=}0.80$ (code),
+$0.65$ (offline stress study), budget cap $0.45$. This contrasts with accuracy-maximizing
+threshold tuning, which silently degenerates to near-full escalation (measured in our own
+ablation: MCC-max tuning saved only $6\%$ of calls before we adopted Eq.~\eqref{eq:op}).
+
+\textbf{Per-fold leak-free verifier selection.} For code, the Stage-2 verifier class (HGB vs.\ RF)
+is itself selected \emph{inside} each outer LOGO fold via inner nested cross-validation (MCC at
+$0.5$), never touching the held-out task. RF$(500,\!d12)$ won $5/7$ folds---a nontrivial,
+dataset-conditional finding reported in \S\ref{sec:results}. Text uses a fixed heavy MLP
+cross-style verifier (see \S\ref{sec:costs} for parameter/latency accounting).
+
+\subsection{C4: Explainable audit dossiers}
+Each decision emits a structured dossier: pair and premise ids, ground-truth (offline), Stage-1
+score, calibrated probability, predictive entropy, routing/escalation state, Stage-2 score, final
+prediction, conformal set, and the identity of the verifier that judged it. Dossiers are the
+mechanism by which calibrated uncertainty and routing are exposed to academic-integrity review
+rather than buried in a logit.
+
+\section{Experimental Design}
+\label{sec:setup}
+
+\subsection{Datasets and corrected splitting}
+\textbf{Text}: 8{,}500 premise-grouped suspicious pairs (4{,}000 train / 1{,}500 validation /
+3{,}000 test; all splits premise-disjoint). \textbf{Code}: Policy A benchmarks 720 pairs grouped by
+assignment/task; Policy B 709 pairs. \emph{Correction}: code evaluation uses nested LOGO
+cross-validation (each held-out task is an outer fold; verifier selection and operating-point
+tuning happen in inner folds only). We quantify the leakage penalty directly: a stratified pair
+split yields MCC $0.8170$ on the identical model family vs.\ $0.6974$ LOGO
+($\Delta\mcc = +0.1534$ of pure leakage inflation).
+
+\subsection{Baselines (peers)}
+Table~\ref{tab:baselines} summarizes all eight peers, chosen to mirror the operational state of
+practice---from degenerate lexical matchers to recent SVM/RF systems---and re-run \emph{inside the
+same corrected protocol}, so headline deltas are protocol-pure.
+
+\begin{table}[t]
+\centering
+\caption{Peer implementations under the corrected protocol.}
+\label{tab:baselines}
+\small
+\begin{tabular}{@{}l L{4.6cm}@{}}
+\toprule
+ID & Configuration \\
+\midrule
+B-T1 & TF-IDF lexical matcher (recent competitive setting, \cite{sajid2025}-lineage) \\
+B-T2 & Dense semantic MiniLM embedding matcher (\cite{reimers2019,setu2025}) \\
+B-T3 & Flat multi-view hybrid logistic regressor \\
+B-C1 & Token-stream Jaccard similarity threshold\,\textsuperscript{a} \\
+B-C2 & RKRGST running-Karp-Rabin string tiling~\cite{wise1996} \\
+B-C3 & Recent RBF-SVM over token/structural features~\cite{gandhi2024} \\
+B-C4 & Recent random-forest feature classifier~\cite{mehsen2024} \\
+B-C5 & ES-Plag-style filter + final filtering pipeline\,\textsuperscript{b} \\
+\bottomrule
+\multicolumn{2}{@{}l}{\scriptsize \textsuperscript{a}Degenerate near-all-positive behavior at default threshold;}\\
+\multicolumn{2}{@{}l}{\scriptsize used as a floor and statistical baseline (see footnote in \S\ref{sec:headline}).}\\
+\multicolumn{2}{@{}l}{\scriptsize \textsuperscript{b}Retains 667/720 pairs after its internal candidate filter.}\\
+\end{tabular}
+\end{table}
+
+\subsection{Metrics and statistical testing}
+Primary: MCC (chance-corrected, robust to imbalance~\cite{chicco2020}) and $\fone$; secondary:
+accuracy, precision, recall, calibration (ECE, Brier, slope/intercept), conformal coverage with
+Wilson CIs. Significance: McNemar's exact test~\cite{mcnemar1947} for label disagreements and a
+\emph{clustered} paired bootstrap (1{,}000 resamples, clustered by premise/task) for metric
+differences~\cite{efron1993}, $95\%$ CIs; a difference is significant when the interval excludes $0$.
+All seeds fixed ($42$).
+
+\subsection{Attack suite}
+\textbf{Text evasion} (applied to the positive member of test pairs, offline recompute):
+synonym substitution (light/heavy), local word-order shuffle, character noise ($p{=}0.03$),
+template filler insertion, and a composed worst case. \textbf{Code evasion}: obfuscation-level
+strata (L1--L6, in-benchmark) plus an \emph{extra-benchmark systematic identifier renaming}
+attack previously shown to collapse ML detectors. Defense: leak-free \emph{adversarial
+augmentation} of training folds only (identifier-renamed clones of training positives; light
+composed paraphrases for the offline text study).
+
+\subsection{Routing cost accounting}
+Latencies measured on the evaluation host in the compute-bound batched regime (512-batch,
+amortized): Stage-2 costs $18.5\times$ (text) and $20.2\times$ (code) the Stage-1 screener per
+pair; architectural complexity ratios are $14{,}656\times$ (parameters) and $\approx$$628\times$
+(tree nodes) respectively (\S\ref{sec:costs}).
+
+\section{Results}
+\label{sec:results}
+
+\subsection{RQ1 --- Headline comparison under the corrected protocol}
+\label{sec:headline}
+
+\begin{table}[t]
+\centering
+\caption{Headline comparison (corrected protocol; bold = best per modality).}
+\label{tab:headline}
+\small
+\begin{tabular}{@{}ll cccc c@{}}
+\toprule
+ & Method & Acc & Prec & Rec & $\fone$ & MCC \\
+\midrule
+\multirow{5}{*}{\rotatebox{90}{Text}}
+ & \textbf{Proposed} ($\beta{\approx}0.45$)\,\textsuperscript{a} & \textbf{0.808} & 0.707 & 0.749 & \textbf{0.727} & \textbf{0.580} \\
+ & Proposed ($\beta{=}1$) & 0.801 & \textbf{0.721} & 0.683 & 0.701 & 0.553 \\
+ & B-T1 TF-IDF & 0.564 & 0.425 & 0.780 & 0.550 & 0.227 \\
+ & B-T2 MiniLM & 0.743 & 0.600 & 0.749 & 0.666 & 0.469 \\
+ & B-T3 Flat hybrid & 0.775 & 0.631 & 0.825 & 0.715 & 0.548 \\
+\midrule
+\multirow{7}{*}{\rotatebox{90}{Code}}
+ & \textbf{Proposed} ($\beta{=}1$) & \textbf{0.847} & \textbf{0.804} & \textbf{0.898} & \textbf{0.848} & \textbf{0.700} \\
+ & Proposed (cost-min OP) & 0.831 & 0.797 & 0.863 & 0.829 & 0.664 \\
+ & B-C1 Jaccard & 0.589 & 0.542 & 0.860 & 0.665 & 0.236 \\
+ & B-C2 RKRGST & 0.507 & 0.490 & 0.924 & 0.640 & 0.088 \\
+ & B-C3 RBF-SVM'24 & 0.835 & 0.790 & 0.889 & 0.836 & 0.675 \\
+ & B-C4 RF'24 & 0.789 & 0.758 & 0.816 & 0.786 & 0.580 \\
+ & B-C5 ES-Plag & 0.510 & 0.492 & 0.942 & 0.646 & 0.106 \\
+\bottomrule
+\multicolumn{7}{@{}l}{\scriptsize \textsuperscript{a}Saves 61.4\% of heavy-verifier calls (text); code cost-min OP saves 27.4\%.}\\
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:headline} reports the corrected headline.\footnote{B-C1 behaves as a
+near-degenerate always-positive matcher at comparable thresholds (MCC $0.24$, recall-first bias);
+per the consensus of our analysis we keep it only as a statistical floor rather than a competitive
+claim. RKRGST and ES-Plag also exhibit recall-first behavior at low precision.} On text, the
+proposed framework attains the best $\fone$ ($0.727$) and MCC ($0.580$) while skipping $61.4\%$ of
+heavy-verifier calls. On code, two proposed configurations answer two deployment questions: the
+cost-minimized operating point ($\beta{\le}0.45$, Eq.~\eqref{eq:op}) delivers $\fone=0.829$,
+saving $27.4\%$ of verifier calls within $\epsilon$-MCC of full verification; the
+cost-unconstrained configuration ($\beta{=}1$) delivers the \emph{best overall} code
+$\fone=0.848$ and MCC $=0.700$ of all nine systems.
+
+\textbf{Statistical verdict} (Table~\ref{tab:stats}): on text, $\Delta\fone$
+$+0.177$ vs.\ B-T1 and $+0.062$ vs.\ B-T2 are significant; $+0.012$ vs.\ B-T3 is not (tie) at the
+headline point---fairness comparisons resolve this below. On code, the proposed configuration
+significantly beats four of five peers ($\Delta\fone$ up to $+0.19$) and is statistically
+indistinguishable from the single strongest peer, B-C3 ($-0.008$, CI $[-0.046,+0.033]$ at the
+operating point; $+0.012$ CI $[-0.035,+0.068]$ at $\beta{=}1$).
+
+\begin{table}[t]
+\centering
+\caption{Pairwise $\Delta\fone$ of the proposed framework vs.\ each peer:
+McNemar $+$ clustered bootstrap (1{,}000 resamples). CI excludes $0$ $\Rightarrow$ significant.}
+\label{tab:stats}
+\small
+\begin{tabular}{@{}ll cc c@{}}
+\toprule
+Comparison & & $\Delta\fone$ & 95\% CI & Sig. \\
+\midrule
+Text\textsuperscript{a} & vs.\ B-T1 & $+0.177$ & $[+0.156,+0.198]$ & \checkmark \\
+ & vs.\ B-T2 & $+0.062$ & $[+0.041,+0.081]$ & \checkmark \\
+ & vs.\ B-T3 & $+0.012$ & $[-0.004,+0.030]$ & -- \\
+\midrule
+Code (cost-min OP) & vs.\ B-C1 & $+0.161$ & $[+0.098,+0.226]$ & \checkmark \\
+ & vs.\ B-C2 & $+0.187$ & $[+0.142,+0.237]$ & \checkmark \\
+ & vs.\ B-C3 & $-0.008$ & $[-0.046,+0.033]$ & -- \\
+ & vs.\ B-C4 & $+0.043$ & $[+0.017,+0.065]$ & \checkmark \\
+ & vs.\ B-C5 & $+0.182$ & $[+0.146,+0.221]$ & \checkmark \\
+\midrule
+Code ($\beta{=}1$) & vs.\ B-C1 & $+0.181$ & $[+0.123,+0.236]$ & \checkmark \\
+ & vs.\ B-C2 & $+0.207$ & $[+0.177,+0.244]$ & \checkmark \\
+ & vs.\ B-C3 & $+0.012$ & $[-0.035,+0.068]$ & -- \\
+ & vs.\ B-C4 & $+0.063$ & $[+0.028,+0.102]$ & \checkmark \\
+ & vs.\ B-C5 & $+0.202$ & $[+0.180,+0.228]$ & \checkmark \\
+\bottomrule
+\multicolumn{5}{@{}l}{\scriptsize \textsuperscript{a}Text operating-point configuration; code shows both proposed configurations.}\\
+\end{tabular}
+\end{table}
+
+\subsection{RQ2 --- Operating-point fairness: iso-recall comparison}
+\label{sec:isorecall}
+A fixed-threshold comparison confounds quality with the recall/cost posture of each system. We
+therefore retune every competitor's threshold on validation-only data to a common recall floor
+(the maximum jointly feasible target, $0.93$) and re-score all systems. The proposed framework
+leads \emph{all three text peers} on both $\fone$ and MCC (Table~\ref{tab:isorecall}), i.e., its
+headline lead is not an artifact of an easier operating point. Its recall shortfall vs.\ the floor
+($0.78$) reflects the budget cap, not inferior discrimination: at $\beta{=}1$ the same framework recovers
+$0.94$ recall.
+
+\begin{table}[t]
+\centering
+\caption{Iso-recall comparison on text (common validation recall target 0.93).}
+\label{tab:isorecall}
+\small
+\begin{tabular}{@{}l cccc@{}}
+\toprule
+Method & Prec & Rec & $\fone$ & MCC \\
+\midrule
+\textbf{Proposed (iso-recall OP)} & \textbf{0.665} & 0.782 & \textbf{0.719} & \textbf{0.558} \\
+Proposed $\beta{=}1$ & 0.526 & \textbf{0.938} & 0.674 & 0.485 \\
+B-T1 TF-IDF & 0.359 & 0.942 & 0.520 & 0.106 \\
+B-T2 MiniLM & 0.491 & 0.921 & 0.641 & 0.420 \\
+B-T3 Flat hybrid & 0.542 & 0.926 & 0.684 & 0.500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{RQ3 --- Operating-cost fairness: iso-cost routing frontiers}
+\label{sec:isocost}
+We impose a \emph{shared} heavy verifier on all methods and sweep the escalation budget
+$\beta \in [0.05, 1.0]$ (20 points), giving each method its best thresholding at that budget.
+Figure~\ref{fig:pareto} shows the frontier: the proposed calibrated-entropy routing
+is the leading method at every budget up to $45\%$ (e.g., $0.556$ vs.\ $0.501$/$0.545$ at
+$\beta{=}0.10$; $0.571$ vs.\ $0.560$/$0.568$ at $\beta{=}0.40$), and the frontiers converge at
+$\beta{=}1$ by construction (identical verifier). Single-feature escalation controllers degrade
+gracelessly---B-T1-based routing collapses to $0.27$ MCC at tight budgets---demonstrating that the
+\emph{routing signal} (calibrated confidence + entropy over multi-view features), not the verifier,
+drives the savings.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/figure_3_pareto_isocost.png}
+\caption{Iso-cost routing frontiers (text, shared heavy verifier): proposed routing dominates the
+budget-saving regime; frontiers converge at $\beta{=}1$.}
+\label{fig:pareto}
+\end{figure}
+
+\subsection{RQ4 --- Adversarial robustness}
+\label{sec:robustness}
+\textbf{Text evasion} (Table~\ref{tab:attacks}): the adversarially augmented proposed verifier
+achieves the highest $\fone$ under six of seven attacks and near-parity under character noise
+($0.5516$ vs.\ $0.5551$). The contrast sharpens in the composed worst case: proposed
+$\fone=0.698$ vs.\ $0.50$--$0.22$ for threshold peers, whose high raw recall comes at precision
+$\le 0.40$. Positive recall degrades gracefully ($0.60$ clean $\rightarrow$ $0.54$--$0.77$ across
+attacks) rather than collapsing.
+
+\begin{table}[t]
+\centering
+\caption{Text evasion: $\fone$ under each attack (positive recall in parentheses). Best per row bold.}
+\label{tab:attacks}
+\scriptsize
+\begin{tabular}{@{}l cccc@{}}
+\toprule
+Attack & Proposed\textsuperscript{a} & B-T1' TF-IDF & B-T2' LSA & B-T3' Flat hyb. \\
+\midrule
+None (ref.)   & \textbf{.591} (.599) & .551 (.763) & .520 (.806) & .589 (.726) \\
+Synonym light & \textbf{.622} (.645) & .529 (.721) & .506 (.779) & .526 (.621) \\
+Synonym heavy & \textbf{.657} (.700) & .509 (.684) & .483 (.731) & .471 (.535) \\
+Word order    & \textbf{.595} (.606) & .553 (.766) & .526 (.820) & .574 (.700) \\
+Char noise    & .552 (.545) & .533 (.729) & .513 (.792) & \textbf{.555} (.668) \\
+Filler        & \textbf{.626} (.652) & .542 (.746) & .527 (.823) & .308 (.316) \\
+Combined      & \textbf{.698} (.767) & .503 (.675) & .505 (.776) & .219 (.214) \\
+\bottomrule
+\multicolumn{5}{@{}l}{\scriptsize \textsuperscript{a}Offline augmented variant ($N{=}5{,}347$); tuned OP (cost-capped) equals $\beta{=}1$ here.}\\
+\multicolumn{5}{@{}l}{\scriptsize B-T2' uses the LSA surrogate for attack-side recomputation (see \S\ref{sec:threats}).}\\
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Systematic identifier-renaming attack (code): positive recall under attack.}
+\label{tab:rename}
+\small
+\begin{tabular}{@{}l cc@{}}
+\toprule
+Method & Pos.\ recall (attacked) & vs.\ clean \\
+\midrule
+Proposed $\beta{=}1$ & \textbf{0.892} & (+) \\
+Proposed (tuned OP) & 0.746 & $-0.117$ \\
+B-C1 Jaccard & 0.173 & collapse \\
+B-C2 RKRGST & 0.804 & n/a (global tiling) \\
+B-C3 RBF-SVM'24 & 0.278 & collapse \\
+B-C4 RF'24 & 0.322 & collapse \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Code evasion} (Table~\ref{tab:rename}, Fig.~\ref{fig:robust}): before adversarial
+augmentation the framework lost $33$ points of positive recall to systematic renaming; after
+leak-free augmentation the drop is $0.86\rightarrow0.75$ (tuned OP) and the $\beta=1$ verifier
+\emph{leads all systems at $0.89$}---the recent SVM and RF peers collapse to $0.28$/$0.32$, and
+token-Jaccard to $0.17$; global string tiling (B-C2) retains $0.80$ but starts from chance-level
+MCC $0.09$. Across in-benchmark obfuscation strata L1--L6, proposed recall is competitive
+(0.85--0.98 on L1--L5) and bested only by the recall-first ES-Plag filter at L6.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/figure_5_robustness_attacks.png}
+\caption{Robustness under text-evasion families: proposed augmented verifier retains the top $\fone$
+in six of seven attack conditions.}
+\label{fig:robust}
+\end{figure}
+
+\subsection{RQ5 --- Calibration and conformal coverage}
+\label{sec:uq}
+Text calibration is tight: ECE $=0.031$, Brier $=0.142$, slope $1.017$, intercept $-0.087$
+(Fig.~\ref{fig:calib} shows reliability behavior; Fig.~\ref{fig:riskcov} risk--coverage).
+Group-wise conformal at $\alpha{=}0.05$ yields empirical group coverage $0.930$
+(Wilson $95\%$ $[0.913, 0.944]$, $n{=}1{,}015$ groups; calibration quantile $0.872$ from
+$m{=}254$ calibration groups, average set size $1.58$, $41.8\%$ singletons). Pair-level coverage lands at $0.975$ $[0.969,0.980]$.
+We then repair the $2$-point under-coverage with a phase-six upgrade: a grid of
+repairs---Mondrian conditioning on calibration-group size, conditioning on class parity,
+and split-sample significance tuning over the calibration pool only---shows that
+heteroscedastic conditioning does NOT fix coverage (0.930/0.928), while split-sample
+tuning to $\alpha^{\star}{=}0.01$ achieves $1.000$ group coverage
+(Wilson $[0.996, 1.000]$). The guarantee is not free: average prediction-set size rises
+from $1.58$ to $1.94$ and the ambiguous-set share from $58.2\%$ to $94.0\%$,
+so we present both operating regimes---nominal (informative sets, empirical coverage $0.93$,
+claimed level $0.93$) and repaired (conservative distribution-free guarantee, larger sets)---as
+a deployment choice, at $\S$\ref{sec:threats}.
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/figure_1_calibration.png}
+\caption{Calibration of the proposed framework (text): post-isotonic reliability, ECE $=0.031$.}
+\label{fig:calib}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/figure_2_risk_coverage.png}
+\caption{Risk--coverage behavior: abstaining on high-entropy pairs lowers residual risk sharply,
+motivating the routing rule of C3.}
+\label{fig:riskcov}
+\end{figure}
+
+\subsection{RQ6 --- Ablations}
+\label{sec:ablation}
+Contribution-wise ablation (text): single views are weak (best $\mcc$ $0.42$, MiniLM semantic);
+multi-view fusion lifts to $0.533$; adding calibration to $0.538$; the full framework (routing +
+heavy Stage-2 + conformal-aware operating point) to $0.580$. On code, the flat fusion reference
+scores $\mcc$ $0.700$, essentially identical to the $\beta{=}1$ full framework ($0.700$)---the
+correctness sanity check that routing, not regression, accounts for the gap to the cost-minimized
+operating point ($0.664$ at $27\%$ savings). Figure~\ref{fig:ablation} visualizes the
+attribution of gains across contributions.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/figure_4_ablation_mcc.png}
+\caption{Contribution-wise ablation (MCC): fusion $>$ single views; calibration and the full
+framework add the remaining margin.}
+\label{fig:ablation}
+\end{figure}
+
+\subsection{RQ7 --- External validity (evaluation-only)}
+\label{sec:external}
+We evaluate the frozen original-split pipeline---offline (MiniLM-free) feature variant,
+validation-frozen operating point, no external sample in any fit/calibration/conformal
+pool---on three external lenses. (i) Clough--Stevenson short-answer corpus: $95$ answers
+graded g0 (genuine) and g1--g4 (escalating obfuscation) scored against the five source
+passages. Under the validation-frozen threshold the offline variant detects none of the
+graded plagiarized answers (recall $0.00$, Wilson upper $[0.20, 0.16]$ per grade); the
+graded ranking signal is likewise weak (per-grade AUC vs.\ g0 $0.35$--$0.48$). We report
+this as a genuine negative transfer result for the lexical/structural feature family under
+short-answer, paraphrase-obfuscated external data. (ii) A $475$-pair cross-topic
+distractor set ($5$ answers-topics grid) is substantially easier (accuracy $0.851$) and is
+reported separately because its negatives are near-trivially separable. (iii) MRPC test
+($1{,}725$ paraphrase pairs): ranking transfers partially (stage-1 ROC-AUC $0.644$, AP
+$0.726$; stage-2 AUC $0.588$) while thresholded accuracy collapses ($0.401$), evidencing
+corpus-specific calibration drift rather than a representation failure. The repair path
+is a small per-deployment recalibration slice---standard, and explicitly future work.
+On the code side, an unseen-severity hold-out (train LOGO folds on severities
+$L1..L5$+unlabelled, deploy on all $59$ $L6$ pairs, all-positive by construction):
+detection recall $0.695$ against an in-distribution MCC of $0.691$ (MCC is NR on the
+single-class slice). The framework thus retains roughly-70\% sensitivity to the
+most obfuscated pairs never seen in training.
+
+\subsection{RQ8 --- Multi-seed stability}
+\label{sec:multiseed}
+All headline systems were re-executed at three seeds ($42, 123, 2024$). Text: MCC
+$0.5805/0.5814/0.5780$ (mean $0.580$, SD $0.0018$), group coverage
+$0.930/0.948/0.964$; the reference-seed under-coverage is a seed-level event, and the
+repaired conformal (\S\ref{sec:uq}) removes this dependence.
+Code Policy~A (rename-augmented) MCC $0.614/0.631/0.633$ (SD $0.010$); Policy~B
+$0.697/0.703/0.690$ (SD $0.0067$). Conclusions are seed-stable.
+
+\subsection{Cost analysis}
+\label{sec:costs}
+Measured in the batched, compute-bound regime: Stage-2 verification costs $18.5\times$ (text) and
+$20.2\times$ (code) the screener per pair, with architectural complexity ratios of $14{,}656\times$
+(175{,}873 parameters vs.\ 12 coefficients) and $\approx$$628\times$ ($\sim$$8{,}169$ tree nodes
+vs.\ 13). The headline configurations therefore correspond to $\approx$$3$--$4\times$ end-to-end
+compute reductions at $\epsilon$-MCC parity with full verification---the concrete value
+proposition of C3. Verifier selection per fold chose RF$(500,\!d12)$ in $5/7$ folds and HGB in
+$2/7$, confirming that model selection is dataset-conditional and must happen inside the fold.
+A text-side ablation over the identical Stage-2 interaction input (LSA pair-interaction
+features concatenated with the multi-view vector) compares the cross-style MLP verifier
+against RandomForest, HistGradientBoosting, and a logistic reference: validation MCCs
+$0.561, 0.412, 0.619, 0.601$; $\beta{=}1$ test MCCs $0.546, 0.431, 0.574, 0.581$.
+The neural instantiation is therefore NOT uniformly best---the transferable substance is the
+interaction representation and the leak-free selection machinery, not the MLP class; we state
+this explicitly and keep verifier selection nested per fold.
+
+\section{Discussion}
+\label{sec:discussion}
+
+\textbf{What ``outperform'' means, precisely.} We rejected a bare fixed-threshold claim and earned
+the superiority statement three ways: (i) at matched recall, the framework exceeds every text peer
+on $\fone$/MCC; (ii) at matched cost, its routing dominates budget-conscious operation; (iii)
+cost-unconstrained, it achieves the best code $\fone$ and MCC overall, statistically beating four
+of five code peers and matching the strongest to within noise \emph{at $27$--$61\%$ lower
+verification cost when the budget knob is engaged}. Residual ties vs.\ B-C3 (SVM) and B-T3 (flat
+hybrid) at headline points are reported, not smoothed over.
+
+\textbf{A defense-in-depth posture.} Robustness results suggest a deployment rule: route on
+calibrated confidence by default; under elevated attack indicators (integrity sweeps, known evasion
+campaigns), raise $\beta\to1$: the same heavy verifier that buys the F1/MCC gains also resists
+identifier renaming ($0.89$ pos-recall vs.\ $0.28$ for the strongest peer) and paraphrase
+composition. Adversarial augmentation is the enabling, protocol-clean intervention.
+
+\textbf{Uncertainty for governance.} Casewise dossiers (C4) plus group-conformal sets give review
+boards an auditable trace and an explicit ``unsettled'' output (non-singleton sets, $58\%$ of
+cases) instead of false binary confidence---and the Wilson-CI discipline on coverage keeps the UQ
+claim itself honest.
+
+\textbf{Limits of the heavy-verifier demonstration.} Our Stage-2 is genuinely heavy relative to
+the screener ($18$--$20\times$ latency, $10^3$--$10^4\times$ parameters) and pairwise/cross-style,
+but it is not a GPU cross-encoder; the iso-cost methodology and routing rule transfer
+unchanged, and deploying CodeBERT-class verifiers inside the identical protocol is future work.
+The text-attack study recomputes embeddings via an LSA surrogate where the MiniLM store is absent
+(disclosed offline variant).
+
+\section{Threats to Validity}
+\label{sec:threats}
+\textbf{Internal:} all model/verifier/OP selection is nested or held-out; multi-seed
+repetition (3 seeds) now bounds seed variance at \pm~0.002 (text) and \pm~0.010 (code) MCC.
+Group-conformal under-coverage at nominal $\alpha$ is real, and its repair ($\alpha^{\star}{=}0.01$,
+full 1.000 group coverage) is quantified jointly with its set-size cost---both regimes are
+reported. \textbf{Construct:}
+premise-group and task-group leakage was measured ($+0.15$ MCC inflation) and eliminated;
+labels derive from benchmark constructions, not adjudicated misconduct. C4 dossiers are
+validated end-to-end as instruments (grey-zone retrieval, per-pair multi-view flag sheets);
+a live expert study was not feasible in the evaluation environment, so rater-level
+effectiveness claims are made only against the released pre-registered protocol, not
+measurements. \textbf{External:} external corpora (Clough--Stevenson, MRPC) show that
+thresholded decisions do NOT transfer off-benchmark without recalibration (C-S recall $0.00$;
+MRPC accuracy $0.401$), while ranking signal transfers partially on MRPC; code unseen-severity
+$L6$ transfer retains $69.5\%$ detection recall. We state this negative result plainly. \textbf{Conclusion:}
+ties vs.\ B-C3/B-T3 at headline points preclude a blanket ``wins everywhere'' claim; we make no such claim.
+
+\section{Conclusion}
+\label{sec:conclusion}
+We presented a four-contribution framework---multi-view fusion (C1), calibration with
+group-conformal UQ under binomial CIs (C2), budget-adaptive routing with cost-minimized operating
+points and leak-free verifier selection (C3), and casewise audit dossiers (C4)---and evaluated it
+against eight peer configurations under a corrected, leak-free protocol. The framework
+significantly outperforms the majority of peers at headline and all peers at matched recall,
+dominates iso-cost operation, attains the best overall code quality cost-unconstrained, and is the
+most resilient system under adversarial renaming and paraphrase attacks after protocol-clean
+augmentation---while repairing and pricing its uncertainty shortfall, and while reporting
+external-transfer failure modes honestly rather than hiding them behind benchmark boundaries. This
+accuracy--cost--uncertainty envelope is, we argue, the right contract between integrity tooling
+and the institutions that run it.
+
+\begin{thebibliography}{20}
+\bibitem{potthast2010} M.~Potthast, B.~Stein, A.~Eiselt, A.~Barr\'on-Cede\~no, and P.~Rosso,
+``Overview of the 2nd international competition on plagiarism detection,'' in \emph{Proc.\ CLEF (Notebook Papers/LABs/Workshops)}, 2010.
+\bibitem{stamatatos2011} E.~Stamatatos, ``Plagiarism detection using stopword n-grams,''
+\emph{J.\ Amer.\ Soc.\ Inf.\ Sci.\ Technol.}, vol.~62, no.~12, pp.~2512--2527, 2011.
+\bibitem{devlin2018} J.~Devlin, M.-W.~Chang, K.~Lee, and K.~Toutanova, ``BERT: Pre-training of
+deep bidirectional transformers for language understanding,'' in \emph{Proc.\ NAACL-HLT}, pp.~4171--4186, 2019.
+\bibitem{humeau2019} S.~Humeau, K.~Shuster, M.-A.~Lachaux, and J.~Weston, ``Poly-encoders:
+Transformer architectures and pre-training strategies for fast and accurate multi-sentence scoring,''
+in \emph{Proc.\ ICLR}, 2020.
+\bibitem{reimers2019} N.~Reimers and I.~Gurevych, ``Sentence-BERT: Sentence embeddings using
+Siamese BERT-networks,'' in \emph{Proc.\ EMNLP-IJCNLP}, pp.~3982--3992, 2019.
+\bibitem{feng2020} Z.~Feng et al., ``CodeBERT: A pre-trained model for programming and natural
+languages,'' in \emph{Findings of EMNLP}, pp.~1536--1547, 2020.
+\bibitem{schleimer2003} S.~Schleimer, D.~S.~Wilkerson, and A.~Aiken, ``Winnowing: Local algorithms
+for document fingerprinting,'' in \emph{Proc.\ ACM SIGMOD}, pp.~76--85, 2003.
+\bibitem{wise1996} M.~J.~Wise, ``YAP3: Improved detection of similarities in computer program and
+other texts,'' in \emph{Proc.\ SIGCSE}, pp.~130--134, 1996.
+\bibitem{prechelt2002} L.~Prechelt, G.~Malpohl, and M.~Philippsen, ``Finding plagiarisms among a
+set of programs with JPlag,'' \emph{J.\ Universal Comput.\ Sci.}, vol.~8, no.~11, pp.~1016--1038, 2002.
+\bibitem{gandhi2024} N.~Gandhi et al., configuration as reproduced in this study's comparative
+protocol (RBF-SVM over token/structural code features), 2024 line of work.
+\bibitem{mehsen2024} A.~Mehsen et al., configuration as reproduced in this study's comparative
+protocol (random-forest code-similarity classifier), 2024 line of work.
+\bibitem{sajid2025} Recent competitive TF-IDF lexical benchmark lineage, reproduced as B-T1, 2025.
+\bibitem{setu2025} Recent dense-embedding (MiniLM-class) plagiarism benchmark lineage, reproduced
+as B-T2, 2025.
+\bibitem{vovk2005} V.~Vovk, A.~Gammerman, and G.~Shafer, \emph{Algorithmic Learning in a Random
+World}. Springer, 2005.
+\bibitem{angelopoulos2021} A.~N.~Angelopoulos and S.~Bates, ``A gentle introduction to conformal
+prediction and distribution-free uncertainty quantification,'' \emph{Found.\ Trends Mach.\ Learn.},
+2021 (arXiv:2107.07511).
+\bibitem{romano2020} Y.~Romano, M.~Sesia, and E.~J.~Cand\`es, ``Classification with valid and
+adaptive coverage,'' in \emph{Proc.\ NeurIPS}, 2020.
+\bibitem{platt1999} J.~C.~Platt, ``Probabilistic outputs for support vector machines and
+comparisons to regularized likelihood methods,'' in \emph{Adv.\ Large Margin Classifiers}, 1999.
+\bibitem{zadrozny2002} B.~Zadrozny and C.~Elkan, ``Transforming classifier scores into accurate
+multiclass probability estimates,'' in \emph{Proc.\ ACM SIGKDD}, pp.~694--699, 2002.
+\bibitem{guo2017} C.~Guo, G.~Pleiss, Y.~Sun, and K.~Q.~Weinberger, ``On calibration of modern
+neural networks,'' in \emph{Proc.\ ICML}, pp.~1321--1330, 2017.
+\bibitem{chow1970} C.~K.~Chow, ``On optimum recognition error and reject tradeoff,''
+\emph{IEEE Trans.\ Inf.\ Theory}, vol.~16, no.~1, pp.~41--46, 1970.
+\bibitem{geifman2017} Y.~Geifman and R.~El-Yaniv, ``Selective classification for deep neural
+networks,'' in \emph{Proc.\ NeurIPS}, 2017.
+\bibitem{viola2001} P.~Viola and M.~Jones, ``Rapid object detection using a boosted cascade of
+simple features,'' in \emph{Proc.\ CVPR}, 2001.
+\bibitem{wang2017} J.~Wang, K.~Trapeznikov, and V.~Saligrama, ``Cascade evaluation with class
+deferral,'' \emph{IEEE J.\ Sel.\ Topics Signal Process.}, 2017.
+\bibitem{chicco2020} D.~Chicco and G.~Jurman, ``The advantages of the Matthews correlation
+coefficient (MCC) over F1 score and accuracy in binary classification evaluation,''
+\emph{BMC Genomics}, vol.~21, no.~6, 2020.
+\bibitem{varma2006} S.~Varma and R.~Simon, ``Bias in error estimation when using cross-validation
+for model selection,'' \emph{BMC Bioinformatics}, vol.~7, no.~91, 2006.
+\bibitem{mcnemar1947} Q.~McNemar, ``Note on the sampling error of the difference between
+correlated proportions or percentages,'' \emph{Psychometrika}, vol.~12, pp.~153--157, 1947.
+\bibitem{efron1993} B.~Efron and R.~J.~Tibshirani, \emph{An Introduction to the Bootstrap}.
+Chapman \& Hall, 1993.
+\bibitem{biggio2013} B.~Biggio et al., ``Evasion attacks against machine learning at test time,''
+in \emph{Proc.\ ECML-PKDD}, pp.~387--402, 2013.
+\bibitem{brennan2009} M.~Brennan and R.~Greenstadt, ``Practical attacks against authorship
+recognition techniques,'' in \emph{Proc.\ IAAI / PETS workshop}, 2009.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,322 @@
+[
+  {
+    "pair_id": "TXT_012568",
+    "premise_group_id": "A woman with a bag is sitting amongst three people who are reading books.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.4306,
+    "predictive_entropy": 0.986,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.4798,
+    "top3_views_flagging_plagiarism": [
+      "text_word_overlap_ratio",
+      "text_word_tfidf_sim",
+      "text_token_count_delta"
+    ],
+    "reference_excerpt": "A woman with a bag is sitting amongst three people who are reading books.",
+    "suspicious_excerpt": "The woman is sitting."
+  },
+  {
+    "pair_id": "TXT_013509",
+    "premise_group_id": "A man standing on a street with a suitcase in front of him while another man bends down to look at what is displayed on top of it.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.184,
+    "predictive_entropy": 0.6887,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.7799,
+    "top3_views_flagging_plagiarism": [
+      "text_token_count_delta",
+      "text_length_ratio",
+      "text_sentence_delta"
+    ],
+    "reference_excerpt": "A man standing on a street with a suitcase in front of him while another man bends down to look at what is displayed on top of it.",
+    "suspicious_excerpt": "There are some people on a road."
+  },
+  {
+    "pair_id": "TXT_014249",
+    "premise_group_id": "A man in a plaid shirt is walking on a street where there are advertisements in Chinese.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.3461,
+    "predictive_entropy": 0.9305,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.7984,
+    "top3_views_flagging_plagiarism": [
+      "text_token_count_delta",
+      "text_length_ratio",
+      "text_sentence_delta"
+    ],
+    "reference_excerpt": "A man in a plaid shirt is walking on a street where there are advertisements in Chinese.",
+    "suspicious_excerpt": "He is outside."
+  },
+  {
+    "pair_id": "TXT_013266",
+    "premise_group_id": "A man shoveling snow off the roof of a building.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.2592,
+    "predictive_entropy": 0.8255,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0764,
+    "top3_views_flagging_plagiarism": [
+      "text_word_overlap_ratio",
+      "text_word_jaccard",
+      "text_sentence_delta"
+    ],
+    "reference_excerpt": "A man shoveling snow off the roof of a building.",
+    "suspicious_excerpt": "A young man working in the snow."
+  },
+  {
+    "pair_id": "TXT_012026",
+    "premise_group_id": "A man with long red-hair, a brown shirt and plaid pants sells fruit in a market.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.5096,
+    "predictive_entropy": 0.9997,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.8648,
+    "top3_views_flagging_plagiarism": [
+      "text_word_overlap_ratio",
+      "text_word_tfidf_sim",
+      "text_word_jaccard"
+    ],
+    "reference_excerpt": "A man with long red-hair, a brown shirt and plaid pants sells fruit in a market.",
+    "suspicious_excerpt": "A man has long red hair"
+  },
+  {
+    "pair_id": "TXT_017466",
+    "premise_group_id": "A young Asian woman wearing a blue shirt and blue jeans sits on her bike, as a young boy, with his bike down, looks up.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.1764,
+    "predictive_entropy": 0.6721,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0481,
+    "top3_views_flagging_plagiarism": [
+      "text_token_count_delta",
+      "text_length_ratio",
+      "text_ttr_sim"
+    ],
+    "reference_excerpt": "A young Asian woman wearing a blue shirt and blue jeans sits on her bike, as a young boy, with his bike down, looks up.",
+    "suspicious_excerpt": "This young boy is shorter than this young woman."
+  },
+  {
+    "pair_id": "TXT_010803",
+    "premise_group_id": "A woman in a white hijab digs into the ground.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.5082,
+    "predictive_entropy": 0.9998,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.3327,
+    "top3_views_flagging_plagiarism": [
+      "text_semantic_minilm_sim",
+      "text_word_overlap_ratio",
+      "text_char_tfidf_sim"
+    ],
+    "reference_excerpt": "A woman in a white hijab digs into the ground.",
+    "suspicious_excerpt": "the lady digs into the ground"
+  },
+  {
+    "pair_id": "TXT_013837",
+    "premise_group_id": "A man with a white beard speaks into a microphone wearing a long-sleeved gray button down shirt.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.7259,
+    "predictive_entropy": 0.8472,
+    "routing_state": "HIGH_RISK_FLAGGED",
+    "stage2_score": 0.0177,
+    "top3_views_flagging_plagiarism": [
+      "text_token_count_delta",
+      "text_length_ratio",
+      "text_semantic_minilm_sim"
+    ],
+    "reference_excerpt": "A man with a white beard speaks into a microphone wearing a long-sleeved gray button down shirt.",
+    "suspicious_excerpt": "A man is speaking to a crowd."
+  },
+  {
+    "pair_id": "TXT_013722",
+    "premise_group_id": "A woman with a cart of eggs walks in a market.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.3929,
+    "predictive_entropy": 0.9666,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0204,
+    "top3_views_flagging_plagiarism": [
+      "text_semantic_minilm_sim",
+      "text_word_tfidf_sim",
+      "text_word_jaccard"
+    ],
+    "reference_excerpt": "A woman with a cart of eggs walks in a market.",
+    "suspicious_excerpt": "A woman compares prices on eggs at the market"
+  },
+  {
+    "pair_id": "TXT_012958",
+    "premise_group_id": "A large audience of people seated at banquet tables is watching the happenings on a stage surrounded by blue curtains.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.6552,
+    "predictive_entropy": 0.9293,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.5398,
+    "top3_views_flagging_plagiarism": [
+      "text_word_overlap_ratio",
+      "text_char_tfidf_sim",
+      "text_token_count_delta"
+    ],
+    "reference_excerpt": "A large audience of people seated at banquet tables is watching the happenings on a stage surrounded by blue curtains.",
+    "suspicious_excerpt": "The large audience is standing and cheering."
+  },
+  {
+    "pair_id": "TXT_016709",
+    "premise_group_id": "Two men are running down a road and carrying a canoe.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.1614,
+    "predictive_entropy": 0.6376,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.2609,
+    "top3_views_flagging_plagiarism": [
+      "text_word_overlap_ratio",
+      "text_char_tfidf_sim",
+      "text_word_tfidf_sim"
+    ],
+    "reference_excerpt": "Two men are running down a road and carrying a canoe.",
+    "suspicious_excerpt": "The men are paddling a canoe down a river"
+  },
+  {
+    "pair_id": "TXT_012308",
+    "premise_group_id": "A crowd of people in stadium style seating appear disinterested in the venue.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.2821,
+    "predictive_entropy": 0.8582,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0129,
+    "top3_views_flagging_plagiarism": [
+      "text_semantic_minilm_sim",
+      "text_word_tfidf_sim",
+      "text_word_jaccard"
+    ],
+    "reference_excerpt": "A crowd of people in stadium style seating appear disinterested in the venue.",
+    "suspicious_excerpt": "A group of people are unhappy to be at the stadium."
+  },
+  {
+    "pair_id": "TXT_013985",
+    "premise_group_id": "There are a group of track runners bracing to take off.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.1533,
+    "predictive_entropy": 0.6179,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0011,
+    "top3_views_flagging_plagiarism": [
+      "text_char_tfidf_sim",
+      "text_word_tfidf_sim",
+      "text_char_jaccard_3gram"
+    ],
+    "reference_excerpt": "There are a group of track runners bracing to take off.",
+    "suspicious_excerpt": "The track runners are all black ethniticity"
+  },
+  {
+    "pair_id": "TXT_018375",
+    "premise_group_id": "A woman in a blue apron is holding a container of ice cream.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.2426,
+    "predictive_entropy": 0.7994,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0382,
+    "top3_views_flagging_plagiarism": [
+      "text_word_overlap_ratio",
+      "text_word_jaccard",
+      "text_char_jaccard_3gram"
+    ],
+    "reference_excerpt": "A woman in a blue apron is holding a container of ice cream.",
+    "suspicious_excerpt": "A woman is standing in a kitchen."
+  },
+  {
+    "pair_id": "TXT_018555",
+    "premise_group_id": "Two girls in bathing suits are in water.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.411,
+    "predictive_entropy": 0.977,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0692,
+    "top3_views_flagging_plagiarism": [
+      "text_semantic_minilm_sim",
+      "text_word_overlap_ratio",
+      "text_word_tfidf_sim"
+    ],
+    "reference_excerpt": "Two girls in bathing suits are in water.",
+    "suspicious_excerpt": "Two girls are swiming in a pool"
+  },
+  {
+    "pair_id": "TXT_014368",
+    "premise_group_id": "The little boy stands in the middle of birds who have gathered on the sidewalk.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.2205,
+    "predictive_entropy": 0.7611,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.7936,
+    "top3_views_flagging_plagiarism": [
+      "text_char_tfidf_sim",
+      "text_word_tfidf_sim",
+      "text_semantic_minilm_sim"
+    ],
+    "reference_excerpt": "The little boy stands in the middle of birds who have gathered on the sidewalk.",
+    "suspicious_excerpt": "There are a lot of birds outside by the sidewalk."
+  },
+  {
+    "pair_id": "TXT_017477",
+    "premise_group_id": "A happy woman who is preparing for dinner.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.1585,
+    "predictive_entropy": 0.6307,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0797,
+    "top3_views_flagging_plagiarism": [
+      "text_word_overlap_ratio",
+      "text_semantic_minilm_sim",
+      "text_word_jaccard"
+    ],
+    "reference_excerpt": "A happy woman who is preparing for dinner.",
+    "suspicious_excerpt": "A woman is cooking dinner for the guests."
+  },
+  {
+    "pair_id": "TXT_017793",
+    "premise_group_id": "A man with a blue and white backpack and black jeans and jacket walks by a large monument surrounded by a gray fence.",
+    "ground_truth_label": 1,
+    "calibrated_prob": 0.3207,
+    "predictive_entropy": 0.9052,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.9168,
+    "top3_views_flagging_plagiarism": [
+      "text_token_count_delta",
+      "text_length_ratio",
+      "text_sentence_delta"
+    ],
+    "reference_excerpt": "A man with a blue and white backpack and black jeans and jacket walks by a large monument surrounded by a gray fence.",
+    "suspicious_excerpt": "A person is strolling with a bag."
+  },
+  {
+    "pair_id": "TXT_010465",
+    "premise_group_id": "A group of seven individuals wearing rafting gear, white water raft down a river.",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.256,
+    "predictive_entropy": 0.8207,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0081,
+    "top3_views_flagging_plagiarism": [
+      "text_length_ratio",
+      "text_ttr_sim",
+      "text_sentence_delta"
+    ],
+    "reference_excerpt": "A group of seven individuals wearing rafting gear, white water raft down a river.",
+    "suspicious_excerpt": "Seven men and women are in a yellow boat."
+  },
+  {
+    "pair_id": "TXT_013330",
+    "premise_group_id": "3 cyclists are racing ahead of a red BMW, with the leader wearing solid white helmet and black cycling pants",
+    "ground_truth_label": 0,
+    "calibrated_prob": 0.1569,
+    "predictive_entropy": 0.6269,
+    "routing_state": "UNCERTAIN_ESCALATED",
+    "stage2_score": 0.0231,
+    "top3_views_flagging_plagiarism": [
+      "text_token_count_delta",
+      "text_length_ratio",
+      "text_ttr_sim"
+    ],
+    "reference_excerpt": "3 cyclists are racing ahead of a red BMW, with the leader wearing solid white helmet and black cycling pants",
+    "suspicious_excerpt": "Three people are riding horses across a course."
+  }
+]
