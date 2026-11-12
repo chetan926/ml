@@ -1,0 +1,4 @@
+system,eval_splits,n_samples,n_positive,n_negative,accuracy,precision,recall,specificity,f1,macro_f1,weighted_f1,fpr,fnr,mcc,tp,fp,tn,fn,roc_auc,pr_auc
+"PROPOSED framework Policy A (phase 4.1 frozen, nested LOGO OOF)",code Policy A OOF (n=720),720,342,378,0.848611,0.815718,0.880117,0.820106,0.846695,0.848587,0.848682,0.179894,0.119883,0.699566,301,68,310,41,0.832196,0.749241
+B2 Token Jaccard baseline (frozen),code Policy A OOF (n=720),720,342,378,0.475,0.475,1.0,0.0,0.644068,0.322034,0.305932,1.0,0.0,0.0,342,378,0,0,0.682489,0.60924
+"PROPOSED heavy-S2 framework Policy A (phase 5 upgrade, nested LOGO OOF)",code Policy A OOF (n=720),720,342,378,0.830556,0.797297,0.862573,0.801587,0.828652,0.830535,0.830629,0.198413,0.137427,0.663586,295,75,303,47,0.758169,0.705541

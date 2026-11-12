@@ -1,0 +1,8 @@
+partition,rows,premise_groups,positives,positives_pct
+train,4000,1349.0,1347.0,33.67
+validation,1500,508.0,524.0,34.93
+calibration_prob,1000,336.0,336.0,33.6
+calibration_conformal,1000,334.0,342.0,34.2
+dev_reserve,791,,,
+test,3000,1015.0,1026.0,34.2
+test_reserve,2307,,,

@@ -1,0 +1,10 @@
+scope,class,count,pct
+raw_733,positive(plagiarized),355.0,48.431
+raw_733,negative(non-plagiarized),378.0,51.569
+raw_733,POS:NEG ratio,0.9392,
+policy_A_720,positive(plagiarized),342.0,47.5
+policy_A_720,negative(non-plagiarized),378.0,52.5
+policy_A_720,POS:NEG ratio,0.9048,
+policy_B_709,positive(plagiarized),331.0,46.685
+policy_B_709,negative(non-plagiarized),378.0,53.315
+policy_B_709,POS:NEG ratio,0.8757,

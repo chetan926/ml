@@ -1,0 +1,8 @@
+dimension,dataset_1_text,dataset_2_code
+raw_rows,19666,733
+duplicates_removed_rows,8,13
+modality,natural-language sentence pairs (SNLI-derived),Java source-code pairs (IR-Plag)
+label_semantics,binary: plagiarism proxy = entailment,binary: is_plagiarized with obfuscation level L1-L6 on positives
+positive_share_clean_pool_%,,48.43
+grouping_unit,premise group,assignment case (7 groups)
+evaluation_protocol,premise-group-disjoint holdout,nested Leave-One-Case-Out (LOGO)

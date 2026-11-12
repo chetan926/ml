@@ -1,0 +1,108 @@
+{
+  "dataset1": {
+    "raw_rows": 19666,
+    "purged_rows": 8,
+    "purged_crossing": 6,
+    "purged_redundant_dupes": 2,
+    "clean_rows": 19658,
+    "crossing_premises": 1,
+    "unique_premises_val": 3319,
+    "unique_premises_test": 3323,
+    "null_cells": 0,
+    "duplicate_full_rows": 2,
+    "exact_pair_dupes_drop_first": 2,
+    "dev_pool_rows": 9837,
+    "test_pool_rows": 9821,
+    "partitions": [
+      {
+        "partition": "train",
+        "rows": 4000,
+        "premise_groups": 1349,
+        "positives": 1347,
+        "positives_pct": 33.67
+      },
+      {
+        "partition": "validation",
+        "rows": 1500,
+        "premise_groups": 508,
+        "positives": 524,
+        "positives_pct": 34.93
+      },
+      {
+        "partition": "calibration_prob",
+        "rows": 1000,
+        "premise_groups": 336,
+        "positives": 336,
+        "positives_pct": 33.6
+      },
+      {
+        "partition": "calibration_conformal",
+        "rows": 1000,
+        "premise_groups": 334,
+        "positives": 342,
+        "positives_pct": 34.2
+      },
+      {
+        "partition": "dev_reserve",
+        "rows": 791,
+        "premise_groups": null,
+        "positives": null,
+        "positives_pct": null
+      },
+      {
+        "partition": "test",
+        "rows": 3000,
+        "premise_groups": 1015,
+        "positives": 1026,
+        "positives_pct": 34.2
+      },
+      {
+        "partition": "test_reserve",
+        "rows": 2307,
+        "premise_groups": null,
+        "positives": null,
+        "positives_pct": null
+      }
+    ],
+    "train_len_mean": 38.19525,
+    "test_len_mean": 37.483,
+    "train_posrate": 0.33675,
+    "test_posrate": 0.342,
+    "ks_len_p": 0.17185328199543118,
+    "ks_len_stat": 0.02666666666666667,
+    "metrics_systems": [
+      "PROPOSED framework (phase 4.1 frozen)",
+      "B1 TF-IDF lexical baseline (frozen)",
+      "B2 Semantic MiniLM baseline (frozen)",
+      "PROPOSED heavy-S2 framework (phase 5 upgrade)"
+    ]
+  },
+  "dataset2": {
+    "raw_rows": 733,
+    "duplicate_rows_keep_first": 13,
+    "duplicate_rows_in_groups": 24,
+    "duplicate_groups": 11,
+    "policy_a_rows": 720,
+    "policy_b_rows": 709,
+    "null_cells_total": 378,
+    "obf_nulls": 378,
+    "per_case_metric_range": {
+      "f1_min": 0.493827,
+      "f1_max": 0.981818
+    }
+  },
+  "proposed": {
+    "conformal_41_keys": [
+      "execution_timestamp",
+      "phase",
+      "reconciliations",
+      "text_modality",
+      "code_modality",
+      "hardware_profiling",
+      "ablations",
+      "pareto_operating_points",
+      "robustness"
+    ],
+    "conformal_5": true
+  }
+}

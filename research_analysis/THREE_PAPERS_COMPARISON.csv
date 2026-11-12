@@ -1,0 +1,24 @@
+dimension,paper_1_setu_2025,paper_2_gandhi_2024,paper_3_mehsen_2024
+research_objective,hybrid lexical-semantic plagiarism detection with workload awareness,obfuscation-resilient code plagiarism via RBF-SVM,ensemble ML code plagiarism detection under disguise
+problem_addressed,text reuse (verbatim + paraphrase),code reuse under renaming/commenting,code reuse under multi-transform disguise
+modality,natural language text,source code (Python orig; Java adaptation),source code (private corpus orig; Java adaptation)
+methodology,max(TF-IDF; SBERT-MiniLM) hybrid score,7-D syntactic features + RBF-SVC,RF ensemble (100 trees; depth 6 audited)
+architecture,384-d sentence embeddings + TF-IDF view,7-engineered-metrics + SVM,token-frequency/syntactic vectors + RF
+dataset_used_in_repo,SNLI/Pereira text-reuse proxy (n=8500 core),IR-Plag Java (720 Policy A),IR-Plag Java (720 Policy A)
+feature_extraction,TF-IDF vectors + MiniLM embeddings,comment stripping; token/identifier/keyword/operator/complexity,structured token frequency + syntactic metrics
+uncertainty_handling,none,none (uncalibrated probability=True),none
+explainability,none beyond similarity scores,none,none
+computational_efficiency,E1 4.163 ms/pair; E2 2.875 ms/pair (~30% workload reduction),0.013 ms/pair classifier; 2.050 ms/pair AST extraction,0.025 ms/pair
+evaluation_strategy_repo,grouped sentence benchmark; F1-optimal threshold,case-holdout adaptation; nested-LOGO reproduction,case-holdout adaptation; nested-LOGO reproduction
+published_metrics_reported,NR locally (metadata only),NR locally (metadata only),NR locally (metadata only)
+repo_accuracy,0.7200 (text test repro),0.7000 (case-06/07),0.7333 (case-06/07)
+repo_precision,0.5697,0.6258,0.6643
+repo_recall,0.8570,0.9510,0.9118
+repo_f1,0.6844,0.7549,0.7686
+repo_roc_auc,0.8198,NR locally,NR locally
+repo_nested_logo_f1,n/a (text modality),0.8363,0.7859
+repo_nested_logo_mcc,n/a (text modality),0.6754,0.5798
+systematic_renaming_posrecall,n/a (text modality),0.2778,0.3216
+conformal_prediction,no,no,no
+budget_routing,E2 staged dual-threshold (informal),no,no
+leak_free_grouped_eval,partially (grouped corpus in repo adaptation),nested LOGO in repo adaptation,nested LOGO in repo adaptation

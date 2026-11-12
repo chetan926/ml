@@ -1,0 +1,13 @@
+generation,domain,decision_state,pairs
+phase_4_1_frozen,text,UNCERTAIN_ESCALATED,1583
+phase_4_1_frozen,text,LOW_RISK_PRUNED,1174
+phase_4_1_frozen,text,HIGH_RISK_FLAGGED,243
+phase_4_1_frozen,code,UNCERTAIN_ESCALATED,611
+phase_4_1_frozen,code,LOW_RISK_PRUNED,82
+phase_4_1_frozen,code,HIGH_RISK_FLAGGED,27
+phase_5_upgrade,text,LOW_RISK_PRUNED,1199
+phase_5_upgrade,text,UNCERTAIN_ESCALATED,1159
+phase_5_upgrade,text,HIGH_RISK_FLAGGED,642
+phase_5_upgrade,code,UNCERTAIN_ESCALATED,523
+phase_5_upgrade,code,LOW_RISK_PRUNED,145
+phase_5_upgrade,code,HIGH_RISK_FLAGGED,52
