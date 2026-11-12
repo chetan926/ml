@@ -1,0 +1,12 @@
+{
+  "configurations": {
+    "A0": "single strongest view (MiniLM sim text / token jaccard code), val/inner-tuned threshold",
+    "A1": "multi-view flat LR, threshold 0.5",
+    "A2": "A1 + Platt calibration on val / inner-OOF",
+    "A3": "A1 + adaptive routing to heavy S2 (no calibration, unconstrained OP cap 1.0)",
+    "A4": "A1 + budget-only escalation (uncertainty band by |p-0.5|, cap-driven)",
+    "A5": "A2 + routing (calibrated) with unconstrained operating point",
+    "A6": "full framework = A5 + budget-capped operating point (text 0.70 / code 0.45)",
+    "scope_note": "identifier-renaming augmentation is attack-hardening, excluded here; it is isolated in the phase-5 robustness artifacts."
+  }
+}

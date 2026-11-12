@@ -1,0 +1,6 @@
+{
+  "rfa02": "frozen suites + stored proposed predictions",
+  "rfa03": "genuine A0-A6 fresh runs",
+  "rfa04": "sweeps emulated from stored scores (honest semantics)",
+  "rfa05": "figures from run artifacts only"
+}

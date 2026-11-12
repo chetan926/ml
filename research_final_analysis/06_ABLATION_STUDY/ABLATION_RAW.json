@@ -1,0 +1,385 @@
+{
+  "text": {
+    "A0": {
+      "m": {
+        "accuracy": 0.743,
+        "precision": 0.5995,
+        "recall": 0.7485,
+        "sensitivity": 0.7485,
+        "specificity": 0.7401,
+        "fpr": 0.2599,
+        "fnr": 0.2515,
+        "f1": 0.6658,
+        "mcc": 0.4686,
+        "confusion": {
+          "tp": 768,
+          "fp": 513,
+          "tn": 1461,
+          "fn": 258
+        },
+        "n": 3000,
+        "positives": 1026,
+        "roc_auc": 0.815,
+        "pr_auc": 0.6494
+      },
+      "n_s2": 0
+    },
+    "A1": {
+      "m": {
+        "accuracy": 0.793,
+        "precision": 0.7125,
+        "recall": 0.6618,
+        "sensitivity": 0.6618,
+        "specificity": 0.8612,
+        "fpr": 0.1388,
+        "fnr": 0.3382,
+        "f1": 0.6862,
+        "mcc": 0.5329,
+        "confusion": {
+          "tp": 679,
+          "fp": 274,
+          "tn": 1700,
+          "fn": 347
+        },
+        "n": 3000,
+        "positives": 1026,
+        "roc_auc": 0.8636,
+        "pr_auc": 0.7526
+      },
+      "n_s2": 0
+    },
+    "A2": {
+      "m": {
+        "accuracy": 0.7947,
+        "precision": 0.7131,
+        "recall": 0.6686,
+        "sensitivity": 0.6686,
+        "specificity": 0.8602,
+        "fpr": 0.1398,
+        "fnr": 0.3314,
+        "f1": 0.6901,
+        "mcc": 0.5375,
+        "confusion": {
+          "tp": 686,
+          "fp": 276,
+          "tn": 1698,
+          "fn": 340
+        },
+        "n": 3000,
+        "positives": 1026,
+        "roc_auc": 0.8636,
+        "pr_auc": 0.7526
+      },
+      "n_s2": 0
+    },
+    "A3": {
+      "m": {
+        "accuracy": 0.8047,
+        "precision": 0.6996,
+        "recall": 0.7515,
+        "sensitivity": 0.7515,
+        "specificity": 0.8323,
+        "fpr": 0.1677,
+        "fnr": 0.2485,
+        "f1": 0.7246,
+        "mcc": 0.5745,
+        "confusion": {
+          "tp": 771,
+          "fp": 331,
+          "tn": 1643,
+          "fn": 255
+        },
+        "n": 3000,
+        "positives": 1026,
+        "roc_auc": 0.8636,
+        "pr_auc": 0.7526
+      },
+      "n_s2": 1277,
+      "op": {
+        "tau_low": 0.15,
+        "tau_high": 0.55,
+        "entropy_threshold": 0.95,
+        "stage2_decision_threshold": 0.4,
+        "val_escalation_ratio": 0.44466666666666665,
+        "val_mcc": 0.6227007751358575,
+        "val_f1": 0.7570093457943925,
+        "val_accuracy": 0.8266666666666667,
+        "val_precision": 0.7417582417582418,
+        "val_recall": 0.7729007633587787
+      }
+    },
+    "A5": {
+      "m": {
+        "accuracy": 0.8083,
+        "precision": 0.7078,
+        "recall": 0.7485,
+        "sensitivity": 0.7485,
+        "specificity": 0.8394,
+        "fpr": 0.1606,
+        "fnr": 0.2515,
+        "f1": 0.7276,
+        "mcc": 0.5805,
+        "confusion": {
+          "tp": 768,
+          "fp": 317,
+          "tn": 1657,
+          "fn": 258
+        },
+        "n": 3000,
+        "positives": 1026,
+        "roc_auc": 0.8636,
+        "pr_auc": 0.7526
+      },
+      "n_s2": 1159,
+      "op": {
+        "tau_low": 0.15,
+        "tau_high": 0.55,
+        "entropy_threshold": 0.9,
+        "stage2_decision_threshold": 0.4,
+        "val_escalation_ratio": 0.3973333333333333,
+        "val_mcc": 0.6219339192470246,
+        "val_f1": 0.7560975609756098,
+        "val_accuracy": 0.8266666666666667,
+        "val_precision": 0.7435424354243543,
+        "val_recall": 0.7690839694656488
+      }
+    },
+    "A6": {
+      "m": {
+        "accuracy": 0.8083,
+        "precision": 0.7078,
+        "recall": 0.7485,
+        "sensitivity": 0.7485,
+        "specificity": 0.8394,
+        "fpr": 0.1606,
+        "fnr": 0.2515,
+        "f1": 0.7276,
+        "mcc": 0.5805,
+        "confusion": {
+          "tp": 768,
+          "fp": 317,
+          "tn": 1657,
+          "fn": 258
+        },
+        "n": 3000,
+        "positives": 1026,
+        "roc_auc": 0.8636,
+        "pr_auc": 0.7526
+      },
+      "n_s2": 1159,
+      "op": {
+        "tau_low": 0.15,
+        "tau_high": 0.55,
+        "entropy_threshold": 0.9,
+        "stage2_decision_threshold": 0.4,
+        "val_escalation_ratio": 0.3973333333333333,
+        "val_mcc": 0.6219339192470246,
+        "val_f1": 0.7560975609756098,
+        "val_accuracy": 0.8266666666666667,
+        "val_precision": 0.7435424354243543,
+        "val_recall": 0.7690839694656488
+      }
+    },
+    "A4": {
+      "m": {
+        "accuracy": 0.8037,
+        "precision": 0.7372,
+        "recall": 0.6618,
+        "sensitivity": 0.6618,
+        "specificity": 0.8774,
+        "fpr": 0.1226,
+        "fnr": 0.3382,
+        "f1": 0.6975,
+        "mcc": 0.5545,
+        "confusion": {
+          "tp": 679,
+          "fp": 242,
+          "tn": 1732,
+          "fn": 347
+        },
+        "n": 3000,
+        "positives": 1026,
+        "roc_auc": 0.8636,
+        "pr_auc": 0.7526
+      },
+      "n_s2": 874
+    }
+  },
+  "code": {
+    "A0": {
+      "m": {
+        "accuracy": 0.6,
+        "precision": 0.5508,
+        "recall": 0.8567,
+        "sensitivity": 0.8567,
+        "specificity": 0.3677,
+        "fpr": 0.6323,
+        "fnr": 0.1433,
+        "f1": 0.6705,
+        "mcc": 0.2552,
+        "confusion": {
+          "tp": 293,
+          "fp": 239,
+          "tn": 139,
+          "fn": 49
+        },
+        "n": 720,
+        "positives": 342,
+        "roc_auc": 0.6613,
+        "pr_auc": 0.5725
+      },
+      "n_s2": 0,
+      "runtime": 2888.148546218872
+    },
+    "A1": {
+      "m": {
+        "accuracy": 0.8194,
+        "precision": 0.7677,
+        "recall": 0.8889,
+        "sensitivity": 0.8889,
+        "specificity": 0.7566,
+        "fpr": 0.2434,
+        "fnr": 0.1111,
+        "f1": 0.8238,
+        "mcc": 0.6479,
+        "confusion": {
+          "tp": 304,
+          "fp": 92,
+          "tn": 286,
+          "fn": 38
+        },
+        "n": 720,
+        "positives": 342,
+        "roc_auc": 0.8406,
+        "pr_auc": 0.8025
+      },
+      "n_s2": 0,
+      "runtime": 2132.8933238983154
+    },
+    "A2": {
+      "m": {
+        "accuracy": 0.8208,
+        "precision": 0.7696,
+        "recall": 0.8889,
+        "sensitivity": 0.8889,
+        "specificity": 0.7593,
+        "fpr": 0.2407,
+        "fnr": 0.1111,
+        "f1": 0.825,
+        "mcc": 0.6504,
+        "confusion": {
+          "tp": 304,
+          "fp": 91,
+          "tn": 287,
+          "fn": 38
+        },
+        "n": 720,
+        "positives": 342,
+        "roc_auc": 0.8403,
+        "pr_auc": 0.7987
+      },
+      "n_s2": 0,
+      "runtime": 1969.6338176727295
+    },
+    "A3": {
+      "m": {
+        "accuracy": 0.8431,
+        "precision": 0.8281,
+        "recall": 0.845,
+        "sensitivity": 0.845,
+        "specificity": 0.8413,
+        "fpr": 0.1587,
+        "fnr": 0.155,
+        "f1": 0.8365,
+        "mcc": 0.6858,
+        "confusion": {
+          "tp": 289,
+          "fp": 60,
+          "tn": 318,
+          "fn": 53
+        },
+        "n": 720,
+        "positives": 342,
+        "roc_auc": 0.8406,
+        "pr_auc": 0.8025
+      },
+      "n_s2": 602,
+      "runtime": 3456.0885429382324
+    },
+    "A4": {
+      "m": {
+        "accuracy": 0.8417,
+        "precision": 0.8239,
+        "recall": 0.848,
+        "sensitivity": 0.848,
+        "specificity": 0.836,
+        "fpr": 0.164,
+        "fnr": 0.152,
+        "f1": 0.8357,
+        "mcc": 0.6832,
+        "confusion": {
+          "tp": 290,
+          "fp": 62,
+          "tn": 316,
+          "fn": 52
+        },
+        "n": 720,
+        "positives": 342,
+        "roc_auc": 0.8406,
+        "pr_auc": 0.8025
+      },
+      "n_s2": 348,
+      "runtime": 2043.2088375091553
+    },
+    "A5": {
+      "m": {
+        "accuracy": 0.8417,
+        "precision": 0.8276,
+        "recall": 0.8421,
+        "sensitivity": 0.8421,
+        "specificity": 0.8413,
+        "fpr": 0.1587,
+        "fnr": 0.1579,
+        "f1": 0.8348,
+        "mcc": 0.6829,
+        "confusion": {
+          "tp": 288,
+          "fp": 60,
+          "tn": 318,
+          "fn": 54
+        },
+        "n": 720,
+        "positives": 342,
+        "roc_auc": 0.8403,
+        "pr_auc": 0.7987
+      },
+      "n_s2": 591,
+      "runtime": 3717.167377471924
+    },
+    "A6": {
+      "m": {
+        "accuracy": 0.8361,
+        "precision": 0.8218,
+        "recall": 0.8363,
+        "sensitivity": 0.8363,
+        "specificity": 0.836,
+        "fpr": 0.164,
+        "fnr": 0.1637,
+        "f1": 0.829,
+        "mcc": 0.6718,
+        "confusion": {
+          "tp": 286,
+          "fp": 62,
+          "tn": 316,
+          "fn": 56
+        },
+        "n": 720,
+        "positives": 342,
+        "roc_auc": 0.8403,
+        "pr_auc": 0.7987
+      },
+      "n_s2": 336,
+      "runtime": 2508.165121078491
+    }
+  }
+}

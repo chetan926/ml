@@ -1,0 +1,43 @@
+{
+  "verdicts": {
+    "implementation": "COMPLETE",
+    "experimental": "EFFICIENT-TRADE-OFF",
+    "manuscript": "REQUIRES MAJOR REVISION (external-calibration transfer + live human study are the missing evidence; everything else is experiment-grounded)"
+  },
+  "headline": {
+    "text_proposed": {
+      "accuracy": 0.808,
+      "f1": 0.7273,
+      "mcc": 0.5799,
+      "roc_auc": 0.8636
+    },
+    "text_strongest_baseline": {
+      "system": "B-T3 Flat Multi-View Hybrid LR",
+      "f1": 0.7151
+    },
+    "code_proposed_tuned_op": {
+      "accuracy": 0.8306,
+      "f1": 0.8287,
+      "mcc": 0.6636
+    },
+    "code_proposed_beta1": {
+      "f1": 0.8481,
+      "mcc": 0.6997
+    },
+    "code_strongest_baseline": {
+      "system": "B-C3 Gandhi RBF-SVM (2024)",
+      "f1": 0.8363
+    }
+  },
+  "significance_summary": {
+    "B-C1_code_predictions": true,
+    "B-C2_code_predictions": true,
+    "B-C3_code_predictions": false,
+    "B-C4_code_predictions": true,
+    "B-C5_code_predictions": true,
+    "B-T1_text_predictions": true,
+    "B-T2_text_predictions": true,
+    "B-T3_text_predictions": true
+  },
+  "dataset_checks": "PASS: zero premise/pair overlap"
+}

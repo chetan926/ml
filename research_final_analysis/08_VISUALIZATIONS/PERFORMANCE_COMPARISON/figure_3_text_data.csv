@@ -1,0 +1,5 @@
+System,accuracy,precision,recall,f1,roc_auc,pr_auc
+B-T1 TF-IDF Lexical (Sajid 2025),0.5637,0.4249,0.7797,0.55,0.665,0.4786
+B-T2 Dense Semantic MiniLM (Setu 2025),0.743,0.5995,0.7485,0.6658,0.815,0.6494
+B-T3 Flat Multi-View Hybrid LR,0.7753,0.6313,0.8246,0.7151,0.8634,0.7506
+"PROPOSED (C1-C4, heavy S2, tuned OP)",0.808,0.7072,0.7485,0.7273,0.8636,0.7522

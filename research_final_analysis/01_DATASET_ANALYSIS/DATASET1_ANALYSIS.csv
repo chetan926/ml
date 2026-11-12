@@ -1,0 +1,4 @@
+partition,rows,premise_groups,positives,positives_pct,negatives,missing_reference,missing_suspicious,duplicate_pairs_exact
+train,4000,1349,1347,33.67,2653,0,0,0
+val,1500,508,524,34.93,976,0,0,0
+test,3000,1015,1026,34.2,1974,0,0,0

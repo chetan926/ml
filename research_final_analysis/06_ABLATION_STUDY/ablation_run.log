@@ -1,0 +1,31 @@
+text ablation ...
+  text A0: MCC=0.4686
+  text A1: MCC=0.5329
+  text A2: MCC=0.5375
+  text A3: MCC=0.5745 esc=1277
+  text A5: MCC=0.5805 esc=1159
+  text A6: MCC=0.5805 esc=1159
+  text A4: MCC=0.5545 esc=874
+code ablation (LOGO) ...
+  code A0: MCC=0.2552 esc=0 rt=2.9s
+  code A1: MCC=0.6479 esc=0 rt=2.1s
+  code A2: MCC=0.6504 esc=0 rt=2.0s
+  code A3: MCC=0.6858 esc=602 rt=3.5s
+  code A4: MCC=0.6832 esc=348 rt=2.0s
+  code A5: MCC=0.6829 esc=591 rt=3.7s
+  code A6: MCC=0.6718 esc=336 rt=2.5s
+   Configuration     mcc  escalation_rate_pct  pruning_ratio
+0        Code-A0  0.2552                 0.00         1.0000
+1        Code-A1  0.6479                 0.00         1.0000
+2        Code-A2  0.6504                 0.00         1.0000
+3        Code-A3  0.6858                83.61         0.1639
+4        Code-A4  0.6832                48.33         0.5167
+5        Code-A5  0.6829                82.08         0.1792
+6        Code-A6  0.6718                46.67         0.5333
+7        Text-A0  0.4686                 0.00         1.0000
+8        Text-A1  0.5329                 0.00         1.0000
+9        Text-A2  0.5375                 0.00         1.0000
+10       Text-A3  0.5745                42.57         0.5743
+11       Text-A4  0.5545                29.13         0.7087
+12       Text-A5  0.5805                38.63         0.6137
+13       Text-A6  0.5805                38.63         0.6137

@@ -1,0 +1,5 @@
+Dimension,Papers 1-3,Proposed
+modality pathways,single modality each,text + code under one protocol
+decision layer,single classifier/score,calibrated S1 + conformal sets + entropy
+heavy verification,always or never,budget-capped adaptive escalation
+auditability,none,per-pair dossiers + grey-zone review packet

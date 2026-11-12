@@ -1,0 +1,5 @@
+Method,Limitations
+Paper 1 impl (B-T1/B-T2),no UQ; no cost model; threshold rigidity
+Paper 2 impl (B-C3),hard SVM decisions; no uncertainty
+Paper 3 impl (B-C4),hard RF decisions; no uncertainty
+Proposed,external calibration transfer fails without recalibration (CS recall 0.000 frozen-OP); conformal repair trades set informativeness (94% ambiguous at alpha*); C4 human gains unmeasured

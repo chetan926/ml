@@ -1,0 +1,5 @@
+Domain,Stage,architectural_complexity,single_pair_latency_ms,batched_ms_per_pair,latency_ratio_vs_stage1_batched,complexity_ratio_vs_stage1
+Text,Stage-1 LR screener,12,0.131036,0.000299,1.0,1.0
+Text,Stage-2 heavy cross-style MLP verifier,175873,0.225587,0.005535,18.5,14656.1
+Code,Stage-1 LR screener,13,0.129232,0.000671,1.0,1.0
+Code,"Stage-2 heavy verifier (HGB(400,d8); trees/nodes=189/8169)",8169,1.245122,0.01354,20.2,628.4

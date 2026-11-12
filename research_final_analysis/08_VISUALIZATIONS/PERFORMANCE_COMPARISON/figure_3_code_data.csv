@@ -1,0 +1,7 @@
+System,accuracy,precision,recall,f1,roc_auc,pr_auc
+B-C1 Token Jaccard,0.5889,0.5424,0.8596,0.6652,0.6825,0.6092
+B-C2 RKRGST String Tiling,0.5069,0.4899,0.924,0.6403,0.562,0.5325
+B-C3 Gandhi RBF-SVM (2024),0.8347,0.7896,0.8889,0.8363,0.9042,0.8834
+B-C4 Mehsen RandomForest (2024),0.7889,0.7582,0.8158,0.7859,0.8474,0.8206
+"B-C5 ES-Plag (2019, recall-first filter)",0.5097,0.4916,0.9415,0.6459,0.5529,0.5307
+"PROPOSED (C1-C4, heavy S2, tuned OP)",0.8306,0.7973,0.8626,0.8287,0.7582,0.7055
