@@ -1,0 +1,68 @@
+{
+ "text_improved": {
+  "tn": 1117,
+  "fp": 820,
+  "fn": 214,
+  "tp": 849,
+  "accuracy": 0.6553333333333333,
+  "precision": 0.5086878370281606,
+  "recall": 0.7986829727187206,
+  "f1": 0.6215226939970717,
+  "specificity": 0.5766649457924625,
+  "fpr": 0.4233350542075374,
+  "mcc": 0.36136680701768265,
+  "candidate_recall": 1.0,
+  "pruning_ratio": 0.0,
+  "expensive_call_rate": 0.6633333333333333,
+  "direct_flag_rate": 0.33666666666666667,
+  "filtered": 0,
+  "escalated": 1990,
+  "flagged": 1010,
+  "avg_latency_ms": 0.04816142133330383,
+  "confusion_matrix": [
+   [
+    1117,
+    820
+   ],
+   [
+    214,
+    849
+   ]
+  ],
+  "roc_auc": 0.7428411714053843,
+  "pr_auc": 0.6018308487948352
+ },
+ "code_improved": {
+  "tn": 63,
+  "fp": 45,
+  "fn": 16,
+  "tp": 86,
+  "accuracy": 0.7095238095238096,
+  "precision": 0.6564885496183206,
+  "recall": 0.8431372549019608,
+  "f1": 0.7381974248927039,
+  "specificity": 0.5833333333333334,
+  "fpr": 0.4166666666666667,
+  "mcc": 0.43999916807094325,
+  "candidate_recall": 1.0,
+  "pruning_ratio": 0.0,
+  "expensive_call_rate": 0.7523809523809524,
+  "direct_flag_rate": 0.24761904761904763,
+  "filtered": 0,
+  "escalated": 158,
+  "flagged": 52,
+  "avg_latency_ms": 0.36867693809480057,
+  "confusion_matrix": [
+   [
+    63,
+    45
+   ],
+   [
+    16,
+    86
+   ]
+  ],
+  "roc_auc": 0.5913217138707335,
+  "pr_auc": 0.5697575820499159
+ }
+}
