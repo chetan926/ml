@@ -1,0 +1,4 @@
+Dataset,Paper,Paper_Full,N_Test_Pairs,Accuracy,Precision,Recall,F1-Score,Specificity,ROC-AUC,PR-AUC,MCC,TP,TN,FP,FN,Avg_Latency_ms,FitTime_sec,PredTime_sec
+Dataset2_quora_question_pairs,Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science, DOI 10.3389/fcomp.2025.1504725",8000,0.442125,0.441866,0.996324,0.612217,0.003136,0.483757,0.430261,-0.004626,3523,14,4450,13,0.661347,0.1412,5.2908
+Dataset2_quora_question_pairs,Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE, DOI 10.1371/journal.pone.0319551",8000,0.5995,0.542564,0.598416,0.569123,0.600358,0.637109,0.576175,0.197495,2116,2680,1784,1420,0.75058,2.9113,6.0046
+Dataset2_quora_question_pairs,SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems, DOI 10.1007/s10115-026-02837-8",8000,0.442125,0.44191,0.997172,0.612419,0.002464,0.548434,0.4862,-0.003532,3526,11,4453,10,2e-06,5.1137,0.0
