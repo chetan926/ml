@@ -564,6 +564,7 @@ All twelve comparison tables are preserved as CSV files in `reports/paper_wise_c
 | Table 12 | `reports/paper_wise_comparison/tables/table_12_paper3_mehsen_vs_proposed_java_qualitative.csv` | Paper 3 vs. Proposed — qualitative, Java |\n| Table 13 | `reports/paper_wise_comparison/tables/table_13_code_improved_vs_paper2_quantitative.csv` | Improved Proposed Pipeline vs Paper 2 — quantitative, code |\n| Table 14 | `reports/paper_wise_comparison/tables/table_14_code_improved_vs_paper3_quantitative.csv` | Improved Proposed Pipeline vs Paper 3 — quantitative, code |\n| Table 15 | `reports/paper_wise_comparison/tables/table_15_text_improved_vs_paper1_quantitative.csv` | Improved Proposed Pipeline vs Paper 1 — quantitative, text |
 
 Supplementary computation artifacts:\n- `reports/paper_wise_comparison/code_reproduction_results.json` (fresh code-modality reproduction: MCC, ROC-AUC, PR-AUC, McNemar tests, bootstrap CIs).\n- `reports/paper_wise_comparison/exhaustive_improvement_results.json` (exhaustive grid-search results for improved pipeline: code RF n=400/d=8/ms=2/thr=0.52; text LR cheap multi-view thr=0.49).
+- `reports/paper_wise_comparison/JOURNAL_ONLY_RECENT_RESEARCH_2024_2026.md` (journal-only, 2024–2026 research survey for text and Java source-code plagiarism detection; conference proceedings, preprints, and blogs excluded per standing constraint).
 
 *End of manuscript.*
 
