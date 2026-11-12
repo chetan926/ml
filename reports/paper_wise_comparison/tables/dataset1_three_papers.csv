@@ -1,0 +1,4 @@
+Dataset,Paper,Paper_Full,N_Test_Pairs,Accuracy,Precision,Recall,F1-Score,Specificity,ROC-AUC,PR-AUC,MCC,TP,TN,FP,FN,Avg_Latency_ms,FitTime_sec,PredTime_sec
+Dataset1_repo_text_benchmark,Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science, DOI 10.3389/fcomp.2025.1504725",9824,0.688721,0.579651,0.334917,0.424539,0.873296,0.686505,0.518324,0.247968,1128,5638,818,2240,0.816634,0.1346,8.0226
+Dataset1_repo_text_benchmark,Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE, DOI 10.1371/journal.pone.0319551",9824,0.683836,0.530896,0.668349,0.591746,0.691914,0.737768,0.591742,0.345249,2251,4467,1989,1117,0.801795,8.3111,7.8768
+Dataset1_repo_text_benchmark,SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems, DOI 10.1007/s10115-026-02837-8",9824,0.680273,0.610301,0.186461,0.285649,0.937887,0.689315,0.510274,0.192744,628,6055,401,2740,2e-06,8.2573,0.0
