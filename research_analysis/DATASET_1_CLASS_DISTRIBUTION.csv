@@ -1,0 +1,7 @@
+scope,class,count,pct
+clean_pool,positive(plagiarized proxy=entailment),6693.0,34.047
+clean_pool,negative(non-plagiarized),12965.0,65.953
+clean_pool,POS:NEG ratio,0.5162,
+raw_pool,label=0 entailment(->positive),6697.0,34.054
+raw_pool,label=1 neutral,6454.0,32.818
+raw_pool,label=2 contradiction,6515.0,33.128

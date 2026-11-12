@@ -1,0 +1,4 @@
+subgroup,n,recall,precision,f1
+suspicious_text_len=short,945,0.640964,0.813456,0.716981
+suspicious_text_len=medium,973,0.640805,0.771626,0.700157
+suspicious_text_len=long,1082,0.56654,0.56015,0.563327

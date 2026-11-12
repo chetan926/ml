@@ -1,0 +1,211 @@
+% Phase 23 — verified bibliography for the research analysis.
+% Entries below use ONLY metadata recorded in the repository's verified documentation
+% (literature/selected_papers.csv, research_audit/final_literature_verification.md).
+% Entries for foundational works use widely-known canonical bibliographic records.
+
+@article{setu2025plagiarism,
+  author    = {Setu, Deblina Mazumder and Islam, Tania and Erfan, Md. and Dey, Samrat Kumar and Al Asif, Md. Rashid and Alam, Md. Golam Rabiul},
+  title     = {A comprehensive strategy for identifying plagiarism in academic submissions},
+  journal   = {Journal of Umm Al-Qura University for Engineering and Architecture},
+  publisher = {Springer Nature},
+  year      = {2025},
+  doi       = {10.1007/s43995-025-00108-1},
+  note      = {Repository record: literature/selected\_papers.csv M1\_SETU\_2025; full-text PDF not stored in repository}
+}
+
+@article{gandhi2024svm,
+  author    = {Gandhi, Nandini and Gopalan, Kaushik and Prasad, Prajish},
+  title     = {A Support Vector Machine based approach for plagiarism detection in {Python} code submissions in undergraduate settings},
+  journal   = {Frontiers in Computer Science},
+  volume    = {6},
+  pages     = {1393723},
+  year      = {2024},
+  doi       = {10.3389/fcomp.2024.1393723},
+  note      = {Repository record: selected\_papers.csv M2\_GANDHI\_2024; adapted Python$\to$Java in src/code\_plagiarism.py}
+}
+
+@article{mehsen2024rf,
+  author    = {Mehsen, Raddam Sami and Joshi, Hiren D.},
+  title     = {Detection of Source Code Plagiarism Utilizing an Approach Based on Machine Learning},
+  journal   = {International Journal of Computing},
+  volume    = {23},
+  number    = {1},
+  pages     = {78--84},
+  year      = {2024},
+  doi       = {10.47839/ijc.23.1.3438},
+  note      = {Repository record: selected\_papers.csv M3\_MEHSEN\_2024; implementation audit: max\_depth=6}
+}
+
+@article{sulistiani2019esplag,
+  author    = {Sulistiani, Lucia and Karnalim, Oscar},
+  title     = {{ES-Plag}: Efficient and sensitive source code plagiarism detection tool for academic environment},
+  journal   = {Computer Applications in Engineering Education},
+  volume    = {27},
+  number    = {1},
+  pages     = {166--178},
+  year      = {2019},
+  doi       = {10.1002/cae.22066},
+  note      = {Reference methodology; implemented in src/code/}
+}
+
+@article{salton1988tfidf,
+  author    = {Salton, Gerard and Buckley, Christopher},
+  title     = {Term-weighting approaches in automatic text retrieval},
+  journal   = {Information Processing \& Management},
+  volume    = {24},
+  number    = {5},
+  pages     = {513--523},
+  year      = {1988},
+  note      = {Traditional lexical baseline lineage},
+  doi       = {10.1016/0306-4573(88)90021-0}
+}
+
+@article{sajid2025tfidf,
+  author    = {Sajid, Muhammad and others},
+  title     = {Benchmarking of sublinear TF-IDF for plagiarism screening (as recorded in repository literature table)},
+  journal   = {PLOS ONE},
+  volume    = {20},
+  number    = {3},
+  pages     = {e0319551},
+  year      = {2025},
+  doi       = {10.1371/journal.pone.0319551},
+  note      = {Repository record lists Sajid et al. 2025 as the contemporary benchmarking context for B1}
+}
+
+@article{faidhi1987jaccard,
+  author    = {Faidhi, J. A. W. and Robinson, J. L.},
+  title     = {An empirical approach for detecting program similarity and plagiarism within a university programming environment},
+  journal   = {Computers \& Education},
+  volume    = {11},
+  number    = {1},
+  pages     = {11--19},
+  year      = {1987},
+  doi       = {10.1016/0360-1315(87)90042-X},
+  note      = {Traditional token-Jaccard baseline lineage; obfuscation levels L1--L6 attributed to Faidhi--Robinson grading}
+}
+
+@inproceedings{bowman2015snli,
+  author    = {Bowman, Samuel R. and Angeli, Gabor and Potts, Christopher and Manning, Christopher D.},
+  title     = {A large annotated corpus for learning natural language inference},
+  booktitle = {Proceedings of EMNLP},
+  pages     = {632--642},
+  year      = {2015},
+  doi       = {10.18653/v1/D15-1075},
+  note      = {Origin corpus of Dataset 1 (provenance-traced in experiments/results/dataset\_provenance\_audit.md)}
+}
+
+@inproceedings{wise1996yap,
+  author    = {Wise, Michael J.},
+  title     = {{YAP3}: Improved detection of similarities in computer program and other texts},
+  booktitle = {Proceedings of SIGCSE},
+  pages     = {130--134},
+  year      = {1996},
+  note      = {RKRGST lineage for B-C2}
+}
+
+@inproceedings{schleimer2003winnowing,
+  author    = {Schleimer, Saul and Wilkerson, Daniel S. and Aiken, Alex},
+  title     = {Winnowing: Local algorithms for document fingerprinting},
+  booktitle = {Proceedings of ACM SIGMOD},
+  pages     = {76--85},
+  year      = {2003},
+  note      = {MOSS lineage; foil comparison in literature review}
+}
+
+@article{prechelt2002jplag,
+  author    = {Prechelt, Lutz and Malpohl, Guido and Philippsen, Michael},
+  title     = {Finding plagiarisms among a set of programs with {JPlag}},
+  journal   = {Journal of Universal Computer Science},
+  volume    = {8},
+  number    = {11},
+  pages     = {1016--1038},
+  year      = {2002},
+  note      = {Tiling lineage}
+}
+
+@inproceedings{reimers2019sbert,
+  author    = {Reimers, Nils and Gurevych, Iryna},
+  title     = {Sentence-{BERT}: Sentence embeddings using {Siamese BERT}-networks},
+  booktitle = {Proceedings of EMNLP-IJCNLP},
+  pages     = {3982--3992},
+  year      = {2019},
+  note      = {Foundation of Paper-1 dense view (all-MiniLM-L6-v2)}
+}
+
+@book{vovk2005conformal,
+  author    = {Vovk, Vladimir and Gammerman, Alexander and Shafer, Glenn},
+  title     = {Algorithmic Learning in a Random World},
+  publisher = {Springer},
+  year      = {2005},
+  note      = {Conformal prediction foundation (C2)}
+}
+
+@article{angelopoulos2021gentle,
+  author    = {Angelopoulos, Anastasios N. and Bates, Stephen},
+  title     = {A gentle introduction to conformal prediction and distribution-free uncertainty quantification},
+  journal   = {arXiv:2107.07511},
+  year      = {2021},
+  note      = {Split-conformal formulation}
+}
+
+@inproceedings{platt1999,
+  author    = {Platt, John C.},
+  title     = {Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods},
+  booktitle = {Advances in Large Margin Classifiers},
+  year      = {1999},
+  note      = {Platt calibration}
+}
+
+@inproceedings{zadrozny2002isotonic,
+  author    = {Zadrozny, Bianca and Elkan, Charles},
+  title     = {Transforming classifier scores into accurate multiclass probability estimates},
+  booktitle = {Proceedings of ACM SIGKDD},
+  pages     = {694--699},
+  year      = {2002},
+  note      = {Isotonic calibration}
+}
+
+@inproceedings{guo2017calibration,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  title     = {On calibration of modern neural networks},
+  booktitle = {Proceedings of ICML},
+  pages     = {1321--1330},
+  year      = {2017},
+  note      = {Calibration motivation (C2)}
+}
+
+@inproceedings{viola2001cascade,
+  author    = {Viola, Paul and Jones, Michael},
+  title     = {Rapid object detection using a boosted cascade of simple features},
+  booktitle = {Proceedings of CVPR},
+  year      = {2001},
+  note      = {Cascade lineage (C3)}
+}
+
+@article{chicco2020mcc,
+  author    = {Chicco, Davide and Jurman, Giuseppe},
+  title     = {The advantages of the Matthews correlation coefficient ({MCC}) over {F1} score and accuracy in binary classification evaluation},
+  journal   = {BMC Genomics},
+  volume    = {21},
+  number    = {6},
+  year      = {2020},
+  note      = {Primary metric justification}
+}
+
+@article{mcnemar1947,
+  author    = {McNemar, Quinn},
+  title     = {Note on the sampling error of the difference between correlated proportions or percentages},
+  journal   = {Psychometrika},
+  volume    = {12},
+  pages     = {153--157},
+  year      = {1947},
+  note      = {Paired label-disagreement test}
+}
+
+@book{efron1993bootstrap,
+  author    = {Efron, Bradley and Tibshirani, Robert J.},
+  title     = {An Introduction to the Bootstrap},
+  publisher = {Chapman \& Hall},
+  year      = {1993},
+  note      = {Clustered bootstrap CIs}
+}

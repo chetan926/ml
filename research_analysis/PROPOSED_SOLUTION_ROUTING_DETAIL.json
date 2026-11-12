@@ -1,0 +1,80 @@
+{
+  "phase_4_1_cost": [
+    {
+      "generation": "phase_4_1_frozen",
+      "domain": "Text",
+      "stage1_ms_per_pair": 0.000195,
+      "stage2_ms_per_pair": 0.068933,
+      "escalated_pairs": 1583,
+      "stage2_avoided_pct": 47.23,
+      "peak_memory_mb": 0.3851
+    },
+    {
+      "generation": "phase_4_1_frozen",
+      "domain": "Code_PolicyA_Nested_LOGO",
+      "stage1_ms_per_pair": 0.000371,
+      "stage2_ms_per_pair": 0.06749,
+      "escalated_pairs": 611,
+      "stage2_avoided_pct": 15.14,
+      "peak_memory_mb": 0.2789
+    }
+  ],
+  "phase_5_cost": [
+    {
+      "Domain": "Text",
+      "Stage": "Stage-1 LR screener",
+      "architectural_complexity": 12,
+      "single_pair_latency_ms": 0.131036,
+      "batched_ms_per_pair": 0.000299,
+      "latency_ratio_vs_stage1_batched": 1.0,
+      "complexity_ratio_vs_stage1": 1.0
+    },
+    {
+      "Domain": "Text",
+      "Stage": "Stage-2 heavy cross-style MLP verifier",
+      "architectural_complexity": 175873,
+      "single_pair_latency_ms": 0.225587,
+      "batched_ms_per_pair": 0.005535,
+      "latency_ratio_vs_stage1_batched": 18.5,
+      "complexity_ratio_vs_stage1": 14656.1
+    },
+    {
+      "Domain": "Code",
+      "Stage": "Stage-1 LR screener",
+      "architectural_complexity": 13,
+      "single_pair_latency_ms": 0.129232,
+      "batched_ms_per_pair": 0.000671,
+      "latency_ratio_vs_stage1_batched": 1.0,
+      "complexity_ratio_vs_stage1": 1.0
+    },
+    {
+      "Domain": "Code",
+      "Stage": "Stage-2 heavy verifier (HGB(400,d8); trees/nodes=189/8169)",
+      "architectural_complexity": 8169,
+      "single_pair_latency_ms": 1.245122,
+      "batched_ms_per_pair": 0.01354,
+      "latency_ratio_vs_stage1_batched": 20.2,
+      "complexity_ratio_vs_stage1": 628.4
+    }
+  ],
+  "text_decision_states_41": {
+    "UNCERTAIN_ESCALATED": 1583,
+    "LOW_RISK_PRUNED": 1174,
+    "HIGH_RISK_FLAGGED": 243
+  },
+  "code_decision_states_41": {
+    "UNCERTAIN_ESCALATED": 611,
+    "LOW_RISK_PRUNED": 82,
+    "HIGH_RISK_FLAGGED": 27
+  },
+  "text_decision_states_5": {
+    "LOW_RISK_PRUNED": 1199,
+    "UNCERTAIN_ESCALATED": 1159,
+    "HIGH_RISK_FLAGGED": 642
+  },
+  "code_decision_states_5": {
+    "UNCERTAIN_ESCALATED": 523,
+    "LOW_RISK_PRUNED": 145,
+    "HIGH_RISK_FLAGGED": 52
+  }
+}
