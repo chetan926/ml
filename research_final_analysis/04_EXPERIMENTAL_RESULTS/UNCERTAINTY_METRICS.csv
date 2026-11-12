@@ -1,0 +1,3 @@
+Modality,ECE,brier,uncertain_escalated_pct,mean_predictive_entropy
+Text,,0.14199,38.63,0.6482
+Code(PolicyA),,0.213294,72.64,0.9033

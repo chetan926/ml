@@ -1,0 +1,16 @@
+Parameter,Dataset 1,Dataset 2
+Dataset name,SNLI/Pereira 'MIT Plagiarism Detection Dataset' (Kaggle re-export; provenance: SNLI val/test),"IR-Plag Java corpus (Karnalim, 2019)"
+Modality,Text (semantic equivalence / text reuse),Java source code plagiarism
+Number of samples/files,"19,658 clean rows (8 purged); partitions below",467 physical .java files; pairs below
+Number of evaluated pairs,"train=4000, val=1500, test=3000","Policy A=720, Policy B=709"
+Positive samples,test=1026,"A=342, B=331"
+Negative samples,test=1974,"A=378, B=378"
+Class distribution,positives ~33-35% per partition,positives 47.5% (A)
+Missing values,test missing ref/sus: 0/0,obfuscation_level NaN = legitimate negatives (structural)
+Duplicate records,test exact-pair duplicates: 0,11 duplicate collision groups handled by policy A/B (audited upstream)
+Extracted features,16-dim phase-3 text feature store (lexical/character/semantic/structural),13-dim phase-3 code feature store (token/structural/AST-derived)
+Preprocessing,Whitespace normalization; premise-group purge; SHA-256 premise allocation,Comment/whitespace stripping; javalang AST parsing
+Training samples,4000,LOGO folds over 7 cases (nested)
+Validation samples,1500,inner LOGO folds
+Test samples,3000,outer held-out case per fold
+Limitations,SNLI-derived: premise/hypothesis style; paraphrase-reuse proxy for plagiarism,Single host language (Java); severity L6 slice is all-positive

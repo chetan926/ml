@@ -1,0 +1,59 @@
+{
+  "figures": [
+    {
+      "no": 1,
+      "title": "Framework architecture",
+      "dir": "ARCHITECTURE"
+    },
+    {
+      "no": 2,
+      "title": "Dataset distributions",
+      "dir": "DATASET_DISTRIBUTION"
+    },
+    {
+      "no": 3,
+      "title": "Performance comparison (text & code)",
+      "dir": "PERFORMANCE_COMPARISON"
+    },
+    {
+      "no": 4,
+      "title": "Line graphs (budgets, thresholds, configs)",
+      "dir": "LINE_GRAPHS"
+    },
+    {
+      "no": 5,
+      "title": "Ablation visualization",
+      "dir": "ABLATION"
+    },
+    {
+      "no": 6,
+      "title": "Computational efficiency",
+      "dir": "COST_QUALITY"
+    },
+    {
+      "no": 7,
+      "title": "Confusion matrices",
+      "dir": "CONFUSION_MATRICES"
+    },
+    {
+      "no": 8,
+      "title": "ROC and PR curves",
+      "dir": "ROC_PR_CURVES"
+    },
+    {
+      "no": 9,
+      "title": "Uncertainty and calibration",
+      "dir": "CALIBRATION"
+    },
+    {
+      "no": 10,
+      "title": "Cost-quality trade-off",
+      "dir": "COST_QUALITY"
+    }
+  ],
+  "formats": [
+    "png",
+    "pdf"
+  ],
+  "source_data": "saved as CSV next to figures where applicable"
+}

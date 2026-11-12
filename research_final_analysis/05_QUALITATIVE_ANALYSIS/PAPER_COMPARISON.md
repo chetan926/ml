@@ -1,0 +1,16 @@
+# Qualitative comparison
+
+| Evaluation dimension     | Paper 1                   | Paper 2                  | Paper 3              | Proposed solution                                                                  |
+|:-------------------------|:--------------------------|:-------------------------|:---------------------|:-----------------------------------------------------------------------------------|
+| Detection capability     | semantic threshold (text) | SVM structural (code)    | RF structural (code) | multi-view two-stage, both modalities                                              |
+| Semantic understanding   | yes (embeddings)          | no                       | no                   | yes (LSA + MiniLM + interaction verifier)                                          |
+| Structural analysis      | no                        | partial (tokens)         | partial              | yes (AST/control-flow views via phase-3 features)                                  |
+| Uncertainty handling     | no                        | no                       | no                   | calibration + entropy + group-conformal sets (repaired α*)                         |
+| Computational efficiency | high                      | medium                   | medium               | adaptive: 61.4% text / 27-34% code verifier calls avoided at ε-quality             |
+| Adaptability             | fixed threshold           | fixed                    | fixed                | operating-point tuned on validation under budget cap                               |
+| False-positive behavior  | high at tuned recall      | moderate                 | moderate             | FPs concentrated in entropy-flagged grey zone (see ERROR_ANALYSIS)                 |
+| False-negative behavior  | low                       | moderate                 | moderate             | preserved at iso-recall; budget-induced FN quantified in BUDGET_ANALYSIS           |
+| Scalability              | good                      | pairwise ml fit per case | same                 | screener-first design; heavy verifier only for grey zone                           |
+| Limitations              | no UQ/cost                | hard decisions           | hard decisions       | external calibration transfer fails without recalibration (phase-6 honest finding) |
+
+Supporting evidence: `04_EXPERIMENTAL_RESULTS/PREDICTIONS/*`, `07_SENSITIVITY_AND_ROBUSTNESS/*`, phase-5/6 artifacts.

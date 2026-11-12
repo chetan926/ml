@@ -1,0 +1,14 @@
+{
+  "global_seed": 42,
+  "ablation_seeds": [
+    42
+  ],
+  "multi_seed_runs": [
+    42,
+    123,
+    2024
+  ],
+  "n_resamples_bootstrap": 1000,
+  "conformal_alpha_nominal": 0.05,
+  "conformal_alpha_star_repaired": 0.01
+}

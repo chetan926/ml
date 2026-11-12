@@ -1,0 +1,11 @@
+Research dimension,PAPER1,PAPER2,PAPER3
+Objective,A comprehensive strategy for identifying plagiarism in academic submissions,A Support Vector Machine based approach for plagiarism detection in Python code submissions in undergraduate settings,Detection of Source Code Plagiarism Utilizing an Approach Based on Machine Learning
+Methodology,Dense semantic similarity over embeddings (MiniLM-class sentence embeddings) with threshold decision; lexical pre-screening lineage from TF-IDF.,RBF-SVM over token/structural similarity features (Python); cross-language adaptation to Java documented.,RandomForest classifier over code similarity features (audited parameter note: max_depth as per audit not 10).
+Dataset (paper),academic text submissions (paper),Python undergraduate submissions (paper),source-code submissions (paper)
+Dataset (this evaluation),Text dataset (Dataset 1),Code dataset (Dataset 2),Code dataset (Dataset 2)
+Accuracy (published),NR (full text absent),NR (full text absent),NR (full text absent)
+Accuracy (reproduced here),0.743,0.8347,0.7889
+F1 (reproduced here),0.6658,0.8363,0.7859
+Computational cost,low (score+threshold),medium (SVM per-case LOGO),medium (ensemble of 100 trees)
+Limitations,No calibration/uncertainty; No leakage-safe protocol in-paper as captured,Hard decision only (no calibrated probability); No routing/cost model,No calibration; No group-aware eval
+Research gap,no UQ/cost/routing/cross-modality,no UQ/cost/routing/cross-modality,no UQ/cost/routing/cross-modality

@@ -1,0 +1,3 @@
+policy,rows,cases,positives,positives_pct,negatives,missing_reference,missing_suspicious,sev_L1,sev_L2,sev_L3,sev_L4,sev_L5,sev_L6,sev_unlabelled_negatives
+policy_a,720,7,342,47.5,378,0,0,60,55,53,60,55,59,378
+policy_b,709,7,331,46.69,378,0,0,59,52,53,56,52,59,378

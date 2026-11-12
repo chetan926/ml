@@ -1,0 +1,7 @@
+Research gap,Paper 1,Paper 2,Paper 3,Proposed solution
+Modality-aware detection,text only,code only,code only,"both modalities, unified protocol"
+Uncertainty estimation,no,no,no,Platt calibration + predictive entropy + group conformal (repaired α* = 1.000 group coverage)
+Adaptive routing,no,no,no,"two-stage budget router, val-tuned; savings measured"
+Budget-aware detection,no,no,no,"explicit budget cap; BUDGET_ANALYSIS frontier, quality saturates at ~45% budget (text)"
+Computational optimization,n/a,n/a,n/a,measured 18-20x verifier cost ratio; routing avoids most calls
+Cross-modality evaluation,no,no,no,single protocol + external-corpora evaluation-only transfer (phase 6)

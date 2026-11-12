@@ -1,0 +1,9 @@
+{
+  "seed": 42,
+  "protocol": "text: premise-grouped split; code: nested LOGO",
+  "sources": {
+    "baselines": "frozen phase-5 suites (rfa02)",
+    "proposed": "phase-5 stored predictions",
+    "ablation": "rfa03 fresh runs"
+  }
+}

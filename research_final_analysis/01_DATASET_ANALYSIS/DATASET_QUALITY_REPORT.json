@@ -1,0 +1,88 @@
+{
+  "text": {
+    "partitions": [
+      {
+        "partition": "train",
+        "rows": 4000,
+        "premise_groups": 1349,
+        "positives": 1347,
+        "positives_pct": 33.67,
+        "negatives": 2653,
+        "missing_reference": 0,
+        "missing_suspicious": 0,
+        "duplicate_pairs_exact": 0
+      },
+      {
+        "partition": "val",
+        "rows": 1500,
+        "premise_groups": 508,
+        "positives": 524,
+        "positives_pct": 34.93,
+        "negatives": 976,
+        "missing_reference": 0,
+        "missing_suspicious": 0,
+        "duplicate_pairs_exact": 0
+      },
+      {
+        "partition": "test",
+        "rows": 3000,
+        "premise_groups": 1015,
+        "positives": 1026,
+        "positives_pct": 34.2,
+        "negatives": 1974,
+        "missing_reference": 0,
+        "missing_suspicious": 0,
+        "duplicate_pairs_exact": 0
+      }
+    ],
+    "leakage_checks": {
+      "train_val_premise_overlap": 0,
+      "train_test_premise_overlap": 0,
+      "val_test_premise_overlap": 0,
+      "train_val_pair_overlap": 0,
+      "train_test_pair_overlap": 0,
+      "val_test_pair_overlap": 0
+    },
+    "leakage_verdict": "PASS: zero premise/pair overlap"
+  },
+  "code": {
+    "policies": [
+      {
+        "policy": "policy_a",
+        "rows": 720,
+        "cases": 7,
+        "positives": 342,
+        "positives_pct": 47.5,
+        "negatives": 378,
+        "missing_reference": 0,
+        "missing_suspicious": 0,
+        "sev_L1": 60,
+        "sev_L2": 55,
+        "sev_L3": 53,
+        "sev_L4": 60,
+        "sev_L5": 55,
+        "sev_L6": 59,
+        "sev_unlabelled_negatives": 378
+      },
+      {
+        "policy": "policy_b",
+        "rows": 709,
+        "cases": 7,
+        "positives": 331,
+        "positives_pct": 46.69,
+        "negatives": 378,
+        "missing_reference": 0,
+        "missing_suspicious": 0,
+        "sev_L1": 59,
+        "sev_L2": 52,
+        "sev_L3": 53,
+        "sev_L4": 56,
+        "sev_L5": 52,
+        "sev_L6": 59,
+        "sev_unlabelled_negatives": 378
+      }
+    ],
+    "physical_java_files": 467
+  },
+  "generated_by": "rfa01_datasets.py on repository bytes (loaders + raw files)"
+}

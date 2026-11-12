@@ -1,0 +1,6 @@
+axis,verdict
+detection effectiveness,text: proposed beats strongest baseline on F1 (+0.0122) with 61.4% cost saving; code tuned-OP trails SVM F1 by -0.0076 at 27-34% saving; beta=1 leads all code systems
+computational efficiency,proposed dominant: adaptive routing
+uncertainty,proposed only system with calibrated + group-conformal sets (repaired 1.000 coverage)
+external validity,"partial: ranking transfers (MRPC AUC 0.644), absolute calibration does not (honest negative)"
+final classification (§13 step 5),3. Better in selected metrics but weaker in others — class 2 on efficiency grounds (EFFICIENT-TRADE-OFF verdict)

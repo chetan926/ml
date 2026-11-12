@@ -1,0 +1,7 @@
+{
+  "score_shadow_prediction_match": {
+    "B-C3_svm": true,
+    "B-C4_rf": true
+  },
+  "note": "Frozen phase-5 suites are authoritative; continuous shadow scores are identical-seed refits used only for ROC/PR curves and must reproduce the frozen hard predictions on every OOF row."
+}
