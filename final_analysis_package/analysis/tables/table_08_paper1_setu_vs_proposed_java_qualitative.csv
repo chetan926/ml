@@ -1,0 +1,20 @@
+TABLE,Table 8: Qualitative Comparison of Paper 1 (Setu et al. 2025) and Proposed Framework on Java Source-Code Plagiarism Detection (Not Applicable)
+CAPTION,Paper 1 is a natural-language text methodology with no Java source-code implementation or evaluation.
+MODALITY_NOTE,Java source code. Not applicable: Paper 1 addresses text only.
+
+Qualitative Dimension,Paper Implementation,Proposed Solution,Comparative Observation
+Detection methodology,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Feature extraction,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Lexical similarity detection,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Semantic similarity detection,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Structural similarity detection,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Uncertainty estimation,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Confidence handling,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Adaptive escalation,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Computational optimization,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+False-positive handling,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+False-negative handling,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Scalability,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Generalization,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Interpretability,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
+Limitations,N/A,N/A,"Not applicable: this paper does not address the compared modality, so no dimension-level comparison can be made without fabricating capabilities."
