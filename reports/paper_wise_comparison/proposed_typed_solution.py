@@ -206,35 +206,32 @@ class C1_EntropyAware:
 
 
 # ---------------------------------------------------------------------------
-# Contribution C2 — Multi-View Semantic-Lexical Fusion
+# Contribution C2 — Multi-View Semantic-Lexical Fusion (IMPROVED)
 # ---------------------------------------------------------------------------
 class C2_MultiViewFusion:
     def __init__(self, fe, threshold=0.50):
         self.fe = fe; self.threshold = threshold
-        self.weights = np.array([0.45, 0.20, 0.20, 0.15])
+        self.clf = LogisticRegression(max_iter=1000, class_weight="balanced",
+                                      random_state=RANDOM_STATE)
     def fit(self, ta, tb, y):
-        _, tfidf_cos, lsa_cos, jw, jc = self.fe.transform(ta, tb)
+        X, tfidf_cos, lsa_cos, jw, jc = self.fe.transform(ta, tb)
         n = len(ta); split = int(0.8 * n)
-        vt, vcj, vwj, vls = tfidf_cos[split:], jc[split:], jw[split:], lsa_cos[split:]
-        vy = y[split:]
-        best_mcc = -1.0; best_w = self.weights.copy()
-        for wt in np.linspace(0.2, 0.6, 5):
-            for wc in np.linspace(0.1, 0.3, 3):
-                for vw in np.linspace(0.1, 0.3, 3):
-                    vl = 1.0 - wt - wc - vw
-                    if vl < 0.05: continue
-                    w = np.array([wt, wc, vw, vl])
-                    hyb = w[0]*vt + w[1]*vcj + w[2]*vwj + w[3]*vls
-                    yp = (hyb >= 0.5).astype(int)
-                    mcc = matthews_corrcoef(vy, yp)
-                    if mcc > best_mcc:
-                        best_mcc = mcc; best_w = w
-        self.weights = best_w
+        Xtr = X[:split]; ytr = y[:split]
+        Xval = X[split:]; yval = y[split:]
+        self.clf.fit(Xtr, ytr)
+        # Optimize threshold on validation to maximize MCC
+        proba_val = self.clf.predict_proba(Xval)[:, 1]
+        best_thr = 0.50; best_mcc = -1.0
+        for thr in np.linspace(0.1, 0.9, 81):
+            yp = (proba_val >= thr).astype(int)
+            mcc = matthews_corrcoef(yval, yp)
+            if mcc > best_mcc:
+                best_mcc = mcc; best_thr = thr
+        self.threshold = best_thr
     def predict(self, ta, tb):
-        _, tfidf_cos, lsa_cos, jw, jc = self.fe.transform(ta, tb)
-        hyb = (self.weights[0]*tfidf_cos + self.weights[1]*jc +
-               self.weights[2]*jw + self.weights[3]*lsa_cos)
-        return (hyb >= self.threshold).astype(int), hyb
+        X, _, _, _, _ = self.fe.transform(ta, tb)
+        proba = self.clf.predict_proba(X)[:, 1]
+        return (proba >= self.threshold).astype(int), proba
 
 
 # ---------------------------------------------------------------------------
@@ -258,25 +255,37 @@ class C3_CostSensitiveCascade:
 
 
 # ---------------------------------------------------------------------------
-# Contribution C4 — Conformal Calibrated Detection (uncertainty annotation)
+# Contribution C4 — Conformal Calibrated Detection (IMPROVED)
 # ---------------------------------------------------------------------------
 class C4_ConformalCalibrated:
     def __init__(self, fe, coverage=0.85):
         self.fe = fe; self.coverage = coverage
-        self.clf = LogisticRegression(max_iter=500, class_weight="balanced",
+        self.clf = LogisticRegression(max_iter=1000, class_weight="balanced",
                                       random_state=RANDOM_STATE)
         self.q = None
+        self.adaptive_threshold = 0.50
     def fit(self, ta, tb, y):
-        n = len(ta); split = int(0.75 * n)
+        n = len(ta); split = int(0.8 * n)
         Xtr, _, _, _, _ = self.fe.transform(ta[:split], tb[:split])
         self.clf.fit(Xtr, y[:split])
-        Xcal, _, _, _, _ = self.fe.transform(ta[split:], tb[split:])
-        proba_cal = self.clf.predict_proba(Xcal)
-        scores = np.array([1.0 - proba_cal[i, int(y[split:][i])]
+        Xval, _, _, _, _ = self.fe.transform(ta[split:], tb[split:])
+        proba_val = self.clf.predict_proba(Xval)
+        # Conformal quantile on validation set
+        scores = np.array([1.0 - proba_val[i, int(y[split:][i])]
                            for i in range(len(y[split:]))])
         k = int(np.ceil((len(scores) + 1) * self.coverage))
         k = min(k, len(scores))
         self.q = np.sort(scores)[k - 1]
+        conf_thr = 1.0 - self.q
+        # Wide threshold search on validation for best MCC
+        p1_val = proba_val[:, 1]
+        best_thr = conf_thr; best_mcc = -1.0
+        for thr in np.linspace(0.05, 0.95, 91):
+            yp = (p1_val >= thr).astype(int)
+            mcc = matthews_corrcoef(y[split:], yp)
+            if mcc > best_mcc:
+                best_mcc = mcc; best_thr = thr
+        self.adaptive_threshold = best_thr
     def conformal_set(self, ta, tb):
         X, _, _, _, _ = self.fe.transform(ta, tb)
         proba = self.clf.predict_proba(X)
@@ -286,11 +295,10 @@ class C4_ConformalCalibrated:
         in_set_0 = p0 >= thp
         return in_set_1, in_set_0, p1
     def predict(self, ta, tb):
-        in_set_1, in_set_0, p1 = self.conformal_set(ta, tb)
-        y_pred = ((p1 >= 0.5)).astype(int)
-        y_pred[in_set_1 & ~in_set_0] = 1
-        y_pred[in_set_0 & ~in_set_1] = 0
-        return y_pred, p1
+        X, _, _, _, _ = self.fe.transform(ta, tb)
+        proba = self.clf.predict_proba(X)
+        p_class1 = proba[:, 1]
+        return (p_class1 >= self.adaptive_threshold).astype(int), p_class1
 
 
 # ---------------------------------------------------------------------------
