@@ -1,0 +1,25 @@
+TABLE,Table 9: Quantitative Comparison of Paper 2 (Gandhi et al. 2024) and Proposed Framework on Java Source-Code Plagiarism Detection
+CAPTION,"Side-by-side comparison on the same held-out Java test partition (N=210 pairs, IR-Plag cases 06-07). Paper 2 = repository-audited reproduction of Gandhi et al. (2024) adapted to Java (7-D syntactic/token features + RBF-SVM, threshold 0.3700). Proposed = Condition C typed-decision tri-band pipeline with SVM heavy verifier. Differences follow the signed improvement convention."
+MODALITY,Java source code
+DATASET,"IR-Plag Java Corpus, Policy A (720 pairs across 7 programming assignments; zero program sharing across cases, SHA-256 verified)"
+SPLIT,"Case-disjoint holdout: cases 01-04 training (416 pairs), case-05 validation (107 pairs), cases 06-07 test (210 pairs; 102 plagiarized / 108 non-plagiarized)"
+EVALUATED TEST SAMPLES,210 pairs
+PAPER 2 MODEL CONFIGURATION,"SVC(kernel='rbf', C=1.0, gamma='scale', probability=True, random_state=42) over 7-D features (raw/anonymized token Jaccard, keyword-distribution cosine, operator Jaccard, line-count ratio, cyclomatic-complexity differential, character 3-grams); StandardScaler; decision threshold 0.3700 (F1-tuned on case-05); exhaustive scoring of all pairs"
+PROPOSED MODEL CONFIGURATION,"Token-Jaccard cheap pre-filter; tri-band routing theta_low=0.61 / theta_high=0.87 (case-05 tuned, target candidate recall >= 0.98); SVM heavy verifier (same configuration as Paper 2) invoked only on uncertain band; direct high-risk flags bypass the verifier"
+EVIDENCE STATUS,"Both sides: reproduced implementation results, exactly matching the archived verified record (experiments/results/code_results_detailed.json; final_comparison_table.csv). ROC-AUC/PR-AUC for the proposed condition: N/A (discrete band decisions). Memory: N/R (not instrumented). Latency rows use non-comparable accounting (see notes): paper = classifier-only inference; proposed = end-to-end tri-band pipeline."
+
+Evaluation Metric,Paper Implementation,Proposed Solution,Absolute Difference (Improvement),Relative Improvement (%),Better Method
+Accuracy,0.7000,0.6762,-0.0238,-3.40%,Paper baseline
+Precision,0.6258,0.6049,-0.0209,-3.34%,Paper baseline
+Recall,0.9510,0.9608,+0.0098,+1.03%,Proposed
+F1-Score,0.7549,0.7424,-0.0125,-1.66%,Paper baseline
+Specificity,0.4630,0.4074,-0.0556,-12.01%,Paper baseline
+ROC-AUC,0.7786,N/A,N/A,N/A,N/A
+PR-AUC,0.7199,N/A,N/A,N/A,N/A
+MCC,0.4705,0.4382,-0.0323,-6.87%,Paper baseline
+Candidate Recall,1.0000,1.0000,+0.0000,+0.00%,Tie
+Pruning Ratio (%),0.0000,0.4800,+0.4800 pp,N/A (percentage-point metric),Proposed
+Expensive Call Rate (%),100.0000,63.3300,+36.6700 pp,N/A (percentage-point metric),Proposed
+Average Latency (ms),0.0130,0.0580,-0.0450,-346.15%,Paper baseline
+Training Time (s),0.0173,0.0173,+0.0000,+0.00%,Tie
+Memory Consumption (MB),N/A,N/A,N/A,N/A,N/A

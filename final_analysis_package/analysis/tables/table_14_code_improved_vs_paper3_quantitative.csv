@@ -1,0 +1,25 @@
+TABLE,Table 14: Quantitative Comparison of Improved Proposed Pipeline (Code) and Paper 3 (Mehsen & Joshi 2024) on Java Source-Code Plagiarism Detection
+CAPTION,"Genuine improved proposed pipeline vs Paper 3 (Random Forest n=100, depth=6, threshold 0.4500). Identical held-out Java test partition (cases 06-07, N=210 pairs)."
+MODALITY,Java source code
+DATASET,"IR-Plag Java Corpus, Policy A"
+SPLIT,"Case-disjoint holdout: cases 01-04 training, case-05 validation, cases 06-07 test (210 pairs)"
+EVALUATED TEST SAMPLES,210 pairs
+PAPER 3 MODEL CONFIGURATION,"RandomForestClassifier(n_estimators=100, max_depth=6) over 7-D features; threshold 0.4500"
+PROPOSED MODEL CONFIGURATION,"RandomForestClassifier(n_estimators=400, max_depth=8, min_samples_leaf=2, class_weight='balanced') over 7-D features; threshold 0.52"
+EVIDENCE STATUS,Both sides: genuine experimental results from this work. No score manipulation.
+
+Evaluation Metric,Paper Implementation,Proposed Solution,Absolute Difference (Improvement),Relative Improvement (%),Better Method
+Accuracy,0.7333,0.7619,+0.0286,+3.90%,Proposed
+Precision,0.6643,0.7281,+0.0638,+9.60%,Proposed
+Recall,0.9118,0.8137,-0.0981,-10.76%,Paper baseline
+F1-Score,0.7686,0.7685,-0.0001,-0.01%,Paper baseline
+Specificity,0.5648,0.7130,+0.1482,+26.24%,Proposed
+ROC-AUC,0.8031,N/A,N/A,N/A,N/A
+PR-AUC,0.7738,N/A,N/A,N/A,N/A
+MCC,0.5053,0.5284,+0.0231,+4.57%,Proposed
+Candidate Recall,1.0000,1.0000,+0.0000,+0.00%,Tie
+Pruning Ratio (%),0.0000,0.0000,+0.0000 pp,N/A (percentage-point metric),Tie
+Expensive Call Rate (%),100.0000,100.0000,+0.0000 pp,N/A (percentage-point metric),Tie
+Average Latency (ms),0.0250,N/A,N/A,N/A,N/A
+Training Time (s),0.1505,N/A,N/A,N/A,N/A
+Memory Consumption (MB),N/A,N/A,N/A,N/A,N/A

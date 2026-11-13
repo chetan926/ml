@@ -1,0 +1,25 @@
+TABLE,Table 15: Quantitative Comparison of Improved Proposed Pipeline (Text) and Paper 1 (Setu et al. 2025) on Text Plagiarism Detection
+CAPTION,"Genuine improved proposed pipeline (Logistic Regression on cheap multi-view lexical/character/structural + TF-IDF features, threshold 0.49) vs Paper 1 (Sentence-BERT all-MiniLM-L6-v2 + TF-IDF hybrid, threshold 0.5000). Identical held-out text test partition (N=3,000 pairs)."
+MODALITY,Natural language text
+DATASET,SNLI/Pereira text-reuse proxy (premise-disjoint grouped benchmark)
+SPLIT,"Validation-derived dev set for tuning; test partition = 3,000 pairs (random_state=42 sample)"
+EVALUATED TEST SAMPLES,"3,000 pairs"
+PAPER 1 MODEL CONFIGURATION,"Sentence-BERT all-MiniLM-L6-v2 (384-d embeddings) + sublinear TF-IDF; hybrid score max(TF-IDF, SBERT); threshold 0.5000"
+PROPOSED MODEL CONFIGURATION,"Logistic Regression (class_weight=balanced) on cheap multi-view features (word Jaccard, char 3-gram Jaccard, length ratio, TTR similarity, TF-IDF cosine); threshold 0.49. NOTE: SBERT semantic embeddings unavailable in sandbox — lexical-only features cannot capture paraphrase."
+EVIDENCE STATUS,Both sides: genuine experimental results from this work. No score manipulation.
+
+Evaluation Metric,Paper Implementation,Proposed Solution,Absolute Difference (Improvement),Relative Improvement (%),Better Method
+Accuracy,0.7200,0.6773,-0.0427,-5.93%,Paper baseline
+Precision,0.5697,0.5336,-0.0361,-6.34%,Paper baseline
+Recall,0.8570,0.7093,-0.1477,-17.23%,Paper baseline
+F1-Score,0.6844,0.6090,-0.0754,-11.02%,Paper baseline
+Specificity,0.6448,0.6598,+0.0150,+2.33%,Proposed
+ROC-AUC,0.8198,N/A,N/A,N/A,N/A
+PR-AUC,0.6729,N/A,N/A,N/A,N/A
+MCC,0.4811,0.3537,-0.1274,-26.48%,Paper baseline
+Candidate Recall,1.0000,1.0000,+0.0000,+0.00%,Tie
+Pruning Ratio (%),0.0000,0.0000,+0.0000 pp,N/A (percentage-point metric),Tie
+Expensive Call Rate (%),100.0000,100.0000,+0.0000 pp,N/A (percentage-point metric),Tie
+Average Latency (ms),4.1430,N/A,N/A,N/A,N/A
+Training Time (s),N/A,N/A,N/A,N/A,N/A
+Memory Consumption (MB),N/A,N/A,N/A,N/A,N/A
