@@ -1,0 +1,181 @@
+Method,Method_Full,Dimension,Assessment
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Detection methodology,String-matching / TF-IDF cosine + fixed threshold
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Feature extraction,Sublinear TF-IDF vectorization
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Lexical similarity detection,Direct TF-IDF cosine overlap
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Semantic similarity detection,Limited (TF-IDF topical only)
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Structural similarity detection,None
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Uncertainty estimation,None
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Confidence handling,Fixed threshold 0.50
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Adaptive escalation,None
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Computational optimization,Low (single view)
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",False-positive handling,Moderate
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",False-negative handling,Weak (low recall)
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Scalability,Low
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Generalization,Low
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Interpretability,Moderate
+Amirzhanov_2025_Frontiers,"Amirzhanov et al. (2025), Frontiers in Computer Science (baseline)",Limitations,Misses paraphrase; high false negatives
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Detection methodology,Multi-feature (7-D) + Logistic Regression
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Feature extraction,TF-IDF + Jaccard + lexical + length features
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Lexical similarity detection,Word-Jaccard + exact match
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Semantic similarity detection,TF-IDF topical semantics
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Structural similarity detection,Length-difference ratio
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Uncertainty estimation,None
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Confidence handling,Fixed threshold 0.50
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Adaptive escalation,None
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Computational optimization,Moderate
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",False-positive handling,Moderate
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",False-negative handling,Strong recall
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Scalability,Moderate
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Generalization,Moderate
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Interpretability,Moderate
+Sajid_2025_PLoS,"Sajid et al. (2025), PLoS ONE (baseline)",Limitations,Fixed threshold ignores prediction uncertainty
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Detection methodology,Hybrid TF-IDF + LSA cosine weighted fusion
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Feature extraction,TF-IDF + Truncated SVD (LSA)
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Lexical similarity detection,Word-Jaccard + character n-gram
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Semantic similarity detection,LSA latent-topic cosine
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Structural similarity detection,Length-difference ratio
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Uncertainty estimation,None
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Confidence handling,Fixed threshold 0.50
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Adaptive escalation,None
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Computational optimization,Moderate
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",False-positive handling,Moderate
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",False-negative handling,Weak (near-random on Quora)
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Scalability,Moderate
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Generalization,Low (dataset-sensitive)
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Interpretability,Moderate
+SinghGupta_2026_KnowledgeInfoSys,"Singh & Gupta (2026), Knowledge and Information Systems (baseline)",Limitations,Collapses to majority class on imbalanced Quora data
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Detection methodology,Entropy-aware adaptive threshold on calibrated LR probability
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Feature extraction,TF-IDF + LSA + lexical overlap features
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Lexical similarity detection,Word-Jaccard + character n-gram + exact match
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Semantic similarity detection,LSA latent-topic cosine
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Structural similarity detection,Length-difference ratio
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Uncertainty estimation,Predictive entropy (Shannon)
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Confidence handling,Adaptive: strict threshold on high-entropy cases
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Adaptive escalation,Entropy-quantile driven strict vs base threshold
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Computational optimization,Moderate (single LR pass)
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),False-positive handling,Strong (strict threshold on uncertain cases)
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),False-negative handling,Moderate
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Scalability,High
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Generalization,High
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Interpretability,High
+C1_EntropyAwareAdaptive,C1 — Entropy-Aware Adaptive Thresholding (NEW),Limitations,Relies on well-calibrated base classifier
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Detection methodology,Weighted fusion of four similarity views (grid-searched weights)
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Feature extraction,"TF-IDF, LSA, word-Jaccard, char-n-gram Jaccard"
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Lexical similarity detection,Word-Jaccard + character n-gram
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Semantic similarity detection,TF-IDF + LSA cosine
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Structural similarity detection,Length-difference ratio
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Uncertainty estimation,None
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Confidence handling,Fixed threshold on fused score
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Adaptive escalation,None
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Computational optimization,Moderate (grid search at fit)
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),False-positive handling,Moderate
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),False-negative handling,Moderate
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Scalability,Moderate
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Generalization,Moderate
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Interpretability,High (explicit view weights)
+C2_MultiViewFusion,C2 — Multi-View Semantic-Lexical Fusion (NEW),Limitations,No uncertainty awareness; can hurt when views disagree
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Detection methodology,"TF-IDF cascade: early accept on extreme similarity, defer rest"
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Feature extraction,TF-IDF cosine only (cheap pre-filter)
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Lexical similarity detection,TF-IDF cosine overlap
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Semantic similarity detection,None (cascade pre-filter only)
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Structural similarity detection,None
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Uncertainty estimation,Confidence band on TF-IDF extremes
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Confidence handling,Dual-threshold accept/reject/uncertain bands
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Adaptive escalation,Uncertain cases escalated to downstream stage
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Computational optimization,High (avoids costly model on clear cases)
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),False-positive handling,Strong (conservative accept band)
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),False-negative handling,Weak if threshold too strict
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Scalability,High
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Generalization,Moderate
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Interpretability,High
+C3_CostSensitiveCascade,C3 — Cost-Sensitive Cascaded Detection (NEW),Limitations,Weak standalone; relies on downstream stage for uncertain cases
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Detection methodology,Conformal prediction set with coverage-guaranteed uncertainty
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Feature extraction,TF-IDF + LSA + lexical overlap features
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Lexical similarity detection,Word-Jaccard + exact match
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Semantic similarity detection,LSA latent-topic cosine
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Structural similarity detection,Length-difference ratio
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Uncertainty estimation,Conformal prediction set (coverage 0.85)
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Confidence handling,Conformal threshold (1 - quantile score)
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Adaptive escalation,None (annotation-only in proposed)
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Computational optimization,Moderate (calibration set needed)
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),False-positive handling,Moderate
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),False-negative handling,Moderate
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Scalability,Moderate
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Generalization,High (distribution-free guarantee)
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Interpretability,High (explicit coverage guarantee)
+C4_ConformalCalibrated,C4 — Conformal Calibrated Detection (NEW),Limitations,Annotation-only; does not override well-calibrated decisions
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Detection methodology,Cascade (C3) -> entropy-adaptive (C1) + fusion (C2) + conformal (C4)
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Feature extraction,TF-IDF + LSA + lexical overlap + char n-gram (all views)
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Lexical similarity detection,Word-Jaccard + character n-gram + exact match
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Semantic similarity detection,LSA + TF-IDF cosine
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Structural similarity detection,Length-difference ratio
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Uncertainty estimation,Entropy + conformal prediction set
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Confidence handling,Validation-gated component selection (C1 default)
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Adaptive escalation,Entropy-driven C3/C2 override on uncertain cases
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Computational optimization,High (C3 cascade avoids model on clear cases)
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),False-positive handling,Strong (strict entropy threshold + conservative C3)
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),False-negative handling,Strong (high recall preserved via C1 base)
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Scalability,High
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Generalization,"High (validation-gated, dataset-aware)"
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Interpretability,"High (typed stages, explicit contributions)"
+Proposed_TypedSolution_Full,PROPOSED — Typed Decision Solution (C1+C2+C3+C4),Limitations,C2/C3 only activate when they clearly help on validation
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Detection methodology,Fixed 0.50 threshold + C3 cascade (no entropy adaptation)
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Feature extraction,TF-IDF + LSA + lexical overlap features
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Lexical similarity detection,Word-Jaccard + character n-gram
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Semantic similarity detection,LSA latent-topic cosine
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Structural similarity detection,Length-difference ratio
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Uncertainty estimation,None (no entropy-aware adaptation)
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Confidence handling,Fixed threshold 0.50
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Adaptive escalation,None
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Computational optimization,Moderate
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),False-positive handling,Moderate
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),False-negative handling,Weak (no strict uncertain-case handling)
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Scalability,High
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Generalization,Moderate
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Interpretability,High
+Proposed_Ablation_NoC1,PROPOSED − C1 (ablation),Limitations,Loses the core entropy-adaptive decision engine
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Detection methodology,Cascade (C3) + entropy-adaptive (C1) + conformal (C4)
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Feature extraction,TF-IDF + LSA + lexical overlap features
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Lexical similarity detection,Word-Jaccard + character n-gram
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Semantic similarity detection,LSA latent-topic cosine
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Structural similarity detection,Length-difference ratio
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Uncertainty estimation,Entropy + conformal prediction set
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Confidence handling,Entropy-adaptive strict vs base threshold
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Adaptive escalation,C3 override on uncertain cases
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Computational optimization,High
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),False-positive handling,Strong
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),False-negative handling,Moderate
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Scalability,High
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Generalization,High
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Interpretability,High
+Proposed_Ablation_NoC2,PROPOSED − C2 (ablation),Limitations,No multi-view corroboration when C1 is uncertain
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Detection methodology,Entropy-adaptive (C1) + fusion (C2) + conformal (C4)
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Feature extraction,TF-IDF + LSA + lexical overlap + char n-gram
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Lexical similarity detection,Word-Jaccard + character n-gram
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Semantic similarity detection,LSA + TF-IDF cosine
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Structural similarity detection,Length-difference ratio
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Uncertainty estimation,Entropy + conformal prediction set
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Confidence handling,Entropy-adaptive
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Adaptive escalation,C2 corroboration on uncertain cases
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Computational optimization,Moderate (no cheap pre-filter)
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),False-positive handling,Strong
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),False-negative handling,Moderate
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Scalability,Moderate
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Generalization,High
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Interpretability,High
+Proposed_Ablation_NoC3,PROPOSED − C3 (ablation),Limitations,No computational savings from cascade pre-filter
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Detection methodology,Cascade (C3) + entropy-adaptive (C1) + fusion (C2)
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Feature extraction,TF-IDF + LSA + lexical overlap + char n-gram
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Lexical similarity detection,Word-Jaccard + character n-gram
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Semantic similarity detection,LSA + TF-IDF cosine
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Structural similarity detection,Length-difference ratio
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Uncertainty estimation,Predictive entropy only
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Confidence handling,Validation-gated entropy-adaptive
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Adaptive escalation,Entropy-driven C3/C2 override
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Computational optimization,High
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),False-positive handling,Strong
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),False-negative handling,Strong
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Scalability,High
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Generalization,High
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Interpretability,High
+Proposed_Ablation_NoC4,PROPOSED − C4 (ablation),Limitations,No distribution-free coverage guarantee (conformal)
