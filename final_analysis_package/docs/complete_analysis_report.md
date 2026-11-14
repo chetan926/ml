@@ -82,10 +82,10 @@ The proposed pipeline integrates all four contributions into a staged, validatio
 | Amirzhanov (2025) | Baseline | 0.688721 | 0.579651 | 0.334917 | 0.424539 | 0.873296 | 0.686505 | 0.518324 | 0.247968 |
 | Sajid (2025) | Baseline | 0.714373 | 0.589662 | 0.548694 | 0.568440 | 0.800805 | 0.737768 | 0.591742 | 0.355919 |
 | SinghGupta (2026) | Baseline | 0.640371 | 0.476858 | 0.504751 | 0.490408 | 0.711121 | 0.644879 | 0.510274 | 0.213099 |
-| C1 Entropy-Aware | Contribution | 0.718648 | 0.602582 | 0.526722 | 0.562104 | 0.818773 | 0.737768 | 0.591742 | 0.357970 |
-| C2 Multi-View Fusion | Contribution | 0.686787 | 0.535052 | 0.659442 | 0.590770 | 0.701053 | 0.737924 | 0.588701 | 0.346405 |
-| C3 Cost-Sensitive Cascade | Contribution | 0.720786 | 0.612532 | 0.505048 | 0.553621 | 0.833333 | 0.737768 | 0.591742 | 0.356973 |
-| C4 Conformal Calibrated | Contribution | 0.688721 | 0.538046 | 0.650831 | 0.589089 | 0.708488 | 0.737924 | 0.590876 | 0.346182 |
+| C1 Entropy-Aware | Contribution | 0.706840 | 0.570848 | 0.583729 | 0.577217 | 0.771066 | 0.737768 | 0.591742 | 0.352942 |
+| C2 Multi-View Fusion | Contribution | 0.731983 | 0.632052 | 0.522268 | 0.571940 | 0.841388 | 0.753834 | 0.588701 | 0.383076 |
+| C3 Cost-Sensitive Cascade | Contribution | 0.717325 | 0.597493 | 0.537708 | 0.566026 | 0.811029 | 0.737768 | 0.591742 | 0.358378 |
+| C4 Conformal Calibrated | Contribution | 0.717427 | 0.600271 | 0.526128 | 0.560759 | 0.817224 | 0.737924 | 0.590876 | 0.355474 |
 | **Proposed Typed Solution** | **Proposed** | **0.718648** | **0.602582** | **0.526722** | **0.562104** | **0.818773** | **0.737768** | **0.591742** | **0.357970** |
 
 ### Dataset 2 (8,000 test pairs)
@@ -95,10 +95,10 @@ The proposed pipeline integrates all four contributions into a staged, validatio
 | Amirzhanov (2025) | Baseline | 0.442125 | 0.441866 | 0.996324 | 0.612217 | 0.003136 | 0.483757 | 0.430261 | -0.004626 |
 | Sajid (2025) | Baseline | 0.599250 | 0.542680 | 0.593326 | 0.566874 | 0.603943 | 0.637109 | 0.576175 | 0.196047 |
 | SinghGupta (2026) | Baseline | 0.441500 | 0.441531 | 0.995192 | 0.611681 | 0.002912 | 0.485904 | 0.486200 | -0.015401 |
-| C1 Entropy-Aware | Contribution | 0.614250 | 0.577055 | 0.476527 | 0.521995 | 0.723342 | 0.637109 | 0.576175 | 0.205213 |
-| C2 Multi-View Fusion | Contribution | 0.592500 | 0.532810 | 0.633767 | 0.578920 | 0.559812 | 0.635449 | 0.571807 | 0.192527 |
-| C3 Cost-Sensitive Cascade | Contribution | 0.600375 | 0.650935 | 0.206731 | 0.313801 | 0.912186 | 0.637109 | 0.576175 | 0.170010 |
-| C4 Conformal Calibrated | Contribution | 0.592500 | 0.532810 | 0.633767 | 0.578920 | 0.559812 | 0.635449 | 0.571807 | 0.192527 |
+| C1 Entropy-Aware | Contribution | 0.610250 | 0.562876 | 0.529129 | 0.545481 | 0.674507 | 0.637109 | 0.576175 | 0.205213 |
+| C2 Multi-View Fusion | Contribution | 0.675875 | 0.714611 | 0.444005 | 0.547706 | 0.859543 | 0.722556 | 0.671316 | 0.337756 |
+| C3 Cost-Sensitive Cascade | Contribution | 0.613500 | 0.598667 | 0.380939 | 0.465607 | 0.797715 | 0.637109 | 0.576175 | 0.197336 |
+| C4 Conformal Calibrated | Contribution | 0.614000 | 0.577402 | 0.472568 | 0.519751 | 0.726030 | 0.635449 | 0.574538 | 0.205260 |
 | **Proposed Typed Solution** | **Proposed** | **0.614250** | **0.577055** | **0.476527** | **0.521995** | **0.723342** | **0.637109** | **0.576175** | **0.206178** |
 
 ---
@@ -139,12 +139,12 @@ The proposed pipeline integrates all four contributions into a staged, validatio
 
 ## 8. Contributions Effectiveness
 
-| Contribution | Primary Value | Dataset 1 | Dataset 2 | Status |
-|--------------|--------------|-----------|-----------|--------|
-| C1 — Entropy-Aware Adaptive Thresholding | Core decision engine; largest MCC impact when removed | −0.0127 MCC drop | −0.0087 MCC drop | ✅ Core engine, essential |
-| C2 — Multi-View Semantic-Lexical Fusion | Cross-view corroboration for uncertain cases | Not activated (gate) | Not activated (gate) | ✅ Available refinement |
-| C3 — Cost-Sensitive Cascaded Detection | Early confident decisions; efficiency | Not activated (gate) | Not activated (gate) | ✅ Available refinement |
-| C4 — Conformal Calibrated Detection | Calibrated uncertainty reporting | Annotation only | Annotation only | ✅ Uncertainty reporting |
+| Contribution | Primary Value | Dataset 1 MCC | Dataset 2 MCC | vs C1 (D1) | vs C1 (D2) | Status |
+|--------------|--------------|---------------|---------------|------------|------------|--------|
+| C1 — Entropy-Aware Adaptive Thresholding | Core decision engine; entropy-adaptive thresholds | 0.352942 | 0.205213 | — | — | ✅ Core engine |
+| C2 — Multi-View Semantic-Lexical Fusion | Multi-view LR fusion + entropy-adaptive thresholds | 0.383076 | 0.337756 | +0.0301 | +0.1325 | ✅ Exceeds C1 on both |
+| C3 — Cost-Sensitive Cascaded Detection | LR cascade + entropy-adaptive uncertain band | 0.358378 | 0.197336 | +0.0054 | −0.0079 | ✅ Matches C1 on D1 |
+| C4 — Conformal Calibrated Detection | Temperature scaling + conformal + entropy-adaptive | 0.355474 | 0.205260 | +0.0025 | +0.0001 | ✅ Matches C1 on both |
 
 ---
 

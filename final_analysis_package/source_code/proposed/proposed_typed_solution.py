@@ -298,10 +298,29 @@ class C1_EntropyAware:
 # Contribution C2 — Multi-View Semantic-Lexical Fusion (IMPROVED)
 # ---------------------------------------------------------------------------
 class C2_MultiViewFusion:
-    def __init__(self, fe, threshold=0.50):
+    """Multi-View Semantic-Lexical Fusion with entropy-adaptive thresholding.
+
+    Uses Logistic Regression on 7 similarity views with validation-tuned
+    entropy-adaptive thresholds. High-entropy pairs get strict thresholds
+    (cut FP); low-entropy pairs get lenient thresholds (cut FN).
+    """
+
+    def __init__(self, fe, threshold=0.50, entropy_quantile=0.70,
+                 strict_thr=0.70, base_thr=0.50, lenient_thr=0.40):
         self.fe = fe; self.threshold = threshold
+        self.entropy_quantile = entropy_quantile
+        self.strict_thr = strict_thr
+        self.base_thr = base_thr
+        self.lenient_thr = lenient_thr
         self.clf = LogisticRegression(max_iter=1000, class_weight="balanced",
                                       random_state=RANDOM_STATE)
+        self.entropy_cutoff = None
+        self.final_base_thr = base_thr
+        self.final_strict_thr = strict_thr
+        self.final_lenient_thr = lenient_thr
+        self.final_entropy_q = entropy_quantile
+        self.fitted = False
+
     def fit(self, ta, tb, y):
         X, _, _, _, _ = self.fe.transform(ta, tb)
         n = len(ta); split = int(0.8 * n)
@@ -309,22 +328,61 @@ class C2_MultiViewFusion:
         Xval = X[split:]; yval = y[split:]
         self.clf.fit(Xtr, ytr)
         proba_val = self.clf.predict_proba(Xval)[:, 1]
-        self.threshold, _ = optimize_threshold(proba_val, yval, metric="mcc")
+        ent_val = entropy_from_proba(proba_val)
+        # Grid search: entropy_quantile x strict_thr x base_thr x lenient_thr
+        best_mcc = -1.0
+        best_params = (self.base_thr, self.entropy_quantile, self.strict_thr,
+                       self.lenient_thr)
+        for eq in [0.60, 0.70, 0.80]:
+            cutoff = np.quantile(ent_val, eq)
+            for st in [0.60, 0.65, 0.70, 0.75, 0.80]:
+                for bt in [0.45, 0.50, 0.55]:
+                    for lt in [0.35, 0.40, 0.45, 0.50]:
+                        thr = np.where(ent_val > cutoff, st,
+                               np.where(ent_val < cutoff * 0.6, lt, bt))
+                        yp = (proba_val >= thr).astype(int)
+                        mcc = matthews_corrcoef(yval, yp)
+                        if mcc > best_mcc:
+                            best_mcc = mcc
+                            best_params = (bt, eq, st, lt)
+        self.final_base_thr = best_params[0]
+        self.final_entropy_q = best_params[1]
+        self.final_strict_thr = best_params[2]
+        self.final_lenient_thr = best_params[3]
+        # Refit on full training data
+        self.clf.fit(X, y)
+        proba_full = self.clf.predict_proba(X)[:, 1]
+        ent_full = entropy_from_proba(proba_full)
+        self.entropy_cutoff = np.quantile(ent_full, self.final_entropy_q)
+        self.fitted = True
+
     def predict(self, ta, tb):
         X, _, _, _, _ = self.fe.transform(ta, tb)
         proba = self.clf.predict_proba(X)[:, 1]
-        return (proba >= self.threshold).astype(int), proba
+        ent = entropy_from_proba(proba)
+        # Entropy-adaptive thresholding (same core insight as C1)
+        thr = np.where(ent > self.entropy_cutoff, self.final_strict_thr,
+               np.where(ent < self.entropy_cutoff * 0.6, self.final_lenient_thr,
+                        self.final_base_thr))
+        y_pred = (proba >= thr).astype(int)
+        return y_pred, proba
 
 
 # ---------------------------------------------------------------------------
 # Contribution C3 — Cost-Sensitive Cascaded Detection (IMPROVED)
 # ---------------------------------------------------------------------------
 class C3_CostSensitiveCascade:
-    """LR-probability cascade (not TF-IDF-only). Clear cases decided directly;
-    uncertain cases proceed to next stage."""
+    """LR-probability cascade with entropy-adaptive uncertain-band handling.
 
-    def __init__(self, fe, low_thr=0.30, high_thr=0.70):
+    Clear cases decided directly by LR probability thresholds; uncertain
+    cases get entropy-adaptive thresholds tuned per dataset via validation.
+    """
+
+    def __init__(self, fe, low_thr=0.30, high_thr=0.70,
+                 unc_lenient_thr=0.45, unc_strict_thr=0.60):
         self.fe = fe; self.low_thr = low_thr; self.high_thr = high_thr
+        self.final_unc_lenient = unc_lenient_thr
+        self.final_unc_strict = unc_strict_thr
         self.clf = LogisticRegression(max_iter=1000, class_weight="balanced",
                                       random_state=RANDOM_STATE)
         self.final_low = low_thr
@@ -340,25 +398,32 @@ class C3_CostSensitiveCascade:
 
         self.clf.fit(Xtr, ytr)
         proba_val = self.clf.predict_proba(Xval)[:, 1]
+        ent_val = entropy_from_proba(proba_val)
 
-        # Grid search low/high thresholds to maximize MCC
+        # Grid search low/high + uncertain-band thresholds to maximize MCC
         best_mcc = -1.0
-        best_params = (self.low_thr, self.high_thr)
+        best_params = (self.low_thr, self.high_thr,
+                       self.final_unc_lenient, self.final_unc_strict)
         for lt in [0.20, 0.25, 0.30, 0.35, 0.40]:
             for ht in [0.60, 0.65, 0.70, 0.75, 0.80]:
                 if ht <= lt:
                     continue
-                yp = np.zeros(len(yval), dtype=int)
-                yp[proba_val < lt] = 0
-                yp[proba_val > ht] = 1
-                unc = (proba_val >= lt) & (proba_val <= ht)
-                yp[unc] = (proba_val[unc] >= 0.5).astype(int)
-                mcc = matthews_corrcoef(yval, yp)
-                if mcc > best_mcc:
-                    best_mcc = mcc
-                    best_params = (lt, ht)
+                unc_mask = (proba_val >= lt) & (proba_val <= ht)
+                for ul in [0.35, 0.40, 0.45, 0.50]:
+                    for us in [0.60, 0.65, 0.70, 0.75, 0.80]:
+                        yp = np.zeros(len(yval), dtype=int)
+                        yp[proba_val < lt] = 0
+                        yp[proba_val > ht] = 1
+                        unc_ent = ent_val[unc_mask]
+                        unc_thr = np.where(unc_ent > np.median(unc_ent), us, ul)
+                        yp[unc_mask] = (proba_val[unc_mask] >= unc_thr).astype(int)
+                        mcc = matthews_corrcoef(yval, yp)
+                        if mcc > best_mcc:
+                            best_mcc = mcc
+                            best_params = (lt, ht, ul, us)
 
-        self.final_low, self.final_high = best_params
+        self.final_low, self.final_high, \
+            self.final_unc_lenient, self.final_unc_strict = best_params
         self.clf.fit(X, y)
         self.fitted = True
 
@@ -377,6 +442,14 @@ class C3_CostSensitiveCascade:
 
     def predict(self, ta, tb):
         decision, conf, proba = self.cascade_decision(ta, tb)
+        n = len(ta)
+        uncertain = ~conf
+        # Uncertain cases: entropy-adaptive thresholding (tuned thresholds)
+        if uncertain.any():
+            ent = entropy_from_proba(proba[uncertain])
+            thr_unc = np.where(ent > np.median(ent), self.final_unc_strict,
+                               self.final_unc_lenient)
+            decision[uncertain] = (proba[uncertain] >= thr_unc).astype(int)
         return decision, proba
 
 
@@ -384,13 +457,29 @@ class C3_CostSensitiveCascade:
 # Contribution C4 — Conformal Calibrated Detection (IMPROVED + FIXED)
 # ---------------------------------------------------------------------------
 class C4_ConformalCalibrated:
-    def __init__(self, fe, coverage=0.90):
+    """Conformal Calibrated Detection with entropy-adaptive thresholding.
+
+    Temperature scaling + conformal quantile for calibrated probabilities,
+    with entropy-adaptive thresholds tuned per dataset via validation.
+    """
+
+    def __init__(self, fe, coverage=0.90, entropy_quantile=0.70,
+                 strict_thr=0.70, base_thr=0.50, lenient_thr=0.40):
         self.fe = fe; self.coverage = coverage
         self.clf = LogisticRegression(max_iter=1000, class_weight="balanced",
                                       random_state=RANDOM_STATE)
         self.q = None
         self.temperature = 1.0
         self.adaptive_threshold = 0.50
+        self.entropy_quantile = entropy_quantile
+        self.strict_thr = strict_thr
+        self.base_thr = base_thr
+        self.lenient_thr = lenient_thr
+        self.entropy_cutoff = None
+        self.final_base_thr = base_thr
+        self.final_strict_thr = strict_thr
+        self.final_lenient_thr = lenient_thr
+        self.final_entropy_q = entropy_quantile
         self.fitted = False
 
     def fit(self, ta, tb, y):
@@ -420,21 +509,40 @@ class C4_ConformalCalibrated:
         self.q = np.sort(scores)[k - 1]
         conf_thr = 1.0 - self.q
 
-        # Wide threshold search for best MCC
+        # Grid search entropy-adaptive thresholds on scaled probabilities
         p1_val = scaled_proba_val[:, 1]
-        best_thr = conf_thr; best_mcc = -1.0
-        for thr in np.linspace(0.05, 0.95, 91):
-            yp = (p1_val >= thr).astype(int)
-            mcc = matthews_corrcoef(y[split:], yp)
-            if mcc > best_mcc:
-                best_mcc = mcc; best_thr = thr
-        for thr in np.linspace(max(0.01, best_thr - 0.02), min(0.99, best_thr + 0.02), 21):
-            yp = (p1_val >= thr).astype(int)
-            mcc = matthews_corrcoef(y[split:], yp)
-            if mcc > best_mcc:
-                best_mcc = mcc; best_thr = thr
+        ent_val = entropy_from_proba(p1_val)
+        best_mcc = -1.0
+        best_params = (self.base_thr, self.entropy_quantile, self.strict_thr,
+                       self.lenient_thr)
+        for eq in [0.60, 0.70, 0.80]:
+            cutoff = np.quantile(ent_val, eq)
+            for st in [0.60, 0.65, 0.70, 0.75, 0.80]:
+                for bt in [0.45, 0.50, 0.55]:
+                    for lt in [0.35, 0.40, 0.45, 0.50]:
+                        thr = np.where(ent_val > cutoff, st,
+                               np.where(ent_val < cutoff * 0.6, lt, bt))
+                        yp = (p1_val >= thr).astype(int)
+                        mcc = matthews_corrcoef(y[split:], yp)
+                        if mcc > best_mcc:
+                            best_mcc = mcc
+                            best_params = (bt, eq, st, lt)
 
-        self.adaptive_threshold = best_thr
+        self.final_base_thr = best_params[0]
+        self.final_entropy_q = best_params[1]
+        self.final_strict_thr = best_params[2]
+        self.final_lenient_thr = best_params[3]
+
+        # Compute entropy cutoff on full training data
+        Xfull = self._feat_raw(ta, tb)
+        logits_full = self._get_logits(Xfull)
+        proba_full = self._apply_temperature(logits_full)
+        p_class1_full = proba_full[:, 1]
+        ent_full = entropy_from_proba(p_class1_full)
+        self.entropy_cutoff = np.quantile(ent_full, self.final_entropy_q)
+
+        # Store plain adaptive threshold for compatibility
+        self.adaptive_threshold = self.final_base_thr
         self.fitted = True
 
     def _feat_raw(self, ta, tb):
@@ -456,7 +564,13 @@ class C4_ConformalCalibrated:
         logits = self._get_logits(X)
         proba = self._apply_temperature(logits)
         p_class1 = proba[:, 1]
-        return (p_class1 >= self.adaptive_threshold).astype(int), p_class1
+        ent = entropy_from_proba(p_class1)
+        # Entropy-adaptive thresholding (same core insight as C1/C2)
+        thr = np.where(ent > self.entropy_cutoff, self.final_strict_thr,
+               np.where(ent < self.entropy_cutoff * 0.6, self.final_lenient_thr,
+                        self.final_base_thr))
+        y_pred = (p_class1 >= thr).astype(int)
+        return y_pred, p_class1
 
 
 # ---------------------------------------------------------------------------

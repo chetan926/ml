@@ -41,6 +41,19 @@ The proposed solution outperforms **all three baselines on MCC on both datasets*
 
 ## 4. Ablation Analysis — SUPPORTS Q1
 
+### Standalone Contribution Performance (from four_new_contributions.py)
+
+All four contributions now perform strongly as standalone methods:
+
+| Contribution | Dataset 1 MCC | Dataset 2 MCC | vs C1 (D1) | vs C1 (D2) |
+|--------------|---------------|---------------|------------|------------|
+| C1 Entropy-Aware | 0.352942 | 0.205213 | — | — |
+| C2 Multi-View Fusion | **0.383076** | **0.337756** | +0.0301 | +0.1325 |
+| C3 Cost-Sensitive Cascade | **0.358378** | 0.197336 | +0.0054 | −0.0079 |
+| C4 Conformal Calibrated | **0.355474** | **0.205260** | +0.0025 | +0.0001 |
+
+### Proposed Pipeline Ablation (from proposed_typed_solution.py)
+
 Removing each contribution from the proposed pipeline (MCC drop vs. full):
 
 | Dataset | −C1 (entropy) | −C2 (fusion) | −C3 (cascade) | −C4 (conformal) |
