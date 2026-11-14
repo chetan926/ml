@@ -1,0 +1,128 @@
+
+======================================================================
+DATASET: Dataset1_repo_text_benchmark
+======================================================================
+Train: 9842 | Test: 9824
+
+--- Amirzhanov_2025_Frontiers on Dataset1_repo_text_benchmark ---
+  Acc=0.688721 F1=0.424539 ROC=0.686505 MCC=0.247968 Prec=0.579651 Rec=0.334917 Spec=0.873296
+
+--- Sajid_2025_PLoS on Dataset1_repo_text_benchmark ---
+  Acc=0.714373 F1=0.56844 ROC=0.737768 MCC=0.355919 Prec=0.589662 Rec=0.548694 Spec=0.800805
+
+--- SinghGupta_2026_KnowledgeInfoSys on Dataset1_repo_text_benchmark ---
+  Acc=0.640371 F1=0.490408 ROC=0.644879 MCC=0.213099 Prec=0.476858 Rec=0.504751 Spec=0.711121
+
+--- C1_EntropyAwareAdaptive on Dataset1_repo_text_benchmark ---
+  Acc=0.718648 F1=0.562104 ROC=0.737768 MCC=0.35797 Prec=0.602582 Rec=0.526722 Spec=0.818773
+
+--- C2_MultiViewFusion on Dataset1_repo_text_benchmark ---
+  Acc=0.712846 F1=0.581516 ROC=0.742934 MCC=0.362953 Prec=0.581085 Rec=0.581948 Spec=0.781134
+
+--- C3_CostSensitiveCascade on Dataset1_repo_text_benchmark ---
+  Acc=0.723025 F1=0.512977 ROC=0.735284 MCC=0.344766 Prec=0.645786 Rec=0.425475 Spec=0.878253
+
+--- C4_ConformalCalibrated on Dataset1_repo_text_benchmark ---
+  Acc=0.694116 F1=0.553425 ROC=0.71687 MCC=0.320823 Prec=0.554002 Rec=0.55285 Spec=0.767813
+
+--- Proposed_TypedSolution_Full on Dataset1_repo_text_benchmark ---
+  Acc=0.735851 F1=0.524464 ROC=0.754572 MCC=0.374643 Prec=0.685017 Rec=0.424881 Spec=0.898079
+  ERROR: 'ProposedTypedSolution' object has no attribute 'use_c2'
+Traceback (most recent call last):
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 850, in main
+    f"(use_c2={detector.use_c2}, use_c3={detector.use_c3}, "
+               ^^^^^^^^^^^^^^^
+AttributeError: 'ProposedTypedSolution' object has no attribute 'use_c2'
+
+--- Proposed_Ablation_NoC1 on Dataset1_repo_text_benchmark ---
+  Acc=0.737174 F1=0.525368 ROC=0.754836 MCC=0.377777 Prec=0.689672 Rec=0.424287 Spec=0.900403
+
+--- Proposed_Ablation_NoC2 on Dataset1_repo_text_benchmark ---
+  Acc=0.733612 F1=0.506133 ROC=0.75233 MCC=0.366413 Prec=0.694459 Rec=0.398159 Spec=0.908612
+
+--- Proposed_Ablation_NoC3 on Dataset1_repo_text_benchmark ---
+  Acc=0.728318 F1=0.513755 ROC=0.742815 MCC=0.355914 Prec=0.664781 Rec=0.418646 Spec=0.88987
+
+--- Proposed_Ablation_NoC4 on Dataset1_repo_text_benchmark ---
+  Acc=0.735546 F1=0.522602 ROC=0.754449 MCC=0.373604 Prec=0.685632 Rec=0.422209 Spec=0.899009
+
+======================================================================
+DATASET: Dataset2_quora_question_pairs
+======================================================================
+Train: 5000 | Test: 8000
+
+--- Amirzhanov_2025_Frontiers on Dataset2_quora_question_pairs ---
+  Acc=0.442125 F1=0.612217 ROC=0.483757 MCC=-0.004626 Prec=0.441866 Rec=0.996324 Spec=0.003136
+
+--- Sajid_2025_PLoS on Dataset2_quora_question_pairs ---
+  Acc=0.59925 F1=0.566874 ROC=0.637109 MCC=0.196047 Prec=0.54268 Rec=0.593326 Spec=0.603943
+
+--- SinghGupta_2026_KnowledgeInfoSys on Dataset2_quora_question_pairs ---
+  Acc=0.4415 F1=0.611681 ROC=0.485904 MCC=-0.015401 Prec=0.441531 Rec=0.995192 Spec=0.002912
+
+--- C1_EntropyAwareAdaptive on Dataset2_quora_question_pairs ---
+  Acc=0.61425 F1=0.521995 ROC=0.637109 MCC=0.206178 Prec=0.577055 Rec=0.476527 Spec=0.723342
+
+--- C2_MultiViewFusion on Dataset2_quora_question_pairs ---
+  Acc=0.677 F1=0.56469 ROC=0.726851 MCC=0.3379 Prec=0.698333 Rec=0.473982 Spec=0.837814
+
+--- C3_CostSensitiveCascade on Dataset2_quora_question_pairs ---
+  Acc=0.572875 F1=0.383547 ROC=0.590405 MCC=0.102131 Prec=0.529646 Rec=0.300622 Spec=0.78853
+
+--- C4_ConformalCalibrated on Dataset2_quora_question_pairs ---
+  Acc=0.561375 F1=0.017912 ROC=0.518266 MCC=0.058041 Prec=0.864865 Rec=0.00905 Spec=0.99888
+
+--- Proposed_TypedSolution_Full on Dataset2_quora_question_pairs ---
+  Acc=0.678625 F1=0.597211 ROC=0.72612 MCC=0.340465 Prec=0.669477 Rec=0.539027 Spec=0.789203
+  ERROR: 'ProposedTypedSolution' object has no attribute 'use_c2'
+Traceback (most recent call last):
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 850, in main
+    f"(use_c2={detector.use_c2}, use_c3={detector.use_c3}, "
+               ^^^^^^^^^^^^^^^
+AttributeError: 'ProposedTypedSolution' object has no attribute 'use_c2'
+
+--- Proposed_Ablation_NoC1 on Dataset2_quora_question_pairs ---
+  Acc=0.677125 F1=0.593036 ROC=0.726639 MCC=0.337183 Prec=0.669513 Rec=0.53224 Spec=0.791891
+
+--- Proposed_Ablation_NoC2 on Dataset2_quora_question_pairs ---
+  Acc=0.611625 F1=0.449796 ROC=0.634797 MCC=0.192423 Prec=0.601611 Rec=0.359163 Spec=0.811604
+
+--- Proposed_Ablation_NoC3 on Dataset2_quora_question_pairs ---
+  Acc=0.678375 F1=0.596392 ROC=0.725633 MCC=0.33991 Prec=0.669602 Rec=0.537613 Spec=0.789875
+
+--- Proposed_Ablation_NoC4 on Dataset2_quora_question_pairs ---
+  Acc=0.678375 F1=0.596772 ROC=0.726019 MCC=0.339932 Prec=0.669244 Rec=0.538462 Spec=0.789203
+
+Saved quantitative results
+
+=== ABLATION ===
+                      Dataset                Variant Removed  Full_MCC  Ablated_MCC  MCC_Drop  Full_Acc  Ablated_Acc  Acc_Drop  Full_F1  Ablated_F1   F1_Drop
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC1     CC1  0.374643     0.377777 -0.003134  0.735851     0.737174 -0.001323 0.524464    0.525368 -0.000904
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC2     CC2  0.374643     0.366413  0.008230  0.735851     0.733612  0.002239 0.524464    0.506133  0.018331
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC3     CC3  0.374643     0.355914  0.018729  0.735851     0.728318  0.007533 0.524464    0.513755  0.010709
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC4     CC4  0.374643     0.373604  0.001039  0.735851     0.735546  0.000305 0.524464    0.522602  0.001862
+Dataset2_quora_question_pairs Proposed_Ablation_NoC1     CC1  0.340465     0.337183  0.003282  0.678625     0.677125  0.001500 0.597211    0.593036  0.004175
+Dataset2_quora_question_pairs Proposed_Ablation_NoC2     CC2  0.340465     0.192423  0.148042  0.678625     0.611625  0.067000 0.597211    0.449796  0.147415
+Dataset2_quora_question_pairs Proposed_Ablation_NoC3     CC3  0.340465     0.339910  0.000555  0.678625     0.678375  0.000250 0.597211    0.596392  0.000819
+Dataset2_quora_question_pairs Proposed_Ablation_NoC4     CC4  0.340465     0.339932  0.000533  0.678625     0.678375  0.000250 0.597211    0.596772  0.000439
+
+=== PROPOSED vs BASELINES ===
+                      Dataset                         Baseline  Prop_MCC  Prop_Acc  Prop_F1  Base_MCC  Base_Acc  Base_F1  MCC_Diff  Acc_Diff   F1_Diff  Proposed_Better_MCC
+ Dataset1_repo_text_benchmark        Amirzhanov_2025_Frontiers  0.374643  0.735851 0.524464  0.247968  0.688721 0.424539  0.126675  0.047130  0.099925                 True
+ Dataset1_repo_text_benchmark                  Sajid_2025_PLoS  0.374643  0.735851 0.524464  0.355919  0.714373 0.568440  0.018724  0.021478 -0.043976                 True
+ Dataset1_repo_text_benchmark SinghGupta_2026_KnowledgeInfoSys  0.374643  0.735851 0.524464  0.213099  0.640371 0.490408  0.161544  0.095480  0.034056                 True
+Dataset2_quora_question_pairs        Amirzhanov_2025_Frontiers  0.340465  0.678625 0.597211 -0.004626  0.442125 0.612217  0.345091  0.236500 -0.015006                 True
+Dataset2_quora_question_pairs                  Sajid_2025_PLoS  0.340465  0.678625 0.597211  0.196047  0.599250 0.566874  0.144418  0.079375  0.030337                 True
+Dataset2_quora_question_pairs SinghGupta_2026_KnowledgeInfoSys  0.340465  0.678625 0.597211 -0.015401  0.441500 0.611681  0.355866  0.237125 -0.014470                 True
+
+=== CHARTS ===
+  Saved q1_Accuracy
+  Saved q1_F1-Score
+  Saved q1_MCC
+  Saved q1_ROC-AUC
+  Saved q1_Precision
+  Saved q1_Recall
+  Saved q1_Specificity
+  Done charts
+
+All outputs saved.

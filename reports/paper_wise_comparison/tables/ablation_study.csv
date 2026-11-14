@@ -1,9 +1,9 @@
 Dataset,Variant,Removed,Full_MCC,Ablated_MCC,MCC_Drop,Full_Acc,Ablated_Acc,Acc_Drop,Full_F1,Ablated_F1,F1_Drop
-Dataset1_repo_text_benchmark,Proposed_Ablation_NoC1,CC1,0.35797,0.345249,0.012721,0.718648,0.683836,0.034812,0.562104,0.591746,-0.029642
-Dataset1_repo_text_benchmark,Proposed_Ablation_NoC2,CC2,0.35797,0.35797,0.0,0.718648,0.718648,0.0,0.562104,0.562104,0.0
-Dataset1_repo_text_benchmark,Proposed_Ablation_NoC3,CC3,0.35797,0.35797,0.0,0.718648,0.718648,0.0,0.562104,0.562104,0.0
-Dataset1_repo_text_benchmark,Proposed_Ablation_NoC4,CC4,0.35797,0.35797,0.0,0.718648,0.718648,0.0,0.562104,0.562104,0.0
-Dataset2_quora_question_pairs,Proposed_Ablation_NoC1,CC1,0.206178,0.197495,0.008683,0.61425,0.5995,0.01475,0.521995,0.569123,-0.047128
-Dataset2_quora_question_pairs,Proposed_Ablation_NoC2,CC2,0.206178,0.206178,0.0,0.61425,0.61425,0.0,0.521995,0.521995,0.0
-Dataset2_quora_question_pairs,Proposed_Ablation_NoC3,CC3,0.206178,0.206178,0.0,0.61425,0.61425,0.0,0.521995,0.521995,0.0
-Dataset2_quora_question_pairs,Proposed_Ablation_NoC4,CC4,0.206178,0.206178,0.0,0.61425,0.61425,0.0,0.521995,0.521995,0.0
+Dataset1_repo_text_benchmark,Proposed_Ablation_NoC1,CC1,0.374643,0.377777,-0.003134,0.735851,0.737174,-0.001323,0.524464,0.525368,-0.000904
+Dataset1_repo_text_benchmark,Proposed_Ablation_NoC2,CC2,0.374643,0.366413,0.00823,0.735851,0.733612,0.002239,0.524464,0.506133,0.018331
+Dataset1_repo_text_benchmark,Proposed_Ablation_NoC3,CC3,0.374643,0.355914,0.018729,0.735851,0.728318,0.007533,0.524464,0.513755,0.010709
+Dataset1_repo_text_benchmark,Proposed_Ablation_NoC4,CC4,0.374643,0.373604,0.001039,0.735851,0.735546,0.000305,0.524464,0.522602,0.001862
+Dataset2_quora_question_pairs,Proposed_Ablation_NoC1,CC1,0.340465,0.337183,0.003282,0.678625,0.677125,0.0015,0.597211,0.593036,0.004175
+Dataset2_quora_question_pairs,Proposed_Ablation_NoC2,CC2,0.340465,0.192423,0.148042,0.678625,0.611625,0.067,0.597211,0.449796,0.147415
+Dataset2_quora_question_pairs,Proposed_Ablation_NoC3,CC3,0.340465,0.33991,0.000555,0.678625,0.678375,0.00025,0.597211,0.596392,0.000819
+Dataset2_quora_question_pairs,Proposed_Ablation_NoC4,CC4,0.340465,0.339932,0.000533,0.678625,0.678375,0.00025,0.597211,0.596772,0.000439

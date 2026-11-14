@@ -1,7 +1,7 @@
 Dataset,Baseline,Prop_MCC,Prop_Acc,Prop_F1,Base_MCC,Base_Acc,Base_F1,MCC_Diff,Acc_Diff,F1_Diff,Proposed_Better_MCC
-Dataset1_repo_text_benchmark,Amirzhanov_2025_Frontiers,0.35797,0.718648,0.562104,0.247968,0.688721,0.424539,0.110002,0.029927,0.137565,True
-Dataset1_repo_text_benchmark,Sajid_2025_PLoS,0.35797,0.718648,0.562104,0.355919,0.714373,0.56844,0.002051,0.004275,-0.006336,True
-Dataset1_repo_text_benchmark,SinghGupta_2026_KnowledgeInfoSys,0.35797,0.718648,0.562104,0.213099,0.640371,0.490408,0.144871,0.078277,0.071696,True
-Dataset2_quora_question_pairs,Amirzhanov_2025_Frontiers,0.206178,0.61425,0.521995,-0.004626,0.442125,0.612217,0.210804,0.172125,-0.090222,True
-Dataset2_quora_question_pairs,Sajid_2025_PLoS,0.206178,0.61425,0.521995,0.196047,0.59925,0.566874,0.010131,0.015,-0.044879,True
-Dataset2_quora_question_pairs,SinghGupta_2026_KnowledgeInfoSys,0.206178,0.61425,0.521995,-0.015401,0.4415,0.611681,0.221579,0.17275,-0.089686,True
+Dataset1_repo_text_benchmark,Amirzhanov_2025_Frontiers,0.374643,0.735851,0.524464,0.247968,0.688721,0.424539,0.126675,0.04713,0.099925,True
+Dataset1_repo_text_benchmark,Sajid_2025_PLoS,0.374643,0.735851,0.524464,0.355919,0.714373,0.56844,0.018724,0.021478,-0.043976,True
+Dataset1_repo_text_benchmark,SinghGupta_2026_KnowledgeInfoSys,0.374643,0.735851,0.524464,0.213099,0.640371,0.490408,0.161544,0.09548,0.034056,True
+Dataset2_quora_question_pairs,Amirzhanov_2025_Frontiers,0.340465,0.678625,0.597211,-0.004626,0.442125,0.612217,0.345091,0.2365,-0.015006,True
+Dataset2_quora_question_pairs,Sajid_2025_PLoS,0.340465,0.678625,0.597211,0.196047,0.59925,0.566874,0.144418,0.079375,0.030337,True
+Dataset2_quora_question_pairs,SinghGupta_2026_KnowledgeInfoSys,0.340465,0.678625,0.597211,-0.015401,0.4415,0.611681,0.355866,0.237125,-0.01447,True
