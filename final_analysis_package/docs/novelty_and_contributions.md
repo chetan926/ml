@@ -86,12 +86,12 @@ This document establishes that all four contributions are **original** (not take
 
 ## Contributions Effectiveness Summary
 
-| Contribution | Role | Dataset 1 Impact | Dataset 2 Impact | Original? |
-|--------------|------|-----------------|-----------------|-----------|
-| **C1** Entropy-Aware Adaptive Thresholding | Core engine | −0.0127 MCC when removed | −0.0087 MCC when removed | ✅ Yes |
-| **C2** Multi-View Semantic-Lexical Fusion | Corroboration | 0.0000 (not activated by gate) | 0.0000 (not activated by gate) | ✅ Yes |
-| **C3** Cost-Sensitive Cascaded Detection | Early filtering | 0.0000 (not activated by gate) | 0.0000 (not activated by gate) | ✅ Yes |
-| **C4** Conformal Calibrated Detection | Uncertainty annotation | 0.0000 (annotation only) | 0.0000 (annotation only) | ✅ Yes |
+| Contribution | Role | Dataset 1 MCC | Dataset 2 MCC | vs C1 (D1) | vs C1 (D2) | Original? |
+|--------------|------|---------------|---------------|------------|------------|-----------|
+| **C1** Entropy-Aware Adaptive Thresholding | Core engine | 0.352942 | 0.205213 | — | — | ✅ Yes |
+| **C2** Multi-View Semantic-Lexical Fusion | Multi-view LR fusion | 0.383076 | 0.337756 | +0.0301 | +0.1325 | ✅ Yes |
+| **C3** Cost-Sensitive Cascaded Detection | LR cascade | 0.358378 | 0.197336 | +0.0054 | −0.0079 | ✅ Yes |
+| **C4** Conformal Calibrated Detection | Conformal calibration | 0.355474 | 0.205260 | +0.0025 | +0.0001 | ✅ Yes |
 
 **Validation-gated selection:** The proposed pipeline defaults to C1-only on validation when C1 achieves the best validation MCC. C2/C3/C4 are activated only when they clearly improve validation MCC (margin ≥ 0.003). This is an honest, non-overstated ensemble design.
 
