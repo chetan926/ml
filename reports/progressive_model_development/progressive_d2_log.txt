@@ -1,0 +1,25 @@
+D2 Train: 5000 pairs | Test: 8000 pairs
+Train label dist: {0: np.int64(2766), 1: np.int64(2234)}
+Test label dist: {0: np.int64(4464), 1: np.int64(3536)}
+
+--- Running Model1_Baseline on Dataset2 ---
+  Configuration: Sajid et al. (2025) baseline only
+  Acc=0.600875  Prec=0.544488  Rec=0.593609  F1=0.567988  MCC=0.199018  ROC=0.636706  N_Feat=8  Thr=0.5015
+
+--- Running Model2_Baseline_C1 on Dataset2 ---
+  Configuration: Baseline + C1 (word-overlap counts)
+  Acc=0.680375  Prec=0.650292  Rec=0.598982  F1=0.623583  MCC=0.347557  ROC=0.72725  N_Feat=16  Thr=0.535
+
+--- Running Model3_Baseline_C1_C2 on Dataset2 ---
+  Configuration: Baseline + C1 + C2 (char n-grams)
+  Acc=0.682375  Prec=0.652842  Rec=0.600962  F1=0.625828  MCC=0.35163  ROC=0.727193  N_Feat=21  Thr=0.535
+
+--- Running Model4_Baseline_C1_C2_C3 on Dataset2 ---
+  Configuration: Baseline + C1 + C2 + C3 (edit distance)
+  Acc=0.697625  Prec=0.740422  Rec=0.486425  F1=0.587131  MCC=0.384386  ROC=0.75517  N_Feat=25  Thr=0.619
+
+--- Running Model5_Baseline_C1_C2_C3_C4 on Dataset2 ---
+  Configuration: Baseline + C1 + C2 + C3 + C4 (LSA+QS+Soundex)
+  Acc=0.704625  Prec=0.689744  Rec=0.602941  F1=0.643428  MCC=0.395848  ROC=0.758539  N_Feat=83  Thr=0.548
+
+D2 results saved. Total results: 10

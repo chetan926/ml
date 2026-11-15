@@ -1,0 +1,37 @@
+
+======================================================================
+DATASET: Dataset1_repo_text_benchmark
+======================================================================
+Train: 9842 pairs | Test: 9824 pairs
+Train label dist: {0: np.int64(6513), 1: np.int64(3329)}
+Test  label dist: {0: np.int64(6456), 1: np.int64(3368)}
+
+--- Running Model1_Baseline on Dataset1_repo_text_benchmark ---
+  Configuration: Sajid et al. (2025) baseline only
+  Acc=0.714882  Prec=0.590315  Rec=0.550178  F1=0.56954  MCC=0.35728  ROC=0.73751  N_Feat=8  Thr=0.5715
+
+--- Running Model2_Baseline_C1 on Dataset1_repo_text_benchmark ---
+  Configuration: Baseline + C1 (word-overlap counts)
+  Acc=0.721804  Prec=0.595088  Rec=0.589964  F1=0.592515  MCC=0.38134  ROC=0.751197  N_Feat=16  Thr=0.5605
+
+--- Running Model3_Baseline_C1_C2 on Dataset1_repo_text_benchmark ---
+  Configuration: Baseline + C1 + C2 (char n-grams)
+  Acc=0.73921  Prec=0.645909  Rec=0.529691  F1=0.582055  MCC=0.399318  ROC=0.76075  N_Feat=21  Thr=0.604
+
+--- Running Model4_Baseline_C1_C2_C3 on Dataset1_repo_text_benchmark ---
+  Configuration: Baseline + C1 + C2 + C3 (edit distance)
+  Acc=0.738701  Prec=0.63683  Rec=0.553444  F1=0.592216  MCC=0.403499  ROC=0.761915  N_Feat=25  Thr=0.5915
+
+--- Running Model5_Baseline_C1_C2_C3_C4 on Dataset1_repo_text_benchmark ---
+  Configuration: Baseline + C1 + C2 + C3 + C4 (LSA+QS+Soundex)
+  Acc=0.764149  Prec=0.664373  Rec=0.630641  F1=0.647068  MCC=0.470508  ROC=0.800704  N_Feat=83  Thr=0.5845
+
+======================================================================
+DATASET: Dataset2_quora_question_pairs
+======================================================================
+Train: 20000 pairs | Test: 8000 pairs
+Train label dist: {0: np.int64(11198), 1: np.int64(8802)}
+Test  label dist: {0: np.int64(4464), 1: np.int64(3536)}
+
+--- Running Model1_Baseline on Dataset2_quora_question_pairs ---
+  Configuration: Sajid et al. (2025) baseline only
