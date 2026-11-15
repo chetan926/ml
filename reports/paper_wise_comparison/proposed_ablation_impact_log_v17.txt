@@ -1,0 +1,116 @@
+
+======================================================================
+DATASET: Dataset1_repo_text_benchmark
+======================================================================
+Train: 9842 | Test: 9824
+
+--- Amirzhanov_2025_Frontiers on Dataset1_repo_text_benchmark ---
+  Acc=0.688721 F1=0.424539 ROC=0.686505 MCC=0.247968 Prec=0.579651 Rec=0.334917 Spec=0.873296
+
+--- Sajid_2025_PLoS on Dataset1_repo_text_benchmark ---
+  Acc=0.660322 F1=0.551177 ROC=0.686257 MCC=0.285052 Prec=0.503811 Rec=0.608373 Spec=0.687423
+
+--- SinghGupta_2026_KnowledgeInfoSys on Dataset1_repo_text_benchmark ---
+  Acc=0.640371 F1=0.490408 ROC=0.644879 MCC=0.213099 Prec=0.476858 Rec=0.504751 Spec=0.711121
+
+--- C1_WordOverlap on Dataset1_repo_text_benchmark ---
+  Acc=0.71875 F1=0.517885 ROC=0.719874 MCC=0.338123 Prec=0.628015 Rec=0.440618 Spec=0.863848
+
+--- C2_Embedding on Dataset1_repo_text_benchmark ---
+  Acc=0.557309 F1=0.512608 ROC=0.618793 MCC=0.165506 Prec=0.411701 Rec=0.679038 Spec=0.493804
+
+--- C3_CharEditDistance on Dataset1_repo_text_benchmark ---
+  Acc=0.736869 F1=0.547365 ROC=0.747813 MCC=0.382314 Prec=0.667093 Rec=0.464074 Spec=0.879182
+
+--- C4_EmotionSyntax on Dataset1_repo_text_benchmark ---
+  Acc=0.550183 F1=0.465077 ROC=0.577102 MCC=0.104445 Prec=0.392602 Rec=0.570368 Spec=0.539653
+
+--- Proposed_TypedSolution_Full on Dataset1_repo_text_benchmark ---
+  Acc=0.740533 F1=0.525414 ROC=0.748211 MCC=0.38554 Prec=0.704443 Rec=0.418943 Spec=0.908302
+
+--- Proposed_Ablation_NoC1 on Dataset1_repo_text_benchmark ---
+  Acc=0.736665 F1=0.49443 ROC=0.746717 MCC=0.373015 Prec=0.72327 Rec=0.375594 Spec=0.925031
+
+--- Proposed_Ablation_NoC2 on Dataset1_repo_text_benchmark ---
+  Acc=0.744401 F1=0.53952 ROC=0.751109 MCC=0.396604 Prec=0.705516 Rec=0.436758 Spec=0.904895
+
+--- Proposed_Ablation_NoC3 on Dataset1_repo_text_benchmark ---
+  Acc=0.699308 F1=0.539732 ROC=0.718302 MCC=0.318125 Prec=0.567869 Rec=0.514252 Spec=0.795849
+
+--- Proposed_Ablation_NoC4 on Dataset1_repo_text_benchmark ---
+  Acc=0.731678 F1=0.495599 ROC=0.74373 MCC=0.360341 Prec=0.696986 Rec=0.384501 Spec=0.912794
+
+======================================================================
+DATASET: Dataset2_quora_question_pairs
+======================================================================
+Train: 5000 | Test: 8000
+
+--- Amirzhanov_2025_Frontiers on Dataset2_quora_question_pairs ---
+  Acc=0.442125 F1=0.612217 ROC=0.483757 MCC=-0.004626 Prec=0.441866 Rec=0.996324 Spec=0.003136
+
+--- Sajid_2025_PLoS on Dataset2_quora_question_pairs ---
+  Acc=0.561375 F1=0.017912 ROC=0.490452 MCC=0.058041 Prec=0.864865 Rec=0.00905 Spec=0.99888
+
+--- SinghGupta_2026_KnowledgeInfoSys on Dataset2_quora_question_pairs ---
+  Acc=0.4415 F1=0.611681 ROC=0.485904 MCC=-0.015401 Prec=0.441531 Rec=0.995192 Spec=0.002912
+
+--- C1_WordOverlap on Dataset2_quora_question_pairs ---
+  Acc=0.68 F1=0.608563 ROC=0.727142 MCC=0.344208 Prec=0.66245 Rec=0.562783 Spec=0.772849
+
+--- C2_Embedding on Dataset2_quora_question_pairs ---
+  Acc=0.442 F1=0.613037 ROC=0.5 MCC=0.0 Prec=0.442 Rec=1.0 Spec=0.0
+
+--- C3_CharEditDistance on Dataset2_quora_question_pairs ---
+  Acc=0.693375 F1=0.544306 ROC=0.746117 MCC=0.387426 Prec=0.793178 Rec=0.41431 Spec=0.914427
+
+--- C4_EmotionSyntax on Dataset2_quora_question_pairs ---
+  Acc=0.44275 F1=0.611808 ROC=0.521053 MCC=-5e-05 Prec=0.441998 Rec=0.993495 Spec=0.006496
+
+--- Proposed_TypedSolution_Full on Dataset2_quora_question_pairs ---
+  Acc=0.6965 F1=0.509693 ROC=0.763001 MCC=0.419508 Prec=0.891243 Rec=0.3569 Spec=0.965502
+
+--- Proposed_Ablation_NoC1 on Dataset2_quora_question_pairs ---
+  Acc=0.694375 F1=0.548643 ROC=0.747482 MCC=0.388519 Prec=0.790005 Rec=0.420249 Spec=0.911514
+
+--- Proposed_Ablation_NoC2 on Dataset2_quora_question_pairs ---
+  Acc=0.696375 F1=0.50959 ROC=0.763001 MCC=0.4191 Prec=0.890614 Rec=0.3569 Spec=0.965278
+
+--- Proposed_Ablation_NoC3 on Dataset2_quora_question_pairs ---
+  Acc=0.6805 F1=0.61413 ROC=0.728011 MCC=0.345937 Prec=0.658679 Rec=0.575226 Spec=0.763889
+
+--- Proposed_Ablation_NoC4 on Dataset2_quora_question_pairs ---
+  Acc=0.696125 F1=0.509582 ROC=0.762213 MCC=0.418131 Prec=0.888811 Rec=0.357183 Spec=0.964606
+
+Saved quantitative results
+
+=== ABLATION ===
+                      Dataset                Variant Removed  Full_MCC  Ablated_MCC  MCC_Drop  Full_Acc  Ablated_Acc  Acc_Drop  Full_F1  Ablated_F1   F1_Drop
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC1     CC1  0.385540     0.373015  0.012525  0.740533     0.736665  0.003868 0.525414    0.494430  0.030984
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC2     CC2  0.385540     0.396604 -0.011064  0.740533     0.744401 -0.003868 0.525414    0.539520 -0.014106
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC3     CC3  0.385540     0.318125  0.067415  0.740533     0.699308  0.041225 0.525414    0.539732 -0.014318
+ Dataset1_repo_text_benchmark Proposed_Ablation_NoC4     CC4  0.385540     0.360341  0.025199  0.740533     0.731678  0.008855 0.525414    0.495599  0.029815
+Dataset2_quora_question_pairs Proposed_Ablation_NoC1     CC1  0.419508     0.388519  0.030989  0.696500     0.694375  0.002125 0.509693    0.548643 -0.038950
+Dataset2_quora_question_pairs Proposed_Ablation_NoC2     CC2  0.419508     0.419100  0.000408  0.696500     0.696375  0.000125 0.509693    0.509590  0.000103
+Dataset2_quora_question_pairs Proposed_Ablation_NoC3     CC3  0.419508     0.345937  0.073571  0.696500     0.680500  0.016000 0.509693    0.614130 -0.104437
+Dataset2_quora_question_pairs Proposed_Ablation_NoC4     CC4  0.419508     0.418131  0.001377  0.696500     0.696125  0.000375 0.509693    0.509582  0.000111
+
+=== PROPOSED vs BASELINES ===
+                      Dataset                         Baseline  Prop_MCC  Prop_Acc  Prop_F1  Base_MCC  Base_Acc  Base_F1  MCC_Diff  Acc_Diff   F1_Diff  Proposed_Better_MCC
+ Dataset1_repo_text_benchmark        Amirzhanov_2025_Frontiers  0.385540  0.740533 0.525414  0.247968  0.688721 0.424539  0.137572  0.051812  0.100875                 True
+ Dataset1_repo_text_benchmark                  Sajid_2025_PLoS  0.385540  0.740533 0.525414  0.285052  0.660322 0.551177  0.100488  0.080211 -0.025763                 True
+ Dataset1_repo_text_benchmark SinghGupta_2026_KnowledgeInfoSys  0.385540  0.740533 0.525414  0.213099  0.640371 0.490408  0.172441  0.100162  0.035006                 True
+Dataset2_quora_question_pairs        Amirzhanov_2025_Frontiers  0.419508  0.696500 0.509693 -0.004626  0.442125 0.612217  0.424134  0.254375 -0.102524                 True
+Dataset2_quora_question_pairs                  Sajid_2025_PLoS  0.419508  0.696500 0.509693  0.058041  0.561375 0.017912  0.361467  0.135125  0.491781                 True
+Dataset2_quora_question_pairs SinghGupta_2026_KnowledgeInfoSys  0.419508  0.696500 0.509693 -0.015401  0.441500 0.611681  0.434909  0.255000 -0.101988                 True
+
+=== CHARTS ===
+  Saved q1_Accuracy
+  Saved q1_F1-Score
+  Saved q1_MCC
+  Saved q1_ROC-AUC
+  Saved q1_Precision
+  Saved q1_Recall
+  Saved q1_Specificity
+  Done charts
+
+All outputs saved.

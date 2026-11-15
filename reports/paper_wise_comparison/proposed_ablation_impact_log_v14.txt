@@ -1,0 +1,109 @@
+
+======================================================================
+DATASET: Dataset1_repo_text_benchmark
+======================================================================
+Train: 9842 | Test: 9824
+
+--- Amirzhanov_2025_Frontiers on Dataset1_repo_text_benchmark ---
+  Acc=0.688721 F1=0.424539 ROC=0.686505 MCC=0.247968 Prec=0.579651 Rec=0.334917 Spec=0.873296
+
+--- Sajid_2025_PLoS on Dataset1_repo_text_benchmark ---
+  ERROR: X has 3 features, but LogisticRegression is expecting 7 features as input.
+Traceback (most recent call last):
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 923, in main
+    m, yp, ys = evaluate(mname, detector, ta, tb, ty, tea, teb, tey)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 845, in evaluate
+    y_pred, y_score = detector.predict(tea, teb)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 220, in predict
+    proba = self.clf.predict_proba(X)[:, 1]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_logistic.py", line 1600, in predict_proba
+    return super()._predict_proba_lr(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_base.py", line 437, in _predict_proba_lr
+    prob = self.decision_function(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_base.py", line 389, in decision_function
+    X = validate_data(self, X, accept_sparse="csr", reset=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/utils/validation.py", line 3062, in validate_data
+    _check_n_features(_estimator, X, reset=reset)
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/utils/validation.py", line 2926, in _check_n_features
+    raise ValueError(
+ValueError: X has 3 features, but LogisticRegression is expecting 7 features as input.
+
+--- SinghGupta_2026_KnowledgeInfoSys on Dataset1_repo_text_benchmark ---
+  Acc=0.640371 F1=0.490408 ROC=0.644879 MCC=0.213099 Prec=0.476858 Rec=0.504751 Spec=0.711121
+
+--- C1_EntropyAwareAdaptive on Dataset1_repo_text_benchmark ---
+  Acc=0.683632 F1=0.510859 ROC=0.686257 MCC=0.279418 Prec=0.543537 Rec=0.481888 Spec=0.788879
+
+--- C2_MultiViewFusion on Dataset1_repo_text_benchmark ---
+  Acc=0.712846 F1=0.581516 ROC=0.742934 MCC=0.362953 Prec=0.581085 Rec=0.581948 Spec=0.781134
+
+--- C3_CostSensitiveCascade on Dataset1_repo_text_benchmark ---
+  Acc=0.723025 F1=0.512977 ROC=0.735284 MCC=0.344766 Prec=0.645786 Rec=0.425475 Spec=0.878253
+
+--- C4_ConformalCalibrated on Dataset1_repo_text_benchmark ---
+  Acc=0.596702 F1=0.410066 ROC=0.576608 MCC=0.103699 Prec=0.41129 Rec=0.408848 Spec=0.694703
+
+--- Proposed_TypedSolution_Full on Dataset1_repo_text_benchmark ---
+  Acc=0.742162 F1=0.540707 ROC=0.756216 MCC=0.391759 Prec=0.694457 Rec=0.442696 Spec=0.898389
+    >>> Selected mode: full (stacking meta-LR)
+
+--- Proposed_Ablation_NoC1 on Dataset1_repo_text_benchmark ---
+  Acc=0.743994 F1=0.543474 ROC=0.75625 MCC=0.396339 Prec=0.699206 Rec=0.444477 Spec=0.900248
+
+--- Proposed_Ablation_NoC2 on Dataset1_repo_text_benchmark ---
+  Acc=0.734426 F1=0.50067 ROC=0.751631 MCC=0.367723 Prec=0.704362 Rec=0.388361 Spec=0.914963
+
+--- Proposed_Ablation_NoC3 on Dataset1_repo_text_benchmark ---
+  Acc=0.725774 F1=0.515119 ROC=0.743971 MCC=0.350941 Prec=0.654022 Rec=0.424881 Spec=0.882745
+
+--- Proposed_Ablation_NoC4 on Dataset1_repo_text_benchmark ---
+  Acc=0.741653 F1=0.533627 ROC=0.755518 MCC=0.389369 Prec=0.700096 Rec=0.431116 Spec=0.903656
+
+======================================================================
+DATASET: Dataset2_quora_question_pairs
+======================================================================
+Train: 5000 | Test: 8000
+
+--- Amirzhanov_2025_Frontiers on Dataset2_quora_question_pairs ---
+  Acc=0.442125 F1=0.612217 ROC=0.483757 MCC=-0.004626 Prec=0.441866 Rec=0.996324 Spec=0.003136
+
+--- Sajid_2025_PLoS on Dataset2_quora_question_pairs ---
+  ERROR: X has 3 features, but LogisticRegression is expecting 7 features as input.
+Traceback (most recent call last):
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 923, in main
+    fe.fit(ta, tb)
+                   
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 845, in evaluate
+    t0 = time.time(); detector.fit(ta, tb, ty); fit_t = time.time() - t0
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ml/reports/paper_wise_comparison/proposed_typed_solution.py", line 220, in predict
+    proba = self.clf.predict_proba(X)[:, 1]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_logistic.py", line 1600, in predict_proba
+    return super()._predict_proba_lr(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_base.py", line 437, in _predict_proba_lr
+    prob = self.decision_function(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_base.py", line 389, in decision_function
+    X = validate_data(self, X, accept_sparse="csr", reset=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/utils/validation.py", line 3062, in validate_data
+    _check_n_features(_estimator, X, reset=reset)
+  File "/usr/local/lib/python3.11/dist-packages/sklearn/utils/validation.py", line 2926, in _check_n_features
+    raise ValueError(
+ValueError: X has 3 features, but LogisticRegression is expecting 7 features as input.
+
+--- SinghGupta_2026_KnowledgeInfoSys on Dataset2_quora_question_pairs ---
+  Acc=0.4415 F1=0.611681 ROC=0.485904 MCC=-0.015401 Prec=0.441531 Rec=0.995192 Spec=0.002912
+
+--- C1_EntropyAwareAdaptive on Dataset2_quora_question_pairs ---
+  Acc=0.561375 F1=0.017912 ROC=0.490452 MCC=0.058041 Prec=0.864865 Rec=0.00905 Spec=0.99888
+
+--- C2_MultiViewFusion on Dataset2_quora_question_pairs ---
