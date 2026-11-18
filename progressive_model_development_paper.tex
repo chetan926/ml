@@ -36,10 +36,10 @@ computational overhead in large-scale deployment pipelines. This paper
 presents a typed-decision pre-filtering approach that incrementally
 integrates four original contributions (C1--C4) into a baseline academic
 integrity detection framework. The proposed methodology evaluates five
-progressive configurations—Sajid et al. (2025) baseline, baseline + C1
+progressive configurations---Sajid et al. (2025) baseline, baseline + C1
 (word-overlap count features), baseline + C1 + C2 (character n-gram
 features), baseline + C1 + C2 + C3 (edit distance features), and baseline
-+ C1 + C2 + C3 + C4 (semantic, structural, and phonetic features)—on two
++ C1 + C2 + C3 + C4 (semantic, structural, and phonetic features)---on two
 datasets: a text plagiarism benchmark and Quora question pairs. All models
 share identical train/test splits, preprocessing, LogisticRegression
 classifier, and Matthews Correlation Coefficient (MCC)-optimized threshold
@@ -87,8 +87,8 @@ dataset-dependent analysis of contribution effectiveness and identifies
 which features are most valuable for different types of plagiarism detection
 tasks.
 
-Furthermore, we frame the progressive configurations as a **typed-decision
-pre-filtering pipeline**: lighter configurations (Model 1--2) serve as
+Furthermore, we frame the progressive configurations as a \textbf{typed-decision
+pre-filtering pipeline}: lighter configurations (Model 1--2) serve as
 inexpensive pre-filters that quickly identify obvious non-plagiarized pairs
 using surface-level word-overlap signals, while heavier configurations
 (Model 4--5) act as verifiers for ambiguous cases requiring semantic and
@@ -101,8 +101,10 @@ The main contributions of this paper are:
 \begin{enumerate}
     \item A typed-decision pre-filtering pipeline with five configurations
           (baseline $\rightarrow$ +C1 $\rightarrow$ +C1+C2 $\rightarrow$ +C1+C2+C3
-          $\rightarrow$ +C1+C2+C3+C4) where lighter models serve as inexpensive pre-filters and heavier models act as semantic verifiers, evaluated under identical experimental
-          conditions for cost-efficient academic integrity detection.
+          $\rightarrow$ +C1+C2+C3+C4) where lighter models serve as inexpensive
+          pre-filters and heavier models act as semantic verifiers, evaluated
+          under identical experimental conditions for cost-efficient academic
+          integrity detection.
     \item Four original feature contributions: C1 (8 word-overlap count
           dimensions), C2 (5 character n-gram dimensions), C3 (4 edit distance
           dimensions), and C4 (58 semantic, structural, and phonetic dimensions
@@ -182,22 +184,22 @@ previous by adding one contribution's feature block:
 
 \subsection{Feature Contribution Definitions}
 
-\textbf{C1 — Word-Overlap Count Features (8 dimensions):}
+\textbf{C1 --- Word-Overlap Count Features (8 dimensions):}
 Surface-level measures capturing exact word sharing, normalized overlap, and
 bigram-based overlap. These features complement the baseline by adding bigram
 variants and normalization that capture phrase-level similarity.
 
-\textbf{C2 — Character N-Gram Features (5 dimensions):}
+\textbf{C2 --- Character N-Gram Features (5 dimensions):}
 Character-level overlap measures spanning bigram through 5-gram Jaccard
 similarity plus trigram containment. These features capture typographical
 similarity and character-level patterns missed by word-level features.
 
-\textbf{C3 — Edit Distance Features (4 dimensions):}
+\textbf{C3 --- Edit Distance Features (4 dimensions):}
 Word-level and character-level Levenshtein and Jaro-Winkler similarity.
 These features capture near-duplicate pairs with minor insertions, deletions,
 or substitutions that surface overlap measures may miss.
 
-\textbf{C4 — Semantic, Structural, and Phonetic Features (58 dimensions):}
+\textbf{C4 --- Semantic, Structural, and Phonetic Features (58 dimensions):}
 Latent topic semantics via LSA (25 dims per sentence), question structure
 features (first/last word match, wh-question patterns, auxiliary verb patterns,
 wh-word overlap), and Soundex phonetic similarity (Jaccard, overlap count,
@@ -212,6 +214,7 @@ Coefficient (MCC) on the training/validation split using a coarse search
 (0.05 to 0.95 in steps of 0.05) followed by a fine search around the best
 threshold. MCC is used as the primary metric because it is robust to class
 imbalance and provides a balanced measure of binary classification quality.
+
 \subsection{Typed-Decision Pre-Filtering Pipeline Architecture}
 
 The five progressive configurations are organized as a cascade pre-filtering
@@ -244,11 +247,11 @@ cost per submission while maintaining high overall accuracy.
 
 We evaluate on two datasets under identical train/test splits:
 
-\textbf{Dataset 1 — Text Plagiarism Benchmark:} A repository text plagiarism
+\textbf{Dataset 1 --- Text Plagiarism Benchmark:} A repository text plagiarism
 benchmark containing reference-suspicious text pairs with plagiarism labels.
 The dataset uses a validation/test split with 9,824 test pairs.
 
-\textbf{Dataset 2 — Quora Question Pairs:} Question pairs from the Quora
+\textbf{Dataset 2 --- Quora Question Pairs:} Question pairs from the Quora
 dataset with paraphrase labels. For computational tractability, we use a
 5,000-pair training subset (from 49,401 available pairs) and the full 8,000-pair
 test set.
@@ -308,7 +311,7 @@ contribution is removed from the complete model (Model 5).
 
 \begin{table}[htbp]
 \centering
-\caption{Ablation Analysis — MCC Drop When Each Contribution Removed}
+\caption{Ablation Analysis --- MCC Drop When Each Contribution Removed}
 \label{tab:ablation}
 \begin{tabular}{lccccc}
 \toprule
@@ -335,19 +338,30 @@ pair in milliseconds. Model 1 (baseline) has the lowest latency but also the
 lowest MCC, while Model 5 (complete model) has the highest latency but also
 the highest MCC.
 
-egin{table}[htbp]
+\begin{table}[htbp]
 \centering
 \caption{Computational Cost Analysis --- Latency and Cost per Pair}
 \label{tab:cost}
-egin{tabular}{lcccc}
-	oprule
-	extbf{Dataset} & 	extbf{Model} & 	extbf{Latency (ms/pair)} & 	extbf{MCC} & 	extbf{MCC per ms} \midrule
-\multirow{5}{*}{Dataset 1} & Model 1 & 0.062 & 0.3573 & 5.763  & Model 2 & 0.097 & 0.3813 & 3.931  & Model 3 & 0.102 & 0.3993 & 3.915  & Model 4 & 0.107 & 0.4035 & 3.771  & Model 5 & 0.176 & 0.4705 & 2.673 \midrule
-\multirow{5}{*}{Dataset 2} & Model 1 & 0.054 & 0.1990 & 3.685  & Model 2 & 0.182 & 0.3476 & 1.910  & Model 3 & 0.083 & 0.3516 & 4.236  & Model 4 & 0.089 & 0.3844 & 4.319  & Model 5 & 1.116 & 0.3958 & 0.355 ottomrule
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Dataset} & \textbf{Model} & \textbf{Latency (ms/pair)} & \textbf{MCC} & \textbf{MCC per ms} \\
+\midrule
+\multirow{5}{*}{Dataset 1} & Model 1 & 0.062 & 0.3573 & 5.763 \\
+ & Model 2 & 0.097 & 0.3813 & 3.931 \\
+ & Model 3 & 0.102 & 0.3993 & 3.915 \\
+ & Model 4 & 0.107 & 0.4035 & 3.771 \\
+ & Model 5 & 0.176 & 0.4705 & 2.673 \\
+\midrule
+\multirow{5}{*}{Dataset 2} & Model 1 & 0.054 & 0.1990 & 3.685 \\
+ & Model 2 & 0.182 & 0.3476 & 1.910 \\
+ & Model 3 & 0.083 & 0.3516 & 4.236 \\
+ & Model 4 & 0.089 & 0.3844 & 4.319 \\
+ & Model 5 & 1.116 & 0.3958 & 0.355 \\
+\bottomrule
 \end{tabular}
 \end{table}
 
-	extbf{Pre-filtering cost savings:} Using Model 1 as a pre-filter that
+\textbf{Pre-filtering cost savings:} Using Model 1 as a pre-filter that
 correctly identifies ~71\% of non-plagiarized pairs on Dataset 1 (accuracy
 0.7149) and ~60\% on Dataset 2 (accuracy 0.6009), the pipeline avoids running
 the expensive Model 5 on those pairs. For Dataset 2 where Model 5 latency is
@@ -369,8 +383,8 @@ Sajid 2025 baseline on both datasets, with relative MCC improvements of
 
 \textbf{Finding 2:} Contribution impact is dataset-dependent. C1 (word-overlap
 counts) delivers the largest gain on Quora question pairs (+0.1486 MCC), while
-C4 (semantic/structural/phonetic features) delivers the largest gain on the
-text plagiarism benchmark (+0.0670 MCC).
+C4 (semantic, structural, and phonetic features) delivers the largest gain on
+the text plagiarism benchmark (+0.0670 MCC).
 
 \textbf{Finding 3:} C2 (character n-grams) and C3 (edit distance) have modest
 impact on both datasets, suggesting partial redundancy with baseline
@@ -382,25 +396,25 @@ incremental value.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.8\textwidth]{roc_curves_Dataset1_repo_text_benchmark.png}}
-\caption{ROC Curves — Dataset 1 (Text Plagiarism Benchmark)}
+\caption{ROC Curves --- Dataset 1 (Text Plagiarism Benchmark)}
 \label{fig:roc1}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.8\textwidth]{roc_curves_Dataset2_quora_question_pairs.png}}
-\caption{ROC Curves — Dataset 2 (Quora Question Pairs)}
+\caption{ROC Curves --- Dataset 2 (Quora Question Pairs)}
 \label{fig:roc2}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.9\textwidth]{confusion_matrices_Dataset1_repo_text_benchmark.png}}
-\caption{Confusion Matrices — Dataset 1}
+\caption{Confusion Matrices --- Dataset 1}
 \label{fig:cm1}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.9\textwidth]{confusion_matrices_Dataset2_quora_question_pairs.png}}
-\caption{Confusion Matrices — Dataset 2}
+\caption{Confusion Matrices --- Dataset 2}
 \label{fig:cm2}
 \end{figure}
 
@@ -429,8 +443,8 @@ Model 5 verifies ambiguous cases at 1.116 ms/pair.
 Contribution-wise analysis reveals dataset-dependent effectiveness: C1
 (word-overlap counts) delivers the largest gain on Quora question pairs
 (+0.1486 MCC), making it ideal for pre-filtering question pairs, while C4
-(semantic, structural, and phonetic features) delivers the largest gain on the
-text plagiarism benchmark (+0.0670 MCC), making it essential for semantic
+(semantic, structural, and phonetic features) delivers the largest gain on
+the text plagiarism benchmark (+0.0670 MCC), making it essential for semantic
 verification of text submissions. C2 and C3 provide modest incremental value
 on both datasets.
 
