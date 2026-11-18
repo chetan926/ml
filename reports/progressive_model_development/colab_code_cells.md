@@ -910,7 +910,140 @@ print("Ablation results saved to PROGRESSIVE_ABLATION_RESULTS.csv")
 
 ---
 
-### Total cell count: 19 cells
+## Cell 20 — Confusion Matrix plots for all models × both datasets
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def plot_confusion_matrices(dname, fe, ta, tb, ty, tea, teb, tey):
+    """Plot confusion matrices for all 5 progressive models on a dataset."""
+    configs = [
+        ("Model1_Baseline",   "Sajid et al. (2025) baseline",   "BASELINE"),
+        ("Model2_Baseline_C1","Baseline + C1 (word-overlap)",   "C1"),
+        ("Model3_Baseline_C1_C2","Baseline + C1 + C2",           "C1C2"),
+        ("Model4_Baseline_C1_C2_C3","Baseline + C1 + C2 + C3",   "C1C2C3"),
+        ("Model5_Baseline_C1_C2_C3_C4","Baseline + C1 + C2 + C3 + C4", "C1C2C3C4"),
+    ]
+    
+    fig, axes = plt.subplots(1, 5, figsize=(20, 4))
+    fig.suptitle(f"Confusion Matrices — {dname}", fontsize=16, fontweight='bold')
+    
+    for idx, (mname, desc, config) in enumerate(configs):
+        # Re-run to get predictions
+        metrics, y_pred, y_proba = evaluate_config(fe, config, ta, tb, ty, tea, teb, tey)
+        
+        # Confusion matrix
+        cm = confusion_matrix(tey, y_pred, labels=[0, 1])
+        
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                    xticklabels=['Not Plagiarized', 'Plagiarized'],
+                    yticklabels=['Not Plagiarized', 'Plagiarized'],
+                    ax=axes[idx], cbar=False)
+        axes[idx].set_title(f"{mname}\nMCC={metrics['MCC']:.3f}", fontsize=10)
+        axes[idx].set_xlabel("Predicted")
+        axes[idx].set_ylabel("Actual")
+    
+    plt.tight_layout()
+    plt.savefig(f"confusion_matrices_{dname}.png", dpi=150, bbox_inches='tight')
+    plt.show()
+    print(f"Saved confusion_matrices_{dname}.png")
+
+# Plot for both datasets
+print("=" * 70)
+print("CONFUSION MATRICES — All Models × Both Datasets")
+print("=" * 70)
+
+print("\n--- Dataset 1 ---")
+plot_confusion_matrices("Dataset1_repo_text_benchmark", fe1, ta1, tb1, ty1, tea1, teb1, tey1)
+
+print("\n--- Dataset 2 ---")
+plot_confusion_matrices("Dataset2_quora_question_pairs", fe2, ta2, tb2, ty2, tea2, teb2, tey2)
+```
+
+---
+
+## Cell 21 — ROC Curve plots for all models × both datasets
+
+```python
+from sklearn.metrics import roc_curve, auc
+
+def plot_roc_curves(dname, fe, ta, tb, ty, tea, teb, tey):
+    """Plot ROC curves for all 5 progressive models on a dataset."""
+    configs = [
+        ("Model1_Baseline",   "Sajid et al. (2025) baseline",   "BASELINE"),
+        ("Model2_Baseline_C1","Baseline + C1 (word-overlap)",   "C1"),
+        ("Model3_Baseline_C1_C2","Baseline + C1 + C2",           "C1C2"),
+        ("Model4_Baseline_C1_C2_C3","Baseline + C1 + C2 + C3",   "C1C2C3"),
+        ("Model5_Baseline_C1_C2_C3_C4","Baseline + C1 + C2 + C3 + C4", "C1C2C3C4"),
+    ]
+    
+    plt.figure(figsize=(10, 8))
+    
+    for mname, desc, config in configs:
+        metrics, y_pred, y_proba = evaluate_config(fe, config, ta, tb, ty, tea, teb, tey)
+        
+        fpr, tpr, _ = roc_curve(tey, y_proba)
+        roc_auc = auc(fpr, tpr)
+        
+        plt.plot(fpr, tpr, lw=2, label=f"{mname} (AUC = {roc_auc:.3f})")
+    
+    plt.plot([0, 1], [0, 1], 'k--', lw=2, label='Random (AUC = 0.500)')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate', fontsize=12)
+    plt.ylabel('True Positive Rate', fontsize=12)
+    plt.title(f"ROC Curves — {dname}", fontsize=14, fontweight='bold')
+    plt.legend(loc="lower right", fontsize=10)
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(f"roc_curves_{dname}.png", dpi=150, bbox_inches='tight')
+    plt.show()
+    print(f"Saved roc_curves_{dname}.png")
+
+# Plot for both datasets
+print("=" * 70)
+print("ROC CURVES — All Models × Both Datasets")
+print("=" * 70)
+
+print("\n--- Dataset 1 ---")
+plot_roc_curves("Dataset1_repo_text_benchmark", fe1, ta1, tb1, ty1, tea1, teb1, tey1)
+
+print("\n--- Dataset 2 ---")
+plot_roc_curves("Dataset2_quora_question_pairs", fe2, ta2, tb2, ty2, tea2, teb2, tey2)
+```
+
+---
+
+### Total cell count: 21 cells
+
+| Cell | Purpose |
+|------|---------|
+| 1 | Install dependencies |
+| 2 | Imports and global setup |
+| 3 | Text preprocessing utilities |
+| 4 | Levenshtein & Jaro-Winkler similarity (C3) |
+| 5 | Cosine similarity helpers |
+| 6 | C4 features: Question structure + Soundex |
+| 7 | ProgressiveFeatureExtractor class |
+| 8 | Metrics, threshold optimization, evaluation |
+| 9 | Dataset 1 loader function |
+| 10 | Dataset 2 loader function |
+| 11 | **Load both datasets** (Kaggle + Colab compatible) |
+| 12 | Run all 5 models on a dataset (function def) |
+| 13 | Execute both datasets |
+| 14 | Display results table |
+| 15 | Save results to CSV |
+| 16 | Amirzhanov & SinghGupta baselines |
+| 17 | Ablation analysis (MCC drop per contribution) |
+| 18 | Qualitative analysis output |
+| 19 | Save ablation results to CSV |
+| 20 | **Confusion Matrix plots** — all models × both datasets |
+| 21 | **ROC Curve plots** — all models × both datasets |
+
+---
+
+### Expected results (from the completed study)
 
 | Cell | Purpose |
 |------|---------|
