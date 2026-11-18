@@ -551,20 +551,51 @@ def load_dataset2(train_path, test_path, train_subset=5000):
 
 ---
 
-## Cell 11 — Load both datasets (call the loader functions)
+## Cell 11 — Load both datasets (REQUIRED — fixes the NameError)
 
 ```python
+import os
+try:
+    from google.colab import files
+    _IN_COLAB = True
+except ImportError:
+    _IN_COLAB = False
+
+def upload_or_load(filename):
+    """Try to load a file; if not found, offer Colab file upload."""
+    if os.path.exists(filename):
+        print(f"  Found {filename} locally.")
+        return filename
+    if _IN_COLAB:
+        print(f"  {filename} not found. Upload it via the files pane "
+              "(left sidebar → folder icon → upload), then re-run this cell.")
+        # Try programmatic upload as fallback
+        try:
+            uploaded = files.upload()
+            if filename in uploaded:
+                print(f"  Uploaded {filename} successfully.")
+                return filename
+        except Exception:
+            pass
+    return None
+
 # ---- Load Dataset 1 ----
-(ta1, tb1, ty1), (tea1, teb1, tey1) = load_dataset1("text_plagiarism_benchmark.csv")
-print(f"D1 loaded: Train={len(ta1)} pairs | Test={len(tea1)} pairs")
-print(f"D1 train labels: {dict(pd.Series(ty1).value_counts().sort_index())}")
-print(f"D1 test labels:  {dict(pd.Series(tey1).value_counts().sort_index())}")
+d1_file = upload_or_load("text_plagiarism_benchmark.csv")
+if d1_file:
+    (ta1, tb1, ty1), (tea1, teb1, tey1) = load_dataset1(d1_file)
+    print(f"D1 loaded: Train={len(ta1)} pairs | Test={len(tea1)} pairs")
+    print(f"D1 train labels: {dict(pd.Series(ty1).value_counts().sort_index())}")
+    print(f"D1 test labels:  {dict(pd.Series(tey1).value_counts().sort_index())}")
 
 # ---- Load Dataset 2 ----
-(ta2, tb2, ty2), (tea2, teb2, tey2) = load_dataset2("train.tsv", "test.tsv", train_subset=5000)
-print(f"\nD2 loaded: Train={len(ta2)} pairs | Test={len(tea2)} pairs")
-print(f"D2 train labels: {dict(pd.Series(ty2).value_counts().sort_index())}")
-print(f"D2 test labels:  {dict(pd.Series(tey2).value_counts().sort_index())}")
+print()
+d2_train = upload_or_load("train.tsv")
+d2_test = upload_or_load("test.tsv")
+if d2_train and d2_test:
+    (ta2, tb2, ty2), (tea2, teb2, tey2) = load_dataset2(d2_train, d2_test, train_subset=5000)
+    print(f"D2 loaded: Train={len(ta2)} pairs | Test={len(tea2)} pairs")
+    print(f"D2 train labels: {dict(pd.Series(ty2).value_counts().sort_index())}")
+    print(f"D2 test labels:  {dict(pd.Series(tey2).value_counts().sort_index())}")
 ```
 
 ---
