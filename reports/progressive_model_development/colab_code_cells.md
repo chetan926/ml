@@ -561,14 +561,39 @@ try:
 except ImportError:
     _IN_COLAB = False
 
+# Detect Kaggle environment
+_IN_KAGGLE = os.path.exists("/kaggle") or os.path.exists("/kaggle/input")
+
+def find_file_in_kaggle(filename):
+    """Search Kaggle input directories for a file."""
+    search_roots = ["/kaggle/input", "/kaggle/working", "."]
+    for root in search_roots:
+        if not os.path.exists(root):
+            continue
+        for dirpath, dirnames, filenames in os.walk(root):
+            if filename in filenames:
+                found = os.path.join(dirpath, filename)
+                print(f"  Found {filename} at {found}")
+                return found
+    return None
+
 def load_file_or_upload(filename):
-    """Try to load a file directly; if not found, offer Colab upload widget."""
-    # Step 1: Try loading directly (files uploaded via UI should be here)
+    """Try to load a file directly; if not found, search Kaggle input dirs or offer Colab upload."""
+    # Step 1: Try loading directly
     if os.path.exists(filename):
         print(f"  Found {filename}.")
         return filename
 
-    # Step 2: Not found — show what's available for debugging
+    # Step 2: If Kaggle, search input directories recursively
+    if _IN_KAGGLE:
+        found = find_file_in_kaggle(filename)
+        if found:
+            return found
+        print(f"  {filename} not found in Kaggle input directories.")
+        print("  Make sure you uploaded the file via Kaggle's sidebar (Add Input → Upload).")
+        return None
+
+    # Step 3: Not found — show what's available for debugging
     print(f"  {filename} not found in current directory.")
     try:
         cwd = os.getcwd()
@@ -581,7 +606,7 @@ def load_file_or_upload(filename):
     except Exception:
         pass
 
-    # Step 3: Offer programmatic upload widget (Colab only)
+    # Step 4: Offer programmatic upload widget (Colab only)
     if _IN_COLAB:
         print(f"  Please upload {filename} using the 'Choose Files' button below, "
               f"then re-run this cell.")
