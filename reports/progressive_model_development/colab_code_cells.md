@@ -530,7 +530,7 @@ def load_dataset1(d1_path):
              df.loc[test_mask, "suspicious_text"].tolist(), y[test_mask]))
 ```
 
-**Colab usage:** Upload `text_plagiarism_benchmark.csv` via the files pane (left sidebar → folder icon → upload), then run Cell 11 below.
+**Colab usage:** Upload `dataset1_text_plagiarism_benchmark.csv` via the files pane (left sidebar → folder icon → upload), then run Cell 11 below.
 
 ---
 
@@ -547,7 +547,7 @@ def load_dataset2(train_path, test_path, train_subset=5000):
              test["label"].values.astype(int)))
 ```
 
-**Colab usage:** Upload `train.tsv` and `test.tsv` via the files pane, then run Cell 11 below.
+**Colab usage:** Upload `dataset2_quora_train.tsv` and `dataset2_quora_test.tsv` via the files pane, then run Cell 11 below.
 
 ---
 
@@ -580,7 +580,7 @@ def upload_or_load(filename):
     return None
 
 # ---- Load Dataset 1 ----
-d1_file = upload_or_load("text_plagiarism_benchmark.csv")
+d1_file = upload_or_load("dataset1_text_plagiarism_benchmark.csv")
 if d1_file:
     (ta1, tb1, ty1), (tea1, teb1, tey1) = load_dataset1(d1_file)
     print(f"D1 loaded: Train={len(ta1)} pairs | Test={len(tea1)} pairs")
@@ -589,8 +589,8 @@ if d1_file:
 
 # ---- Load Dataset 2 ----
 print()
-d2_train = upload_or_load("train.tsv")
-d2_test = upload_or_load("test.tsv")
+d2_train = upload_or_load("dataset2_quora_train.tsv")
+d2_test = upload_or_load("dataset2_quora_test.tsv")
 if d2_train and d2_test:
     (ta2, tb2, ty2), (tea2, teb2, tey2) = load_dataset2(d2_train, d2_test, train_subset=5000)
     print(f"D2 loaded: Train={len(ta2)} pairs | Test={len(tea2)} pairs")
