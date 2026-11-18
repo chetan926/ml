@@ -1,0 +1,393 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Progressive Model Development for Plagiarism Detection:
+A Contribution-Wise Analysis of Word-Overlap, Character N-Gram,
+Edit Distance, and Semantic Features}
+
+\author{\IEEEauthorblockN{\textsuperscript{} Author Name}
+\IEEEauthorblockA{\textit{Dept. of Computer Science \& Engineering} \\
+\textit{SRM University AP}\\
+Neerukonda, Mangalagiri-522240,\\ Guntur District, Andhra Pradesh, India. \\
+email@srmap.edu.in}
+\and
+\IEEEauthorblockN{\textsuperscript{} Co-Author Name}
+\IEEEauthorblockA{\textit{Dept. of Computer Science \& AI} \\
+\textit{SR University, }
+Warangal, India \\
+email@sr.edu.in}
+}
+
+\maketitle
+
+\begin{abstract}
+Plagiarism detection is a critical task in academic integrity and content
+authenticity verification. This paper presents a progressive model development
+approach that incrementally integrates four original contributions (C1--C4)
+into a baseline plagiarism detection framework. The proposed methodology
+evaluates five progressive configurations—Sajid et al. (2025) baseline,
+baseline + C1 (word-overlap count features), baseline + C1 + C2 (character
+n-gram features), baseline + C1 + C2 + C3 (edit distance features), and
+baseline + C1 + C2 + C3 + C4 (semantic, structural, and phonetic features)—
+on two datasets: a text plagiarism benchmark and Quora question pairs. All
+models share identical train/test splits, preprocessing, LogisticRegression
+classifier, and Matthews Correlation Coefficient (MCC)-optimized threshold
+for fair comparison. Experimental results demonstrate that the complete
+proposed model (Model 5) achieves MCC of 0.4705 on the text plagiarism
+benchmark and 0.3958 on Quora question pairs, outperforming the baseline on
+both datasets. Contribution-wise ablation analysis reveals that C1 delivers
+the largest gain on Quora (+0.1486 MCC) while C4 delivers the largest gain
+on the text benchmark (+0.0670 MCC), highlighting dataset-dependent
+contribution impact.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Plagiarism Detection, Paraphrase Detection, Progressive Model Development,
+Word-Overlap Features, Character N-Grams, Edit Distance, LSA Topics,
+Soundex, Matthews Correlation Coefficient
+\end{IEEEkeywords}
+
+\section{Introduction}
+Plagiarism detection has become increasingly important with the proliferation
+of digital content and online learning platforms. The task involves identifying
+whether a given text or question pair is semantically similar or paraphrased,
+indicating potential plagiarism. Traditional approaches rely on surface-level
+lexical features such as word overlap and character n-gram similarity, which
+often fail to capture paraphrased content that differs in surface form but
+shares semantic meaning.
+
+Recent research has proposed various feature sets and classification approaches
+for plagiarism and paraphrase detection. Sajid et al. (2025) introduced a
+baseline framework using eight features including word Jaccard, character
+trigram Jaccard, overlap count, length difference ratio, shorter overlap,
+exact match, TF-IDF cosine similarity, and LSA cosine similarity. While this
+baseline provides a reasonable starting point, its surface-level features
+struggle with sophisticated paraphrasing that preserves meaning while altering
+word choice and sentence structure.
+
+This paper addresses this limitation through progressive model development,
+where four original contributions are incrementally added to the baseline:
+C1 (word-overlap count features), C2 (character n-gram features), C3 (edit
+distance features), and C4 (semantic, structural, and phonetic features).
+Unlike prior work that evaluates feature sets in isolation, our approach
+systematically measures the incremental impact of each contribution on two
+diverse datasets under a common experimental protocol. This enables a
+dataset-dependent analysis of contribution effectiveness and identifies
+which features are most valuable for different types of plagiarism detection
+tasks.
+
+The main contributions of this paper are:
+\begin{enumerate}
+    \item A progressive model development framework with five configurations
+          (baseline $\rightarrow$ +C1 $\rightarrow$ +C1+C2 $\rightarrow$ +C1+C2+C3
+          $\rightarrow$ +C1+C2+C3+C4) evaluated under identical experimental
+          conditions.
+    \item Four original feature contributions: C1 (8 word-overlap count
+          dimensions), C2 (5 character n-gram dimensions), C3 (4 edit distance
+          dimensions), and C4 (58 semantic, structural, and phonetic dimensions
+          including LSA topics, question structure, and Soundex).
+    \item Comprehensive evaluation on two datasets: a text plagiarism benchmark
+          (9,824 test pairs) and Quora question pairs (8,000 test pairs).
+    \item Contribution-wise ablation analysis quantifying the MCC drop when each
+          contribution is removed, revealing dataset-dependent effectiveness.
+\end{enumerate}
+
+The remainder of this paper is organized as follows: Section II reviews related
+work, Section III describes the methodology and feature contributions,
+Section IV details the experimental setup, Section V presents results and
+analysis, and Section VI concludes the paper.
+
+\section{Related Work}
+
+Plagiarism and paraphrase detection has been extensively studied using both
+traditional feature-based methods and deep learning approaches. Early work
+relied on surface-level text similarity measures such as word overlap,
+character n-grams, and edit distance. More recent approaches have incorporated
+semantic representations through word embeddings, transformer models, and
+LSA topic vectors.
+
+Sajid et al. (2025) proposed a baseline plagiarism detection framework using
+eight features combining word-level, character-level, and semantic similarity
+measures. Their work demonstrated that TF-IDF cosine and LSA cosine similarity
+provide useful signals for plagiarism detection, but surface-level features
+remain important for exact and near-exact matches.
+
+Amirzhanov et al. (2025) proposed a TF-IDF cosine similarity threshold
+classifier for paraphrase detection, showing that simple cosine thresholding
+can achieve reasonable performance on question pair datasets. Singh and Gupta
+(2026) introduced a hybrid approach combining word Jaccard and normalized
+overlap counts, demonstrating the value of combining multiple overlap measures.
+
+Deep learning approaches have also been applied to paraphrase detection,
+including Siamese networks, transformer-based models, and autoencoder-classifier
+architectures. While these methods can achieve high accuracy, they often
+require large amounts of training data and lack interpretability. In contrast,
+our feature-based approach provides transparent, interpretable signals that
+can be analyzed contribution by contribution.
+
+Unlike prior work that evaluates complete feature sets holistically, our
+progressive model development systematically measures the incremental impact
+of each contribution, enabling fine-grained analysis of feature effectiveness
+across different dataset types.
+
+\section{Methodology}
+
+\subsection{Progressive Model Configurations}
+
+We define five progressive model configurations, each building upon the
+previous by adding one contribution's feature block:
+
+\begin{enumerate}
+    \item \textbf{Model 1 (Baseline):} Sajid et al. (2025) baseline with 8
+          features: word Jaccard, character trigram Jaccard, overlap count,
+          length difference ratio, shorter overlap, exact match, TF-IDF cosine,
+          and LSA cosine.
+    \item \textbf{Model 2 (+C1):} Baseline + C1 word-overlap count features
+          (8 dims), including word Jaccard, overlap count, length difference
+          ratio, shorter overlap, bigram overlap, exact match, normalized
+          overlap, and bigram containment.
+    \item \textbf{Model 3 (+C1+C2):} Model 2 + C2 character n-gram features
+          (5 dims), including character 2/3/4/5-gram Jaccard and character
+          trigram containment.
+    \item \textbf{Model 4 (+C1+C2+C3):} Model 3 + C3 edit distance features
+          (4 dims), including word-level and character-level Levenshtein and
+          Jaro-Winkler similarity.
+    \item \textbf{Model 5 (+C1+C2+C3+C4):} Model 4 + C4 semantic, structural,
+          and phonetic features (58 dims), including LSA topic vectors (50
+          dims), question structure features (5 dims), and Soundex phonetic
+          features (3 dims).
+\end{enumerate}
+
+\subsection{Feature Contribution Definitions}
+
+\textbf{C1 — Word-Overlap Count Features (8 dimensions):}
+Surface-level measures capturing exact word sharing, normalized overlap, and
+bigram-based overlap. These features complement the baseline by adding bigram
+variants and normalization that capture phrase-level similarity.
+
+\textbf{C2 — Character N-Gram Features (5 dimensions):}
+Character-level overlap measures spanning bigram through 5-gram Jaccard
+similarity plus trigram containment. These features capture typographical
+similarity and character-level patterns missed by word-level features.
+
+\textbf{C3 — Edit Distance Features (4 dimensions):}
+Word-level and character-level Levenshtein and Jaro-Winkler similarity.
+These features capture near-duplicate pairs with minor insertions, deletions,
+or substitutions that surface overlap measures may miss.
+
+\textbf{C4 — Semantic, Structural, and Phonetic Features (58 dimensions):}
+Latent topic semantics via LSA (25 dims per sentence), question structure
+features (first/last word match, wh-question patterns, auxiliary verb patterns,
+wh-word overlap), and Soundex phonetic similarity (Jaccard, overlap count,
+containment). These features capture semantic relatedness and phonetic
+similarity orthogonal to surface overlap.
+
+\subsection{Classifier and Decision Rule}
+
+All models use LogisticRegression with class\_weight="balanced" and
+max\_iter=2000. The decision threshold is optimized for Matthews Correlation
+Coefficient (MCC) on the training/validation split using a coarse search
+(0.05 to 0.95 in steps of 0.05) followed by a fine search around the best
+threshold. MCC is used as the primary metric because it is robust to class
+imbalance and provides a balanced measure of binary classification quality.
+
+\section{Experimental Setup}
+
+\subsection{Datasets}
+
+We evaluate on two datasets under identical train/test splits:
+
+\textbf{Dataset 1 — Text Plagiarism Benchmark:} A repository text plagiarism
+benchmark containing reference-suspicious text pairs with plagiarism labels.
+The dataset uses a validation/test split with 9,824 test pairs.
+
+\textbf{Dataset 2 — Quora Question Pairs:} Question pairs from the Quora
+dataset with paraphrase labels. For computational tractability, we use a
+5,000-pair training subset (from 49,401 available pairs) and the full 8,000-pair
+test set.
+
+\subsection{Preprocessing}
+
+All models share identical preprocessing:
+\begin{enumerate}
+    \item Lowercase the text
+    \item Remove non-alphanumeric characters (except spaces)
+    \item Collapse multiple whitespace into single space
+    \item Trim leading and trailing whitespace
+\end{enumerate}
+
+\subsection{Evaluation Metrics}
+
+We report Accuracy, Precision, Recall, F1-Score, Specificity, ROC-AUC,
+PR-AUC, and MCC. MCC is the primary metric for model selection and threshold
+optimization. Confusion matrix counts (TP, TN, FP, FN) are also reported for
+transparency.
+
+\section{Results}
+
+\subsection{Quantitative Results}
+
+Table I presents the quantitative results for all 5 progressive models on both
+datasets. Model 5 (complete proposed model) achieves the best MCC on both
+datasets: 0.4705 on Dataset 1 and 0.3958 on Dataset 2.
+
+\begin{table}[htbp]
+\centering
+\caption{Progressive Model Results on Both Datasets}
+\label{tab:results}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Dataset} & \textbf{Model} & \textbf{Config} & \textbf{Accuracy} & \textbf{MCC} & \textbf{ROC-AUC} & \textbf{N\_Features} \\
+\midrule
+\multirow{5}{*}{Dataset 1} & Model 1 & BASELINE & 0.7149 & 0.3573 & 0.7375 & 8 \\
+ & Model 2 & C1 & 0.7218 & 0.3813 & 0.7512 & 16 \\
+ & Model 3 & C1C2 & 0.7392 & 0.3993 & 0.7608 & 21 \\
+ & Model 4 & C1C2C3 & 0.7387 & 0.4035 & 0.7619 & 25 \\
+ & Model 5 & C1C2C3C4 & 0.7641 & 0.4705 & 0.8007 & 83 \\
+\midrule
+\multirow{5}{*}{Dataset 2} & Model 1 & BASELINE & 0.6009 & 0.1990 & 0.6367 & 8 \\
+ & Model 2 & C1 & 0.6804 & 0.3476 & 0.7273 & 16 \\
+ & Model 3 & C1C2 & 0.6824 & 0.3516 & 0.7272 & 21 \\
+ & Model 4 & C1C2C3 & 0.6976 & 0.3844 & 0.7552 & 25 \\
+ & Model 5 & C1C2C3C4 & 0.7046 & 0.3958 & 0.7585 & 83 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Contribution-Wise Ablation Analysis}
+
+Table II presents the ablation analysis, measuring the MCC drop when each
+contribution is removed from the complete model (Model 5).
+
+\begin{table}[htbp]
+\centering
+\caption{Ablation Analysis — MCC Drop When Each Contribution Removed}
+\label{tab:ablation}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Dataset} & \textbf{Removed} & \textbf{Full MCC} & \textbf{Ablated MCC} & \textbf{MCC Drop} & \textbf{Impact} \\
+\midrule
+\multirow{4}{*}{Dataset 1} & C1 & 0.4705 & 0.4464 & 0.0241 & Moderate \\
+ & C2 & 0.4705 & 0.4525 & 0.0180 & Low \\
+ & C3 & 0.4705 & 0.4663 & 0.0042 & Low \\
+ & C4 & 0.4705 & 0.4035 & 0.0670 & High \\
+\midrule
+\multirow{4}{*}{Dataset 2} & C1 & 0.3958 & 0.2472 & 0.1486 & High \\
+ & C2 & 0.3958 & 0.3917 & 0.0041 & Low \\
+ & C3 & 0.3958 & 0.3630 & 0.0328 & Moderate \\
+ & C4 & 0.3958 & 0.3844 & 0.0115 & Low \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Key Findings}
+
+\textbf{Finding 1:} The complete proposed model (Model 5) outperforms the
+Sajid 2025 baseline on both datasets, with relative MCC improvements of
+31.7\% on Dataset 1 and 98.9\% on Dataset 2.
+
+\textbf{Finding 2:} Contribution impact is dataset-dependent. C1 (word-overlap
+counts) delivers the largest gain on Quora question pairs (+0.1486 MCC), while
+C4 (semantic/structural/phonetic features) delivers the largest gain on the
+text plagiarism benchmark (+0.0670 MCC).
+
+\textbf{Finding 3:} C2 (character n-grams) and C3 (edit distance) have modest
+impact on both datasets, suggesting partial redundancy with baseline
+word-overlap features.
+
+\textbf{Finding 4:} MCC improves monotonically across all 5 models on both
+datasets, demonstrating that each added contribution provides non-negative
+incremental value.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.8\textwidth]{roc_curves_Dataset1_repo_text_benchmark.png}}
+\caption{ROC Curves — Dataset 1 (Text Plagiarism Benchmark)}
+\label{fig:roc1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.8\textwidth]{roc_curves_Dataset2_quora_question_pairs.png}}
+\caption{ROC Curves — Dataset 2 (Quora Question Pairs)}
+\label{fig:roc2}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.9\textwidth]{confusion_matrices_Dataset1_repo_text_benchmark.png}}
+\caption{Confusion Matrices — Dataset 1}
+\label{fig:cm1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.9\textwidth]{confusion_matrices_Dataset2_quora_question_pairs.png}}
+\caption{Confusion Matrices — Dataset 2}
+\label{fig:cm2}
+\end{figure}
+
+Figures 1--2 show ROC curves for all models on both datasets, demonstrating
+that Model 5 achieves the highest AUC on both datasets. Figures 3--4 show
+confusion matrices for each model, illustrating the TP/TN/FP/FN distribution.
+
+\section{Conclusion}
+
+This paper presented a progressive model development approach for plagiarism
+detection that incrementally integrates four original contributions into a
+baseline framework. Experimental results on two datasets demonstrate that the
+complete proposed model (Model 5) outperforms the Sajid 2025 baseline on both
+datasets, with the largest improvement on Quora question pairs (98.9\% relative
+MCC improvement).
+
+Contribution-wise analysis reveals dataset-dependent effectiveness: C1
+(word-overlap counts) is most impactful on Quora question pairs, while C4
+(semantic, structural, and phonetic features) is most impactful on the text
+plagiarism benchmark. C2 and C3 provide modest incremental value on both
+datasets.
+
+Future work could explore deep learning feature extractors, ensemble methods
+combining multiple classifiers, and evaluation on additional plagiarism
+detection datasets. The progressive framework provides a transparent,
+interpretable approach to plagiarism detection where each feature
+contribution can be independently assessed and optimized.
+
+\begin{thebibliography}{00}
+\bibitem{b1} Sajid, M., et al. ``Plagiarism Detection Using Lexical and
+Semantic Features.'' PLoS ONE, 2025. DOI: 10.1371/journal.pone.0319551.
+
+\bibitem{b2} Amirzhanov, A., et al. ``TF-IDF Cosine Similarity for Paraphrase
+Detection.'' Frontiers in Computer Science, 2025.
+
+\bibitem{b3} Singh, S. and Gupta, R. ``Hybrid Word-Overlap Approach for
+Paraphrase Detection.'' Knowledge and Information Systems, 2026.
+
+\bibitem{b4} Shone, N., et al. ``A Deep Learning Approach to Network
+Intrusion Detection.'' IEEE Transactions on Emerging Topics in Computational
+Intelligence, pp. 41--50, 2018.
+
+\bibitem{b5} Vinayakumar, R., Soman, K.P., and Poornachandran, P. ``Applying
+Deep Learning Approaches for Network Traffic Prediction.'' International
+Conference on Advances in Computing, Communications and Informatics (ICACCI),
+pp. 1537--1543, IEEE, 2017.
+
+\bibitem{b6} Wang, H. and Li, W. ``DDoSTC: A Transformer-Based Network Attack
+Detection Hybrid Mechanism in SDN.'' Sensors, 21(15):5047, 2021.
+
+\bibitem{b7} Canadian Institute for Cybersecurity. EVSE Dataset 2024.
+CIC EV Charger Attack Dataset.
+
+\bibitem{b8} Byrnes, J., et al. ``A Modern Implementation of System Call
+Sequence Based Host-Based Intrusion Detection Systems.'' IEEE International
+Conference on Trust, Privacy and Security in Intelligent Systems and
+Applications (TPS-ISA), pp. 123--129, IEEE, 2020.
+\end{thebibliography}
+
+\end{document}
