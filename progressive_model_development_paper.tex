@@ -12,9 +12,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Progressive Model Development for Plagiarism Detection:
-A Contribution-Wise Analysis of Word-Overlap, Character N-Gram,
-Edit Distance, and Semantic Features}
+\title{Typed-Decision Pre-Filtering for Cost-Efficient Academic Integrity Detection Pipelines}
 
 \author{\IEEEauthorblockN{\textsuperscript{} Author Name}
 \IEEEauthorblockA{\textit{Dept. of Computer Science \& Engineering} \\
@@ -32,16 +30,18 @@ email@sr.edu.in}
 \maketitle
 
 \begin{abstract}
-Plagiarism detection is a critical task in academic integrity and content
-authenticity verification. This paper presents a progressive model development
-approach that incrementally integrates four original contributions (C1--C4)
-into a baseline plagiarism detection framework. The proposed methodology
-evaluates five progressive configurations—Sajid et al. (2025) baseline,
-baseline + C1 (word-overlap count features), baseline + C1 + C2 (character
-n-gram features), baseline + C1 + C2 + C3 (edit distance features), and
-baseline + C1 + C2 + C3 + C4 (semantic, structural, and phonetic features)—
-on two datasets: a text plagiarism benchmark and Quora question pairs. All
-models share identical train/test splits, preprocessing, LogisticRegression
+Academic integrity detection is a critical task in content authenticity
+verification, where cost-efficient pre-filtering can significantly reduce
+computational overhead in large-scale deployment pipelines. This paper
+presents a typed-decision pre-filtering approach that incrementally
+integrates four original contributions (C1--C4) into a baseline academic
+integrity detection framework. The proposed methodology evaluates five
+progressive configurations—Sajid et al. (2025) baseline, baseline + C1
+(word-overlap count features), baseline + C1 + C2 (character n-gram
+features), baseline + C1 + C2 + C3 (edit distance features), and baseline
++ C1 + C2 + C3 + C4 (semantic, structural, and phonetic features)—on two
+datasets: a text plagiarism benchmark and Quora question pairs. All models
+share identical train/test splits, preprocessing, LogisticRegression
 classifier, and Matthews Correlation Coefficient (MCC)-optimized threshold
 for fair comparison. Experimental results demonstrate that the complete
 proposed model (Model 5) achieves MCC of 0.4705 on the text plagiarism
@@ -49,13 +49,13 @@ benchmark and 0.3958 on Quora question pairs, outperforming the baseline on
 both datasets. Contribution-wise ablation analysis reveals that C1 delivers
 the largest gain on Quora (+0.1486 MCC) while C4 delivers the largest gain
 on the text benchmark (+0.0670 MCC), highlighting dataset-dependent
-contribution impact.
+contribution impact for cost-efficient pre-filtering pipelines.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Plagiarism Detection, Paraphrase Detection, Progressive Model Development,
-Word-Overlap Features, Character N-Grams, Edit Distance, LSA Topics,
-Soundex, Matthews Correlation Coefficient
+Academic Integrity Detection, Typed-Decision Pre-Filtering, Plagiarism
+Detection, Paraphrase Detection, Word-Overlap Features, Character N-Grams,
+Edit Distance, LSA Topics, Soundex, Matthews Correlation Coefficient
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -89,10 +89,10 @@ tasks.
 
 The main contributions of this paper are:
 \begin{enumerate}
-    \item A progressive model development framework with five configurations
+    \item A typed-decision pre-filtering framework with five configurations
           (baseline $\rightarrow$ +C1 $\rightarrow$ +C1+C2 $\rightarrow$ +C1+C2+C3
           $\rightarrow$ +C1+C2+C3+C4) evaluated under identical experimental
-          conditions.
+          conditions for cost-efficient academic integrity detection.
     \item Four original feature contributions: C1 (8 word-overlap count
           dimensions), C2 (5 character n-gram dimensions), C3 (4 edit distance
           dimensions), and C4 (58 semantic, structural, and phonetic dimensions
@@ -100,7 +100,8 @@ The main contributions of this paper are:
     \item Comprehensive evaluation on two datasets: a text plagiarism benchmark
           (9,824 test pairs) and Quora question pairs (8,000 test pairs).
     \item Contribution-wise ablation analysis quantifying the MCC drop when each
-          contribution is removed, revealing dataset-dependent effectiveness.
+          contribution is removed, revealing dataset-dependent effectiveness
+          for cost-efficient pre-filtering pipelines.
 \end{enumerate}
 
 The remainder of this paper is organized as follows: Section II reviews related
