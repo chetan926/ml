@@ -561,26 +561,43 @@ try:
 except ImportError:
     _IN_COLAB = False
 
-def upload_or_load(filename):
-    """Try to load a file; if not found, offer Colab file upload."""
+def load_file_or_upload(filename):
+    """Try to load a file directly; if not found, offer Colab upload widget."""
+    # Step 1: Try loading directly (files uploaded via UI should be here)
     if os.path.exists(filename):
-        print(f"  Found {filename} locally.")
+        print(f"  Found {filename}.")
         return filename
+
+    # Step 2: Not found — show what's available for debugging
+    print(f"  {filename} not found in current directory.")
+    try:
+        cwd = os.getcwd()
+        files_here = os.listdir(cwd)
+        csv_tsv = [f for f in files_here if f.endswith(('.csv', '.tsv'))]
+        if csv_tsv:
+            print(f"  CSV/TSV files found in {cwd}: {csv_tsv}")
+        else:
+            print(f"  No CSV/TSV files found in {cwd}.")
+    except Exception:
+        pass
+
+    # Step 3: Offer programmatic upload widget (Colab only)
     if _IN_COLAB:
-        print(f"  {filename} not found. Upload it via the files pane "
-              "(left sidebar → folder icon → upload), then re-run this cell.")
-        # Try programmatic upload as fallback
+        print(f"  Please upload {filename} using the 'Choose Files' button below, "
+              f"then re-run this cell.")
         try:
             uploaded = files.upload()
             if filename in uploaded:
                 print(f"  Uploaded {filename} successfully.")
                 return filename
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"  Upload widget not available yet: {e}")
+            print("  → Re-run this cell to enable the upload widget, then upload the file.")
     return None
 
 # ---- Load Dataset 1 ----
-d1_file = upload_or_load("dataset1_text_plagiarism_benchmark.csv")
+print("=== Loading Dataset 1 ===")
+d1_file = load_file_or_upload("dataset1_text_plagiarism_benchmark.csv")
 if d1_file:
     (ta1, tb1, ty1), (tea1, teb1, tey1) = load_dataset1(d1_file)
     print(f"D1 loaded: Train={len(ta1)} pairs | Test={len(tea1)} pairs")
@@ -589,8 +606,9 @@ if d1_file:
 
 # ---- Load Dataset 2 ----
 print()
-d2_train = upload_or_load("dataset2_quora_train.tsv")
-d2_test = upload_or_load("dataset2_quora_test.tsv")
+print("=== Loading Dataset 2 ===")
+d2_train = load_file_or_upload("dataset2_quora_train.tsv")
+d2_test = load_file_or_upload("dataset2_quora_test.tsv")
 if d2_train and d2_test:
     (ta2, tb2, ty2), (tea2, teb2, tey2) = load_dataset2(d2_train, d2_test, train_subset=5000)
     print(f"D2 loaded: Train={len(ta2)} pairs | Test={len(tea2)} pairs")
