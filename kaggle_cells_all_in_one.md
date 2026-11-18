@@ -11,7 +11,7 @@ This single file combines:
 - `/kaggle/input/the-ml-data-sets/dataset2_quora_train.tsv`
 - `/kaggle/input/the-ml-data-sets/dataset2_quora_test.tsv`
 
-**Total cell count: 25 cells**
+**Total cell count: 26 cells**
 
 ---
 
@@ -1056,6 +1056,151 @@ for f in os.listdir("kaggle_outputs"):
 
 ---
 
+### Cell 20b — Comprehensive quantitative analysis
+
+```python
+def print_comprehensive_quantitative_analysis(results_df, abl_df):
+    """
+    Comprehensive quantitative analysis:
+    - Per-dataset results summary
+    - Model progression (MCC/Accuracy across Models 1-5)
+    - Contribution impact (ablation summary)
+    - Baseline comparison (progressive models vs single-paper baselines)
+    - Best model per dataset
+    - Feature count vs performance trade-off
+    """
+    print("=" * 70)
+    print("COMPREHENSIVE QUANTITATIVE ANALYSIS")
+    print("=" * 70)
+
+    # ---- 1. Per-dataset results summary ----
+    print("\n" + "-" * 70)
+    print("1. RESULTS SUMMARY — All Models × Both Datasets")
+    print("-" * 70)
+    for dname in results_df["Dataset"].unique():
+        sub = results_df[results_df["Dataset"] == dname]
+        print(f"\n  DATASET: {dname}")
+        print(f"    {'Model':<35} {'Config':<12} {'MCC':>8} {'Acc':>8} {'F1':>8} {'ROC':>8} {'Feat':>6}")
+        print(f"    {'-'*35} {'-'*12} {'-'*8} {'-'*8} {'-'*8} {'-'*8} {'-'*6}")
+        for _, row in sub.iterrows():
+            print(f"    {row['Model']:<35} {row['Config']:<12} "
+                  f"{row['MCC']:>8} {row['Accuracy']:>8} {row['F1-Score']:>8} "
+                  f"{row['ROC-AUC']:>8} {row['N_Features']:>6}")
+
+    # ---- 2. Model progression (progressive models only) ----
+    print("\n" + "-" * 70)
+    print("2. MODEL PROGRESSION — MCC & Accuracy Across Models 1-5")
+    print("-" * 70)
+    prog_models = ["Model1_Baseline", "Model2_Baseline_C1",
+                   "Model3_Baseline_C1_C2", "Model4_Baseline_C1_C2_C3",
+                   "Model5_Baseline_C1_C2_C3_C4"]
+    for dname in results_df["Dataset"].unique():
+        sub = results_df[(results_df["Dataset"] == dname) &
+                         (results_df["Model"].isin(prog_models))]
+        print(f"\n  DATASET: {dname}")
+        prev_mcc = None
+        for _, row in sub.iterrows():
+            mcc = row["MCC"]
+            acc = row["Accuracy"]
+            delta = ""
+            if prev_mcc is not None:
+                delta = f" (ΔMCC={mcc - prev_mcc:+.4f})"
+            print(f"    {row['Model']:<35} MCC={mcc}  Acc={acc}{delta}")
+            prev_mcc = mcc
+
+    # ---- 3. Contribution impact (ablation) ----
+    print("\n" + "-" * 70)
+    print("3. CONTRIBUTION IMPACT — Ablation MCC Drop")
+    print("-" * 70)
+    for dname in abl_df["Dataset"].unique():
+        sub = abl_df[abl_df["Dataset"] == dname]
+        print(f"\n  DATASET: {dname}")
+        full_mcc = sub["Full_MCC"].iloc[0]
+        print(f"    Full Model (C1+C2+C3+C4) MCC: {full_mcc}")
+        for _, row in sub.iterrows():
+            removed = row["Removed"]
+            drop = row["MCC_Drop"]
+            sig = "HIGH (≥0.05)" if abs(drop) >= 0.05 else (
+                "MODERATE (≥0.01)" if abs(drop) >= 0.01 else "LOW")
+            print(f"    Remove {removed}: MCC drop = {drop:+.6f} ({sig})")
+
+    # ---- 4. Baseline comparison ----
+    print("\n" + "-" * 70)
+    print("4. BASELINE COMPARISON — Progressive vs Single-Paper Baselines")
+    print("-" * 70)
+    baseline_models = ["Sajid_2025_PLoS", "Amirzhanov_2025_Frontiers",
+                       "SinghGupta_2026_KnowledgeInfoSys"]
+    for dname in results_df["Dataset"].unique():
+        sub = results_df[(results_df["Dataset"] == dname) &
+                         (results_df["Model"].isin(baseline_models))]
+        prog_sub = results_df[(results_df["Dataset"] == dname) &
+                              (results_df["Model"] == "Model5_Baseline_C1_C2_C3_C4")]
+        print(f"\n  DATASET: {dname}")
+        print(f"    {'Baseline':<35} {'MCC':>8} {'Acc':>8} {'Feat':>6}")
+        print(f"    {'-'*35} {'-'*8} {'-'*8} {'-'*6}")
+        for _, row in sub.iterrows():
+            print(f"    {row['Model']:<35} {row['MCC']:>8} {row['Accuracy']:>8} "
+                  f"{row['N_Features']:>6}")
+        if len(prog_sub) > 0:
+            p = prog_sub.iloc[0]
+            print(f"    {'Model 5 (Full Progressive)':<35} {p['MCC']:>8} "
+                  f"{p['Accuracy']:>8} {p['N_Features']:>6}")
+
+    # ---- 5. Best model per dataset ----
+    print("\n" + "-" * 70)
+    print("5. BEST MODEL PER DATASET (by MCC)")
+    print("-" * 70)
+    for dname in results_df["Dataset"].unique():
+        sub = results_df[results_df["Dataset"] == dname]
+        best = sub.loc[sub["MCC"].idxmax()]
+        print(f"    {dname}: {best['Model']} — MCC={best['MCC']}  "
+              f"Acc={best['Accuracy']}  Features={best['N_Features']}")
+
+    # ---- 6. Feature count vs performance ----
+    print("\n" + "-" * 70)
+    print("6. FEATURE COUNT vs PERFORMANCE TRADE-OFF")
+    print("-" * 70)
+    for dname in results_df["Dataset"].unique():
+        sub = results_df[(results_df["Dataset"] == dname) &
+                         (results_df["Model"].isin(prog_models))]
+        print(f"\n  DATASET: {dname}")
+        for _, row in sub.iterrows():
+            mcc_per_feat = row["MCC"] / row["N_Features"] if row["N_Features"] > 0 else 0
+            print(f"    {row['Model']:<35} Features={row['N_Features']:>4}  "
+                  f"MCC={row['MCC']}  MCC/Feature={mcc_per_feat:.4f}")
+
+    print("\n" + "=" * 70)
+    print("END OF COMPREHENSIVE QUANTITATIVE ANALYSIS")
+    print("=" * 70)
+
+# Run comprehensive quantitative analysis
+print_comprehensive_quantitative_analysis(results_df, abl_df)
+
+# Save detailed analysis to CSV
+quant_analysis_rows = []
+for dname in results_df["Dataset"].unique():
+    sub = results_df[results_df["Dataset"] == dname]
+    for _, row in sub.iterrows():
+        quant_analysis_rows.append({
+            "Dataset": dname,
+            "Model": row["Model"],
+            "Config": row["Config"],
+            "MCC": row["MCC"],
+            "Accuracy": row["Accuracy"],
+            "Precision": row["Precision"],
+            "Recall": row["Recall"],
+            "F1-Score": row["F1-Score"],
+            "ROC-AUC": row["ROC-AUC"],
+            "N_Features": row["N_Features"],
+            "Avg_Latency_ms": row["Avg_Latency_ms"],
+        })
+quant_df = pd.DataFrame(quant_analysis_rows)
+quant_df.to_csv("QUANTITATIVE_ANALYSIS.csv", index=False)
+print("\nQuantitative analysis saved to QUANTITATIVE_ANALYSIS.csv")
+```
+
+---
+
 ## SECTION C — SINGLE-PAPER IMPLEMENTATIONS (Cells 21-25)
 
 Standalone self-contained implementations of each paper, evaluated independently on both datasets.
@@ -1479,6 +1624,7 @@ print("\nSummary saved to SINGLE_PAPERS_SUMMARY.csv")
 | 18 | B | Qualitative analysis output |
 | 19 | B | Cost analysis (MCC per ms, pre-filtering efficiency) |
 | 20 | B | Save all outputs |
+| 20b | B | Comprehensive quantitative analysis |
 | 21 | C | Paper 1: Sajid et al. (2025) — standalone |
 | 22 | C | Paper 2: Amirzhanov et al. (2025) — standalone |
 | 23 | C | Paper 3: Singh & Gupta (2026) — standalone |
@@ -1519,5 +1665,5 @@ print("\nSummary saved to SINGLE_PAPERS_SUMMARY.csv")
 - Your files are at `/kaggle/input/the-ml-data-sets/` — Cell 10 uses these paths
 - D2 uses 5,000-pair training subset (from 49,401 available) for speed
 - Small differences in the last decimal may occur due to environment/version differences
-- Run Cells 16-17 for progressive confusion matrices/ROC; Cell 24 for single-paper confusion matrices/ROC
+- Run Cells 16-17 for progressive confusion matrices/ROC; Cell 20b for comprehensive quantitative analysis; Cell 24 for single-paper confusion matrices/ROC
 - Results save to CSV files in the working directory and `kaggle_outputs/`
