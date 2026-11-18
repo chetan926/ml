@@ -320,8 +320,7 @@ class ProgressiveFeatureExtractor:
         self.svd.fit(tfidf_mat)
 
     def _base_features(self, ta, tb):
-        """Sajid baseline features: [jaccard_word, jaccard_char, overlap_count,
-        len_diff_ratio, shorter_overlap, exact_match, tfidf_cos, lsa_cos] — 8 dims."""
+        """Sajid baseline features: 8 dims."""
         n = len(ta)
         ca = [clean_text(t) for t in ta]
         cb = [clean_text(t) for t in tb]
@@ -362,8 +361,7 @@ class ProgressiveFeatureExtractor:
                                 ldr, so, em, tfidf_cos, lsa_cos])
 
     def c1_features(self, ta, tb):
-        """C1: Word-overlap COUNT features [jw, oc, ldr, so, bigram_overlap,
-        exact_match, oc_norm, bigram_containment] — 8 dims."""
+        """C1: Word-overlap COUNT features — 8 dims."""
         n = len(ta)
         ca = [clean_text(t) for t in ta]
         cb = [clean_text(t) for t in tb]
@@ -386,7 +384,7 @@ class ProgressiveFeatureExtractor:
         return np.column_stack([jw, oc, ldr, so, bo, em, oc_norm, bc])
 
     def c2_features(self, ta, tb):
-        """C2: Char n-gram JACCARD + containment [char2/3/4/5_jac, char3_cont] — 5 dims."""
+        """C2: Char n-gram JACCARD + containment — 5 dims."""
         n = len(ta)
         c2 = np.array([char_ngram_jaccard(ta[i], tb[i], 2) for i in range(n)])
         c3 = np.array([char_ngram_jaccard(ta[i], tb[i], 3) for i in range(n)])
@@ -396,8 +394,7 @@ class ProgressiveFeatureExtractor:
         return np.column_stack([c2, c3, c4, c5, cc])
 
     def c3_features(self, ta, tb):
-        """C3: Edit DISTANCE — 4 dims.
-        Word-level + character-level Levenshtein and Jaro-Winkler."""
+        """C3: Edit DISTANCE — 4 dims."""
         n = len(ta)
         w_lev = np.array([_levenshtein_sim_words(ta[i], tb[i]) for i in range(n)])
         w_jwink = np.array([_jaro_winkler_sim_words(ta[i], tb[i]) for i in range(n)])
@@ -533,10 +530,7 @@ def load_dataset1(d1_path):
              df.loc[test_mask, "suspicious_text"].tolist(), y[test_mask]))
 ```
 
-**To use in Colab:** Upload `text_plagiarism_benchmark.csv` via the files pane, then call:
-```python
-# (ta1, tb1, ty1), (tea1, teb1, tey1) = load_dataset1("text_plagiarism_benchmark.csv")
-```
+**Colab usage:** Upload `text_plagiarism_benchmark.csv` via the files pane (left sidebar → folder icon → upload), then run Cell 11 below.
 
 ---
 
@@ -553,14 +547,29 @@ def load_dataset2(train_path, test_path, train_subset=5000):
              test["label"].values.astype(int)))
 ```
 
-**To use in Colab:** Upload `train.tsv` and `test.tsv` via the files pane, then call:
+**Colab usage:** Upload `train.tsv` and `test.tsv` via the files pane, then run Cell 11 below.
+
+---
+
+## Cell 11 — Load both datasets (call the loader functions)
+
 ```python
-# (ta2, tb2, ty2), (tea2, teb2, tey2) = load_dataset2("train.tsv", "test.tsv", train_subset=5000)
+# ---- Load Dataset 1 ----
+(ta1, tb1, ty1), (tea1, teb1, tey1) = load_dataset1("text_plagiarism_benchmark.csv")
+print(f"D1 loaded: Train={len(ta1)} pairs | Test={len(tea1)} pairs")
+print(f"D1 train labels: {dict(pd.Series(ty1).value_counts().sort_index())}")
+print(f"D1 test labels:  {dict(pd.Series(tey1).value_counts().sort_index())}")
+
+# ---- Load Dataset 2 ----
+(ta2, tb2, ty2), (tea2, teb2, tey2) = load_dataset2("train.tsv", "test.tsv", train_subset=5000)
+print(f"\nD2 loaded: Train={len(ta2)} pairs | Test={len(tea2)} pairs")
+print(f"D2 train labels: {dict(pd.Series(ty2).value_counts().sort_index())}")
+print(f"D2 test labels:  {dict(pd.Series(tey2).value_counts().sort_index())}")
 ```
 
 ---
 
-## Cell 11 — Run all 5 models on a dataset
+## Cell 12 — Run all 5 models on a dataset
 
 ```python
 def run_all_models_on_dataset(dname, fe, ta, tb, ty, tea, teb, tey):
@@ -596,7 +605,7 @@ def run_all_models_on_dataset(dname, fe, ta, tb, ty, tea, teb, tey):
 
 ---
 
-## Cell 12 — Execute both datasets and collect results
+## Cell 13 — Execute both datasets and collect results
 
 ```python
 all_results = []
@@ -624,7 +633,7 @@ print("\nAll models completed.")
 
 ---
 
-## Cell 13 — Display results table
+## Cell 14 — Display results table
 
 ```python
 results_df = pd.DataFrame(all_results)
@@ -641,7 +650,7 @@ display(results_df)
 
 ---
 
-## Cell 14 — Save results to CSV
+## Cell 15 — Save results to CSV
 
 ```python
 results_df.to_csv("PROGRESSIVE_QUANTITATIVE_COMPARISON.csv", index=False)
@@ -650,19 +659,225 @@ print("Results saved to PROGRESSIVE_QUANTITATIVE_COMPARISON.csv")
 
 ---
 
+## Cell 16 — Amirzhanov & SinghGupta baselines
+
+```python
+class AmirzhanovBaseline:
+    """Amirzhanov et al. (2025) — TF-IDF cosine similarity threshold classifier."""
+    def __init__(self, fe, threshold=0.50):
+        self.fe = fe
+        self.threshold = threshold
+
+    def fit(self, ta, tb, y=None):
+        pass  # no training needed
+
+    def predict(self, ta, tb):
+        sims = cosine_batch(
+            self.fe.vec.transform([clean_text(t) for t in ta]),
+            self.fe.vec.transform([clean_text(t) for t in tb])
+        )
+        return (sims >= self.threshold).astype(int), sims
+
+class SinghGuptaBaseline:
+    """Singh & Gupta (2026) — Hybrid: alpha * word_Jaccard + (1-alpha) * normalized_overlap."""
+    def __init__(self, fe, alpha=0.5, threshold=0.50):
+        self.fe = fe
+        self.alpha = alpha
+        self.threshold = threshold
+
+    def fit(self, ta, tb, y=None):
+        pass
+
+    def predict(self, ta, tb):
+        c1 = self.fe.c1_features(ta, tb)
+        jw = c1[:, 0]          # word Jaccard
+        oc = c1[:, 1]          # overlap count
+        hybrid = self.alpha * jw + (1 - self.alpha) * np.minimum(oc / 10.0, 1.0)
+        return (hybrid >= self.threshold).astype(int), hybrid
+```
+
+---
+
+## Cell 17 — Ablation analysis (MCC drop per contribution)
+
+```python
+def run_ablation_analysis(dname, fe, ta, tb, ty, tea, teb, tey):
+    """Full model (C1+C2+C3+C4) vs ablated variants (remove one contribution)."""
+    full_config = "C1C2C3C4"
+    ablations = [
+        ("No_C1", "C2C3C4", "Remove C1 (word-overlap counts)"),
+        ("No_C2", "C1C3C4", "Remove C2 (char n-grams)"),
+        ("No_C3", "C1C2C4", "Remove C3 (edit distance)"),
+        ("No_C4", "C1C2C3", "Remove C4 (LSA+QS+Soundex)"),
+    ]
+    
+    results = []
+    
+    # Full model
+    print(f"--- {dname}: Full Model (C1+C2+C3+C4) ---")
+    metrics_full, _, _ = evaluate_config(fe, full_config, ta, tb, ty, tea, teb, tey)
+    full_mcc = metrics_full["MCC"]
+    full_acc = metrics_full["Accuracy"]
+    full_f1 = metrics_full["F1-Score"]
+    print(f"  Full MCC={full_mcc}  Acc={full_acc}  F1={full_f1}  N_Feat={metrics_full['N_Features']}\n")
+    
+    # Ablated variants
+    for abl_name, abl_config, desc in ablations:
+        print(f"--- {dname}: {desc} ---")
+        try:
+            metrics_abl, _, _ = evaluate_config(fe, abl_config, ta, tb, ty, tea, teb, tey)
+            mcc_drop = full_mcc - metrics_abl["MCC"]
+            acc_drop = full_acc - metrics_abl["Accuracy"]
+            f1_drop = full_f1 - metrics_abl["F1-Score"]
+            print(f"  Ablated MCC={metrics_abl['MCC']}  Acc={metrics_abl['Accuracy']}  "
+                  f"F1={metrics_abl['F1-Score']}  N_Feat={metrics_abl['N_Features']}")
+            print(f"  MCC Drop={mcc_drop:+.6f}  Acc Drop={acc_drop:+.6f}  F1 Drop={f1_drop:+.6f}\n")
+            results.append({
+                "Dataset": dname, "Variant": abl_name, "Removed": abl_name.replace("No_", "C"),
+                "Full_MCC": full_mcc, "Ablated_MCC": metrics_abl["MCC"],
+                "MCC_Drop": round(mcc_drop, 6),
+                "Full_Acc": full_acc, "Ablated_Acc": metrics_abl["Accuracy"],
+                "Acc_Drop": round(acc_drop, 6),
+                "Full_F1": full_f1, "Ablated_F1": metrics_abl["F1-Score"],
+                "F1_Drop": round(f1_drop, 6),
+                "N_Features": metrics_abl["N_Features"],
+            })
+        except Exception as e:
+            print(f"  ERROR: {e}\n")
+    
+    return results
+
+# Run ablation on both datasets
+ablation_results = []
+print("=" * 70)
+print("ABLATION ANALYSIS — MCC Drop When Each Contribution Removed")
+print("=" * 70)
+
+print("\n--- DATASET 1 ---")
+r_abl1 = run_ablation_analysis("Dataset1_repo_text_benchmark", fe1, ta1, tb1, ty1, tea1, teb1, tey1)
+ablation_results.extend(r_abl1)
+
+print("\n--- DATASET 2 ---")
+r_abl2 = run_ablation_analysis("Dataset2_quora_question_pairs", fe2, ta2, tb2, ty2, tea2, teb2, tey2)
+ablation_results.extend(r_abl2)
+
+abl_df = pd.DataFrame(ablation_results)
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", 200)
+display(abl_df)
+```
+
+---
+
+## Cell 18 — Qualitative analysis output
+
+```python
+def print_qualitative_analysis(results_df, ablation_df):
+    """Print qualitative observations per model per dataset."""
+    print("=" * 70)
+    print("QUALITATIVE ANALYSIS — Precision/Recall Trade-offs per Model")
+    print("=" * 70)
+    
+    for dname in results_df["Dataset"].unique():
+        sub = results_df[results_df["Dataset"] == dname]
+        print(f"\n{'='*70}")
+        print(f"DATASET: {dname}")
+        print(f"{'='*70}")
+        
+        for _, row in sub.iterrows():
+            mname = row["Model"]
+            acc = row["Accuracy"]
+            prec = row["Precision"]
+            rec = row["Recall"]
+            f1 = row["F1-Score"]
+            mcc = row["MCC"]
+            n_feat = row["N_Features"]
+            
+            # Characterize the precision/recall profile
+            if prec > rec + 0.05:
+                profile = "precision-oriented (conservative, fewer false positives)"
+            elif rec > prec + 0.05:
+                profile = "recall-oriented (liberal, catches more positives)"
+            else:
+                profile = "balanced precision/recall"
+            
+            print(f"\n  {mname} ({row['Description']})")
+            print(f"    Features: {n_feat}  |  Acc={acc}  Prec={prec}  Rec={rec}  "
+                  f"F1={f1}  MCC={mcc}")
+            print(f"    Profile: {profile}")
+    
+    # Ablation insights
+    print(f"\n{'='*70}")
+    print("ABLATION INSIGHTS — Contribution Importance")
+    print(f"{'='*70}")
+    
+    for dname in ablation_df["Dataset"].unique():
+        sub = ablation_df[ablation_df["Dataset"] == dname]
+        print(f"\n  {dname}:")
+        for _, row in sub.iterrows():
+            removed = row["Removed"]
+            drop = row["MCC_Drop"]
+            significance = "HIGH" if abs(drop) >= 0.05 else ("MODERATE" if abs(drop) >= 0.01 else "LOW")
+            direction = "drop" if drop > 0 else "gain"
+            print(f"    Removing {removed}: MCC {direction} of {abs(drop):.6f} "
+                  f"({significance} impact)")
+
+print_qualitative_analysis(results_df, abl_df)
+```
+
+---
+
+## Cell 19 — Save ablation results to CSV
+
+```python
+abl_df.to_csv("PROGRESSIVE_ABLATION_RESULTS.csv", index=False)
+print("Ablation results saved to PROGRESSIVE_ABLATION_RESULTS.csv")
+```
+
+---
+
+### Total cell count: 19 cells
+
+| Cell | Purpose |
+|------|---------|
+| 1 | Install dependencies |
+| 2 | Imports and global setup |
+| 3 | Text preprocessing utilities |
+| 4 | Levenshtein & Jaro-Winkler similarity (C3) |
+| 5 | Cosine similarity helpers |
+| 6 | C4 features: Question structure + Soundex |
+| 7 | ProgressiveFeatureExtractor class |
+| 8 | Metrics, threshold optimization, evaluation |
+| 9 | Dataset 1 loader function |
+| 10 | Dataset 2 loader function |
+| 11 | **Load both datasets** (calls loaders — fixes the NameError) |
+| 12 | Run all 5 models on a dataset (function def) |
+| 13 | Execute both datasets |
+| 14 | Display results table |
+| 15 | Save results to CSV |
+| 16 | Amirzhanov & SinghGupta baselines |
+| 17 | Ablation analysis (MCC drop per contribution) |
+| 18 | Qualitative analysis output |
+| 19 | Save ablation results to CSV |
+
+---
+
 ### Expected results (from the completed study)
 
-| Dataset | Model | MCC | Accuracy | N_Features |
-|---------|-------|-----|----------|------------|
-| D1 | Model 1 (Baseline) | 0.3573 | 0.7149 | 8 |
-| D1 | Model 2 (+C1) | 0.3813 | 0.7218 | 16 |
-| D1 | Model 3 (+C1+C2) | 0.3993 | 0.7392 | 21 |
-| D1 | Model 4 (+C1+C2+C3) | 0.4035 | 0.7387 | 25 |
-| D1 | Model 5 (+C1+C2+C3+C4) | 0.4705 | 0.7641 | 83 |
-| D2 | Model 1 (Baseline) | 0.1990 | 0.6009 | 8 |
-| D2 | Model 2 (+C1) | 0.3476 | 0.6804 | 16 |
-| D2 | Model 3 (+C1+C2) | 0.3516 | 0.6824 | 21 |
-| D2 | Model 4 (+C1+C2+C3) | 0.3844 | 0.6976 | 25 |
-| D2 | Model 5 (+C1+C2+C3+C4) | 0.3958 | 0.7046 | 83 |
+| Dataset | Model | Config | MCC | Accuracy | N_Features |
+|---------|-------|--------|-----|----------|------------|
+| D1 | Model 1 | BASELINE | 0.3573 | 0.7149 | 8 |
+| D1 | Model 2 | C1 | 0.3813 | 0.7218 | 16 |
+| D1 | Model 3 | C1C2 | 0.3993 | 0.7392 | 21 |
+| D1 | Model 4 | C1C2C3 | 0.4035 | 0.7387 | 25 |
+| D1 | Model 5 | C1C2C3C4 | 0.4705 | 0.7641 | 83 |
+| D2 | Model 1 | BASELINE | 0.1990 | 0.6009 | 8 |
+| D2 | Model 2 | C1 | 0.3476 | 0.6804 | 16 |
+| D2 | Model 3 | C1C2 | 0.3516 | 0.6824 | 21 |
+| D2 | Model 4 | C1C2C3 | 0.3844 | 0.6976 | 25 |
+| D2 | Model 5 | C1C2C3C4 | 0.3958 | 0.7046 | 83 |
 
-**Note:** D2 results use a 5,000-pair training subset (from 49,401 available) for computational tractability. Test set uses all 8,000 pairs.
+**Notes:**
+- D2 uses a 5,000-pair training subset (from 49,401 available) for speed; test set uses all 8,000 pairs.
+- Cell 11 is required — it actually loads the data into variables that Cells 13–19 reference.
+- Small differences in the last decimal may occur due to environment/version differences.
