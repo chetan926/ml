@@ -11,7 +11,7 @@ This single file combines:
 - `/kaggle/input/the-ml-data-sets/dataset2_quora_train.tsv`
 - `/kaggle/input/the-ml-data-sets/dataset2_quora_test.tsv`
 
-**Total cell count: 26 cells**
+**Total cell count: 29 cells**
 
 ---
 
@@ -1447,7 +1447,7 @@ sg_d2 = run_singhgupta("Dataset2_quora_question_pairs", ta2, tb2, ty2, tea2, teb
 
 ---
 
-### Cell 24 — Display results table + Confusion matrices + ROC curves (single papers)
+### Cell 24 — Display results table (single papers)
 
 ```python
 # Collect all single-paper results
@@ -1479,39 +1479,22 @@ display(sp_results_df)
 # Save results
 sp_results_df.to_csv("SINGLE_PAPERS_RESULTS.csv", index=False)
 print("\nSingle-paper results saved to SINGLE_PAPERS_RESULTS.csv")
+```
 
-# ---- Confusion matrices for single papers ----
-from sklearn.metrics import roc_curve, auc
+---
 
-models_info = [
-    ("Sajid_2025_PLoS", ta1, tb1, ty1, tea1, teb1, tey1, "Dataset1_repo_text_benchmark"),
-    ("Sajid_2025_PLoS", ta2, tb2, ty2, tea2, teb2, tey2, "Dataset2_quora_question_pairs"),
-    ("Amirzhanov_2025", ta1, tb1, ty1, tea1, teb1, tey1, "Dataset1_repo_text_benchmark"),
-    ("Amirzhanov_2025", ta2, tb2, ty2, tea2, teb2, tey2, "Dataset2_quora_question_pairs"),
-    ("SinghGupta_2026", ta1, tb1, ty1, tea1, teb1, tey1, "Dataset1_repo_text_benchmark"),
-    ("SinghGupta_2026", ta2, tb2, ty2, tea2, teb2, tey2, "Dataset2_quora_question_pairs"),
-]
+### Cell 25 — Confusion Matrix — Sajid et al. (2025) × Both Datasets
 
-print("\n" + "=" * 70)
-print("CONFUSION MATRICES + ROC CURVES — Single Papers × Both Datasets")
-print("=" * 70)
+```python
+from sklearn.metrics import roc_curve, auc, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-roc_results = []
-for pname, ta, tb, ty, tea, teb, tey, dname in models_info:
-    if pname == "Sajid_2025_PLoS":
-        m = SajidStandalone()
-        m.fit(ta, tb, ty)
-        y_pred, y_score = m.predict(tea, teb)
-    elif pname == "Amirzhanov_2025":
-        m = AmirzhanovStandalone()
-        m.fit(ta, tb, ty)
-        y_pred, y_score = m.predict(tea, teb)
-    else:
-        m = SinghGuptaStandalone()
-        m.fit(ta, tb, ty)
-        y_pred, y_score = m.predict(tea, teb)
-
-    # Confusion matrix
+def plot_cm_single(pname, dname, ta, tb, ty, tea, teb, tey, model_class):
+    """Plot confusion matrix for a single paper on one dataset."""
+    m = model_class()
+    m.fit(ta, tb, ty)
+    y_pred, y_score = m.predict(tea, teb)
     cm = confusion_matrix(tey, y_pred, labels=[0, 1])
     plt.figure(figsize=(6, 5))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
@@ -1525,12 +1508,131 @@ for pname, ta, tb, ty, tea, teb, tey, dname in models_info:
     plt.savefig(fname, dpi=150, bbox_inches='tight')
     plt.show()
     print(f"Saved {fname}")
+    return y_pred, y_score
 
-    # ROC curve
-    fpr, tpr, _ = roc_curve(tey, y_score)
+print("=" * 70)
+print("CONFUSION MATRICES — Sajid et al. (2025) × Both Datasets")
+print("=" * 70)
+
+# Sajid on Dataset 1
+print("\n--- Sajid — Dataset 1 ---")
+sajid_y1, sajid_s1 = plot_cm_single("Sajid_2025_PLoS", "Dataset1_repo_text_benchmark",
+                                     ta1, tb1, ty1, tea1, teb1, tey1, SajidStandalone)
+
+# Sajid on Dataset 2
+print("\n--- Sajid — Dataset 2 ---")
+sajid_y2, sajid_s2 = plot_cm_single("Sajid_2025_PLoS", "Dataset2_quora_question_pairs",
+                                     ta2, tb2, ty2, tea2, teb2, tey2, SajidStandalone)
+```
+
+---
+
+### Cell 26 — Confusion Matrix — Amirzhanov et al. (2025) × Both Datasets
+
+```python
+print("=" * 70)
+print("CONFUSION MATRICES — Amirzhanov et al. (2025) × Both Datasets")
+print("=" * 70)
+
+# Amirzhanov on Dataset 1
+print("\n--- Amirzhanov — Dataset 1 ---")
+amir_y1, amir_s1 = plot_cm_single("Amirzhanov_2025", "Dataset1_repo_text_benchmark",
+                                   ta1, tb1, ty1, tea1, teb1, tey1, AmirzhanovStandalone)
+
+# Amirzhanov on Dataset 2
+print("\n--- Amirzhanov — Dataset 2 ---")
+amir_y2, amir_s2 = plot_cm_single("Amirzhanov_2025", "Dataset2_quora_question_pairs",
+                                   ta2, tb2, ty2, tea2, teb2, tey2, AmirzhanovStandalone)
+```
+
+---
+
+### Cell 27 — Confusion Matrix — Singh & Gupta (2026) × Both Datasets
+
+```python
+print("=" * 70)
+print("CONFUSION MATRICES — Singh & Gupta (2026) × Both Datasets")
+print("=" * 70)
+
+# SinghGupta on Dataset 1
+print("\n--- SinghGupta — Dataset 1 ---")
+sg_y1, sg_s1 = plot_cm_single("SinghGupta_2026", "Dataset1_repo_text_benchmark",
+                               ta1, tb1, ty1, tea1, teb1, tey1, SinghGuptaStandalone)
+
+# SinghGupta on Dataset 2
+print("\n--- SinghGupta — Dataset 2 ---")
+sg_y2, sg_s2 = plot_cm_single("SinghGupta_2026", "Dataset2_quora_question_pairs",
+                               ta2, tb2, ty2, tea2, teb2, tey2, SinghGuptaStandalone)
+```
+
+---
+
+### Cell 28 — ROC Curves — All Three Papers × Both Datasets
+
+```python
+print("=" * 70)
+print("ROC CURVES — All Three Papers × Both Datasets")
+print("=" * 70)
+
+roc_results = []
+
+# Sajid ROC curves
+for dname, y_true, y_score, pname in [
+    ("Dataset1_repo_text_benchmark", tey1, sajid_s1, "Sajid_2025_PLoS"),
+    ("Dataset2_quora_question_pairs", tey2, sajid_s2, "Sajid_2025_PLoS"),
+]:
+    fpr, tpr, _ = roc_curve(y_true, y_score)
     roc_auc = auc(fpr, tpr)
     plt.figure(figsize=(8, 6))
-    plt.plot(fpr, tpr, lw=2, label=f"{pname} (AUC = {roc_auc:.3f})")
+    plt.plot(fpr, tpr, lw=2, label=f"{pname} — {dname} (AUC = {roc_auc:.3f})")
+    plt.plot([0, 1], [0, 1], 'k--', lw=2, label='Random (AUC = 0.500)')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate', fontsize=12)
+    plt.ylabel('True Positive Rate', fontsize=12)
+    plt.title(f"ROC Curve — {pname} — {dname}")
+    plt.legend(loc="lower right", fontsize=10)
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    fname = f"roc_curve_{pname}_{dname}.png"
+    plt.savefig(fname, dpi=150, bbox_inches='tight')
+    plt.show()
+    print(f"Saved {fname}")
+    roc_results.append({"Paper": pname, "Dataset": dname, "AUC": roc_auc})
+
+# Amirzhanov ROC curves
+for dname, y_true, y_score, pname in [
+    ("Dataset1_repo_text_benchmark", tey1, amir_s1, "Amirzhanov_2025"),
+    ("Dataset2_quora_question_pairs", tey2, amir_s2, "Amirzhanov_2025"),
+]:
+    fpr, tpr, _ = roc_curve(y_true, y_score)
+    roc_auc = auc(fpr, tpr)
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, lw=2, label=f"{pname} — {dname} (AUC = {roc_auc:.3f})")
+    plt.plot([0, 1], [0, 1], 'k--', lw=2, label='Random (AUC = 0.500)')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate', fontsize=12)
+    plt.ylabel('True Positive Rate', fontsize=12)
+    plt.title(f"ROC Curve — {pname} — {dname}")
+    plt.legend(loc="lower right", fontsize=10)
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    fname = f"roc_curve_{pname}_{dname}.png"
+    plt.savefig(fname, dpi=150, bbox_inches='tight')
+    plt.show()
+    print(f"Saved {fname}")
+    roc_results.append({"Paper": pname, "Dataset": dname, "AUC": roc_auc})
+
+# SinghGupta ROC curves
+for dname, y_true, y_score, pname in [
+    ("Dataset1_repo_text_benchmark", tey1, sg_s1, "SinghGupta_2026"),
+    ("Dataset2_quora_question_pairs", tey2, sg_s2, "SinghGupta_2026"),
+]:
+    fpr, tpr, _ = roc_curve(y_true, y_score)
+    roc_auc = auc(fpr, tpr)
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, lw=2, label=f"{pname} — {dname} (AUC = {roc_auc:.3f})")
     plt.plot([0, 1], [0, 1], 'k--', lw=2, label='Random (AUC = 0.500)')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
@@ -1554,7 +1656,7 @@ print("\nROC results saved to SINGLE_PAPERS_ROC.csv")
 
 ---
 
-### Cell 25 — Summary comparison of all three papers
+### Cell 29 — Summary comparison of all three papers
 
 ```python
 print("=" * 70)
@@ -1628,8 +1730,12 @@ print("\nSummary saved to SINGLE_PAPERS_SUMMARY.csv")
 | 21 | C | Paper 1: Sajid et al. (2025) — standalone |
 | 22 | C | Paper 2: Amirzhanov et al. (2025) — standalone |
 | 23 | C | Paper 3: Singh & Gupta (2026) — standalone |
-| 24 | C | Results table + confusion matrices + ROC curves (single papers) |
-| 25 | C | Summary comparison of all three papers |
+| 24 | C | Results table (single papers) |
+| 25 | C | Confusion Matrix — Sajid et al. (2025) × Both Datasets |
+| 26 | C | Confusion Matrix — Amirzhanov et al. (2025) × Both Datasets |
+| 27 | C | Confusion Matrix — Singh & Gupta (2026) × Both Datasets |
+| 28 | C | ROC Curves — All Three Papers × Both Datasets |
+| 29 | C | Summary comparison of all three papers |
 
 ---
 
@@ -1665,5 +1771,5 @@ print("\nSummary saved to SINGLE_PAPERS_SUMMARY.csv")
 - Your files are at `/kaggle/input/the-ml-data-sets/` — Cell 10 uses these paths
 - D2 uses 5,000-pair training subset (from 49,401 available) for speed
 - Small differences in the last decimal may occur due to environment/version differences
-- Run Cells 16-17 for progressive confusion matrices/ROC; Cell 20b for comprehensive quantitative analysis; Cell 24 for single-paper confusion matrices/ROC
+- Run Cells 16-17 for progressive confusion matrices/ROC; Cell 20b for comprehensive quantitative analysis; Cells 25-27 for single-paper confusion matrices; Cell 28 for single-paper ROC curves
 - Results save to CSV files in the working directory and `kaggle_outputs/`
