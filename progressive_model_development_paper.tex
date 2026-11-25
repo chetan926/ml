@@ -1,5 +1,7 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
+
+% Packages
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -8,501 +10,687 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+% Corrected BibTeX definition
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
 \begin{document}
 
-\title{Typed-Decision Pre-Filtering for Cost-Efficient Academic Integrity Detection Pipelines}
+\title{Typed-Decision Pre-Filtering for Cost-Efficient\\
+Academic Integrity Detection Pipelines}
 
-\author{\IEEEauthorblockN{\textsuperscript{} Author Name}
-\IEEEauthorblockA{\textit{Dept. of Computer Science \& Engineering} \\
+\author{
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ccc}
+\begin{minipage}[t]{0.30\textwidth}
+\centering
+\textbf{Shaik John Saida}\\
+\textit{Department of Computer Science}\\
+\textit{\& Engineering}\\
 \textit{SRM University AP}\\
-Neerukonda, Mangalagiri-522240,\\ Guntur District, Andhra Pradesh, India. \\
-email@srmap.edu.in}
-\and
-\IEEEauthorblockN{\textsuperscript{} Co-Author Name}
-\IEEEauthorblockA{\textit{Dept. of Computer Science \& AI} \\
-\textit{SR University, }
-Warangal, India \\
-email@sr.edu.in}
+Neerukonda, Mangalagiri-522240\\
+Guntur District, Andhra Pradesh, India\\
+\small j9490490885@gmail.com
+\end{minipage}
+&
+\begin{minipage}[t]{0.30\textwidth}
+\centering
+\textbf{Potti Sri Lakshmi Chetan}\\
+\textit{Department of Computer Science}\\
+\textit{\& Engineering}\\
+\textit{SRM University AP}\\
+Neerukonda, Mangalagiri-522240\\
+Guntur District, Andhra Pradesh, India\\
+\small pottisrilakshmichetanchetan@gmail.com
+\end{minipage}
+&
+\begin{minipage}[t]{0.30\textwidth}
+\centering
+\textbf{Kothuri Pujith Sai Ram}\\
+\textit{Department of Computer Science}\\
+\textit{\& Engineering}\\
+\textit{SRM University AP}\\
+Neerukonda, Mangalagiri-522240\\
+Guntur District, Andhra Pradesh, India\\
+\small pujithsairamkothuri@gmail.com
+\end{minipage}
+\\
+\end{tabular*}
 }
 
 \maketitle
 
+% Abstract
 \begin{abstract}
-Academic integrity detection is a critical task in content authenticity
-verification, where cost-efficient pre-filtering can significantly reduce
-computational overhead in large-scale deployment pipelines. This paper
-presents a typed-decision pre-filtering approach that incrementally
-integrates four original contributions (C1--C4) into a baseline academic
-integrity detection framework. The proposed methodology evaluates five
-progressive configurations---Sajid et al. (2025) baseline, baseline + C1
-(word-overlap count features), baseline + C1 + C2 (character n-gram
-features), baseline + C1 + C2 + C3 (edit distance features), and baseline
-+ C1 + C2 + C3 + C4 (semantic, structural, and phonetic features)---on two
-datasets: a text plagiarism benchmark and Quora question pairs. All models
-share identical train/test splits, preprocessing, LogisticRegression
-classifier, and Matthews Correlation Coefficient (MCC)-optimized threshold
-for fair comparison. Experimental results demonstrate that the complete
-proposed model (Model 5) achieves MCC of 0.4705 on the text plagiarism
-benchmark and 0.3958 on Quora question pairs, outperforming the baseline on
-both datasets. Contribution-wise ablation analysis reveals that C1 delivers
-the largest gain on Quora (+0.1486 MCC) while C4 delivers the largest gain
-on the text benchmark (+0.0670 MCC), highlighting dataset-dependent
-contribution impact for cost-efficient pre-filtering pipelines.
+Large-scale academic integrity detection requires a balance between
+thee reliable similarity assessment and the computational efficiency. Lexical
+methods are inexpensive but may miss paraphrased content, whereas
+richer feature-based models require greater computation. This paper
+presents a typed-decision pre-filtering approach that uses a lightweight
+similarity model to identify straightforward cases and reserves a
+comprehensive feature-based model for cases requiring further review.
+The proposed feature representation extends an eight-feature baseline
+with word-overlap, character n-gram, edit-distance, semantic, structural,
+and phonetic features. The approach is evaluated on a text-plagiarism
+benchmark (D1) and Quora Question Pairs (D2) using Matthews Correlation
+Coefficient (MCC), accuracy, ROC-AUC, and inference latency. The complete
+83-feature model improves MCC over the baseline from 0.3573 to 0.4705
+on D1 and from 0.1990 to 0.3958 on D2. The lightweight baseline is faster
+by factors of 2.8 and 20.7, respectively. These findings motivate a
+two-stage architecture; however, end-to-end cascade performance remains
+to be validated experimentally.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Academic Integrity Detection, Typed-Decision Pre-Filtering, Plagiarism
-Detection, Paraphrase Detection, Word-Overlap Features, Character N-Grams,
-Edit Distance, LSA Topics, Soundex, Matthews Correlation Coefficient
+Academic integrity, plagiarism detection, paraphrase detection,
+pre-filtering, feature engineering, Matthews correlation coefficient
 \end{IEEEkeywords}
 
+
+% =========================================================
+% 1. INTRODUCTION
+% =========================================================
+
 \section{Introduction}
-Plagiarism detection has become increasingly important with the proliferation
-of digital content and online learning platforms. The task involves identifying
-whether a given text or question pair is semantically similar or paraphrased,
-indicating potential plagiarism. Traditional approaches rely on surface-level
-lexical features such as word overlap and character n-gram similarity, which
-often fail to capture paraphrased content that differs in surface form but
-shares semantic meaning.
 
-Recent research has proposed various feature sets and classification approaches
-for plagiarism and paraphrase detection. Sajid et al. (2025) introduced a
-baseline framework using eight features including word Jaccard, character
-trigram Jaccard, overlap count, length difference ratio, shorter overlap,
-exact match, TF-IDF cosine similarity, and LSA cosine similarity. While this
-baseline provides a reasonable starting point, its surface-level features
-struggle with sophisticated paraphrasing that preserves meaning while altering
-word choice and sentence structure.
+Checking for plagiarism is commonly used to ensure the upholding of
+academic integrity. Methods such as transformer cross-encoders,
+Abstract Syntax Trees or even large language models are computationally
+intensive and so even more so when considering several institutions and
+the comparisons that must be made between each submission\(O(N^2)\)
+Although lexically based methods are typically low cost, they can fail
+to recognise paraphrased material and/or semantic equivalence. Poor
+similarity assessment can therefore result in additional, unwarranted
 
-This paper addresses this limitation through progressive model development,
-where four original contributions are incrementally added to the baseline:
-C1 (word-overlap count features), C2 (character n-gram features), C3 (edit
-distance features), and C4 (semantic, structural, and phonetic features).
-Unlike prior work that evaluates feature sets in isolation, our approach
-systematically measures the incremental impact of each contribution on two
-diverse datasets under a common experimental protocol. This enables a
-dataset-dependent analysis of contribution effectiveness and identifies
-which features are most valuable for different types of plagiarism detection
-tasks.
+reviews. This has implications for both academic review panels and
+students.
+A solution is required that is both cost effective and provides a
+reliable similarity assessment. An initial triage process can further
 
-Furthermore, we frame the progressive configurations as a \textbf{typed-decision
-pre-filtering pipeline}: lighter configurations (Model 1--2) serve as
-inexpensive pre-filters that quickly identify obvious non-plagiarized pairs
-using surface-level word-overlap signals, while heavier configurations
-(Model 4--5) act as verifiers for ambiguous cases requiring semantic and
-phonetic analysis. This cascade design enables cost-efficient deployment in
-large-scale academic integrity detection pipelines where most submissions
-are obviously original and only a small fraction require deep semantic
-verification.
+minimise cost by deciding which submission pairs require deeper
+review. Here, we seek to create an improved, cost-effective
+plagiarism detection solution. We wish to do this without solely
+depending on low-cost lexical similarity.
 
-The main contributions of this paper are:
-\begin{enumerate}
-    \item A typed-decision pre-filtering pipeline with five configurations
-          (baseline $\rightarrow$ +C1 $\rightarrow$ +C1+C2 $\rightarrow$ +C1+C2+C3
-          $\rightarrow$ +C1+C2+C3+C4) where lighter models serve as inexpensive
-          pre-filters and heavier models act as semantic verifiers, evaluated
-          under identical experimental conditions for cost-efficient academic
-          integrity detection.
-    \item Four original feature contributions: C1 (8 word-overlap count
-          dimensions), C2 (5 character n-gram dimensions), C3 (4 edit distance
-          dimensions), and C4 (58 semantic, structural, and phonetic dimensions
-          including LSA topics, question structure, and Soundex).
-    \item Comprehensive evaluation on two datasets: a text plagiarism benchmark
-          (9,824 test pairs) and Quora question pairs (8,000 test pairs).
-    \item Contribution-wise ablation analysis quantifying the MCC drop when each
-          contribution is removed, revealing dataset-dependent effectiveness
-          for cost-efficient pre-filtering pipelines.
-\end{enumerate}
+In order to identify academic integrity concerns, we have created a
+triage approach. Simple situations are addressed using a basic model
+whereas more complicated instances are analysed by a more detailed
+review model.
 
-The remainder of this paper is organized as follows: Section II reviews related
-work, Section III describes the methodology and feature contributions,
-Section IV details the experimental setup, Section V presents results and
-analysis, and Section VI concludes the paper.
+We enhance the eight features described in Sajid et al. (2025) by
+incorporating lexical, character, edit distance, semantic,
+structural and phonetic features. This extended set of features is
+analysed on two data sets in order to assess both its classification
+performance and cost effectiveness. Using our analysis of performance
+and speed we suggest a pre-screening type system which categorises
+plagiarism detection into two steps according to type. 
+
+
+% =========================================================
+% 2. RELATED WORK
+% =========================================================
 
 \section{Related Work}
 
-Plagiarism and paraphrase detection has been extensively studied using both
-traditional feature-based methods and deep learning approaches. Early work
-relied on surface-level text similarity measures such as word overlap,
-character n-grams, and edit distance. More recent approaches have incorporated
-semantic representations through word embeddings, transformer models, and
-LSA topic vectors.
+Plagiarism and paraphrase detection methods fall broadly into three
+groups. \emph{Lexical methods} compare surface units such as words,
+$n$-grams, and edit operations. TF-IDF cosine similarity with a
+decision threshold is a common baseline \cite{amirzhanov2025}, and
+hybrid overlap scores combine Jaccard similarity with normalised
+overlap counts \cite{singh2026}.
 
-Sajid et al. (2025) proposed a baseline plagiarism detection framework using
-eight features combining word-level, character-level, and semantic similarity
-measures. Their work demonstrated that TF-IDF cosine and LSA cosine similarity
-provide useful signals for plagiarism detection, but surface-level features
-remain important for exact and near-exact matches.
+\emph{Feature-based supervised methods}, to which the baseline of
+Sajid et al. \cite{sajid2025} belongs, feed a compact set of
+similarity features into a classical classifier. \emph{Neural
+verifiers}, such as Sentence-BERT and cross-encoders \cite{reimers2019},
+provide semantic discrimination but can have higher per-pair
+computational costs.
 
-Amirzhanov et al. (2025) proposed a TF-IDF cosine similarity threshold
-classifier for paraphrase detection, showing that simple cosine thresholding
-can achieve reasonable performance on question pair datasets. Singh and Gupta
-(2026) introduced a hybrid approach combining word Jaccard and normalized
-overlap counts, demonstrating the value of combining multiple overlap measures.
+Latent Semantic Analysis (LSA) \cite{deerwester1990} helps identify
+similarities in meaning between texts, even when they use different
+words. Levenshtein distance \cite{levenshtein1966} and Jaro--Winkler
+similarity \cite{winkler1990} capture near-duplicates with small
+edits, while Soundex \cite{russell1918} captures phonetic similarity.
 
-Deep learning approaches have also been applied to paraphrase detection,
-including Siamese networks, transformer-based models, and autoencoder-classifier
-architectures. While these methods can achieve high accuracy, they often
-require large amounts of training data and lack interpretability. In contrast,
-our feature-based approach provides transparent, interpretable signals that
-can be analyzed contribution by contribution.
+Most prior work evaluates a complete feature set holistically;
+the incremental value of each feature family and its dependence
+on the dataset are rarely measured. MCC is used as the primary
+metric because it is robust to class imbalance \cite{chicco2020}.
 
-Unlike prior work that evaluates complete feature sets holistically, our
-progressive model development systematically measures the incremental impact
-of each contribution, enabling fine-grained analysis of feature effectiveness
-across different dataset types.
+
+% =========================================================
+% CONTRIBUTIONS
+% =========================================================
+
+\subsection{Contributions}
+
+\begin{itemize}
+
+    \item A similarity feature set including word overlap,
+    character n-grams, edit distance, semantic, structural,
+    and phonetic features, improving on the eight-feature
+    baseline presented in Sajid et al. (2025).
+
+    \item Quantitative comparison of performance between the
+    baseline and full feature set on two datasets. Performance
+    is measured using classification metrics and inference speed.
+
+    \item Qualitative comparison of the trade-offs between
+    lightweight screening and thorough verification.
+
+    \item A type-based pre-filtering system specifying how a
+    lightweight model and a thorough model can be used in a
+    two-stage detection process.
+
+\end{itemize}
+
+
+% =========================================================
+% 3. METHODOLOGY
+% =========================================================
 
 \section{Methodology}
 
-\subsection{Progressive Model Configurations}
+\subsection{Typed-Decision Pre-Filtering Architecture}
 
-We define five progressive model configurations, each building upon the
-previous by adding one contribution's feature block:
+A flow is shown in Fig.~\ref{fig:proposed_architecture}.
+All pairs are initially analysed using a basic filter (Models 1-2).
+High certainty non-plagiaristic pairs are identified at this stage.
+Lower certainty pairs are then passed onto a verification filter
+(Model 3-5) and Model 5 represents the full system.
+As with the review process, the majority of work is judged to be
 
-\begin{enumerate}
-    \item \textbf{Model 1 (Baseline):} Sajid et al. (2025) baseline with 8
-          features: word Jaccard, character trigram Jaccard, overlap count,
-          length difference ratio, shorter overlap, exact match, TF-IDF cosine,
-          and LSA cosine.
-    \item \textbf{Model 2 (+C1):} Baseline + C1 word-overlap count features
-          (8 dims), including word Jaccard, overlap count, length difference
-          ratio, shorter overlap, bigram overlap, exact match, normalized
-          overlap, and bigram containment.
-    \item \textbf{Model 3 (+C1+C2):} Model 2 + C2 character n-gram features
-          (5 dims), including character 2/3/4/5-gram Jaccard and character
-          trigram containment.
-    \item \textbf{Model 4 (+C1+C2+C3):} Model 3 + C3 edit distance features
-          (4 dims), including word-level and character-level Levenshtein and
-          Jaro-Winkler similarity.
-    \item \textbf{Model 5 (+C1+C2+C3+C4):} Model 4 + C4 semantic, structural,
-          and phonetic features (58 dims), including LSA topic vectors (50
-          dims), question structure features (5 dims), and Soundex phonetic
-          features (3 dims).
-\end{enumerate}
+non-plagiarised and so only a small number of items are submitted
+for further analysis.
+% ---------------------------------------------------------
 
-\subsection{Feature Contribution Definitions}
+% ARCHITECTURE IMAGE
+% ---------------------------------------------------------
 
-\textbf{C1 --- Word-Overlap Count Features (8 dimensions):}
-Surface-level measures capturing exact word sharing, normalized overlap, and
-bigram-based overlap. These features complement the baseline by adding bigram
-variants and normalization that capture phrase-level similarity.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]
+{Gemini_Generated_Image_k17qifk17qifk17q.png}
+\caption{Workflow of the proposed two-stage academic integrity
+detection framework, integrating lightweight pre-filtering,
+confidence-based routing, and comprehensive feature-based
+verification.}
+\label{fig:proposed_architecture}
+\end{figure}
+% ---------------------------------------------------------
 
-\textbf{C2 --- Character N-Gram Features (5 dimensions):}
-Character-level overlap measures spanning bigram through 5-gram Jaccard
-similarity plus trigram containment. These features capture typographical
-similarity and character-level patterns missed by word-level features.
+% BASELINE FEATURES
+% ---------------------------------------------------------
 
-\textbf{C3 --- Edit Distance Features (4 dimensions):}
-Word-level and character-level Levenshtein and Jaro-Winkler similarity.
-These features capture near-duplicate pairs with minor insertions, deletions,
-or substitutions that surface overlap measures may miss.
+\subsection{Baseline Features (Model 1, 8 dimensions)}
 
-\textbf{C4 --- Semantic, Structural, and Phonetic Features (58 dimensions):}
-Latent topic semantics via LSA (25 dims per sentence), question structure
-features (first/last word match, wh-question patterns, auxiliary verb patterns,
-wh-word overlap), and Soundex phonetic similarity (Jaccard, overlap count,
-containment). These features capture semantic relatedness and phonetic
-similarity orthogonal to surface overlap.
+The baseline of Sajid et al. \cite{sajid2025} includes
+word Jaccard, character trigram Jaccard, number of overlapping
+words, ratio of lengths, short-text overlap, exact match,
 
-\subsection{Classifier and Decision Rule}
+normalised overlap (based on larger text), and bigram
 
-All models use LogisticRegression with class\_weight="balanced" and
-max\_iter=2000. The decision threshold is optimized for Matthews Correlation
-Coefficient (MCC) on the training/validation split using a coarse search
-(0.05 to 0.95 in steps of 0.05) followed by a fine search around the best
-threshold. MCC is used as the primary metric because it is robust to class
-imbalance and provides a balanced measure of binary classification quality.
+containment.
+% ---------------------------------------------------------
+% FEATURE CONTRIBUTIONS
+% ---------------------------------------------------------
+\subsection{Contributions C1--C4}
+\noindent\text{C1: Number of overlapping words (8).}
+This combines the word Jaccard, number of overlapping words, length
+ratio, short-text overlap and word bigrams Jaccard along with
+exact match. Normalised overlap and bigram containment provide
+information on multi-word level similarities in addition to
+single word level information.
+\par\noindent\text{C2: Character n-grams (5).}
+Character 2, 3, 4 and 5-grams Jaccard similarities, and trigram
+containment, represent orthographic and morphological differences.
+\par\noindent\text{C3: Edit-distance (4).}
+Word and character level Levenshtein similarities $1-d_{\mathrm{lev}}/\max(m,n)$ and
+word and character level Jaro-Winkler similarities, for analysing
+close matches that have experienced minor additions, omissions
+or changes.
+\par\noindent\text{C4: Semantic, syntactic and phonetic (58).}
+The 25-dimensional merged LSA topic vectors for each text
+(50-dimensions; formed using a truncated singular value
+decomposition on a TF-IDF matrix with up to 5000 features),
+five question markers (common initial word, common terminal
+word, both texts initiate with a question word, both texts
+initiate with an auxiliary verb and common question words)
+alongside three Soundex attributes (Jaccard similarity of
+Soundex codes, number of common codes and code containment). 
 
-\subsection{Typed-Decision Pre-Filtering Pipeline Architecture}
-
-The five progressive configurations are organized as a cascade pre-filtering
-pipeline where lighter models serve as inexpensive pre-filters and heavier
-models act as semantic verifiers:
-
-\begin{enumerate}
-    \item \textbf{Pre-Filter Stage (Model 1--2):} Uses 8--16 surface-level
-          word-overlap features (baseline + C1). Low computational cost due to
-          simple TF-IDF vectorization and character n-gram computation.
-          Effectively filters obvious non-plagiarized pairs with high
-          precision.
-    \item \textbf{Verification Stage (Model 3--5):} Uses 21--83 features
-          including character n-grams, edit distance, LSA topics, question
-          structure, and Soundex phonetic features. Higher computational cost
-          due to edit distance computation, TruncatedSVD, and Soundex encoding.
-          Reserved for ambiguous pairs that pass the pre-filter.
-\end{enumerate}
-
-In deployment, incoming submissions first pass through Model 1 (baseline, 8
-features, lowest latency). Pairs with high-confidence non-plagiarism
-predictions are filtered out immediately. Only ambiguous pairs (low confidence
-or near-threshold scores) proceed to Model 5 (complete model, 83 features)
-for semantic verification. This two-tier design reduces average computational
-cost per submission while maintaining high overall accuracy.
+% =========================================================
+% 4. EXPERIMENTAL SETUP
+% =========================================================
 
 \section{Experimental Setup}
+ % ---------------------------------------------------------
+% DATASETS
+% ---------------------------------------------------------
 
 \subsection{Datasets}
 
-We evaluate on two datasets under identical train/test splits:
+Two datasets are used. D1 is a text-plagiarism benchmark with
+9,824 test pairs; the benchmark's \texttt{val} split is used
+for training and its \texttt{test} split for evaluation.
 
-\textbf{Dataset 1 --- Text Plagiarism Benchmark:} A repository text plagiarism
-benchmark containing reference-suspicious text pairs with plagiarism labels.
-The dataset uses a validation/test split with 9,824 test pairs.
+D2 is Quora Question Pairs with 8,000 test pairs; training uses
+the first 5,000 pairs of the 49,401 available, for computational
+tractability.
 
-\textbf{Dataset 2 --- Quora Question Pairs:} Question pairs from the Quora
-dataset with paraphrase labels. For computational tractability, we use a
-5,000-pair training subset (from 49,401 available pairs) and the full 8,000-pair
-test set.
+
+% ---------------------------------------------------------
+% PREPROCESSING
+% ---------------------------------------------------------
 
 \subsection{Preprocessing}
 
-All models share identical preprocessing:
-\begin{enumerate}
-    \item Lowercase the text
-    \item Remove non-alphanumeric characters (except spaces)
-    \item Collapse multiple whitespace into single space
-    \item Trim leading and trailing whitespace
-\end{enumerate}
+All models use identical preprocessing: lowercasing, replacing
+non-alphanumeric characters with spaces, and collapsing whitespace.
 
-\subsection{Evaluation Metrics}
 
-We report Accuracy, Precision, Recall, F1-Score, Specificity, ROC-AUC,
-PR-AUC, and MCC. MCC is the primary metric for model selection and threshold
-optimization. Confusion matrix counts (TP, TN, FP, FN) are also reported for
-transparency.
+All models implement logistic regression with
+\texttt{class\_weight=balanced} and \texttt{max\_iter=2000}
+(random state 42).
 
-\section{Results}
+The threshold used to classify pairs is selected to maximise
+the MCC of the training data using a coarse search in the range
+[0.05, 0.95], followed by a fine search in the vicinity of the
+optimal value. The resulting threshold is applied directly to
+the test data.
 
-\subsection{Quantitative Results}
+The metrics used are accuracy, precision, recall, F1, specificity,
+ROC-AUC, PR-AUC, and MCC (primary metric). Model latency
+(in seconds) is calculated as the average time taken to make
+predictions for pairs in the test set.
 
-Table I presents the quantitative results for all 5 progressive models on both
-datasets. Model 5 (complete proposed model) achieves the best MCC on both
-datasets: 0.4705 on Dataset 1 and 0.3958 on Dataset 2.
+The models are implemented using scikit-learn \cite{pedregosa2011}.
 
-\begin{table}[htbp]
+
+% =========================================================
+% 5. RESULTS AND DISCUSSION
+% =========================================================
+
+\section{Results and Discussion}
+
+\subsection{Quantitative Analysis}
+
+The baseline model (Model 1) and the complete feature model
+(Model 5) were evaluated on both datasets. Model 1 uses the
+eight baseline features, whereas Model 5 uses the full
+83-dimensional representation, including the additional
+feature groups.
+
+Table~\ref{tab:quantitative} summarises the principal
+classification and latency results.
+
+\begin{table}[!t]
+\caption{Quantitative Comparison of the Baseline and Complete Feature Model}
+\label{tab:quantitative}
 \centering
-\caption{Progressive Model Results on Both Datasets}
-\label{tab:results}
-\begin{tabular}{lcccccc}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcc}
 \toprule
-\textbf{Dataset} & \textbf{Model} & \textbf{Config} & \textbf{Accuracy} & \textbf{MCC} & \textbf{ROC-AUC} & \textbf{N\_Features} \\
+Dataset & Metric & Baseline (M1) & Proposed (M5) \\
 \midrule
-\multirow{5}{*}{Dataset 1} & Model 1 & BASELINE & 0.7149 & 0.3573 & 0.7375 & 8 \\
- & Model 2 & C1 & 0.7218 & 0.3813 & 0.7512 & 16 \\
- & Model 3 & C1C2 & 0.7392 & 0.3993 & 0.7608 & 21 \\
- & Model 4 & C1C2C3 & 0.7387 & 0.4035 & 0.7619 & 25 \\
- & Model 5 & C1C2C3C4 & 0.7641 & 0.4705 & 0.8007 & 83 \\
+\multirow{4}{*}{D1}
+& Accuracy & 0.7149 & 0.7641 \\
+& MCC & 0.3573 & 0.4705 \\
+& ROC-AUC & 0.7375 & 0.8007 \\
+& Latency (ms/pair) & 0.062 & 0.176 \\
 \midrule
-\multirow{5}{*}{Dataset 2} & Model 1 & BASELINE & 0.6009 & 0.1990 & 0.6367 & 8 \\
- & Model 2 & C1 & 0.6804 & 0.3476 & 0.7273 & 16 \\
- & Model 3 & C1C2 & 0.6824 & 0.3516 & 0.7272 & 21 \\
- & Model 4 & C1C2C3 & 0.6976 & 0.3844 & 0.7552 & 25 \\
- & Model 5 & C1C2C3C4 & 0.7046 & 0.3958 & 0.7585 & 83 \\
+\multirow{4}{*}{D2}
+& Accuracy & 0.6009 & 0.7046 \\
+& MCC & 0.1990 & 0.3958 \\
+& ROC-AUC & 0.6367 & 0.7585 \\
+& Latency (ms/pair) & 0.054 & 1.116 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Contribution-Wise Ablation Analysis}
+On D1, the complete model increases accuracy from the  0.7149
+to 0.7641, MCC from the  0.3573 to 0.4705, and  the ROC-AUC from
+the 0.7375 to 0.8007. The MCC improvement is approximately
+31.7\% relative to the baseline.
 
-Table II presents the ablation analysis, measuring the MCC drop when each
-contribution is removed from the complete model (Model 5).
+On D2, accuracy increases from  the 0.6009 to 0.7046, MCC from
+ the 0.1990 to 0.3958, and ROC-AUC from the  0.6367 to 0.7585,
+corresponding to an approximately 98.9\% relative improvement
+in  the MCC. Thus, the richer representation improves the reported
+classification metrics on both datasets.
 
-\begin{table}[htbp]
-\centering
-\caption{Ablation Analysis --- MCC Drop When Each Contribution Removed}
-\label{tab:ablation}
-\begin{tabular}{lccccc}
-\toprule
-\textbf{Dataset} & \textbf{Removed} & \textbf{Full MCC} & \textbf{Ablated MCC} & \textbf{MCC Drop} & \textbf{Impact} \\
-\midrule
-\multirow{4}{*}{Dataset 1} & C1 & 0.4705 & 0.4464 & 0.0241 & Moderate \\
- & C2 & 0.4705 & 0.4525 & 0.0180 & Low \\
- & C3 & 0.4705 & 0.4663 & 0.0042 & Low \\
- & C4 & 0.4705 & 0.4035 & 0.0670 & High \\
-\midrule
-\multirow{4}{*}{Dataset 2} & C1 & 0.3958 & 0.2472 & 0.1486 & High \\
- & C2 & 0.3958 & 0.3917 & 0.0041 & Low \\
- & C3 & 0.3958 & 0.3630 & 0.0328 & Moderate \\
- & C4 & 0.3958 & 0.3844 & 0.0115 & Low \\
-\bottomrule
-\end{tabular}
-\end{table}
+% ---------------------------------------------------------
+% RESULT FIGURE 1
+% ---------------------------------------------------------
 
-\subsection{Cost Analysis and Pre-Filtering Efficiency}
-
-Table III presents the computational cost analysis for all five progressive
-models on both datasets. Latency is measured as average prediction time per
-pair in milliseconds. Model 1 (baseline) has the lowest latency but also the
-lowest MCC, while Model 5 (complete model) has the highest latency but also
-the highest MCC.
-
-\begin{table}[htbp]
-\centering
-\caption{Computational Cost Analysis --- Latency and Cost per Pair}
-\label{tab:cost}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Dataset} & \textbf{Model} & \textbf{Latency (ms/pair)} & \textbf{MCC} & \textbf{MCC per ms} \\
-\midrule
-\multirow{5}{*}{Dataset 1} & Model 1 & 0.062 & 0.3573 & 5.763 \\
- & Model 2 & 0.097 & 0.3813 & 3.931 \\
- & Model 3 & 0.102 & 0.3993 & 3.915 \\
- & Model 4 & 0.107 & 0.4035 & 3.771 \\
- & Model 5 & 0.176 & 0.4705 & 2.673 \\
-\midrule
-\multirow{5}{*}{Dataset 2} & Model 1 & 0.054 & 0.1990 & 3.685 \\
- & Model 2 & 0.182 & 0.3476 & 1.910 \\
- & Model 3 & 0.083 & 0.3516 & 4.236 \\
- & Model 4 & 0.089 & 0.3844 & 4.319 \\
- & Model 5 & 1.116 & 0.3958 & 0.355 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\textbf{Pre-filtering cost savings:} Using Model 1 as a pre-filter that
-correctly identifies ~71\% of non-plagiarized pairs on Dataset 1 (accuracy
-0.7149) and ~60\% on Dataset 2 (accuracy 0.6009), the pipeline avoids running
-the expensive Model 5 on those pairs. For Dataset 2 where Model 5 latency is
-1.116 ms/pair versus Model 1 at 0.054 ms/pair, pre-filtering with Model 1
-reduces average latency by approximately 60\% for the filtered subset while
-maintaining overall MCC above 0.39 through Model 5 verification of ambiguous
-cases.
-
-This demonstrates that typed-decision pre-filtering achieves cost efficiency:
-surface-level features (C1) handle the majority of obvious cases at low cost,
-while semantic features (C4) are reserved for the small fraction of ambiguous
-pairs requiring deep verification.
-
-\subsection{Key Findings}
-
-\textbf{Finding 1:} The complete proposed model (Model 5) outperforms the
-Sajid 2025 baseline on both datasets, with relative MCC improvements of
-31.7\% on Dataset 1 and 98.9\% on Dataset 2.
-
-\textbf{Finding 2:} Contribution impact is dataset-dependent. C1 (word-overlap
-counts) delivers the largest gain on Quora question pairs (+0.1486 MCC), while
-C4 (semantic, structural, and phonetic features) delivers the largest gain on
-the text plagiarism benchmark (+0.0670 MCC).
-
-\textbf{Finding 3:} C2 (character n-grams) and C3 (edit distance) have modest
-impact on both datasets, suggesting partial redundancy with baseline
-word-overlap features.
-
-\textbf{Finding 4:} MCC improves monotonically across all 5 models on both
-datasets, demonstrating that each added contribution provides non-negative
-incremental value.
-
-\begin{figure}[htbp]
-\centering
-\fbox{\parbox{0.8\textwidth}{\centering ROC Curves --- Dataset 1 (Text Plagiarism Benchmark)\\
-\footnotesize Generate by running Colab Cell 20: \texttt{plot\_roc\_curves(\"Dataset1\_repo\_text\_benchmark\", ...)}\\
-Figure saved as \texttt{roc\_curves\_Dataset1\_repo\_text\_benchmark.png}}}
-\caption{ROC Curves --- Dataset 1 (Text Plagiarism Benchmark)}
-\label{fig:roc1}
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\linewidth]
+    {Screenshot 2026-11-21 115958.png}
+    \caption{Classification performance comparison between
+    the baseline and proposed model on the evaluated datasets.}
+    \label{fig:performance1}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\fbox{\parbox{0.8\textwidth}{\centering ROC Curves --- Dataset 2 (Quora Question Pairs)\\
-\footnotesize Generate by running Colab Cell 20: \texttt{plot\_roc\_curves(\"Dataset2\_quora\_question\_pairs\", ...)}\\
-Figure saved as \texttt{roc\_curves\_Dataset2\_quora\_question\_pairs.png}}}
-\caption{ROC Curves --- Dataset 2 (Quora Question Pairs)}
-\label{fig:roc2}
+% ---------------------------------------------------------
+% RESULT FIGURE 2
+% ---------------------------------------------------------
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\linewidth]
+    {Screenshot 2026-11-21 120043.png}
+    \caption{Comparison of the classification performance
+    metrics for the evaluated models.}
+    \label{fig:performance2}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\fbox{\parbox{0.9\textwidth}{\centering Confusion Matrices --- Dataset 1\\
-\footnotesize Generate by running Colab Cell 20: \texttt{plot\_confusion\_matrices(\"Dataset1\_repo\_text\_benchmark\", ...)}\\
-Figure saved as \texttt{confusion\_matrices\_Dataset1\_repo\_text\_benchmark.png}}}
-\caption{Confusion Matrices --- Dataset 1}
-\label{fig:cm1}
+The improvement is accompanied by increased inference latency.
+On D1, the baseline requires 0.062 ms per pair, compared with
+0.176 ms for the complete model; the baseline is approximately
+2.8 times faster.
+
+On D2, the corresponding latencies are 0.054 ms and 1.116 ms,
+making the baseline approximately 20.7 times faster.
+
+These results quantify the trade-off between classification
+performance and computational cost. The measurements are
+standalone model results and should not be interpreted as
+measured end-to-end cascade performance.
+
+% ---------------------------------------------------------
+% QUALITATIVE ANALYSIS
+% ---------------------------------------------------------
+
+\subsection{Qualitative Analysis}
+
+The baseline model offers a low-cost first stage because it
+relies on a compact set of lexical and similarity features,
+including word Jaccard, character-trigram Jaccard, overlap
+count, length difference, exact-match indication, TF-IDF
+cosine similarity, and LSA cosine similarity.
+
+Its the  low latency makes it suitable for the  preliminary screening.
+However, a compact feature representation may provide
+insufficient evidence when two submissions express  the similar
+meaning through the  substantial lexical changes.
+
+The complete model extends the baseline with  the four feature
+families. Word-overlap features capture shared terms and
+phrases; character $n$-grams capture local spelling and
+morphological variation; edit-distance features identify
+near-duplicate strings; and semantic, structural, and phonetic
+features provide complementary evidence beyond exact lexical
+overlap.
+
+The higher MCC and ROC-AUC values observed for Model 5
+indicate that this richer representation is more discriminative
+on the two evaluated datasets. The size of the improvement
+differs between D1 and D2, indicating that the benefit of
+additional similarity evidence depends on dataset
+characteristics.
+
+The proposed architecture uses these complementary properties
+in a staged workflow. The lightweight model is assigned to the
+initial screening stage, while the comprehensive model is
+intended to assess pairs that cannot be confidently resolved
+in the first stage.
+
+This arrangement is designed to avoid applying the more
+expensive feature computation to every pair. A practical
+deployment must define and validate the confidence thresholds
+used for routing, and must ensure that potentially plagiarised
+pairs are not incorrectly discarded by the first stage.
+
+The current experiments establish the standalone performance
+and latency of the two component models. They do not report
+the fraction of pairs that would be resolved by the pre-filter,
+the recall of the routed candidate set, or measured end-to-end
+cascade latency.
+
+Consequently, the architecture is a motivated deployment
+design rather than a fully validated cascade result. These
+quantities must be measured before claiming realised workload
+reduction or end-to-end efficiency.
+
+% ---------------------------------------------------------
+% COST ANALYSIS
+% ---------------------------------------------------------
+\subsection{Cost Analysis}
+
+The computational cost of the proposed model configurations
+was evaluated by comparing execution latency and MCC per
+millisecond for the lightweight Model 1 and the complete
+Model 5.
+
+On D1, Model 1 required the  0.062 ms per pair and achieved an
+MCC of the 0.3573, resulting in an MCC-per-millisecond value
+of 5.763. In comparison, the  Model 5 required 0.176 ms per pair,
+achieved an MCC of the  0.4705, and produced an
+MCC-per-millisecond value of  the 2.673.
+
+Thus, Model 1 was approximately 2.8 times faster than
+Model 5 on D1.
+
+% ---------------------------------------------------------
+% COST FIGURE 1
+% ---------------------------------------------------------
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\linewidth]
+    {Screenshot 2026-11-21 120543.png}
+    \caption{Comparison of model latency and MCC on D1.}
+    \label{fig:cost1}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\fbox{\parbox{0.9\textwidth}{\centering Confusion Matrices --- Dataset 2\\
-\footnotesize Generate by running Colab Cell 20: \texttt{plot\_confusion\_matrices(\"Dataset2\_quora\_question\_pairs\", ...)}\\
-Figure saved as \texttt{confusion\_matrices\_Dataset2\_quora\_question\_pairs.png}}}
-\caption{Confusion Matrices --- Dataset 2}
-\label{fig:cm2}
+% ---------------------------------------------------------
+% COST FIGURE 2
+% ---------------------------------------------------------
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\linewidth]
+    {Screenshot 2026-11-21 120916.png}
+    \caption{Comparison of model latency and MCC on D2.}
+    \label{fig:cost2}
 \end{figure}
 
-Figures 1--2 show ROC curves for all models on both datasets, demonstrating
-that Model 5 achieves the highest AUC on both datasets. Figures 3--4 show
-confusion matrices for each model, illustrating the TP/TN/FP/FN distribution.
-Figures are generated by running Cells 20--21 of the accompanying Colab notebook.
+On D2, Model 1 required the  0.054 ms per pair and achieved
+an MCC of 0.1990, resulting in an MCC-per-millisecond
+value of  the 3.685.
+
+Model 5 required the  1.116 ms per pair and achieved an MCC
+of the  0.3958, producing an MCC-per-millisecond value of 0.355.
+Consequently, Model 1 was approximately 20.7 times faster
+than  the Model 5 on D2.
+
+These measurements demonstrate the trade-off between the 
+classification performance and  the computational cost. Although
+Model 5 achieves higher MCC values on  the both datasets, its
+execution time is also higher due to the additional feature
+computations, including  the LSA projection and edit-distance
+operations.
+
+This difference is particularly pronounced on D2, where the 
+Model 5 requires the  substantially more execution time than
+the lightweight baseline.
+
+The measured latency values motivate the proposed two-stage
+processing the  architecture, in which Model 1 acts as a
+lightweight pre-filter and  the Model 5 performs comprehensive
+verification on unresolved pairs.
+
+Let $p$ represent the proportion of pairs resolved by
+the pre-filter, $t_1$ represent the execution time of Model 1,
+and $t_5$ represent the execution time of Model 5.
+
+Assuming that  the every pair is first processed by  the Model 1 and
+only the remaining proportion $(1-p)$ is forwarded to the 
+Model 5, the estimated average execution cost per the  pair is:
+
+\begin{equation}
+T_{\mathrm{cascade}} = t_1 + (1-p)t_5.
+\label{eq:cascade_cost}
+\end{equation}
+
+For the cascade to have a lower average execution cost
+than the  applying Model 5 to every pair, the following
+condition must hold:
+
+\begin{equation}
+t_1 + (1-p)t_5 < t_5.
+\end{equation}
+
+Rearranging this expression gives the minimum pre-filter
+resolution proportion:
+
+\begin{equation}
+p > \frac{t_1}{t_5}.
+\end{equation}
+
+Using the measured execution times, the estimated crossover
+point is approximately 35.2\% for D1, based on the  0.062 ms
+for Model 1 and 0.176 ms for Model 5.
+
+For D2, the corresponding crossover point is approximately
+4.8\%, based on 0.054 ms for Model 1 and 1.116 ms for
+Model 5.
+
+Therefore, the pre-filter would need to resolve more than
+these respective proportions of pairs for the proposed
+cascade to achieve a lower average execution cost than
+using Model 5 alone.
+
+However, these crossover values are theoretical estimates
+derived from standalone model execution times. The actual
+proportion of pairs resolved by the pre-filter was not
+measured.
+
+The end-to-end cascade latency, routing behaviour, and
+classification performance therefore remain to be
+experimentally evaluated.
+
+% =========================================================
+% 6. DEPLOYMENT RECOMMENDATION
+% =========================================================
+
+\section{Deployment Recommendation}
+
+Based on the experimental results, Model 1 is a suitable
+candidate for the lightweight pre-filtering stage because
+of its lower execution latency on both datasets.
+
+Under the proposed architecture, pairs confidently identified
+as non-plagiarised could be resolved during the first stage,
+while ambiguous pairs could be forwarded to Model 5 for
+comprehensive verification.
+
+The results support the potential use of the lightweight
+pre-filter followed by the more comprehensive verification
+stage. Nevertheless, this recommendation is based on the
+standalone performance and latency measurements of the
+individual models.
+
+The complete cascade must be evaluated under different
+routing thresholds to establish its actual efficiency and
+classification performance.
+
+% =========================================================
+% 7. CONCLUSION
+% =========================================================
 
 \section{Conclusion}
 
-This paper presented a typed-decision pre-filtering pipeline for academic
-integrity detection that incrementally integrates four original contributions
-(C1--C4) into a baseline plagiarism detection framework. Lighter configurations
-(Model 1--2) serve as inexpensive pre-filters using surface-level word-overlap
-features, while heavier configurations (Model 4--5) act as semantic verifiers
-using LSA topics, question structure, and Soundex phonetic features.
+This paper presented a typed-decision pre-filtering design
+for cost-conscious academic integrity detection.
 
-Experimental results on two datasets demonstrate that the complete proposed
-model (Model 5) outperforms the Sajid 2025 baseline on both datasets, with
-relative MCC improvements of 31.7\% on Dataset 1 and 98.9\% on Dataset 2.
-Cost analysis shows that Model 1 achieves 5.76 MCC per millisecond on Dataset
-1 versus 2.67 for Model 5, while Model 1 latency (0.062 ms/pair) is 2.8$\times$
-lower than Model 5 (0.176 ms/pair). On Dataset 2, pre-filtering with Model 1
-reduces average latency by approximately 60\% for the filtered subset while
-Model 5 verifies ambiguous cases at 1.116 ms/pair.
+The complete 83-feature model improved MCC over the
+eight-feature baseline by approximately 31.7\% on the
+text-plagiarism benchmark and 98.9\% on Quora Question
+Pairs.
 
-Contribution-wise analysis reveals dataset-dependent effectiveness: C1
-(word-overlap counts) delivers the largest gain on Quora question pairs
-(+0.1486 MCC), making it ideal for pre-filtering question pairs, while C4
-(semantic, structural, and phonetic features) delivers the largest gain on
-the text plagiarism benchmark (+0.0670 MCC), making it essential for semantic
-verification of text submissions. C2 and C3 provide modest incremental value
-on both datasets.
+It also achieved higher accuracy and ROC-AUC on both
+datasets, while requiring greater per-pair inference time.
 
-The typed-decision pre-filtering pipeline demonstrates that cost-efficient
-academic integrity detection is achievable by routing obvious cases through
-lightweight pre-filters and reserving expensive semantic verification for
-ambiguous pairs. This cascade design reduces average computational cost per
-submission while maintaining high overall detection accuracy.
+The measured latency difference motivates a two-stage
+design in which a lightweight model performs initial
+screening and a comprehensive model examines unresolved
+cases.
 
-Future work could explore deep learning feature extractors, ensemble methods
-combining multiple classifiers, dynamic pre-filtering thresholds based on
-submission risk scores, and evaluation on additional academic integrity
-detection datasets. The progressive framework provides a transparent,
-interpretable approach where each feature contribution can be independently
-assessed and optimized for specific pipeline stages.
+However, the experiments reported here evaluate the
+component models independently; end-to-end cascade
+performance, candidate recall, routing rate, and realised
+workload reduction remain to be measured.
+
+Future work will implement and evaluate the complete
+cascade, calibrate routing thresholds, assess candidate
+recall and false-negative risk, and investigate
+transformer-based verification and additional plagiarism
+domains.
+
+% =========================================================
+% REFERENCES
+% =========================================================
 
 \begin{thebibliography}{00}
-\bibitem{b1} Sajid, M., et al. ``Plagiarism Detection Using Lexical and
-Semantic Features.'' PLoS ONE, 2025. DOI: 10.1371/journal.pone.0319551.
 
-\bibitem{b2} Amirzhanov, A., et al. ``TF-IDF Cosine Similarity for Paraphrase
-Detection.'' Frontiers in Computer Science, 2025.
+\bibitem{sajid2025}
+Sajid, M., et al. ``Comparative analysis of text-based plagiarism
+detection techniques.'' \emph{PLoS ONE}, vol. 20, no. 4,
+e0319551, 2025. DOI: 10.1371/journal.pone.0319551.
 
-\bibitem{b3} Singh, S. and Gupta, R. ``Hybrid Word-Overlap Approach for
-Paraphrase Detection.'' Knowledge and Information Systems, 2026.
+\bibitem{amirzhanov2025}
+Amirzhanov, A., et al. ``TF-IDF Cosine Similarity for Paraphrase
+Detection.'' \emph{Frontiers in Computer Science}, 2025.
 
-\bibitem{b4} Shone, N., et al. ``A Deep Learning Approach to Network
-Intrusion Detection.'' IEEE Transactions on Emerging Topics in Computational
-Intelligence, pp. 41--50, 2018.
+\bibitem{singh2026}
+Singh, S. and Gupta, R. ``Hybrid Word-Overlap Approach for
+Paraphrase Detection.'' \emph{Knowledge and Information Systems},
+2026.
 
-\bibitem{b5} Vinayakumar, R., Soman, K.P., and Poornachandran, P. ``Applying
-Deep Learning Approaches for Network Traffic Prediction.'' International
-Conference on Advances in Computing, Communications and Informatics (ICACCI),
-pp. 1537--1543, IEEE, 2017.
+\bibitem{chicco2020}
+D. Chicco and G. Jurman, ``The advantages of the Matthews
+correlation coefficient (MCC) over F1 score and accuracy in
+binary classification evaluation.'' \emph{BMC Genomics},
+vol. 21, art. 6, 2020.
 
-\bibitem{b6} Wang, H. and Li, W. ``DDoSTC: A Transformer-Based Network Attack
-Detection Hybrid Mechanism in SDN.'' Sensors, 21(15):5047, 2021.
+\bibitem{deerwester1990}
+S. Deerwester, S. T. Dumais, G. W. Furnas, T. K. Landauer,
+and R. Harshman, ``Indexing by latent semantic analysis,''
+\emph{J. Amer. Soc. Inf. Sci.}, vol. 41, no. 6,
+pp. 391--407, 1990.
 
-\bibitem{b7} Canadian Institute for Cybersecurity. EVSE Dataset 2024.
-CIC EV Charger Attack Dataset.
+\bibitem{levenshtein1966}
+V. I. Levenshtein, ``Binary codes capable of correcting
+deletions, insertions, and reversals,'' \emph{Soviet Physics
+Doklady}, vol. 10, no. 8, pp. 707--710, 1966.
 
-\bibitem{b8} Byrnes, J., et al. ``A Modern Implementation of System Call
-Sequence Based Host-Based Intrusion Detection Systems.'' IEEE International
-Conference on Trust, Privacy and Security in Intelligent Systems and
-Applications (TPS-ISA), pp. 123--129, IEEE, 2020.
+\bibitem{winkler1990}
+W. E. Winkler, ``String comparator metrics and enhanced
+decision rules in the Fellegi--Sunter model of record
+linkage,'' in \emph{Proc. Section on Survey Research
+Methods, ASA}, 1990, pp. 354--359.
+
+\bibitem{russell1918}
+R. C. Russell, ``Index,'' U.S. Patent 1,261,167, 1918.
+
+\bibitem{reimers2019}
+N. Reimers and I. Gurevych, ``Sentence-BERT: Sentence
+embeddings using Siamese BERT-networks,'' in
+\emph{Proc. EMNLP-IJCNLP}, 2019, pp. 3982--3992.
+
+\bibitem{pedregosa2011}
+F. Pedregosa et al., ``Scikit-learn: Machine learning
+in Python,'' \emph{J. Mach. Learn. Res.}, vol. 12,
+pp. 2825--2830, 2011.
+
 \end{thebibliography}
 
 \end{document}
