@@ -67,7 +67,7 @@ Guntur District, Andhra Pradesh, India\\
 % Abstract
 \begin{abstract}
 Large-scale academic integrity detection requires a balance between
-thee reliable similarity assessment and the computational efficiency. Lexical
+reliable similarity assessment and computational efficiency. Lexical
 methods are inexpensive but may miss paraphrased content, whereas
 richer feature-based models require greater computation. This paper
 presents a typed-decision pre-filtering approach that uses a lightweight
@@ -76,10 +76,10 @@ comprehensive feature-based model for cases requiring further review.
 The proposed feature representation extends an eight-feature baseline
 with word-overlap, character n-gram, edit-distance, semantic, structural,
 and phonetic features. The approach is evaluated on a text-plagiarism
-benchmark (D1) and Quora Question Pairs (D2) using Matthews Correlation
-Coefficient (MCC), accuracy, ROC-AUC, and inference latency. The complete
+benchmark (Dataset 1) and Quora Question Pairs (Dataset 2) using Matthews
+Correlation Coefficient (MCC), accuracy, ROC-AUC, and inference latency. The complete
 83-feature model improves MCC over the baseline from 0.3573 to 0.4705
-on D1 and from 0.1990 to 0.3958 on D2. The lightweight baseline is faster
+on Dataset 1 and from 0.1990 to 0.3958 on Dataset 2. The lightweight baseline is faster
 by factors of 2.8 and 20.7, respectively. These findings motivate a
 two-stage architecture; however, end-to-end cascade performance remains
 to be validated experimentally.
@@ -89,7 +89,6 @@ to be validated experimentally.
 Academic integrity, plagiarism detection, paraphrase detection,
 pre-filtering, feature engineering, Matthews correlation coefficient
 \end{IEEEkeywords}
-
 
 % =========================================================
 % 1. INTRODUCTION
@@ -101,7 +100,7 @@ Checking for plagiarism is commonly used to ensure the upholding of
 academic integrity. Methods such as transformer cross-encoders,
 Abstract Syntax Trees or even large language models are computationally
 intensive and so even more so when considering several institutions and
-the comparisons that must be made between each submission\(O(N^2)\)
+the comparisons that must be made between each submission~\cite{reimers2019}.
 Although lexically based methods are typically low cost, they can fail
 to recognise paraphrased material and/or semantic equivalence. Poor
 similarity assessment can therefore result in additional, unwarranted
@@ -121,14 +120,13 @@ triage approach. Simple situations are addressed using a basic model
 whereas more complicated instances are analysed by a more detailed
 review model.
 
-We enhance the eight features described in Sajid et al. (2025) by
+We enhance the eight features described in Sajid et al. (2025) \cite{sajid2025} by
 incorporating lexical, character, edit distance, semantic,
 structural and phonetic features. This extended set of features is
 analysed on two data sets in order to assess both its classification
 performance and cost effectiveness. Using our analysis of performance
 and speed we suggest a pre-screening type system which categorises
-plagiarism detection into two steps according to type. 
-
+plagiarism detection into two steps according to type.
 
 % =========================================================
 % 2. RELATED WORK
@@ -161,6 +159,12 @@ the incremental value of each feature family and its dependence
 on the dataset are rarely measured. MCC is used as the primary
 metric because it is robust to class imbalance \cite{chicco2020}.
 
+Dataset 1 is a text-plagiarism benchmark containing reference-suspicious
+text pairs with plagiarism labels, using a validation/test split with
+9,824 test pairs. Dataset 2 is Quora Question Pairs with paraphrase labels,
+using 8,000 test pairs with a 5,000-pair training subset (from 49,401
+available pairs) for computational tractability. These datasets are
+described in detail in Section IV-A.
 
 % =========================================================
 % CONTRIBUTIONS
@@ -173,7 +177,7 @@ metric because it is robust to class imbalance \cite{chicco2020}.
     \item A similarity feature set including word overlap,
     character n-grams, edit distance, semantic, structural,
     and phonetic features, improving on the eight-feature
-    baseline presented in Sajid et al. (2025).
+    baseline presented in Sajid et al. (2025) \cite{sajid2025}.
 
     \item Quantitative comparison of performance between the
     baseline and full feature set on two datasets. Performance
@@ -187,7 +191,6 @@ metric because it is robust to class imbalance \cite{chicco2020}.
     two-stage detection process.
 
 \end{itemize}
-
 
 % =========================================================
 % 3. METHODOLOGY
@@ -239,49 +242,48 @@ containment.
 % FEATURE CONTRIBUTIONS
 % ---------------------------------------------------------
 \subsection{Contributions C1--C4}
-\noindent\text{C1: Number of overlapping words (8).}
+\noindent\textbf{C1: Word-Overlap Count Features (8 dimensions).}
 This combines the word Jaccard, number of overlapping words, length
 ratio, short-text overlap and word bigrams Jaccard along with
 exact match. Normalised overlap and bigram containment provide
 information on multi-word level similarities in addition to
 single word level information.
-\par\noindent\text{C2: Character n-grams (5).}
+\par\noindent\textbf{C2: Character N-Gram Features (5 dimensions).}
 Character 2, 3, 4 and 5-grams Jaccard similarities, and trigram
 containment, represent orthographic and morphological differences.
-\par\noindent\text{C3: Edit-distance (4).}
+\par\noindent\textbf{C3: Edit Distance Features (4 dimensions).}
 Word and character level Levenshtein similarities $1-d_{\mathrm{lev}}/\max(m,n)$ and
 word and character level Jaro-Winkler similarities, for analysing
 close matches that have experienced minor additions, omissions
 or changes.
-\par\noindent\text{C4: Semantic, syntactic and phonetic (58).}
-The 25-dimensional merged LSA topic vectors for each text
-(50-dimensions; formed using a truncated singular value
-decomposition on a TF-IDF matrix with up to 5000 features),
-five question markers (common initial word, common terminal
+\par\noindent\textbf{C4: Semantic, Structural and Phonetic Features (58 dimensions).}
+Latent topic semantics via LSA (25 dims per sentence; 50 dims total; formed using
+a truncated singular value decomposition on a TF-IDF matrix with up to 5000 features),
+question structure features (5 dims; common initial word, common terminal
 word, both texts initiate with a question word, both texts
 initiate with an auxiliary verb and common question words)
-alongside three Soundex attributes (Jaccard similarity of
-Soundex codes, number of common codes and code containment). 
+alongside Soundex phonetic features (3 dims; Jaccard similarity of
+Soundex codes, number of common codes and code containment).
 
 % =========================================================
 % 4. EXPERIMENTAL SETUP
 % =========================================================
 
 \section{Experimental Setup}
- % ---------------------------------------------------------
-% DATASETS
-% ---------------------------------------------------------
 
 \subsection{Datasets}
 
-Two datasets are used. D1 is a text-plagiarism benchmark with
-9,824 test pairs; the benchmark's \texttt{val} split is used
-for training and its \texttt{test} split for evaluation.
+Two datasets are used under identical train/test splits:
 
-D2 is Quora Question Pairs with 8,000 test pairs; training uses
-the first 5,000 pairs of the 49,401 available, for computational
-tractability.
+\textbf{Dataset 1 --- Text Plagiarism Benchmark:} A repository text plagiarism
+benchmark containing reference-suspicious text pairs with plagiarism labels.
+The dataset uses a validation/test split with 9,824 test pairs. The \texttt{val}
+split is used for training and the \texttt{test} split for evaluation.
 
+\textbf{Dataset 2 --- Quora Question Pairs:} Question pairs from the Quora
+dataset with paraphrase labels. For computational tractability, we use a
+5,000-pair training subset (from 49,401 available pairs) and the full
+8,000-pair test set.
 
 % ---------------------------------------------------------
 % PREPROCESSING
@@ -289,9 +291,13 @@ tractability.
 
 \subsection{Preprocessing}
 
-All models use identical preprocessing: lowercasing, replacing
-non-alphanumeric characters with spaces, and collapsing whitespace.
-
+All models share identical preprocessing:
+\begin{enumerate}
+    \item Lowercase the text
+    \item Remove non-alphanumeric characters (except spaces)
+    \item Collapse multiple whitespace into single space
+    \item Trim leading and trailing whitespace
+\end{enumerate}
 
 All models implement logistic regression with
 \texttt{class\_weight=balanced} and \texttt{max\_iter=2000}
@@ -309,7 +315,6 @@ ROC-AUC, PR-AUC, and MCC (primary metric). Model latency
 predictions for pairs in the test set.
 
 The models are implemented using scikit-learn \cite{pedregosa2011}.
-
 
 % =========================================================
 % 5. RESULTS AND DISCUSSION
@@ -338,13 +343,13 @@ classification and latency results.
 \toprule
 Dataset & Metric & Baseline (M1) & Proposed (M5) \\
 \midrule
-\multirow{4}{*}{D1}
+\multirow{4}{*}{Dataset 1}
 & Accuracy & 0.7149 & 0.7641 \\
 & MCC & 0.3573 & 0.4705 \\
 & ROC-AUC & 0.7375 & 0.8007 \\
 & Latency (ms/pair) & 0.062 & 0.176 \\
 \midrule
-\multirow{4}{*}{D2}
+\multirow{4}{*}{Dataset 2}
 & Accuracy & 0.6009 & 0.7046 \\
 & MCC & 0.1990 & 0.3958 \\
 & ROC-AUC & 0.6367 & 0.7585 \\
@@ -353,15 +358,15 @@ Dataset & Metric & Baseline (M1) & Proposed (M5) \\
 \end{tabular}
 \end{table}
 
-On D1, the complete model increases accuracy from the  0.7149
-to 0.7641, MCC from the  0.3573 to 0.4705, and  the ROC-AUC from
-the 0.7375 to 0.8007. The MCC improvement is approximately
+On Dataset 1, the complete model increases accuracy from 0.7149
+to 0.7641, MCC from 0.3573 to 0.4705, and ROC-AUC from
+0.7375 to 0.8007. The MCC improvement is approximately
 31.7\% relative to the baseline.
 
-On D2, accuracy increases from  the 0.6009 to 0.7046, MCC from
- the 0.1990 to 0.3958, and ROC-AUC from the  0.6367 to 0.7585,
+On Dataset 2, accuracy increases from 0.6009 to 0.7046, MCC from
+0.1990 to 0.3958, and ROC-AUC from 0.6367 to 0.7585,
 corresponding to an approximately 98.9\% relative improvement
-in  the MCC. Thus, the richer representation improves the reported
+in MCC. Thus, the richer representation improves the reported
 classification metrics on both datasets.
 
 % ---------------------------------------------------------
@@ -391,11 +396,11 @@ classification metrics on both datasets.
 \end{figure}
 
 The improvement is accompanied by increased inference latency.
-On D1, the baseline requires 0.062 ms per pair, compared with
+On Dataset 1, the baseline requires 0.062 ms per pair, compared with
 0.176 ms for the complete model; the baseline is approximately
 2.8 times faster.
 
-On D2, the corresponding latencies are 0.054 ms and 1.116 ms,
+On Dataset 2, the corresponding latencies are 0.054 ms and 1.116 ms,
 making the baseline approximately 20.7 times faster.
 
 These results quantify the trade-off between classification
@@ -415,12 +420,12 @@ including word Jaccard, character-trigram Jaccard, overlap
 count, length difference, exact-match indication, TF-IDF
 cosine similarity, and LSA cosine similarity.
 
-Its the  low latency makes it suitable for the  preliminary screening.
+Its low latency makes it suitable for preliminary screening.
 However, a compact feature representation may provide
-insufficient evidence when two submissions express  the similar
-meaning through the  substantial lexical changes.
+insufficient evidence when two submissions express similar
+meaning through substantial lexical changes.
 
-The complete model extends the baseline with  the four feature
+The complete model extends the baseline with the four feature
 families. Word-overlap features capture shared terms and
 phrases; character $n$-grams capture local spelling and
 morphological variation; edit-distance features identify
@@ -431,7 +436,7 @@ overlap.
 The higher MCC and ROC-AUC values observed for Model 5
 indicate that this richer representation is more discriminative
 on the two evaluated datasets. The size of the improvement
-differs between D1 and D2, indicating that the benefit of
+differs between Dataset 1 and Dataset 2, indicating that the benefit of
 additional similarity evidence depends on dataset
 characteristics.
 
@@ -468,14 +473,14 @@ was evaluated by comparing execution latency and MCC per
 millisecond for the lightweight Model 1 and the complete
 Model 5.
 
-On D1, Model 1 required the  0.062 ms per pair and achieved an
-MCC of the 0.3573, resulting in an MCC-per-millisecond value
-of 5.763. In comparison, the  Model 5 required 0.176 ms per pair,
-achieved an MCC of the  0.4705, and produced an
-MCC-per-millisecond value of  the 2.673.
+On Dataset 1, Model 1 required 0.062 ms per pair and achieved an
+MCC of 0.3573, resulting in an MCC-per-millisecond value
+of 5.763. In comparison, Model 5 required 0.176 ms per pair,
+achieved an MCC of 0.4705, and produced an
+MCC-per-millisecond value of 2.673.
 
 Thus, Model 1 was approximately 2.8 times faster than
-Model 5 on D1.
+Model 5 on Dataset 1.
 
 % ---------------------------------------------------------
 % COST FIGURE 1
@@ -485,7 +490,7 @@ Model 5 on D1.
     \centering
     \includegraphics[width=\linewidth]
     {Screenshot 2026-11-21 120543.png}
-    \caption{Comparison of model latency and MCC on D1.}
+    \caption{Comparison of model latency and MCC on Dataset 1.}
     \label{fig:cost1}
 \end{figure}
 
@@ -497,42 +502,42 @@ Model 5 on D1.
     \centering
     \includegraphics[width=\linewidth]
     {Screenshot 2026-11-21 120916.png}
-    \caption{Comparison of model latency and MCC on D2.}
+    \caption{Comparison of model latency and MCC on Dataset 2.}
     \label{fig:cost2}
 \end{figure}
 
-On D2, Model 1 required the  0.054 ms per pair and achieved
+On Dataset 2, Model 1 required 0.054 ms per pair and achieved
 an MCC of 0.1990, resulting in an MCC-per-millisecond
-value of  the 3.685.
+value of 3.685.
 
-Model 5 required the  1.116 ms per pair and achieved an MCC
-of the  0.3958, producing an MCC-per-millisecond value of 0.355.
+Model 5 required 1.116 ms per pair and achieved an MCC
+of 0.3958, producing an MCC-per-millisecond value of 0.355.
 Consequently, Model 1 was approximately 20.7 times faster
-than  the Model 5 on D2.
+than Model 5 on Dataset 2.
 
-These measurements demonstrate the trade-off between the 
-classification performance and  the computational cost. Although
-Model 5 achieves higher MCC values on  the both datasets, its
+These measurements demonstrate the trade-off between
+classification performance and computational cost. Although
+Model 5 achieves higher MCC values on both datasets, its
 execution time is also higher due to the additional feature
-computations, including  the LSA projection and edit-distance
+computations, including the LSA projection and edit-distance
 operations.
 
-This difference is particularly pronounced on D2, where the 
-Model 5 requires the  substantially more execution time than
+This difference is particularly pronounced on Dataset 2, where
+Model 5 requires substantially more execution time than
 the lightweight baseline.
 
 The measured latency values motivate the proposed two-stage
-processing the  architecture, in which Model 1 acts as a
-lightweight pre-filter and  the Model 5 performs comprehensive
+architecture, in which Model 1 acts as a
+lightweight pre-filter and Model 5 performs comprehensive
 verification on unresolved pairs.
 
 Let $p$ represent the proportion of pairs resolved by
 the pre-filter, $t_1$ represent the execution time of Model 1,
 and $t_5$ represent the execution time of Model 5.
 
-Assuming that  the every pair is first processed by  the Model 1 and
-only the remaining proportion $(1-p)$ is forwarded to the 
-Model 5, the estimated average execution cost per the  pair is:
+Assuming every pair is first processed by Model 1 and
+only the remaining proportion $(1-p)$ is forwarded to
+Model 5, the estimated average execution cost per pair is:
 
 \begin{equation}
 T_{\mathrm{cascade}} = t_1 + (1-p)t_5.
@@ -540,7 +545,7 @@ T_{\mathrm{cascade}} = t_1 + (1-p)t_5.
 \end{equation}
 
 For the cascade to have a lower average execution cost
-than the  applying Model 5 to every pair, the following
+than applying Model 5 to every pair, the following
 condition must hold:
 
 \begin{equation}
@@ -555,10 +560,10 @@ p > \frac{t_1}{t_5}.
 \end{equation}
 
 Using the measured execution times, the estimated crossover
-point is approximately 35.2\% for D1, based on the  0.062 ms
+point is approximately 35.2\% for Dataset 1, based on the 0.062 ms
 for Model 1 and 0.176 ms for Model 5.
 
-For D2, the corresponding crossover point is approximately
+For Dataset 2, the corresponding crossover point is approximately
 4.8\%, based on 0.054 ms for Model 1 and 1.116 ms for
 Model 5.
 
